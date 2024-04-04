@@ -1,0 +1,484 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+input#steps-range::-webkit-slider-thumb {
+	background: rgb(71, 51, 160);
+	border-radius: 50%;
+  height:20px;
+  width:20px;
+	-webkit-appearance: none;
+	appearance: none;
+}
+
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.css-1wvake5 {
+  position: relative;
+  border-right-width: 1px;
+  border-right-style: solid;
+  border-color: #1a1a1a !important;
+  -webkit-transition: width, left, right, 300ms;
+  transition: width, left, right, 300ms;
+  width: 250px;
+  min-width: 170px !important;
+}
+.react-tabs__tab--selected {
+  background: lightgray !important;
+  border-color: #ff5757 !important;
+  border: 5px solid #ff5757 !important;
+  font-family: monospace;
+  color: black;
+  border-radius: 5px 5px 0 0;
+}
+.css-1wvake5.ps-collapsed {
+  width: 80px;
+  min-width: 50px !important;
+}
+.dougnut-chart {
+  width: 200px !important;
+  height: 200px !important;
+}
+
+.bar-chart {
+  width: 220px !important;
+  height: 160px !important;
+}
+.scatter-chart {
+  width: 220px !important;
+  height: 160px !important;
+}
+.line-chart {
+  width: 220px !important;
+  height: 160px !important;
+}
+/* span.semicircle-percent-value {
+  width: 40% !important;
+} */
+canvas.scatter-charts {
+  width: 100% !important;
+}
+.baddie-logo {
+  width: 300px;
+  height: 140px;
+  object-fit: cover;
+}
+.b-logo {
+  color: red;
+  font-size: 50px;
+  font-weight: 600;
+}
+.page-title {
+  font-size: 30px;
+  /* text-transform: lowercase; */
+}
+.page-desc {
+  font-size: 24px;
+  text-transform: lowercase;
+}
+.research-text {
+  font-size: 32px;
+}
+.tool-text {
+  font-size: 36px;
+  letter-spacing: 5px;
+}
+.player-list {
+  border: 3px solid rgb(194, 192, 192);
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.example::-webkit-scrollbar {
+  display: none;
+}
+.buttonPlayer {
+  font-family: inherit;
+    font-feature-settings: inherit;
+    font-variation-settings: inherit;
+    font-size: 100%;
+    font-weight: inherit;
+    line-height: inherit;
+    color: inherit;
+}
+
+.ev-text {
+  font-size: 21px;
+  font-weight: 500;
+  margin-top: 18px;
+}
+.range-slider .range-slider__thumb {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  width: 24px;
+  height: 24px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #b72ec9 !important;
+}
+.range-slider .range-slider__range {
+  position: absolute;
+  z-index: 1;
+  transform: translate(0, -50%);
+  top: 50%;
+  width: 100%;
+  height: 100%;
+  background: #b72ec9 !important;
+}
+
+@media screen and (max-width: 1024px) {
+  .bar-chart {
+    width: 170px !important;
+    height: 130px !important;
+  }
+  .pitcher-text {
+    font-size: 14px;
+  }
+  .dougnut-chart {
+    width: 160px !important;
+    height: 160px !important;
+  }
+  .scatter-chart {
+    width: 175px !important;
+    height: 131px !important;
+  }
+  .line-chart {
+    width: 170px !important;
+    height: 130px !important;
+  }
+  .pitcher-title {
+    font-size: 22px;
+    font-weight: 600;
+  }
+  .pitcher-desc {
+    font-size: 18px;
+  }
+  .segment-info {
+    padding: 7px 50px;
+    letter-spacing: 3px;
+  }
+  .difference {
+    font-size: 20px;
+    padding: 10px;
+  }
+  .segment-data {
+    width: 180px;
+  }
+  canvas.scatter-charts {
+    width: 100% !important;
+  }
+  .main-section {
+    padding: 10px 20px;
+  }
+  .player-list {
+    width: 260px;
+    font-size: 18px;
+  }
+  .greater {
+    font-size: 18px;
+  }
+  .progress-bars {
+    width: 250px;
+  }
+  .ev-text {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .baddie-text {
+    text-align: center;
+    font-size: 14px;
+  }
+  .zaddie-text {
+    font-size: 20px;
+  }
+  .pitcher-text {
+    font-size: 14px;
+  }
+  .bar-chart {
+    width: 220px !important;
+    height: 150px !important;
+  }
+  .grid.sm\:grid-cols-1.chart-section.md\:grid-cols-2.gap-6.mt-5 {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  }
+  .dougnut-chart {
+    width: 200px !important;
+    height: 200px !important;
+  }
+  .scatter-chart {
+    width: 210px !important;
+    height: 150px !important;
+  }
+  .line-chart {
+    width: 210px !important;
+    height: 150px !important;
+  }
+  .pitcher-title {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .pitcher-desc {
+    font-size: 14px;
+  }
+  .team-over {
+    font-size: 18px;
+  }
+  .picks-text {
+    font-size: 20px;
+  }
+  .pitcher-tools {
+    font-size: 20px;
+  }
+  .segment {
+    font-size: 20px;
+  }
+  .segment-desc {
+    font-size: 16px;
+  }
+  .segment-info {
+    padding: 5px 20px;
+    letter-spacing: 1px;
+    font-size: 16px;
+  }
+  .difference {
+    font-size: 20px;
+    padding: 10px;
+  }
+  .segment-data {
+    width: 160px;
+  }
+  canvas.scatter-charts {
+    width: 100% !important;
+  }
+  .player-list {
+    width: 200px;
+    font-size: 18px;
+  }
+  .greater {
+    font-size: 14px;
+  }
+  .progress-bars {
+    width: 150px;
+  }
+  /* .player-flex {
+    display: block;
+  } */
+  .ev-text {
+    font-size: 16px;
+  }
+  .player-select {
+    width: 16rem;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .baddie-text-logo {
+    font-size: 20px;
+  }
+  .player-select {
+    width: 16rem;
+  }
+  .graph-section {
+    width: 90%;
+  }
+  .image-section {
+    height: 350px;
+  }
+  .baddie-text-logo2 {
+    font-size: 35px;
+  }
+  .grid.grid-cols-2.gap-4.md\:h-52.chart-card.sm\:h-auto.items-center.px-3 {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  }
+  .bar-chart {
+    width: 190px !important;
+    height: 140px !important;
+  }
+  .dougnut-chart {
+    width: 180px !important;
+    height: 180px !important;
+  }
+  .scatter-chart {
+    width: 190px !important;
+    height: 140px !important;
+  }
+  .line-chart {
+    width: 190px !important;
+    height: 140px !important;
+  }
+  .pitcher-title {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .pitcher-desc {
+    font-size: 14px;
+  }
+  .team-over {
+    font-size: 16px;
+    line-height: normal;
+  }
+  .picks-text {
+    font-size: 18px;
+  }
+  .pitcher-tools {
+    font-size: 18px;
+  }
+  .segment {
+    font-size: 18px;
+    line-height: normal;
+  }
+  .segment-desc {
+    font-size: 14px;
+    line-height: normal;
+  }
+  .segment-info {
+    padding: 5px 10px;
+    letter-spacing: 0px;
+    line-height: normal;
+    font-size: 12px;
+  }
+  .difference {
+    font-size: 16px;
+    padding: 10px;
+    letter-spacing: 0px;
+    line-height: normal;
+  }
+  .segment-data {
+    width: 80px;
+    font-size: 12px;
+  }
+  .pit-seg-desc {
+    line-height: normal;
+    font-size: 14px;
+  }
+  .metric-title {
+    font-size: 14px;
+  }
+  canvas.scatter-charts {
+    width: 100% !important;
+  }
+  .segment-outer {
+    padding: 10px 5px;
+  }
+  .progress-bars {
+    width: 100%;
+  }
+  .player-flex {
+    display: block;
+  }
+  .baddie-logo {
+    width: 200px;
+    height: 100px;
+    object-fit: cover;
+  }
+  .user-section {
+    width: 60px;
+    font-size: 13px;
+    line-height: normal;
+  }
+  .page-title {
+    font-size: 18px;
+  }
+  .page-desc {
+    font-size: 16px;
+  }
+  .research-text {
+    font-size: 22px;
+  }
+}
+@media screen and (max-width: 375px) {
+  .bar-chart {
+    width: 150px !important;
+    height: 140px !important;
+  }
+  .dougnut-chart {
+    width: 150px !important;
+    height: 150px !important;
+  }
+  .scatter-chart {
+    width: 150px !important;
+    height: 140px !important;
+  }
+  .line-chart {
+    width: 150px !important;
+    height: 140px !important;
+  }
+  .team-over {
+    font-size: 14px;
+    line-height: normal;
+  }
+}
+@media screen and (max-width: 320px) {
+  .team-over {
+    font-size: 12px;
+    line-height: normal;
+  }
+  .pitcher-tools {
+    font-size: 16px;
+  }
+  .segment {
+    font-size: 16px;
+    line-height: normal;
+  }
+  .segment-desc {
+    font-size: 12px;
+    line-height: normal;
+  }
+  .baddie-logo {
+    width: 150px;
+    height: 80px;
+    object-fit: cover;
+  }
+  .b-logo {
+    color: red;
+    font-size: 40px;
+    font-weight: 600;
+  }
+  .user-section {
+    width: 55px;
+    font-size: 12px;
+    line-height: normal;
+  }
+  .player-select {
+    width: 11rem;
+  }
+  .graph-section {
+    width: 100%;
+  }
+}
