@@ -8,11 +8,9 @@ import Apploader from "../../component/Apploader";
 const Eda = () => {
   const [edaData, setEdaData] = useState(null)
   const [loader, setLoader] = useState(false);
-  const [range, setRange] = useState(6);
- 
+  const [body, setBody] = useState(null)
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const [metricType, setMetricType] = useState("");
   const [tab, setTab] = useState("KDASH");
   function toggleDropdown() {
     setIsOpen(!isOpen);
@@ -64,13 +62,14 @@ const Eda = () => {
         stat_type,
         plyr_tm_id: playerType === "pitcher" ? pitcher.pitcher[parseInt(values.playerName)] : batter.batter[parseInt(values.playerName)],
         plyr_tm_name: values.opposingTeam,
-        // player_name: playerType === "pitcher" ? pitcher.player_name[parseInt(values.playerName)] : batter.player_name[parseInt(values.playerName)],
+        player_name: playerType === "pitcher" ? pitcher.player_name[parseInt(values.playerName)] : batter.player_name[parseInt(values.playerName)],
         // metric_val: range.toString(),
         // prob_type: equality,
         // time_frame: values.time_frame,
         player_or_team: values.type,
         handedness: values.handedness,
       }
+      setBody(body)
       console.log("🚀 ~ handleSubmit ~ body:", body)
       // console.log("🚀 ~ handleSubmit ~ body:", body)
       const newEvalData = await getEda(body);
@@ -81,6 +80,8 @@ const Eda = () => {
       setLoader(false);
     } catch (error) {
       alert("There is some error")
+      setEdaData(null);
+
       setLoader(false);
     }
   };
@@ -154,7 +155,6 @@ const Eda = () => {
                     className="py-3 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
                     name="handedness"
                     onChange={(e) => {
-                      setMetricType(e.target.value);
                       setFieldValue("handedness", e.target.value);
                     }}
                   >
@@ -175,7 +175,7 @@ const Eda = () => {
                       setFieldValue('playerName', '');
                       setFieldValue('playerType', newPlayerType);
                       setFieldValue()
-                     
+
                       // Update the player type state
                       setPlayerType(newPlayerType);
                     }}
@@ -188,7 +188,7 @@ const Eda = () => {
                     <div className="flex items-center justify-center pt-5 pb-5">
                       <div className="relative group w-full" ref={dropdownRef}>
                         <button type="button" onClick={toggleDropdown} className=" py-3 player-list buttonPlayer  text-center focus:outline-none appearance-none inline-flex justify-center w-full px-4  text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm  ">
-                          {values.playerName == "" ? 'player name' : <span className="mr-2">{playerType === "pitcher" ? pitcher.player_name[parseInt(values.playerName)] : batter.player_name[parseInt(values.playerName)]}</span>}
+                          {values.playerName === "" ? 'player name' : <span className="mr-2">{playerType === "pitcher" ? pitcher.player_name[parseInt(values.playerName)] : batter.player_name[parseInt(values.playerName)]}</span>}
 
                         </button>
                         {values.playerType != "" && <div className={`absolute right-0 mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 p-1 space-y-1 ${isOpen ? '' : 'hidden'} max-h-60  w-full`}>
@@ -200,6 +200,7 @@ const Eda = () => {
                               pitcher.player_name.map((item, i) => (
                                 item.toLowerCase().includes(searchTerm) && (
                                   <button type="button" onClick={() => {
+                                    console.log("value set playername" , item ,i)
                                     setFieldValue("playerName", `${i}`);
                                     toggleDropdown()
                                   }} key={i} className="block px-4 py-2 text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer rounded-md">
@@ -212,6 +213,7 @@ const Eda = () => {
                               batter.player_name.map((item, i) => (
                                 item.toLowerCase().includes(searchTerm) && (
                                   <button type="button" onClick={() => {
+                                    console.log("value set playername" , item ,i, batter.player_name[parseInt(i)])
                                     setFieldValue("playerName", i);
                                     toggleDropdown()
                                   }} key={i} className="block px-4 py-2 text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer rounded-md">
@@ -251,43 +253,62 @@ const Eda = () => {
         {edaData ? <>
           <div className="mt-5">
             <div>
-              <button className={`${tab == "KDASH"? "bg-orange-600" :"bg-lightgray" } rounded-lg px-4 py-1 border-black border-2`} onClick={()=>{
+              <button className={`${tab == "KDASH" ? "bg-orange-600" : "bg-lightgray"} rounded-lg px-4 py-1 border-black border-2`} onClick={() => {
                 setTab("KDASH")
-              }}>K Dash</button>
-              <button className={`${tab == "HITS"? "bg-orange-600" :"bg-lightgray" } rounded-lg px-4 py-1 border-black border-2`}
-               onClick={()=>{
-                setTab("HITS")
-              }}>Hits Dash</button>
+              }}>{body.stat_type === "pitching" ? "k" : "main"} Dash</button>
+              <button className={`${tab == "HITS" ? "bg-orange-600" : "bg-lightgray"} rounded-lg px-4 py-1 border-black border-2`}
+                onClick={() => {
+                  setTab("HITS")
+                }}>Hits Dash</button>
             </div>
             <div>
               <div className="border-dashed border-2 border-greyLight w-full">
-               <div className="text-center my-2">
-               <h3 className="text-greyLight font-semibold">{`batting main dashboard for {player_name or team}`}</h3>
-               </div>
-                <div className="border-2 border-black  mb-10 mx-2" >
-                  {tab == "KDASH" && 
-                  <div className="grid grid-cols-3">
-                    {edaData?.KDASH.map((item,i)=>{
-                      return <img key={i} src={item +`?new=${new Date()}`}/>
-                    })}
-                  </div>
-                  }
-                   {tab == "HITS" && 
-                   <>
-                  <div className="grid grid-cols-3">
-                    {edaData?.HITS_IMAGE[0]?.HITS.map((item,i)=>{
-                      return <img key = {i} src={item  +`?new=${new Date()}`}/>
-                    })}
-                  </div>
-                  <div className="grid grid-cols-3">
-                  {Object.entries(edaData?.HITS_IMAGE[0]?.float_dict).map(([k,v],i)=>{
-                    return <div  key = {i} className=" flex flex-col h-36 justify-evenly items-center">
-                      <span className="text-3xl font-bold" >{k}</span>
-                      <span className="text-3xl ">{v}</span>
-                    </div>
-                  })}
+                <div className="text-center my-2">
+                  <h3 className="text-greyLight font-semibold">{`${body.stat_type} main dashboard for ${body.type =="team"?body.plyr_tm_name:body.player_name}`}</h3>
                 </div>
-                </>
+                <div className="border-2 border-black  mb-10 mx-2" >
+                  {tab == "KDASH" &&
+                    <>{
+                      body.stat_type === "pitching" ?
+                        <div className="grid grid-cols-3">
+                          {edaData?.KDASH.map((item, i) => {
+                            return <img key={i} src={item + `?new=${new Date()}`} />
+                          })}
+                        </div> :
+                        <div className="grid grid-cols-3">
+                          {Object.entries(edaData?.TB?.batting_float).map(([k, v], i) => {
+                            return <div key={i} className=" flex flex-col h-36 justify-evenly items-center">
+                              <span className="text-3xl font-bold" >{k}</span>
+                              <span className="text-3xl ">{v}</span>
+                            </div>
+                          })}
+                          {edaData?.TB?.Main_Dash.map((item, i) => {
+                            return <img key={i} src={item + `?new=${new Date()}`} />
+                          })}
+                        </div>
+                    }</>}
+                  {tab == "HITS" &&
+                    <>{body.stat_type === "pitching" ?
+                    <>
+                      <div className="grid grid-cols-3">
+                        {edaData?.HITS_IMAGE[0]?.HITS.map((item, i) => {
+                          return <img key={i} src={item + `?new=${new Date()}`} />
+                        })}
+                      </div>
+                      <div className="grid grid-cols-3">
+                        {Object.entries(edaData?.HITS_IMAGE[0]?.float_dict).map(([k, v], i) => {
+                          return <div key={i} className=" flex flex-col h-36 justify-evenly items-center">
+                            <span className="text-3xl font-bold" >{k}</span>
+                            <span className="text-3xl ">{v}</span>
+                          </div>
+                        })}
+                      </div>
+                    </> :
+                    <div className="grid grid-cols-3">
+                      {edaData?.TB?.TBHITS?.map((item, i) => {
+                        return <img key={i} src={item + `?new=${new Date()}`} />
+                      })}
+                    </div>}</>
                   }
                 </div>
                 <div className="border-2 border-black h-[400px] my-10 mx-2" ></div>

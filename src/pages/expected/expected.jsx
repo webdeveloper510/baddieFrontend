@@ -200,7 +200,7 @@ const Expected = () => {
                   <div className="flex items-center justify-center pt-5 pb-5">
                     <div className="relative group w-full" ref={dropdownRef}>
                       <button type="button" onClick={toggleDropdown} className=" py-3 player-list buttonPlayer  text-center focus:outline-none appearance-none inline-flex justify-center w-full px-4  text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm  ">
-                        {values.playerName == "" ? 'player name' : <span className="mr-2">{playerType === "pitcher" ? pitcher.player_name[parseInt(values.playerName)] : batter.player_name[parseInt(values.playerName)]}</span>}
+                        {values.playerName === "" ? 'player name' : <span className="mr-2">{playerType === "pitcher" ? pitcher.player_name[parseInt(values.playerName)] : batter.player_name[parseInt(values.playerName)]}</span>}
 
                       </button>
                       {values.playerType != "" && <div className={`absolute right-0 mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 p-1 space-y-1 ${isOpen ? '' : 'hidden'} max-h-60  w-full`}>
