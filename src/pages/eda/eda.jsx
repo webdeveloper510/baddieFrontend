@@ -281,8 +281,9 @@ const Eda = () => {
                   </div>
                   <div className="grid grid-cols-3">
                   {Object.entries(edaData?.HITS_IMAGE[0]?.float_dict).map(([k,v],i)=>{
-                    return <div className=" flex justify-center items-center">
-                      <span key = {i} >{k}:{v}</span>
+                    return <div  key = {i} className=" flex flex-col h-36 justify-evenly items-center">
+                      <span className="text-3xl font-bold" >{k}</span>
+                      <span className="text-3xl ">{v}</span>
                     </div>
                   })}
                 </div>
