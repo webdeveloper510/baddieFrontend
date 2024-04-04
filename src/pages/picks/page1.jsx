@@ -94,8 +94,11 @@ const Page1 = () => {
             return <Link
             to= {'/picks-analysis2' }
             state={{ from: item }}
-          className="w-4/5 bg-lightgreen my-4 text-white p-4 text-center rounded-xl text-2xl"
+          className="w-4/5 bg-lightgreen my-4 text-white p-4 text-center rounded-xl text-2xl flex flex-col"
         >
+          <span className="pitcher-title text-2xl">
+          {moment(data).format(item?.date_key)}
+          </span>
           <span className="pitcher-title text-2xl">
           {item?.title}
           </span>
