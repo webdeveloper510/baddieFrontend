@@ -83,6 +83,9 @@ const Header = ({ show, setShow }) => {
 
             {isDropdownOpen && (
               <div
+              onClick={()=>{
+                setDropdownOpen(false);
+              }}
                 ref={dropdownRef}
                 id="dropdownInformation"
                 className="z-10 absolute right-2 bg-white  divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
@@ -107,6 +110,14 @@ const Header = ({ show, setShow }) => {
                       className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 "
                     >
                       Buy Subscription
+                    </Link>
+                  </li>}
+                  {user?.status === "active" && <li>
+                    <Link
+                      to="/plan"
+                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 "
+                    >
+                      Plan
                     </Link>
                   </li>}
                   {/* <li>

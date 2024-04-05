@@ -132,3 +132,20 @@ export const getEda = async(data)=>{
         throw (error)
     }
 }
+export const getSubscription = async()=>{
+    try {
+        const response = await authApi.get("get-subscription//");
+        return response.data
+    } catch (error) {
+        throw (error)
+    }
+}
+export const cancelSubscription = async(data)=>{
+    try {
+        const response = await authApi.post("cancel-subscription/",data);
+        return response.data
+    } catch (error) {
+        throw (error)
+    }
+}
+

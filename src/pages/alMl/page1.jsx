@@ -21,7 +21,7 @@ const AlPage1 = () => {
         <div className="w-4/5 bg-lightblue my-4 text-white p-4 text-center rounded-xl text-2xl">
           <Link to="/al-ml-hub/pitcher">
             <h5 className="text-2xl segment font-semibold">
-              Pitcher Segmentation Model
+              pitcher segmentation model
             </h5>
             <p className="text-lg segment-desc">
               uncover pitcher groups that share similar characteristics &
@@ -59,7 +59,7 @@ const AlPage1 = () => {
         <div className="w-4/5 bg-lightgreen my-4 text-white p-4 text-center rounded-xl text-2xl">
           <Link to="/al-ml-hub/batter">
             <h5 className="text-2xl segment font-semibold">
-              Batter Segmentation Model
+              batter segmentation model
             </h5>
             <p className="text-lg segment-desc">
               take a look at batter clusters to unearth hidden insights & trends

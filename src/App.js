@@ -20,6 +20,7 @@ import Apploader from "./component/Apploader";
 import { Payment } from "./pages/payment";
 import { ErrorFour } from "./pages/PageNotFound";
 import Eda from "./pages/eda/eda";
+import { Plan } from "./pages/plan";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 export const userContext = createContext();
 
@@ -99,6 +100,14 @@ function App() {
                     element={
                       <SecureRoute>
                         <Page1 />
+                      </SecureRoute>
+                    }
+                  />
+                  <Route
+                    path="/plan"
+                    element={
+                      <SecureRoute>
+                        <Plan />
                       </SecureRoute>
                     }
                   />

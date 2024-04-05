@@ -25,7 +25,8 @@ const Eda = () => {
     playerName: '',
     opposingTeam: '',
     type: "",
-    time_frame: "TY + LY"
+    time_frame: "TY + LY",
+    player_type: 'r',
   });
   const validationSchema = Yup.object().shape({
     // playerType: Yup.string()
@@ -68,6 +69,7 @@ const Eda = () => {
         // time_frame: values.time_frame,
         player_or_team: values.type,
         handedness: values.handedness,
+        player_type:values.player_type
       }
       setBody(body)
       console.log("🚀 ~ handleSubmit ~ body:", body)
@@ -138,7 +140,7 @@ const Eda = () => {
         <Formik innerRef={formikRef} initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
           {({ isSubmitting, setFieldValue, values }) => (
             <Form>
-              <div className={`grid grid-cols-5 gap-4 player-flex text-[#2a3f5f]`}>
+              <div className={`${edaData && values.handedness === "yes"?"grid grid-cols-6":"grid grid-cols-5"} gap-4 player-flex text-[#2a3f5f]`}>
                 <div className="text-center col-span-2 player-select">
                   <Field
                     as="select"
@@ -237,6 +239,17 @@ const Eda = () => {
                     })}
                   </Field>}
                 </div>
+              {edaData && values.handedness === "yes"&&  <div className="text-center self-center col-span-1 player-select">
+                  <Field
+                    as="select"
+                    className="py-3 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
+                    name="player_type"
+                  >
+                    <option disabled value="">r or l</option>
+                    <option value="r">r</option>
+                    <option value="l">l</option>
+                  </Field>
+                </div>}
                 <div className="col-span-1 flex">
                   <button
                     type="submit"
@@ -255,34 +268,34 @@ const Eda = () => {
             <div>
               <button className={`${tab == "KDASH" ? "bg-orange-600" : "bg-lightgray"} rounded-lg px-4 py-1 border-black border-2`} onClick={() => {
                 setTab("KDASH")
-              }}>{body.stat_type === "pitching" ? "k" : "main"} Dash</button>
+              }}>{body.stat_type === "pitching" ? "K" : "Main"} Dash</button>
               <button className={`${tab == "HITS" ? "bg-orange-600" : "bg-lightgray"} rounded-lg px-4 py-1 border-black border-2`}
                 onClick={() => {
                   setTab("HITS")
                 }}>Hits Dash</button>
             </div>
             <div>
-              <div className="border-dashed border-2 border-greyLight w-full">
+              <div className=" w-full">
                 <div className="text-center my-2">
-                  <h3 className="text-greyLight font-semibold">{`${body.stat_type} main dashboard for ${body.type =="team"?body.plyr_tm_name:body.player_name}`}</h3>
+                  <span className="text-greyLight font-semibold text-3xl">{`${body.stat_type} main dashboard for ${body.type =="team"?body.plyr_tm_name:body.player_name}`}</span>
                 </div>
                 <div className="border-2 border-black  mb-10 mx-2" >
                   {tab == "KDASH" &&
                     <>{
                       body.stat_type === "pitching" ?
                         <div className="grid grid-cols-3">
-                          {edaData?.KDASH.map((item, i) => {
+                          {edaData?.Main_Dash.map((item, i) => {
                             return <img key={i} src={item + `?new=${new Date()}`} />
                           })}
                         </div> :
                         <div className="grid grid-cols-3">
-                          {Object.entries(edaData?.TB?.batting_float).map(([k, v], i) => {
+                          {Object.entries(edaData?.Main_Dash[0]?.key_pair_data).map(([k, v], i) => {
                             return <div key={i} className=" flex flex-col h-36 justify-evenly items-center">
                               <span className="text-3xl font-bold" >{k}</span>
                               <span className="text-3xl ">{v}</span>
                             </div>
                           })}
-                          {edaData?.TB?.Main_Dash.map((item, i) => {
+                          {edaData?.Main_Dash[0]?.Main_Dash.map((item, i) => {
                             return <img key={i} src={item + `?new=${new Date()}`} />
                           })}
                         </div>
@@ -291,12 +304,12 @@ const Eda = () => {
                     <>{body.stat_type === "pitching" ?
                     <>
                       <div className="grid grid-cols-3">
-                        {edaData?.HITS_IMAGE[0]?.HITS.map((item, i) => {
+                        {edaData?.Hits_Dash[0].HITS.map((item, i) => {
                           return <img key={i} src={item + `?new=${new Date()}`} />
                         })}
                       </div>
                       <div className="grid grid-cols-3">
-                        {Object.entries(edaData?.HITS_IMAGE[0]?.float_dict).map(([k, v], i) => {
+                        {Object.entries(edaData?.Hits_Dash[0]?.key_pair_data).map(([k, v], i) => {
                           return <div key={i} className=" flex flex-col h-36 justify-evenly items-center">
                             <span className="text-3xl font-bold" >{k}</span>
                             <span className="text-3xl ">{v}</span>
@@ -305,7 +318,7 @@ const Eda = () => {
                       </div>
                     </> :
                     <div className="grid grid-cols-3">
-                      {edaData?.TB?.TBHITS?.map((item, i) => {
+                      {edaData?.Hits_Dash?.map((item, i) => {
                         return <img key={i} src={item + `?new=${new Date()}`} />
                       })}
                     </div>}</>
