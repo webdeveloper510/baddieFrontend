@@ -106,7 +106,25 @@ const Eda = () => {
   useEffect(() => { onLoad() }, []);
   const formikRef = useRef(null);
   const dropdownRef = useRef(null);
-
+  const [subTitle, setSubTitle] = useState("K")
+  useEffect(() => {
+    if(body?.stat_type === "pitching"){
+      if(tab === "KDASH"){
+        setSubTitle("K")
+      }
+      if(tab === "HITS"){
+        setSubTitle("hits allowed")
+      }
+    }
+    if(body?.stat_type === "batting"){
+      if(tab === "KDASH"){
+        setSubTitle("main")
+      }
+      if(tab === "HITS"){
+        setSubTitle("hits")
+      }
+    }
+  },[tab,body])
   const handleSubmitOutsideFormik = () => {
     if (formikRef.current) {
       formikRef.current.handleSubmit();
@@ -245,9 +263,9 @@ const Eda = () => {
                     className="py-3 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
                     name="player_type"
                   >
-                    <option disabled value="">r or l</option>
-                    <option value="r">r</option>
-                    <option value="l">l</option>
+                    <option disabled value="">R or L</option>
+                    <option value="r">R</option>
+                    <option value="l">L</option>
                   </Field>
                 </div>}
                 <div className="col-span-1 flex">
@@ -277,7 +295,7 @@ const Eda = () => {
             <div>
               <div className=" w-full">
                 <div className="text-center my-2">
-                  <span className="text-greyLight font-semibold text-3xl">{`${body.stat_type} main dashboard for ${body.type =="team"?body.plyr_tm_name:body.player_name}`}</span>
+                  <span className="text-greyLight font-semibold text-3xl">{`${body.stat_type} ${subTitle} dashboard for ${body.type =="team"?body.plyr_tm_name:body.player_name}`}</span>
                 </div>
                 <div className="border-2 border-black  mb-10 mx-2" >
                   {tab == "KDASH" &&
@@ -324,7 +342,7 @@ const Eda = () => {
                     </div>}</>
                   }
                 </div>
-                <div className="border-2 border-black h-[400px] my-10 mx-2" ></div>
+               
               </div>
             </div>
           </div>
