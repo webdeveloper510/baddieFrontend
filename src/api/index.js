@@ -107,7 +107,14 @@ export const buySubscription = async(data)=>{
         throw (error)
     }
 }
-
+export const buyUserSubscription = async(data)=>{
+    try {
+        const response = await authApi.post("new-subscription/",data);
+        return response.data
+    } catch (error) {
+        throw (error)
+    }
+}
 export const getPicks = async(data)=>{
     try {
         const response = await authApi.post("get-picks/",data);

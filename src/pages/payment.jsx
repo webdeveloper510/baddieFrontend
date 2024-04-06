@@ -3,7 +3,7 @@ import { Dialog, RadioGroup, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { loadStripe } from '@stripe/stripe-js';
 import { CardElement, Elements, useElements, useStripe } from '@stripe/react-stripe-js'
-import { buySubscription, validatePromoCode } from '../api'
+import { buySubscription, buyUserSubscription, validatePromoCode } from '../api'
 import { useLocation, useNavigate } from 'react-router'
 import { userContext } from '../App'
 import Apploader from '../component/Apploader'
@@ -162,7 +162,7 @@ export function Payment(props) {
 
 
 const CheckoutForm = ({ selectedPlan, bodyData }) => {
-    // const { user, setUser } = useContext(userContext);
+    const { user, setUser } = useContext(userContext);
     const navigate = useNavigate()
     const stripe = useStripe();
     const elements = useElements();
@@ -207,12 +207,21 @@ const CheckoutForm = ({ selectedPlan, bodyData }) => {
                 };
 
                 try {
-                    const result = await buySubscription({ ...data, ...bodyData });
+                    if(bodyData){
+                        console.log("🚀 ~ handleSubmit ~ bodyData:", bodyData)
+                        const result = await buySubscription({ ...data, ...bodyData });
                     // setUser({ ...user, status: "active" });
                     alert("Payment done");
                     navigate("/signin");
+                    return
+                    }
+                    const result = await buyUserSubscription(data);
+                    // setUser({ ...user, status: "active" });
+                    alert("Payment done");
+                    setUser({ ...user, status: "active" });
+                    navigate("/");
                 } catch (err) {
-                    alert("Your account is created");
+                    alert("Payment not completed");
                 }
             }
 
