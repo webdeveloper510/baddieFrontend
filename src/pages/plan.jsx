@@ -139,7 +139,8 @@ export function Plan(props) {
                                 <div className="rounded-md border bg-white bg-opacity-90">
                                     <div className=" border-b min-h-[14rem]">
                                         <div className="px-9 py-7">
-                                            <h3 className="mb-3 text-xl font-bold leading-snug text-gray-900">Per Month</h3>
+                                            <h3 className="mb-3 text-xl font-bold leading-snug text-gray-900">Per Month {sub?.subscription_type === "month" &&
+                                            <span className='text-green-800'>(Active Plan)</span>}</h3>
                                             <p className="font-medium leading-relaxed text-gray-500">
                                                 Gain access to BADDIE’s sport picks, our rigorous statistical models, curated analytics functions and more on a monthly basis. Cancel at anytime
                                             </p>
@@ -152,7 +153,9 @@ export function Plan(props) {
                                             <span className="ml-2 text-2xl text-gray-900">$169.99/month</span>
                                         </p>
                                         <div className="md:inline-block">
-                                            {sub?.subscription_type === "month" && <button
+                                            {sub?.subscription_type === "month" && <>
+                                            <span>Current Plan</span>
+                                            <button
                                                 type="button"
                                                 className="inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
                                                 onClick={() => {
@@ -161,7 +164,7 @@ export function Plan(props) {
                                                 }}
                                             >
                                                 Cancel Plan
-                                            </button>}
+                                            </button></>}
                                         </div>
                                     </div>
                                 </div>
@@ -170,7 +173,8 @@ export function Plan(props) {
                                 <div className="rounded-md border bg-white bg-opacity-90">
                                     <div className=" border-b min-h-[14rem]">
                                         <div className="px-9 py-7">
-                                            <h3 className="mb-3 text-xl font-bold leading-snug text-gray-900">Per Season</h3>
+                                            <h3 className="mb-3 text-xl font-bold leading-snug text-gray-900">Per Season  {sub?.subscription_type === "season" &&
+                                            <span className='text-green-800'>(Active Plan)</span>}</h3>
                                             <p className="font-medium leading-relaxed text-gray-500">
                                                 Go along for the ride with BADDIE for the full season and save ~15% vs. per monthly rates
                                             </p>
@@ -182,7 +186,9 @@ export function Plan(props) {
                                             <span className="ml-2 text-2xl text-gray-900">$1049.99/season</span>
                                         </p>
                                         <div className="md:inline-block">
-                                            {sub?.subscription_type === "season" && <button
+                                            {sub?.subscription_type === "season" &&<>
+                                         
+                                            <button
                                                 onClick={() => {
 
                                                     setOpen(true)
@@ -191,7 +197,8 @@ export function Plan(props) {
                                                 className="inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
                                             >
                                                 Cancel Plan
-                                            </button>}
+                                            </button>
+                                            </>}
                                         </div>
                                     </div>
                                 </div>
