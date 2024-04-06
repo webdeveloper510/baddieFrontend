@@ -117,7 +117,7 @@ export const buyUserSubscription = async(data)=>{
 }
 export const getPicks = async(data)=>{
     try {
-        const response = await authApi.post("get-picks/",data);
+        const response = await Axios.post("get-picks/",data);
         return response.data
     } catch (error) {
         throw (error)
