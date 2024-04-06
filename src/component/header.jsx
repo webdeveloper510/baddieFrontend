@@ -88,7 +88,7 @@ const Header = ({ show, setShow }) => {
               }}
                 ref={dropdownRef}
                 id="dropdownInformation"
-                className="z-10 absolute right-2 bg-white  divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
+                className="z-20 absolute right-2 bg-white  divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
                 
               >
                 <div className="bg-white px-4 py-3 text-sm text-gray-900 text-black">
