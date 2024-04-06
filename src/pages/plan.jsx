@@ -6,7 +6,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 import { useNavigate } from 'react-router'
 import { userContext } from '../App'
 import Apploader from '../component/Apploader'
-import { cancelSubscription, getSubscription } from '../api'
+import { cancelSubscription, getAvailablePlan, getSubscription } from '../api'
 
 
 export function Plan(props) {
@@ -17,11 +17,15 @@ export function Plan(props) {
     const [open, setOpen] = useState(false)
     const [loader, setLoader] = useState(false);
     const [sub, setSub] = useState(null);
+    const [plans, setPlans] =useState(null);
     const onLoad = async () => {
         try {
             setLoader(true);
             const response = await getSubscription();
             setSub(response.data)
+            const {data} = await getAvailablePlan();
+        console.log("🚀 ~ onLoad ~ data:", data)
+        setPlans(data)
             setLoader(false);
         } catch (error) {
             alert("There is some error");
@@ -150,7 +154,7 @@ export function Plan(props) {
 
                                         <p className="mb-6 text-lg font-semibold leading-normal text-gray-600 ">
                                             <span>Starting from</span>
-                                            <span className="ml-2 text-2xl text-gray-900">$169.99/month</span>
+                                            <span className="ml-2 text-2xl text-gray-900">${plans?.month?.amount}/month</span>
                                         </p>
                                         <div className="md:inline-block">
                                             {sub?.subscription_type === "month" && <>
@@ -183,7 +187,7 @@ export function Plan(props) {
                                     <div className="px-9 pb-9 pt-8 backdrop:blur-md min-h-44">
                                         <p className="mb-6 text-lg font-semibold leading-normal text-gray-600">
                                             <span>Starting from</span>
-                                            <span className="ml-2 text-2xl text-gray-900">$1049.99/season</span>
+                                            <span className="ml-2 text-2xl text-gray-900">${plans?.season?.amount}/season</span>
                                         </p>
                                         <div className="md:inline-block">
                                             {sub?.subscription_type === "season" &&<>

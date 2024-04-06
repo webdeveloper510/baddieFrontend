@@ -156,3 +156,11 @@ export const cancelSubscription = async(data)=>{
     }
 }
 
+export const getAvailablePlan = async()=>{
+    try {
+        const response = await Axios.get("subscription-plans/");
+        return response.data
+    } catch (error) {
+        throw (error)
+    }
+}

@@ -3,7 +3,7 @@ import { Dialog, RadioGroup, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { loadStripe } from '@stripe/stripe-js';
 import { CardElement, Elements, useElements, useStripe } from '@stripe/react-stripe-js'
-import { buySubscription, buyUserSubscription, validatePromoCode } from '../api'
+import { buySubscription, buyUserSubscription, getAvailablePlan, validatePromoCode } from '../api'
 import { useLocation, useNavigate } from 'react-router'
 import { userContext } from '../App'
 import Apploader from '../component/Apploader'
@@ -18,7 +18,27 @@ export function Payment(props) {
     const navigate = useNavigate();
     const [open, setOpen] = useState(false)
     const [selectedPlan, setSelectedPlan] = useState("month")
-
+    const [plans, setPlans] =useState(null);
+    const [loader, setLoader] = useState(false)
+    const onLoad = async () => {
+      try {
+        setLoader(true);
+        const {data} = await getAvailablePlan();
+        console.log("🚀 ~ onLoad ~ data:", data)
+        setPlans(data)
+        setLoader(false);
+      } catch (error) {
+        alert("There is some error");
+        setLoader(false);
+      }
+  
+    };
+    useEffect(() => { onLoad() }, []);
+    
+    if (loader) {
+      return <div className="w-full h-full flex items-center justify-center"><Apploader size={80} />
+      </div>
+    }
     return (
         <>
             <Transition.Root show={open} as={Fragment}>
@@ -66,6 +86,7 @@ export function Payment(props) {
                                                     <CheckoutForm
                                                         selectedPlan={selectedPlan}
                                                         bodyData={state}
+                                                        plans={plans}
                                                     />
                                                 </Elements>
 
@@ -104,7 +125,7 @@ export function Payment(props) {
 
                                         <p className="mb-6 text-lg font-semibold leading-normal text-gray-600">
                                             <span>Starting from</span>
-                                            <span className="ml-2 text-2xl text-gray-900">$169.99/month</span>
+                                            <span className="ml-2 text-2xl text-gray-900">${plans?.month?.amount}/month</span>
                                         </p>
                                         <div className="md:inline-block">
                                             <button
@@ -134,7 +155,7 @@ export function Payment(props) {
                                     <div className="px-9 pb-9 pt-8 backdrop:blur-md">
                                         <p className="mb-6 text-lg font-semibold leading-normal text-gray-600">
                                             <span>Starting from</span>
-                                            <span className="ml-2 text-2xl text-gray-900">$1049.99/season</span>
+                                            <span className="ml-2 text-2xl text-gray-900">${plans?.season?.amount}/season</span>
                                         </p>
                                         <div className="md:inline-block">
                                             <button
@@ -161,7 +182,7 @@ export function Payment(props) {
 }
 
 
-const CheckoutForm = ({ selectedPlan, bodyData }) => {
+const CheckoutForm = ({ selectedPlan, bodyData, plans }) => {
     const { user, setUser } = useContext(userContext);
     const navigate = useNavigate()
     const stripe = useStripe();
@@ -174,11 +195,14 @@ const CheckoutForm = ({ selectedPlan, bodyData }) => {
 
     // Calculate subscription price based on selected plan
     useEffect(() => {
+        console.log("plans",plans)
         if (selectedPlan === "month") {
-            setSubscriptionPrice(promoData?.type === "discount" ? 169.99 * (1 - promoData.value / 100) : 169.99);
+            setSubscriptionPrice(promoData?.type === "discount" ? parseFloat(plans.month.amount) * (1 - promoData.value / 100) : parseFloat(plans.month.amount));
         } else if (selectedPlan === "season") {
-            setSubscriptionPrice(promoData?.type === "discount" ? 1049.99 * (1 - promoData.value / 100) : 1049.99);
+            setSubscriptionPrice(promoData?.type === "discount" ?parseFloat( plans.season.amount) * (1 - promoData.value / 100) :parseFloat( plans.season.amount));
         }
+        
+        
     }, [selectedPlan, promoData]);
     const handleSubmit = async (event) => {
         event.preventDefault();
