@@ -37,6 +37,7 @@ export function Plan(props) {
             const response = await cancelSubscription({
                 subscription_id : sub.subscription_id
             });
+            alert("You cancel your subscription")
             setUser(null);
             localStorage.clear();
             navigate("/");
@@ -90,8 +91,8 @@ export function Plan(props) {
 
                                         <div className="grid w-full grid-cols-1 items-start gap-x-6 gap-y-8 sm:grid-cols-12 lg:gap-x-8">
                                             <div className="sm:col-span-8 lg:col-span-12">
-                                                <h2 className="text-2xl font-bold text-gray-900 sm:pr-12">Are you want to cancel your subscription</h2>
-                                                <div className="mt-6 flex justify-center sm:justify-start">
+                                                <h2 className="text-2xl font-bold text-gray-900 sm:pr-12 text-center">Are you want to cancel your subscription</h2>
+                                                <div className="mt-6 flex justify-center item-center">
                                                     <button
                                                         type="button"
                                                         className="px-12 py-4 rounded-full bg-red-600 font-bold text-white tracking-widest uppercase transform hover:scale-105 hover:bg-red-500 transition-colors duration-200"

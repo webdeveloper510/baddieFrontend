@@ -18,7 +18,7 @@ const Sidebars = ({show, setShow}) => {
                             picks & analysis
                         </MenuItem>
                         </Link>
-                        <Link to="/eda"><MenuItem className={`mt-2 font-semibold text-center hover:text-black hover:white ${location.pathname.includes("player/team EDA") ? "bg-white text-black" : "bg-greyLight text-white"} `}> player/team EDA </MenuItem></Link>
+                        <Link to={user?.status == "active"?"/eda":"/payment"}><MenuItem className={`mt-2 font-semibold text-center hover:text-black hover:white ${location.pathname.includes("player/team EDA") ? "bg-white text-black" : "bg-greyLight text-white"} `}> player/team EDA </MenuItem></Link>
                         <Link to={user?.status == "active"?"/expected-value":"/payment"}><MenuItem className={`mt-2 font-semibold text-center hover:text-black hover:white ${location.pathname.includes("expected-value") ? "bg-white text-black" : "bg-greyLight text-white"} `}>  EV calculator </MenuItem></Link>
 
                         <Link to={user?.status == "active"?"/al-ml":"/payment"} ><MenuItem className={`mt-2 font-semibold text-center hover:text-black hover:white ${location.pathname.includes("al-ml") ? "bg-white text-black" : "bg-greyLight text-white"} `}>   AI & ML </MenuItem> </Link>

@@ -97,7 +97,7 @@ const Page1 = () => {
           className="w-4/5 bg-lightgreen my-4 text-white p-4 text-center rounded-xl text-2xl flex flex-col"
         >
           <span className="pitcher-title text-2xl">
-          {moment(data).format(item?.date_key)}
+          {moment(item?.date_key).format('dddd, MMM Do YY')}
           </span>
           <span className="pitcher-title text-2xl">
           {item?.title}

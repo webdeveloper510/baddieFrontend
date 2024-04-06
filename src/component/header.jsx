@@ -114,7 +114,7 @@ const Header = ({ show, setShow }) => {
                   </li>}
                   {user?.status === "active" && <li>
                     <Link
-                      to="/plan"
+                      to={user?.status == "active"?"/plan":"/payment"}
                       className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 "
                     >
                       Plan

@@ -116,72 +116,7 @@ const Alpage2 = () => {
                 bg_color = colors[index];
                 
               } 
-              // switch (value) {
-              //   case "1":
-              //     bg_color = "bg-orange-600";
-              //     break;
-              //   case "2":
-              //     bg_color = "bg-orange-200";
-              //     break;
-              //   case "3":
-              //     bg_color = "bg-yellow-500";
-              //     break;
-              //   case "4":
-              //     bg_color = "bg-yellow-300";
-              //     break;
-              //   case "5":
-              //     bg_color = "bg-red-600";
-              //     break;
-              //   case "6":
-              //     bg_color = "bg-red-300";
-              //     break;
-              //   case "7":
-              //     bg_color = "bg-purple-600";
-              //     break;
-              //   case "8":
-              //     bg_color = "bg-purple-300";
-              //     break;
-              //   case "9":
-              //     bg_color = "bg-blue-600";
-              //     break;
-              //   case "10":
-              //     bg_color = "bg-blue-300";
-              //     break;
-              //   case "11":
-              //     bg_color = "bg-teal-600";
-              //     break;
-              //   case "12":
-              //     bg_color = "bg-teal-300";
-              //     break;
-              //   case "13":
-              //     bg_color = "bg-green-600";
-              //     break;
-              //   case "14":
-              //     bg_color = "bg-green-300";
-              //     break;
-              //   case "15":
-              //     bg_color = "bg-gray-600";
-              //     break;
-              //   case "16":
-              //     bg_color = "bg-gray-300";
-              //     break;
-              //   case "17":
-              //     bg_color = "bg-indigo-600";
-              //     break;
-              //   case "18":
-              //     bg_color = "bg-indigo-300";
-              //     break;
-              //   case "19":
-              //     bg_color = "bg-pink-600";
-              //     break;
-              //   case "20":
-              //     bg_color = "bg-pink-300";
-              //     break;
-              //   default:
-              //     // Default color if value doesn't match any case
-              //     bg_color = "bg-gray-400";
-              //     break;
-              // }
+              
               return <div className={`${bg_color} w-full h-full text-black font-bold text-center p-2`} >{value}</div>
             },
             sortable: true,
@@ -258,11 +193,11 @@ const Alpage2 = () => {
 
           <TabPanel>
             <div>
-              <div className="w-full difference lowercase [letter-spacing:5px] bg-gray p-4 mt-20 mb-5 text-center rounded-xl text-2xl overflow-y-auto">
+              <div className="w-full difference lowercase [letter-spacing:5px] bg-gray p-4 mt-20 mb-5 text-center rounded-xl text-2xl ">
                 Segment differences
               </div>
 
-              <div className="max-h-[80vh] overflow-scroll">
+              <div className="max-h-[80vh] overflow-auto">
                 <DataTable
                   style={{
                     overflow: "visible !important"
@@ -277,6 +212,8 @@ const Alpage2 = () => {
                 />
 
               </div>
+              <span className="w-full difference lowercase  test-gray mt-16 text-sm">current YTD stats show {(new Date).getFullYear()-1} season stats;
+current season stats will show once models are updated for {(new Date).getFullYear()} </span>
               <div className="mt-5 text-center ">
                 <div>
 
