@@ -83,9 +83,9 @@ function App() {
         {user ? (
           <>
             <Header show={show} setShow={setShow} />
-            <div className="flex min-h-screen bg-lightblack w-full">
+            <div className="sidebar-main min-h-screen bg-lightblack w-full">
               <Sidebars show={show} setShow={setShow} />
-              <div className={`${!show ? "w-[86%]" : "w-[96%]"}`}>
+              <div className={`${!show ? "w-[86%] mobile-side" : "w-[96%] mobile-side"}`}>
                 <Routes>
                   <Route
                     path="/"

@@ -159,6 +159,12 @@ canvas.scatter-charts {
   height: 100%;
   background: #b72ec9 !important;
 }
+.sidebar-main{
+  display: flex;
+}
+.sidebar-mobile{
+  display: none;
+}
 
 @media screen and (max-width: 1024px) {
   .bar-chart {
@@ -307,6 +313,28 @@ canvas.scatter-charts {
   }
 }
 
+@media screen and (max-width: 430px) {
+  .sidebar-mobile{
+    display: block;
+  }
+  .mobile-side{
+    width: 100%;
+  }
+  .home-mobile{
+    padding: 10px;
+    margin-top: 50px;
+  }
+  .sidebar-outer{
+    display: none;
+  }
+  .mobile-inner{
+    display: flex;
+    /* overflow-x: auto; */
+  }
+  .sidebar-main{
+    display: block;
+  }
+}
 @media screen and (max-width: 425px) {
   .baddie-text-logo {
     font-size: 20px;

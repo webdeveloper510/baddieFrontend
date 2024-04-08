@@ -55,14 +55,17 @@ const Page1 = () => {
         {
           picksData.map((item,i)=>{
             return <Link
+            key={i}
             to= {'/picks-analysis2' }
             state={{ from: item }}
             className="w-4/5 bg-lightblue my-4 text-white p-4 text-center rounded-xl text-2xl"
           >
-            <span className="pitcher-title ">
+            <div className="pitcher-title text-2xl">
+          {moment(item?.date_key).format('dddd, MMM Do YY')}</div>
+            <div className="pitcher-title ">
               {item?.title}
-            </span>
-            <span className="pitcher-desc text-xl">{item.sub_title}</span>
+            </div>
+            <div className="pitcher-desc text-xl">{item.sub_title}</div>
           </Link>
           })
         }
@@ -96,13 +99,13 @@ const Page1 = () => {
             state={{ from: item }}
           className="w-4/5 bg-lightgreen my-4 text-white p-4 text-center rounded-xl text-2xl flex flex-col"
         >
-          <span className="pitcher-title text-2xl">
+          <div className="pitcher-title text-2xl">
           {moment(item?.date_key).format('dddd, MMM Do YY')}
-          </span>
-          <span className="pitcher-title text-2xl">
+          </div>
+          <div className="pitcher-title text-2xl">
           {item?.title}
-          </span>
-          <span className="pitcher-desc text-xl">{item.sub_title}</span>
+          </div>
+          <div className="pitcher-desc text-xl">{item.sub_title}</div>
           </Link>
           })
         }
