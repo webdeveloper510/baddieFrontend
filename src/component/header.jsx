@@ -70,12 +70,12 @@ const Header = ({ show, setShow }) => {
             ) : (
               <>
                 <Link to="/signin">
-                <button  className="text-black  bg-lightgray py-1 text-lg rounded w-40 mt-4">
+                <button  className="text-black  bg-lightgray py-1 text-lg rounded w-40 login-sign mt-4">
                   login
                 </button>
                 </Link>
                 <br />
-                <Link to="/signup"><button className="text-black  bg-lightgray py-1 text-lg rounded w-40 my-2">
+                <Link to="/signup"><button className="text-black  bg-lightgray py-1 text-lg rounded w-40 login-sign my-2">
                   signup
                 </button></Link>
               </>

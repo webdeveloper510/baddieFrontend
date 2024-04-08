@@ -303,16 +303,16 @@ const Eda = () => {
                   {tab == "KDASH" &&
                     <>{
                       body.stat_type === "pitching" ?
-                        <div className="grid grid-cols-3">
+                        <div className="grid md:grid-cols-3 sm:grid-cols-1">
                           {edaData?.Main_Dash.map((item, i) => {
                             return <img key={i} src={item + `?new=${new Date()}`} />
                           })}
                         </div> :
-                        <div className="grid grid-cols-3">
+                        <div className="grid md:grid-cols-3 sm:grid-cols-1">
                           {Object.entries(edaData?.Main_Dash[0]?.key_pair_data).map(([k, v], i) => {
-                            return <div key={i} className=" flex flex-col h-36 justify-evenly items-center">
-                              <span className="text-3xl font-bold" >{k}</span>
-                              <span className="text-3xl ">{v}</span>
+                            return <div key={i} className=" flex  flex-col h-36 justify-evenly items-center">
+                              <span className="text-3xl  font-bold" >{k}</span>
+                              <span className="text-3xl  ">{v}</span>
                             </div>
                           })}
                           {edaData?.Main_Dash[0]?.Main_Dash.map((item, i) => {
@@ -323,21 +323,21 @@ const Eda = () => {
                   {tab == "HITS" &&
                     <>{body.stat_type === "pitching" ?
                     <>
-                      <div className="grid grid-cols-3">
+                      <div className="grid md:grid-cols-3 sm:grid-cols-1">
                         {edaData?.Hits_Dash[0].HITS.map((item, i) => {
                           return <img key={i} src={item + `?new=${new Date()}`} />
                         })}
                       </div>
-                      <div className="grid grid-cols-3">
+                      <div className="grid md:grid-cols-3 sm:grid-cols-1">
                         {Object.entries(edaData?.Hits_Dash[0]?.key_pair_data).map(([k, v], i) => {
-                          return <div key={i} className=" flex flex-col h-36 justify-evenly items-center">
-                            <span className="text-3xl font-bold" >{k}</span>
+                          return <div key={i} className=" flex flex-col  h-36 justify-evenly items-center">
+                            <span className="text-3xl  font-bold" >{k}</span>
                             <span className="text-3xl ">{v}</span>
                           </div>
                         })}
                       </div>
                     </> :
-                    <div className="grid grid-cols-3">
+                    <div className="grid md:grid-cols-3 sm:grid-cols-1">
                       {edaData?.Hits_Dash?.map((item, i) => {
                         return <img key={i} src={item + `?new=${new Date()}`} />
                       })}

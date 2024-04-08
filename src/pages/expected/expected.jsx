@@ -247,10 +247,10 @@ const Expected = () => {
                     })}
                   </Field>
                 </div>
-              {evalData &&  <div className="text-center flex col-span-1  player-select">
+              {evalData &&  <div className="text-center col-span-1  player-select">
                 
                   <Field as="select"
-                    className="py-1 my-5 self-center player-list rounded w-full text-center focus:outline-none appearance-none"
+                    className="py-3 my-5 self-center player-list rounded w-full text-center focus:outline-none appearance-none"
                     name="time_frame">
                       <option disabled value="">Time Frame</option>
                     <option value="TY">TY</option>

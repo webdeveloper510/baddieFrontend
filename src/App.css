@@ -8,14 +8,13 @@
 }
 
 input#steps-range::-webkit-slider-thumb {
-	background: rgb(71, 51, 160);
-	border-radius: 50%;
-  height:20px;
-  width:20px;
-	-webkit-appearance: none;
-	appearance: none;
+  background: rgb(71, 51, 160);
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  -webkit-appearance: none;
+  appearance: none;
 }
-
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -127,12 +126,12 @@ canvas.scatter-charts {
 }
 .buttonPlayer {
   font-family: inherit;
-    font-feature-settings: inherit;
-    font-variation-settings: inherit;
-    font-size: 100%;
-    font-weight: inherit;
-    line-height: inherit;
-    color: inherit;
+  font-feature-settings: inherit;
+  font-variation-settings: inherit;
+  font-size: 100%;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
 }
 
 .ev-text {
@@ -159,10 +158,10 @@ canvas.scatter-charts {
   height: 100%;
   background: #b72ec9 !important;
 }
-.sidebar-main{
+.sidebar-main {
   display: flex;
 }
-.sidebar-mobile{
+.sidebar-mobile {
   display: none;
 }
 
@@ -314,33 +313,55 @@ canvas.scatter-charts {
 }
 
 @media screen and (max-width: 430px) {
-  .sidebar-mobile{
+  .sidebar-mobile {
     display: block;
   }
-  .mobile-side{
+  .mobile-side {
     width: 100%;
   }
-  .home-mobile{
+  .home-mobile {
     padding: 10px;
     margin-top: 50px;
   }
-  .sidebar-outer{
+  .sidebar-outer {
     display: none;
   }
-  .mobile-inner{
+  .mobile-inner {
     display: flex;
-    /* overflow-x: auto; */
+    overflow-x: auto;
   }
-  .sidebar-main{
+  .sidebar-main {
     display: block;
+  }
+  .login-sign {
+    width: 80px;
+  }
+  .player-select {
+    width: 100%;
+  }
+  .player-flex {
+    display: block;
+  }
+  .user-section {
+    width: 60px;
+    font-size: 13px;
+    line-height: normal;
+  }
+  .hits-text{
+    font-size: 12px;
+    line-height: normal;
+  }
+  .hits-value{
+    font-size: 16px;
+    line-height: normal;
+  }
+  .hits-section{
+    height: 80px;
   }
 }
 @media screen and (max-width: 425px) {
   .baddie-text-logo {
     font-size: 20px;
-  }
-  .player-select {
-    width: 16rem;
   }
   .graph-section {
     width: 90%;
@@ -502,9 +523,6 @@ canvas.scatter-charts {
     width: 55px;
     font-size: 12px;
     line-height: normal;
-  }
-  .player-select {
-    width: 11rem;
   }
   .graph-section {
     width: 100%;

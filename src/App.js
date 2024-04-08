@@ -4,7 +4,13 @@ import { createContext, useEffect, useState } from "react";
 import Home from "./pages/Home";
 import Sidebars from "./component/Sidebar";
 import Header from "./component/header";
-import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router";
+import {
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router";
 import { SignUp } from "./pages/Signup";
 import { SignIn } from "./pages/Signin";
 import Page1 from "./pages/picks/page1";
@@ -47,26 +53,26 @@ function App() {
   // },[location])
   const onLoadApp = async () => {
     try {
-      setLoading(true)
+      setLoading(true);
       const token = localStorage.getItem("token");
       if (token) {
         const response = await ProfileApi();
         if (response) {
           setUser(response.data);
           // setIsLogin(true);
-          setLoading(false)
+          setLoading(false);
           return;
         }
       }
       // setIsLogin(false);
       // if (location.pathname != "/") navigate("/signin");
       localStorage.clear();
-      setLoading(false)
+      setLoading(false);
     } catch (error) {
       // setIsLogin(false);
       // if (location.pathname != "/") navigate("/signin");
       localStorage.clear();
-      setLoading(false)
+      setLoading(false);
     }
   };
 
@@ -74,8 +80,11 @@ function App() {
     onLoadApp();
   }, []);
   if (loading) {
-    return <div className="w-screen h-screen flex items-center justify-center"><Apploader size={80} />
-    </div>
+    return (
+      <div className="w-screen h-screen flex items-center justify-center">
+        <Apploader size={80} />
+      </div>
+    );
   }
   return (
     <userContext.Provider value={{ user, setUser }}>
@@ -83,9 +92,13 @@ function App() {
         {user ? (
           <>
             <Header show={show} setShow={setShow} />
-            <div className="sidebar-main min-h-screen bg-lightblack w-full">
+            <div className="md:flex sm:block min-h-screen bg-lightblack w-full">
               <Sidebars show={show} setShow={setShow} />
-              <div className={`${!show ? "w-[86%] mobile-side" : "w-[96%] mobile-side"}`}>
+              <div
+                className={`${
+                  !show ? "w-[86%] mobile-side" : "w-[96%] mobile-side"
+                }`}
+              >
                 <Routes>
                   <Route
                     path="/"
@@ -119,7 +132,7 @@ function App() {
                       </SecureRoute>
                     }
                   />
-                   <Route
+                  <Route
                     path="/eda"
                     element={
                       <SecureRoute>
@@ -165,7 +178,6 @@ function App() {
                       <SecureRoute>
                         <Payment />
                       </SecureRoute>
-
                     }
                   />
                   <Route
@@ -184,12 +196,7 @@ function App() {
                       </Guest>
                     }
                   />
-                  <Route
-                    path="*"
-                    element={
-                      <ErrorFour />
-                    }
-                  />
+                  <Route path="*" element={<ErrorFour />} />
                 </Routes>
               </div>
             </div>
@@ -202,13 +209,10 @@ function App() {
                 <Guest>
                   <>
                     <Header show={show} setShow={setShow} />
-                    <div className="flex min-h-screen w-full bg-lightblack">
+                    <div className="md:flex sm:block min-h-screen w-full bg-lightblack">
                       <Sidebars show={show} setShow={setShow} />
-                      <div className="w-[94%] ">
-
-
+                      <div className="w-[94%] mobile-side">
                         <Home />
-
                       </div>
                     </div>
                   </>
@@ -221,13 +225,10 @@ function App() {
                 <Guest>
                   <>
                     <Header show={show} setShow={setShow} />
-                    <div className="flex min-h-screen w-full bg-lightblack">
+                    <div className="md:flex sm:block min-h-screen w-full bg-lightblack">
                       <Sidebars show={show} setShow={setShow} />
-                      <div className="w-[94%] ">
-
-
+                      <div className="w-[94%] mobile-side">
                         <Page1 />
-
                       </div>
                     </div>
                   </>
@@ -240,13 +241,10 @@ function App() {
                 <Guest>
                   <>
                     <Header show={show} setShow={setShow} />
-                    <div className="flex min-h-screen w-full bg-lightblack">
+                    <div className="md:flex sm:block min-h-screen w-full bg-lightblack">
                       <Sidebars show={show} setShow={setShow} />
-                      <div className="w-[94%] ">
-
-
+                      <div className="w-[94%] mobile-side">
                         <Page2 />
-
                       </div>
                     </div>
                   </>
@@ -270,23 +268,15 @@ function App() {
               }
             />
             <Route
-                    path="/payment"
-                    element={
-                      <Guest>
-                        <Payment />
-                      </Guest>
-
-                    }
-                  />
-            <Route
-              path="*"
+              path="/payment"
               element={
-                <Navigate to={"/signin "} />
+                <Guest>
+                  <Payment />
+                </Guest>
               }
             />
-
+            <Route path="*" element={<Navigate to={"/signin "} />} />
           </Routes>
-
         )}
       </div>
     </userContext.Provider>

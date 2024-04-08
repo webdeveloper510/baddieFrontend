@@ -218,8 +218,8 @@ current season stats will show once models are updated for {(new Date).getFullYe
                 <div>
 
                   {plotGraphData && <div className="flex flex-col md:flex-row justify-center">
-                    <img width={"47%"} src={plotGraphData[0] + `?new=${new Date()}`} alt="" />
-                    <img width={"47%"} src={plotGraphData[1] + `?new=${new Date()}`} alt="" />
+                    <img className="md:w-[47%] sm:w-full"  src={plotGraphData[0] + `?new=${new Date()}`} alt="" />
+                    <img className="md:w-[47%] sm:w-full" src={plotGraphData[1] + `?new=${new Date()}`} alt="" />
                   </div>}
                 </div>
               </div>
