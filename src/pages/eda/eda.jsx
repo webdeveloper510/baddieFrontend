@@ -179,11 +179,11 @@ const Eda = () => {
                     }}
                   >
                     <option disabled value="">by handedness?</option>
-                    {/* {['yes', 'no'].map((item, i) => (
+                    {['yes', 'no'].map((item, i) => (
                       <option key={i} value={item}>{item}</option>
-                    ))} */}
-                    {values.type =="player" && <option  value="yes">yes</option>}
-                    <option value="no">no</option>
+                    ))}
+                    {/* {values.type =="player" && <option  value="yes">yes</option>}
+                    <option value="no">no</option> */}
                   </Field>
                 </div>
                 <div className="text-center col-span-2 player-select">
