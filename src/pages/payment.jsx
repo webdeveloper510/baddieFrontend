@@ -281,13 +281,13 @@ const CheckoutForm = ({ selectedPlan, bodyData, plans }) => {
 
             </div>}
 
-            <div className="flex items-center my-4 ">
+            <div className="flex items-center input-butns my-4 ">
                 <input
                     type="text"
                     placeholder="Enter promo code"
                     value={promoCode}
                     onChange={(e) =>{ setPromoCode(e.target.value);setPromoData(null)}}
-                    className={`border ${promoData?"border-green-300":"border-gray-300"} rounded-md px-3 py-2 mr-2 focus:outline-none focus:ring-1 focus:ring-gray-500`}
+                    className={`border ${promoData?"border-green-300":"border-gray-300"} rounded-md px-3 py-2 mr-2 focus:outline-none focus:ring-1 promo-input focus:ring-gray-500`}
                 />
 
                {promoData ? <button
@@ -303,14 +303,14 @@ const CheckoutForm = ({ selectedPlan, bodyData, plans }) => {
                 </button> :<button
                     type="button"
                     onClick={handleValidatePromoCode}
-                    className="inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
+                    className="inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 leading-normal promo-code">
                     Apply Promo Code
                 </button>}
             </div>
             <div className="flex items-center my-4  ">
             {loading ? <Apploader size={3} /> : (
                 <button
-                    className="inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
+                    className="inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 subscribe-butns"
                     type="submit"
                     disabled={!stripe || !elements}
                 >

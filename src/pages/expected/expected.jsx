@@ -331,8 +331,8 @@ const Expected = () => {
                 </div>
               </div>
             </div>
-            <div className="text-center w-96 text-[#2a3f5f] player-select">
-              <select className="bg-lightgray player-list w-full  greater py-3 px-5 rounded mt-6" value={equality} onChange={e => setEquality(e.target.value)}>
+            <div className="text-center w-96 text-[#2a3f5f]  player-select">
+              <select className="bg-lightgray player-list selector-mobile w-full  greater py-3 px-5 rounded mt-6" value={equality} onChange={e => setEquality(e.target.value)}>
                 <option value="less than or equal to">less than or equal to</option>
                 <option value="equal to">equal to</option>
                 <option value="greater than">greater than</option>
@@ -345,7 +345,7 @@ const Expected = () => {
             </div>
           </div>
 
-          <div className="grid  sm:grid-cols-1 md:grid-cols-2 gap-6 mt-20">
+          <div className="grid  sm:grid-cols-1 md:grid-cols-2 gap-6 md:mt-20 sm:mt-0">
             <div className="flex justify-center items-center w-full">
               <div className="pt-10">
                 <p className="text-6xl	 ev-text text-center my-3 text-[#2a3f5f] ">
@@ -360,8 +360,8 @@ const Expected = () => {
               <p className="text-6xl	 ev-text text-center my-3 text-[#2a3f5f] ">
                 fair value estimate for odds of event occurring
               </p>
-              <div className="flex justify-center items-center w-full ">
-                <h1 className="text-5xl font-extrabold mt-5 pt-32">
+              <div className="flex justify-center items-center w-full counter-mobile">
+                <h1 className="text-5xl font-extrabold mt-5 md:pt-20  sm:pt-0">
                   {evalData[3] > 0 && "+"}<CountUp end={evalData[3]} />
                   <span className="text-lg font-semibold mx-3">or better</span>
                 </h1>

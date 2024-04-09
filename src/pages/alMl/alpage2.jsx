@@ -199,6 +199,7 @@ const Alpage2 = () => {
 
               <div className="max-h-[80vh] overflow-auto">
                 <DataTable
+                className="table"
                   style={{
                     overflow: "visible !important"
                   }}
@@ -210,6 +211,7 @@ const Alpage2 = () => {
                 // paginationComponentOptions={paginationOptions}
                 // paginationRowsPerPageOptions={[10, 20, 50, 100]}
                 />
+                
 
               </div>
               <span className="w-full difference lowercase  test-gray mt-16 text-sm">current YTD stats show {(new Date).getFullYear()-1} season stats;
@@ -243,12 +245,14 @@ current season stats will show once models are updated for {(new Date).getFullYe
               />
             </div>
             <div className="mb-20 max-h-[80vh] overflow-scroll">
+             <div className="grid grid-cols-12">
+              <div className="col-span-3">
               <DataTable
                 className="table"
                 style={{
                   overflow: "visible !important"
                 }}
-                columns={columns2}
+                columns={columns2.slice(0,2)}
                 data={filteredData}
                 highlightOnHover
                 striped={false}
@@ -257,6 +261,26 @@ current season stats will show once models are updated for {(new Date).getFullYe
               // paginationComponentOptions={paginationOptions}
               // paginationRowsPerPageOptions={[10, 20, 50, 100]}
               />
+              </div>
+              <div className="col-span-9 overflow-x-scroll ">
+              <DataTable
+                className="table"
+                style={{
+                  overflow: "visible !important"
+                }}
+                columns={columns2.slice(2)}
+                data={filteredData}
+                highlightOnHover
+                striped={false}
+              // pagination
+              // paginationPerPage={25}
+              // paginationComponentOptions={paginationOptions}
+              // paginationRowsPerPageOptions={[10, 20, 50, 100]}
+              />
+              </div>
+           
+              
+             </div>
 
             </div>
           </TabPanel>

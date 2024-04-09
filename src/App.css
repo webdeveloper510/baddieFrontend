@@ -329,12 +329,16 @@ canvas.scatter-charts {
   .mobile-inner {
     display: flex;
     overflow-x: auto;
+    -ms-overflow-style: none; 
+  scrollbar-width: none;
   }
   .sidebar-main {
     display: block;
   }
   .login-sign {
-    width: 80px;
+    width: 60px;
+    font-size: 16px;
+    padding: 1px 8px;
   }
   .player-select {
     width: 100%;
@@ -358,6 +362,17 @@ canvas.scatter-charts {
   .hits-section{
     height: 80px;
   }
+  .selector-mobile{
+    width: 300px;
+    font-size: 18px;
+    margin-bottom: 40px;
+  }
+  .counter-mobile{
+    margin-bottom: 60px;
+  }
+  .promo-code{
+    font-size: 14px;
+  }
 }
 @media screen and (max-width: 425px) {
   .baddie-text-logo {
@@ -365,7 +380,9 @@ canvas.scatter-charts {
   }
   .graph-section {
     width: 90%;
+    margin: auto;
   }
+  
   .image-section {
     height: 350px;
   }
@@ -492,6 +509,20 @@ canvas.scatter-charts {
     font-size: 14px;
     line-height: normal;
   }
+  .promo-code{
+    font-size: 18px;
+    width: 100%;
+    margin-top: 20px;
+  }
+  .input-butns{
+    display: block;
+  }
+  .promo-input{
+    width: 100%;
+  }
+  .subscribe-butns{
+    width: 100%;
+  }
 }
 @media screen and (max-width: 320px) {
   .team-over {
@@ -527,4 +558,47 @@ canvas.scatter-charts {
   .graph-section {
     width: 100%;
   }
+  .promo-code {
+    font-size: 16px;
+    height: 42px;
 }
+}
+
+
+
+.frozen-columns {
+  position: relative;
+}
+
+.frozen-columns .sc-gjLLEI.cUFOxZ {
+  table-layout: fixed;
+}
+
+.frozen-columns .sc-gjLLEI.cUFOxZ .rdt_TableBody div:nth-child(-n+1),
+.frozen-columns .sc-gjLLEI.cUFOxZ .rdt_TableHeadRow div:nth-child(-n+1) {
+  position: sticky;
+  left: 0;
+  z-index: 9999;
+  background-color: #fff;
+}
+.frozen-columns .sc-gjLLEI.cUFOxZ .rdt_TableBody div:nth-child(-n+2),
+.frozen-columns .sc-gjLLEI.cUFOxZ .rdt_TableHeadRow div:nth-child(-n+2) {
+  position: sticky;
+  left: 0;
+  z-index: 999;
+  background-color: #fff;
+}
+.frozen-columns .sc-gjLLEI.cUFOxZ .rdt_TableBody div:nth-child(1),
+.frozen-columns .sc-gjLLEI.cUFOxZ .rdt_TableBody div:nth-child(2),
+.frozen-columns .sc-gjLLEI.cUFOxZ .rdt_TableHeadRow div:nth-child(1),
+.frozen-columns .sc-gjLLEI.cUFOxZ .rdt_TableHeadRow div:nth-child(2) {
+  box-shadow: 2px 0 5px -2px #888;
+}
+
+/* 
+.table .rdt_TableHead {
+  position: sticky;
+  top: 0;
+  background-color: #fff; 
+  z-index: 2;
+} */

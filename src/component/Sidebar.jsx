@@ -9,9 +9,9 @@ const Sidebars = ({ show, setShow }) => {
     const location = useLocation()
     return (
         <>
-
+            {!show ?
             <div className='sidebar-mobile'>
-                <div className='mobile-inner mb-5'>
+                <div className='mobile-inner scrollbar-hide mb-5'>
                     <Link to="/picks-analysis">
                         <button className='bg-lightgray mx-2 whitespace-nowrap text-black py-1 px-4 rounded'> picks & analysis</button>
                     </Link>
@@ -26,7 +26,8 @@ const Sidebars = ({ show, setShow }) => {
                 <div className='mobile-inner'>
 
                 </div>
-            </div>
+            </div> : <></> 
+            }
             <Sidebar className='sidebar-outer' style={{
                 borderColor: '#1a1a1a !important',
             }} collapsed={show} backgroundColor="#1a1a1a">
@@ -36,7 +37,7 @@ const Sidebars = ({ show, setShow }) => {
                             picks & analysis
                         </MenuItem>
                         </Link>
-                        <Link to={user?.status == "active" ? "/eda" : "/payment"}><MenuItem className={`mt-2 font-semibold text-center hover:text-black hover:white ${location.pathname.includes("player/team EDA") ? "bg-white text-black" : "bg-greyLight text-white"} `}> player/team EDA </MenuItem></Link>
+                        <Link to={user?.status == "active" ? "/eda" : "/payment"}><MenuItem className={`mt-2 font-semibold text-center hover:text-black hover:white ${location.pathname.includes("eda") ? "bg-white text-black" : "bg-greyLight text-white"} `}> player/team EDA </MenuItem></Link>
                         <Link to={user?.status == "active" ? "/expected-value" : "/payment"}><MenuItem className={`mt-2 font-semibold text-center hover:text-black hover:white ${location.pathname.includes("expected-value") ? "bg-white text-black" : "bg-greyLight text-white"} `}>  EV calculator </MenuItem></Link>
 
                         <Link to={user?.status == "active" ? "/al-ml" : "/payment"} ><MenuItem className={`mt-2 font-semibold text-center hover:text-black hover:white ${location.pathname.includes("al-ml") ? "bg-white text-black" : "bg-greyLight text-white"} `}>   AI & ML </MenuItem> </Link>
