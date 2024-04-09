@@ -23,6 +23,7 @@ function Home() {
       })
       .then(data => {
         console.log("🚀 ~ appLoad ~ response:", data);
+
         setGraph(data?.data || [])
         setLoading(false);
       })
@@ -48,7 +49,7 @@ function Home() {
         <div className="grid  sm:grid-cols-1 chart-section md:grid-cols-2 gap-6 mt-5 min-h-36">
           {graph && graph.map((item,i)=>(
             <div  key={i} className={` my-2 ${loading?"hidden":""}`}>
-              <img src={item.content} alt="i" />
+              <img src={item.content.replace("storage.cloud.google.com","storage.googleapis.com") + `?new=${new Date()}`} alt="i" />
           </div>
           )) }
           {loading && <Apploader className="my-8" size={60}/>}
