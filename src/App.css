@@ -595,10 +595,48 @@ canvas.scatter-charts {
   box-shadow: 2px 0 5px -2px #888;
 }
 
-/* 
+
+.table-container {
+  overflow-x: auto;
+}
+
+
+
+.table {
+  width: auto;
+  white-space: nowrap;
+}
+
+
 .table .rdt_TableHead {
-  position: sticky;
+  position: sticky !important;
   top: 0;
   background-color: #fff; 
   z-index: 2;
-} */
+}
+/* Make the first two columns sticky */
+.table .rdt_TableHead .rdt_TableCol:nth-child(-n+2),
+.table .rdt_TableBody .rdt_TableRow > div:nth-child(-n+2) {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background-color: white;
+}
+
+/* Ensure proper width for the first column */
+.table .rdt_TableHead .rdt_TableCol:nth-child(1) {
+  min-width: 150px; /* Adjust width if necessary */
+}
+
+.table .rdt_TableBody .rdt_TableRow > div:nth-child(1) {
+  min-width: 150px; /* Adjust width if necessary */
+}
+
+.table .rdt_TableHead .rdt_TableCol:nth-child(2) {
+  left: 150px /* Adjust width if necessary */
+}
+
+.table .rdt_TableBody .rdt_TableRow > div:nth-child(2) {
+  left: 150px /* Adjust width if necessary */
+}
+/* Adjust other styles as needed */

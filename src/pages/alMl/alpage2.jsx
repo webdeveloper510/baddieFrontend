@@ -54,7 +54,7 @@ const Alpage2 = () => {
       console.log("🚀 ~ onLoad ~ newData:", newData)
 
       setSegmentData(newData);
-      const columns1Data = Object.keys(newData[0]).map(key => {
+      const columns1Data = Object.keys(newData[0]).map((key,i) => {
         if (key == "segment") {
           return {
             name: "Segment",
@@ -77,10 +77,11 @@ const Alpage2 = () => {
         }, // Dynamically select the value based on the current key
         sortable: true,
         minWidth: "150px",
+       
         // maxWidth: "none",
       }});
       setColumns1(columns1Data)
-
+      
       const dataArray = [];
       for (let i = 0; i < lData.segment.length; i++) {
         let obj = {};
@@ -101,7 +102,7 @@ const Alpage2 = () => {
 
       setLookupData(dataArray)
       setFilteredData(dataArray);
-      const columns2Data = Object.keys(dataArray[0]).map(key => {
+      const columns2Data = Object.keys(dataArray[0]).map((key,i) => {
         if (key == "segment") {
           return {
             name: "Segment",
@@ -119,8 +120,11 @@ const Alpage2 = () => {
               
               return <div className={`${bg_color} w-full h-full text-black font-bold text-center p-2`} >{value}</div>
             },
-            sortable: true,
+            selector: row => {
+              return row[key]
+            },
             minWidth: "15px",
+            sortable:true,
             // maxWidth: "none",
           }
         }
@@ -132,7 +136,7 @@ const Alpage2 = () => {
             }
             return row[key]
           }, // Dynamically select the value based on the current key
-          sortable: true,
+          sortable:true,
           minWidth: "150px",
           // maxWidth: "none",
         })
@@ -245,14 +249,12 @@ current season stats will show once models are updated for {(new Date).getFullYe
               />
             </div>
             <div className="mb-20 max-h-[80vh] overflow-scroll">
-             <div className="grid grid-cols-12">
-              <div className="col-span-3">
-              <DataTable
+            <DataTable
                 className="table"
                 style={{
                   overflow: "visible !important"
                 }}
-                columns={columns2.slice(0,2)}
+                columns={columns2}
                 data={filteredData}
                 highlightOnHover
                 striped={false}
@@ -262,27 +264,7 @@ current season stats will show once models are updated for {(new Date).getFullYe
               // paginationRowsPerPageOptions={[10, 20, 50, 100]}
               />
               </div>
-              <div className="col-span-9 overflow-x-scroll ">
-              <DataTable
-                className="table"
-                style={{
-                  overflow: "visible !important"
-                }}
-                columns={columns2.slice(2)}
-                data={filteredData}
-                highlightOnHover
-                striped={false}
-              // pagination
-              // paginationPerPage={25}
-              // paginationComponentOptions={paginationOptions}
-              // paginationRowsPerPageOptions={[10, 20, 50, 100]}
-              />
-              </div>
-           
-              
-             </div>
-
-            </div>
+            
           </TabPanel>
         </Tabs>
       </div>
