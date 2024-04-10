@@ -607,7 +607,7 @@ canvas.scatter-charts {
   white-space: nowrap;
 }
 
-
+@media screen and (min-width: 430px) {
 .table .rdt_TableHead {
   position: sticky !important;
   top: 0;
@@ -640,3 +640,4 @@ canvas.scatter-charts {
   left: 150px /* Adjust width if necessary */
 }
 /* Adjust other styles as needed */
+}

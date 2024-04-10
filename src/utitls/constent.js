@@ -313,10 +313,10 @@ export const colors = [
     "bg-teal-300",
     "bg-green-600",
     "bg-green-300",
-    "bg-gray-600",
-    "bg-gray-300",
+    "bg-green-200",
     "bg-indigo-600",
     "bg-indigo-300",
+    "bg-indigo-200",
     "bg-pink-600",
     "bg-pink-300"
   ];
