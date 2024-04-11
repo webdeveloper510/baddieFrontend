@@ -333,6 +333,9 @@ canvas.scatter-charts {
     -ms-overflow-style: none; 
   scrollbar-width: none;
   }
+  .mobile-inner::-webkit-scrollbar {
+    display: none;
+}
   .sidebar-main {
     display: block;
   }

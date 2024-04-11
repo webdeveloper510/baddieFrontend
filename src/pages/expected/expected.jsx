@@ -165,7 +165,7 @@ const Expected = () => {
                 <div className="text-center col-span-2 player-select">
                   <Field
                     as="select"
-                    className="py-3 px-9 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
+                    className="py-3 bg-lightGray px-9 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
                     name="playerType"
                     onChange={(e) => {
                       const newPlayerType = e.target.value;
@@ -183,7 +183,7 @@ const Expected = () => {
                   </Field>
                   <Field
                     as="select"
-                    className="py-3 px-9 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
+                    className="py-3 bg-lightGray px-9 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
                     name="metric"
                     onChange={(e) => {
                       setMetricType(e.target.value);
@@ -199,7 +199,7 @@ const Expected = () => {
                 <div className="text-center col-span-2 player-select">
                   <div className="flex items-center justify-center pt-5 pb-5">
                     <div className="relative group w-full" ref={dropdownRef}>
-                      <button type="button" onClick={toggleDropdown} className=" py-3 player-list buttonPlayer  text-center focus:outline-none appearance-none inline-flex justify-center w-full px-4  text-sm font-medium text-gray-700  border border-gray-300 rounded-md shadow-sm bg-white ">
+                      <button type="button" onClick={toggleDropdown} className=" py-3 bg-lightGray player-list buttonPlayer  text-center focus:outline-none appearance-none inline-flex justify-center w-full px-4  text-sm font-medium text-gray-700  border border-gray-300 rounded-md shadow-sm ">
                         {values.playerName === "" ? 'player name' : <span className="mr-2">{playerType === "pitcher" ? pitcher.player_name[parseInt(values.playerName)] : batter.player_name[parseInt(values.playerName)]}</span>}
 
                       </button>
@@ -238,7 +238,7 @@ const Expected = () => {
                     </div>
                   </div>
                   <Field as="select"
-                    className="py-3 px-9 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
+                    className="py-3 bg-lightGray px-9 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
                     name="opposingTeam">
                     <option disabled value="">opposing team</option>
                     {team.map((item, i) => {
@@ -250,7 +250,7 @@ const Expected = () => {
               {evalData &&  <div className="text-center col-span-1  player-select">
                 
                   <Field as="select"
-                    className="py-3 px-9 my-5 self-center player-list rounded w-full text-center focus:outline-none appearance-none"
+                    className="py-3 bg-lightGray px-9 my-5 self-center player-list rounded w-full text-center focus:outline-none appearance-none"
                     name="time_frame">
                       <option disabled value="">Time Frame</option>
                     <option value="TY">TY</option>
@@ -332,7 +332,7 @@ const Expected = () => {
               </div>
             </div>
             <div className="text-center w-96 text-[#2a3f5f]  player-select">
-              <select className="bg-lightgray player-list selector-mobile w-full  greater py-3 px-9 rounded mt-6" value={equality} onChange={e => setEquality(e.target.value)}>
+              <select className=" player-list selector-mobile w-full  greater py-3 bg-lightGray px-9 rounded mt-6" value={equality} onChange={e => setEquality(e.target.value)}>
                 <option value="less than or equal to">less than or equal to</option>
                 <option value="equal to">equal to</option>
                 <option value="greater than">greater than</option>

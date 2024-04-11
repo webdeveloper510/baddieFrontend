@@ -12,6 +12,7 @@ module.exports = {
         gray:"#e6e6e6",
         lightblue:"#2d9bf0",
         lightgreen:"#7df177",
+        lightGray: "#e9e8e87a"
       },
       animation: {
         shimmer: "shimmer 2s linear infinite"

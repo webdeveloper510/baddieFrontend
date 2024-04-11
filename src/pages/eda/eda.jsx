@@ -162,7 +162,7 @@ const Eda = () => {
                 <div className="text-center col-span-2 player-select">
                   <Field
                     as="select"
-                    className="py-3 px-9 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
+                    className="py-3 bg-lightGray px-9 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
                     name="type"
 
                   >
@@ -172,7 +172,7 @@ const Eda = () => {
                   </Field>
                   <Field
                     as="select"
-                    className="py-3 px-9 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
+                    className="py-3 bg-lightGray px-9 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
                     name="handedness"
                     onChange={(e) => {
                       setFieldValue("handedness", e.target.value);
@@ -189,7 +189,7 @@ const Eda = () => {
                 <div className="text-center col-span-2 player-select">
                   <Field
                     as="select"
-                    className="py-3 px-9 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
+                    className="py-3 bg-lightGray px-9 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
                     name="playerType"
                     onChange={(e) => {
                       let newPlayerType = e.target.value;
@@ -209,7 +209,7 @@ const Eda = () => {
                   {values.type == 'player' && <>
                     <div className="flex items-center justify-center pt-5 pb-5">
                       <div className="relative group w-full" ref={dropdownRef}>
-                        <button type="button" onClick={toggleDropdown} className=" py-3  player-list buttonPlayer  text-center focus:outline-none appearance-none inline-flex justify-center w-full px-4  text-sm font-medium text-gray-700 border border-gray-300 rounded-md shadow-sm  ">
+                        <button type="button" onClick={toggleDropdown} className=" py-3 bg-lightGray  player-list buttonPlayer  text-center focus:outline-none appearance-none inline-flex justify-center w-full px-4  text-sm font-medium text-gray-700 border border-gray-300 rounded-md shadow-sm ">
                           {values.playerName === "" ? 'player name' : <span className="mr-2">{playerType === "pitcher" ? pitcher.player_name[parseInt(values.playerName)] : batter.player_name[parseInt(values.playerName)]}</span>}
 
                         </button>
@@ -250,7 +250,7 @@ const Eda = () => {
                       </div>
                     </div>  </>}
                   {values.type == 'team' && <Field as="select"
-                    className="py-3 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
+                    className="py-3 bg-lightGray my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
                     name="opposingTeam">
                     <option disabled value="">opposing team</option>
                     {team.map((item, i) => {
@@ -262,7 +262,7 @@ const Eda = () => {
               {edaData && values.handedness === "yes"&&  <div className="text-center self-center col-span-1 player-select">
                   <Field
                     as="select"
-                    className="py-3 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
+                    className="py-3 bg-lightGray my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
                     name="player_type"
                   >
                     <option disabled value="">R or L</option>
