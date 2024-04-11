@@ -312,7 +312,7 @@ canvas.scatter-charts {
   }
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 760px) {
   .sidebar-mobile {
     display: block;
   }
