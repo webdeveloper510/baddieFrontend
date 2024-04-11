@@ -5,7 +5,9 @@ import { userContext } from '../App';
 
 
 function Guest({children}) {
-    const {user} = useContext(userContext);
+    const {user, setUser, appLoad} = useContext(userContext);
+    // useEffect(()=>{})
+    console.log("🚀 ~ Guest ~ user:", user)
     return user ? <Navigate to="/" replace = {true} ></Navigate> : children;
 
 }

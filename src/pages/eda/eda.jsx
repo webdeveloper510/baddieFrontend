@@ -162,7 +162,7 @@ const Eda = () => {
                 <div className="text-center col-span-2 player-select">
                   <Field
                     as="select"
-                    className="py-3 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
+                    className="py-3 px-3 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
                     name="type"
 
                   >
@@ -172,7 +172,7 @@ const Eda = () => {
                   </Field>
                   <Field
                     as="select"
-                    className="py-3 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
+                    className="py-3 px-3 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
                     name="handedness"
                     onChange={(e) => {
                       setFieldValue("handedness", e.target.value);
@@ -189,7 +189,7 @@ const Eda = () => {
                 <div className="text-center col-span-2 player-select">
                   <Field
                     as="select"
-                    className="py-3 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
+                    className="py-3 px-3 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
                     name="playerType"
                     onChange={(e) => {
                       let newPlayerType = e.target.value;
@@ -209,15 +209,15 @@ const Eda = () => {
                   {values.type == 'player' && <>
                     <div className="flex items-center justify-center pt-5 pb-5">
                       <div className="relative group w-full" ref={dropdownRef}>
-                        <button type="button" onClick={toggleDropdown} className=" py-3 player-list buttonPlayer  text-center focus:outline-none appearance-none inline-flex justify-center w-full px-4  text-sm font-medium text-gray-700 border border-gray-300 rounded-md shadow-sm  ">
+                        <button type="button" onClick={toggleDropdown} className=" py-3 px-3 player-list buttonPlayer  text-center focus:outline-none appearance-none inline-flex justify-center w-full px-4  text-sm font-medium text-gray-700 border border-gray-300 rounded-md shadow-sm  ">
                           {values.playerName === "" ? 'player name' : <span className="mr-2">{playerType === "pitcher" ? pitcher.player_name[parseInt(values.playerName)] : batter.player_name[parseInt(values.playerName)]}</span>}
 
                         </button>
-                        {values.playerType != "" && <div className={`absolute right-0 mt-2 rounded-md shadow-lg  ring-1 ring-black ring-opacity-5 p-1 space-y-1 ${isOpen ? '' : 'hidden'} max-h-60  w-full`}>
+                        {values.playerType != "" && <div className={`absolute right-0 mt-2 rounded-md shadow-lg  ring-1 ring-black ring-opacity-5 p-1 space-y-1 ${isOpen ? '' : 'hidden'} max-h-60  w-full bg-white`}>
                           <input onChange={handleInputChange} className="block w-full px-4 py-2 text-gray-800 border rounded-md border-gray-300 focus:outline-none" type="text"
 
                             placeholder="Search Player Name" autoComplete="off" />
-                          <div className="overflow-y-auto max-h-40">
+                          <div className="overflow-y-auto max-h-40 bg-white">
                             {playerType === "pitcher" && pitcher && (
                               pitcher.player_name.map((item, i) => (
                                 item.toLowerCase().includes(searchTerm) && (

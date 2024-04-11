@@ -41,6 +41,7 @@ const Sidebars = ({ show, setShow }) => {
                         <Link to={user?.status == "active" ? "/expected-value" : "/payment"}><MenuItem className={`mt-2 font-semibold text-center hover:text-black hover:white ${location.pathname.includes("expected-value") ? "bg-white text-black" : "bg-greyLight text-white"} `}>  EV calculator </MenuItem></Link>
 
                         <Link to={user?.status == "active" ? "/al-ml" : "/payment"} ><MenuItem className={`mt-2 font-semibold text-center hover:text-black hover:white ${location.pathname.includes("al-ml") ? "bg-white text-black" : "bg-greyLight text-white"} `}>   AI & ML </MenuItem> </Link>
+                        <Link to={user?.status == "active" ? "/admin-dashboard" : "/payment"} ><MenuItem className={`mt-2 font-semibold text-center hover:text-black hover:white ${location.pathname.includes("al-ml") ? "bg-white text-black" : "bg-greyLight text-white"} `}>  Admin Dashboard </MenuItem> </Link>
                     </div> : <></>}
                 </Menu>
             </Sidebar>

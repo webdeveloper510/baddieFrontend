@@ -6,6 +6,7 @@ import { userContext } from '../App';
 
 function SecureRoute({children}) {
     const {user} = useContext(userContext);
+    console.log("🚀 ~ SecureRoute ~ user:", user)
     return !user ? <Navigate to="/signin" replace = {true} ></Navigate> : children;
 
 }

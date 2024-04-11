@@ -212,6 +212,7 @@ canvas.scatter-charts {
   .player-list {
     width: 260px;
     font-size: 18px;
+    text-align: center;
   }
   .greater {
     font-size: 18px;
@@ -606,14 +607,14 @@ canvas.scatter-charts {
   width: auto;
   white-space: nowrap;
 }
-
-@media screen and (min-width: 430px) {
 .table .rdt_TableHead {
   position: sticky !important;
   top: 0;
   background-color: #fff; 
   z-index: 2;
 }
+@media screen and (min-width: 430px) {
+
 /* Make the first two columns sticky */
 .table .rdt_TableHead .rdt_TableCol:nth-child(-n+2),
 .table .rdt_TableBody .rdt_TableRow > div:nth-child(-n+2) {

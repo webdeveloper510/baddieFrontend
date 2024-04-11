@@ -27,6 +27,7 @@ import { Payment } from "./pages/payment";
 import { ErrorFour } from "./pages/PageNotFound";
 import Eda from "./pages/eda/eda";
 import { Plan } from "./pages/plan";
+import Admindashboard from "./pages/admin/dashboard/dashboard.jsx";
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 export const userContext = createContext();
@@ -37,6 +38,7 @@ function App() {
   const location = useLocation();
   const [show, setShow] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [appLoad, setAppLoad] = useState(false);
   // useEffect(()=>{
   //   const login = localStorage.getItem("login")
   //   setIsLogin(login)
@@ -62,6 +64,7 @@ function App() {
           setUser(response.data);
           // setIsLogin(true);
           setLoading(false);
+          setAppLoad(true);
           return;
         }
       }
@@ -69,6 +72,7 @@ function App() {
       // if (location.pathname != "/") navigate("/signin");
       localStorage.clear();
       setLoading(false);
+      setAppLoad(true);
     } catch (error) {
       // setIsLogin(false);
       // if (location.pathname != "/") navigate("/signin");
@@ -88,7 +92,7 @@ function App() {
     );
   }
   return (
-    <userContext.Provider value={{ user, setUser }}>
+    <userContext.Provider value={{ user, setUser, appLoad }}>
       <div className=" flex flex-col min-h-screen">
         {user ? (
           <>
@@ -114,6 +118,14 @@ function App() {
                     element={
                       <SecureRoute>
                         <Page1 />
+                      </SecureRoute>
+                    }
+                  />
+                   <Route
+                    path="/admin-dashboard"
+                    element={
+                      <SecureRoute>
+                        <Admindashboard />
                       </SecureRoute>
                     }
                   />
