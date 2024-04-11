@@ -162,7 +162,7 @@ const Eda = () => {
                 <div className="text-center col-span-2 player-select">
                   <Field
                     as="select"
-                    className="py-3 px-3 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
+                    className="py-3 px-9 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
                     name="type"
 
                   >
@@ -172,7 +172,7 @@ const Eda = () => {
                   </Field>
                   <Field
                     as="select"
-                    className="py-3 px-3 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
+                    className="py-3 px-9 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
                     name="handedness"
                     onChange={(e) => {
                       setFieldValue("handedness", e.target.value);
@@ -189,7 +189,7 @@ const Eda = () => {
                 <div className="text-center col-span-2 player-select">
                   <Field
                     as="select"
-                    className="py-3 px-3 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
+                    className="py-3 px-9 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
                     name="playerType"
                     onChange={(e) => {
                       let newPlayerType = e.target.value;
@@ -209,7 +209,7 @@ const Eda = () => {
                   {values.type == 'player' && <>
                     <div className="flex items-center justify-center pt-5 pb-5">
                       <div className="relative group w-full" ref={dropdownRef}>
-                        <button type="button" onClick={toggleDropdown} className=" py-3 px-3 player-list buttonPlayer  text-center focus:outline-none appearance-none inline-flex justify-center w-full px-4  text-sm font-medium text-gray-700 border border-gray-300 rounded-md shadow-sm  ">
+                        <button type="button" onClick={toggleDropdown} className=" py-3  player-list buttonPlayer  text-center focus:outline-none appearance-none inline-flex justify-center w-full px-4  text-sm font-medium text-gray-700 border border-gray-300 rounded-md shadow-sm  ">
                           {values.playerName === "" ? 'player name' : <span className="mr-2">{playerType === "pitcher" ? pitcher.player_name[parseInt(values.playerName)] : batter.player_name[parseInt(values.playerName)]}</span>}
 
                         </button>
