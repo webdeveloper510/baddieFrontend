@@ -13,15 +13,15 @@ const Sidebars = ({ show, setShow }) => {
             <div className='sidebar-mobile'>
                 <div className='mobile-inner scrollbar-hide mb-5'>
                     <Link to="/picks-analysis">
-                        <button className='bg-lightgray mx-2 whitespace-nowrap text-black py-1 px-4 rounded'> picks & analysis</button>
+                        <button className={`${location.pathname.includes("picks-analysis") ? "bg-white text-black" : "bg-lightblue text-white"} mx-2 whitespace-nowrap py-1 px-4 rounded`}> picks & analysis</button>
                     </Link>
                     <Link to={user?.status == "active" ? "/eda" : "/payment"}>
-                        <button className='bg-lightgray whitespace-nowrap mx-2 text-black py-1 px-4 rounded'> player/team EDA</button></Link>
+                        <button className={`${location.pathname.includes("eda") ? "bg-white text-black" : "bg-lightblue text-white"} whitespace-nowrap mx-2 py-1 px-4 rounded`}> player/team EDA</button></Link>
                     <Link to={user?.status == "active" ? "/expected-value" : "/payment"}>
-                        <button className='bg-lightgray whitespace-nowrap mx-2 text-black py-1 px-4 rounded'> EV calculator</button>
+                        <button className={`${location.pathname.includes("expected-value") ? "bg-white text-black" : "bg-lightblue text-white"} whitespace-nowrap mx-2 py-1 px-4 rounded`}> EV calculator</button>
                     </Link>
                     <Link to={user?.status == "active" ? "/al-ml" : "/payment"}>
-                        <button className='bg-lightgray whitespace-nowrap mx-2 text-black py-1 px-4 rounded' >AI & ML</button></Link>
+                        <button className={`${location.pathname.includes("al-ml") ? "bg-white text-black" : "bg-lightblue text-white"} whitespace-nowrap mx-2 py-1 px-4 rounded`} >AI & ML</button></Link>
                 </div>
                 <div className='mobile-inner'>
 
