@@ -54,8 +54,8 @@ const Sidebars = ({ show, setShow }) => {
                         </>
                         :
                         <>
-                        <Link to={user?.status == "active" ? "/admin-dashboard" : "/payment"} ><MenuItem className={`mt-2 font-semibold text-center hover:text-black hover:white ${location.pathname.includes("admin-dashboard") ? "bg-white text-black" : "bg-greyLight text-white"} `}>Dashboard</MenuItem> </Link>
-                        <Link to={user?.status == "active" ? "/user-list" : "/payment"} ><MenuItem className={`mt-2 font-semibold text-center hover:text-black hover:white ${location.pathname.includes("user-list") ? "bg-white text-black" : "bg-greyLight text-white"} `}>Users</MenuItem> </Link>
+                        <Link to={"/admin-dashboard"} ><MenuItem className={`mt-2 font-semibold text-center hover:text-black hover:white ${location.pathname.includes("admin-dashboard") ? "bg-white text-black" : "bg-greyLight text-white"} `}>Dashboard</MenuItem> </Link>
+                        <Link to={"/user-list"} ><MenuItem className={`mt-2 font-semibold text-center hover:text-black hover:white ${location.pathname.includes("user-list") ? "bg-white text-black" : "bg-greyLight text-white"} `}>Users</MenuItem> </Link>
                         </>}
                         
                     </div> : <></>}
