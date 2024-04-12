@@ -5,7 +5,7 @@ import { userContext } from '../App';
 import Apploader from '../component/Apploader';
 
 
-function SecureRoute({children}) {
+function AdminSecureRoute({children}) {
     const navigate = useNavigate();
     const {user,setUser,appLoad} = useContext(userContext);
     useEffect(()=>{
@@ -14,8 +14,8 @@ function SecureRoute({children}) {
             if(!user){
                 navigate("/signin")
             }
-            if(user && user.is_admin){
-                navigate("/admin-dashboard")
+            if(user && !user?.is_admin){
+                navigate("/")
             }
         }
     },[appLoad])
@@ -28,4 +28,4 @@ function SecureRoute({children}) {
 
 }
 
-export default SecureRoute
+export default AdminSecureRoute

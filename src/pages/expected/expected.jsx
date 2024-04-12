@@ -273,8 +273,8 @@ const Expected = () => {
           )}
         </Formik>
         {evalData ? <>
-          <div className="grid  sm:grid-cols-1 md:grid-cols-2 gap-6 mt-5">
-            <div className="graph-section">
+          <div className=" w-full mt-5">
+            <div className="w-full flex items-center justify-center">
               {/* <p className="text-lg ev-text text-center my-3">
               Relative frequency Histogram of kelly, Merrill for k per Game
             </p> */}
@@ -282,12 +282,9 @@ const Expected = () => {
 
               <img src={evalData[0]+`?new=${new Date()}`}></img>
             </div>
-            <div className="graph-section">
-              {/* <p className="text-lg ev-text text-center my-3">
-              Relative frequency Histogram of kelly, Merrill for k per Game
-            </p> */}
+            {/* <div className="graph-section">
               {evalData?.length > 0 && <img src={evalData[1]+`?new=${new Date()}`}></img>}
-            </div>
+            </div> */}
           </div>
           <div className="flex player-flex justify-between mt-20">
             <div className="w-96 player-select flex justify-center">
@@ -352,7 +349,7 @@ const Expected = () => {
                   expected probability of event occurring
                 </p>
                 <div className="flex justify-center">
-                  {evalData?.length > 0 && <img src={evalData[2]+`?new=${new Date()}`}></img>}
+                  {evalData?.length > 0 && <img src={evalData[1]+`?new=${new Date()}`}></img>}
                 </div>
               </div>
             </div>
@@ -362,7 +359,7 @@ const Expected = () => {
               </p>
               <div className="flex justify-center items-center w-full counter-mobile">
                 <h1 className="text-5xl font-extrabold mt-5 md:pt-20  sm:pt-0">
-                  {evalData[3] > 0 && "+"}<CountUp end={evalData[3]} />
+                  {evalData[3] > 0 && "+"}<CountUp end={evalData[2]} />
                   <span className="text-lg font-semibold mx-3">or better</span>
                 </h1>
               </div>

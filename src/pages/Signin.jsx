@@ -20,8 +20,12 @@ export function SignIn() {
         console.log("🚀 ~ handleSubmit ~ responseFromProfile:", responseFromProfile)
         setUser(responseFromProfile.data);
         alert("Login Successfully");
-    navigate("/")
-        return
+        if(responseFromProfile?.data?.is_admin){
+          navigate("/admin-dashboard")
+        }else{
+          navigate("/")
+         return
+        }
       }
    } catch (error) {
     console.log("🚀 ~ handleSubmit ~ error:", error)

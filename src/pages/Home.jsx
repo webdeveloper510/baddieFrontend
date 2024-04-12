@@ -37,6 +37,10 @@ function Home() {
     appLoad()
   }, [])
   return (
+    <>
+    <div className="m-12">
+      <img  src="/baddiehome.png" alt="add" />
+    </div>
     <div className="flex flex-col home-mobile items-center justify-center">
       <div className="bg-white  md:p-10 w-full image-section h-auto sm:p-40 flex flex-col items-center justify-center text-xl">
         <img src="/home_1.png" alt="home image" />
@@ -57,6 +61,7 @@ function Home() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

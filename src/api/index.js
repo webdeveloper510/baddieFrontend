@@ -164,3 +164,31 @@ export const getAvailablePlan = async()=>{
         throw (error)
     }
 }
+
+export const getAdminDashboard = async()=>{
+    try {
+        const response = await authApi.get("dashboard/");
+        return response.data
+    } catch (error) {
+        throw (error)
+    }
+}
+
+export const getUserList = async()=>{
+    try {
+        const response = await authApi.get("users-list/");
+        return response.data
+    } catch (error) {
+        throw (error)
+    }
+}
+
+export const userStatusChange = async({id,status}) => {
+    console.log("🚀 ~ userStatusChange ~ id,status:", id,status)
+    try {
+        const response = await authApi.post(`/${!status?"enable-user":"disable-user"}/${id}`);
+        return response.data
+    } catch (error) {
+        throw (error)
+    }
+}

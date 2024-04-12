@@ -203,7 +203,7 @@ const Alpage2 = () => {
 
               <div className="max-h-[80vh] overflow-auto">
                 <DataTable
-                className="table"
+                className="table1"
                   style={{
                     overflow: "visible !important"
                   }}

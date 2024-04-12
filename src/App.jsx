@@ -22,12 +22,14 @@ import Expected from "./pages/expected/expected";
 import { ProfileApi } from "./api";
 import Guest from "./utitls/GuestRoute";
 import SecureRoute from "./utitls/SecureRoute";
+import AdminSecureRoute from "./utitls/AdminSecureRoute.jsx";
 import Apploader from "./component/Apploader";
 import { Payment } from "./pages/payment";
 import { ErrorFour } from "./pages/PageNotFound";
 import Eda from "./pages/eda/eda";
 import { Plan } from "./pages/plan";
 import Admindashboard from "./pages/admin/dashboard/dashboard.jsx";
+import Userlist from "./pages/admin/userlist/Userlist.jsx";
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 export const userContext = createContext();
@@ -124,9 +126,17 @@ function App() {
                    <Route
                     path="/admin-dashboard"
                     element={
-                      <SecureRoute>
+                      <AdminSecureRoute>
                         <Admindashboard />
-                      </SecureRoute>
+                       </AdminSecureRoute>
+                    }
+                  />
+                  <Route
+                    path="/user-list"
+                    element={
+                      <AdminSecureRoute>
+                        <Userlist />
+                      </AdminSecureRoute>
                     }
                   />
                   <Route

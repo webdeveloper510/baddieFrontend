@@ -164,6 +164,9 @@ canvas.scatter-charts {
 .sidebar-mobile {
   display: none;
 }
+.earning-card::-webkit-scrollbar {
+  display: none;
+}
 
 @media screen and (max-width: 1024px) {
   .bar-chart {
@@ -570,34 +573,6 @@ canvas.scatter-charts {
 
 
 
-.frozen-columns {
-  position: relative;
-}
-
-.frozen-columns .sc-gjLLEI.cUFOxZ {
-  table-layout: fixed;
-}
-
-.frozen-columns .sc-gjLLEI.cUFOxZ .rdt_TableBody div:nth-child(-n+1),
-.frozen-columns .sc-gjLLEI.cUFOxZ .rdt_TableHeadRow div:nth-child(-n+1) {
-  position: sticky;
-  left: 0;
-  z-index: 9999;
-  background-color: #fff;
-}
-.frozen-columns .sc-gjLLEI.cUFOxZ .rdt_TableBody div:nth-child(-n+2),
-.frozen-columns .sc-gjLLEI.cUFOxZ .rdt_TableHeadRow div:nth-child(-n+2) {
-  position: sticky;
-  left: 0;
-  z-index: 999;
-  background-color: #fff;
-}
-.frozen-columns .sc-gjLLEI.cUFOxZ .rdt_TableBody div:nth-child(1),
-.frozen-columns .sc-gjLLEI.cUFOxZ .rdt_TableBody div:nth-child(2),
-.frozen-columns .sc-gjLLEI.cUFOxZ .rdt_TableHeadRow div:nth-child(1),
-.frozen-columns .sc-gjLLEI.cUFOxZ .rdt_TableHeadRow div:nth-child(2) {
-  box-shadow: 2px 0 5px -2px #888;
-}
 
 
 .table-container {
@@ -616,6 +591,36 @@ canvas.scatter-charts {
   background-color: #fff; 
   z-index: 2;
 }
+.table .rdt_TableHead .rdt_TableCol:nth-child(-n+2),
+.table .rdt_TableBody .rdt_TableRow > div:nth-child(-n+2) {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background-color: white;
+}
+
+/* Ensure proper width for the first column */
+.table .rdt_TableHead .rdt_TableCol:nth-child(1) {
+  min-width: 100px; /* Adjust width if necessary */
+}
+
+.table .rdt_TableBody .rdt_TableRow > div:nth-child(1) {
+  min-width: 100px; /* Adjust width if necessary */
+}
+.table .rdt_TableHead .rdt_TableCol:nth-child(2) {
+  min-width: 50px; /* Adjust width if necessary */
+}
+
+.table .rdt_TableBody .rdt_TableRow > div:nth-child(2) {
+  min-width: 50px; /* Adjust width if necessary */
+}
+.table .rdt_TableHead .rdt_TableCol:nth-child(2) {
+  left: 100px /* Adjust width if necessary */
+}
+
+.table .rdt_TableBody .rdt_TableRow > div:nth-child(2) {
+  left: 100px /* Adjust width if necessary */
+}
 @media screen and (min-width: 430px) {
 
 /* Make the first two columns sticky */
@@ -624,7 +629,7 @@ canvas.scatter-charts {
   position: sticky;
   left: 0;
   z-index: 1;
-  background-color: white;
+  
 }
 
 /* Ensure proper width for the first column */
@@ -644,4 +649,35 @@ canvas.scatter-charts {
   left: 150px /* Adjust width if necessary */
 }
 /* Adjust other styles as needed */
+}
+
+.table1 .rdt_TableHead .rdt_TableCol:nth-child(-n+1),
+.table1 .rdt_TableBody .rdt_TableRow > div:nth-child(-n+1) {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background-color: white;
+}
+
+/* Ensure proper width for the first column */
+.table1 .rdt_TableHead .rdt_TableCol:nth-child(1) {
+  min-width: 70px; /* Adjust width if necessary */
+}
+
+.table1 .rdt_TableBody .rdt_TableRow > div:nth-child(1) {
+  min-width: 70px; /* Adjust width if necessary */
+}
+
+.table .rdt_TableBody .rdt_TableRow:nth-child(odd) {
+  background-color: #fff;
+}
+.table .rdt_TableBody .rdt_TableRow:nth-child(even) {
+ background-color: #e2dbe3;
+}
+
+.table1 .rdt_TableBody .rdt_TableRow:nth-child(odd) {
+  background-color: #fff;
+}
+.table1 .rdt_TableBody .rdt_TableRow:nth-child(even) {
+ background-color: #e2dbe3;
 }
