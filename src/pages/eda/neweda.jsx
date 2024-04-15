@@ -383,23 +383,13 @@ const Neweda = () => {
           )}
         </Formik>
 
-        <div className="mt-5">
+        {edaData && <div className="mt-5">
             <div className="text-center my-3">
-                <h1 className="font-bold text-2xl">Length & Efficiency</h1>
-                <div className="w-full border-4 my-3 py-5 rounded-[60px] border-black h-auto">
+                <h1 className="font-bold text-2xl">{body.stat_type === "pitching" ? "Length &":""} Efficiency</h1>
+                <div className="w-full border-4 my-3 px-2 py-5 rounded-[60px] border-black h-auto">
                     <div className="grid md:grid-cols-2 sm:grid-cols-1 ">
-                    <div className="my-2">
-                        <h2>Graph</h2>
-                    </div>
-                    <div className="my-2">
-                        <h2>Graph</h2>
-                    </div>
-                    <div className="my-2">
-                        <h2>Graph</h2>
-                    </div>
-                    <div className="my-2">
-                        <h2>Graph</h2>
-                    </div>
+                    <img className="my-2" src={body.stat_type === "pitching" ? edaData?.callswgstr_graph : edaData?.gbfb_ratio_graph   + `?new=${new Date()}`}/>
+                    <img className="my-2" src={body.stat_type === "pitching" ? edaData?.callswgstr_graph : edaData?.gbfb_ratio_graph   + `?new=${new Date()}`}/> <img className="my-2" src={body.stat_type === "pitching" ? edaData?.callswgstr_graph : edaData?.gbfb_ratio_graph   + `?new=${new Date()}`}/> <img className="my-2" src={edaData?.pitch_per_PA_graph   + `?new=${new Date()}`}/>
                     </div>
                 </div>
             </div>
@@ -408,27 +398,15 @@ const Neweda = () => {
                 <div className="w-full border-4 my-3 py-4 rounded-[60px] border-black h-auto">
                    <h2 className="text-center font-bold">strikeout stuff</h2>
                    <div className="grid md:grid-cols-2 sm:grid-cols-1 ">
-                    <div className="sm:my-2">
-                        <h2>Graph</h2>
-                    </div>
-                    <div className="sm:my-2">
-                        <h2>Graph</h2>
-                    </div>
-                    <div className="sm:my-2">
-                        <h2>Graph</h2>
-                    </div>
-                    <div className="sm:my-2">
-                        <h2>Graph</h2>
-                    </div>
+                   <img className="my-2" src={edaData?.pitch_per_PA_graph   + `?new=${new Date()}`}/>
+                   <img className="my-2" src={edaData?.pitch_per_PA_graph   + `?new=${new Date()}`}/>
+                   <img className="my-2" src={edaData?.k_rate_graph   + `?new=${new Date()}`}/>
+                   <img className="my-2" src={body.stat_type === "pitching" ? edaData?.callswgstr_graph : edaData?.swgstr_graph   + `?new=${new Date()}`}/>
                     </div>
                     <h2 className="text-center font-bold my-5">command</h2>
                    <div className="grid md:grid-cols-2 sm:grid-cols-1 ">
-                    <div className="sm:my-2">
-                        <h2>Graph</h2>
-                    </div>
-                    <div className="sm:my-2">
-                        <h2>Graph</h2>
-                    </div>
+                   <img className="my-2" src={edaData?.k_bb_graph   + `?new=${new Date()}`}/>
+                   <img className="my-2" src={edaData?.strike_rate_graph   + `?new=${new Date()}`}/>
                     </div>
                 </div>
             </div>
@@ -436,41 +414,50 @@ const Neweda = () => {
                 <h1 className="font-bold text-2xl">In The Field</h1>
                 <div className="w-full border-4 my-3 py-5 rounded-[60px] border-black h-auto">
                    <div className="grid md:grid-cols-4 my-5 sm:grid-cols-1 ">
-                       <h3 className="text-greyLight font-bold">ba</h3>
-                       <h3 className="text-greyLight font-bold">ba</h3>
-                       <h3 className="text-greyLight font-bold">ba</h3>
-                       <h3 className="text-greyLight font-bold">ba</h3>
+                   <div className=" flex  flex-col h-36 justify-evenly items-center">
+                              <span className="text-3xl  font-bold" >Batting Average</span>
+                              <span className="text-3xl  ">{edaData["Batting Average"]}</span>
+                    </div>
+                    <div className=" flex  flex-col h-36 justify-evenly items-center">
+                              <span className="text-3xl  font-bold" >On Base Pct</span>
+                              <span className="text-3xl  ">{edaData["On Base Pct"]}</span>
+                    </div>
+                    <div className=" flex  flex-col h-36 justify-evenly items-center">
+                              <span className="text-3xl  font-bold" >Slugging Pct</span>
+                              <span className="text-3xl  ">{edaData["Slugging Pct"]}</span>
+                    </div>
+                    <div className=" flex  flex-col h-36 justify-evenly items-center">
+                              <span className="text-3xl  font-bold" >On Base + Slugging</span>
+                              <span className="text-3xl  ">{edaData["On Base + Slugging"]}</span>
+                    </div>
                    </div>
                    <h2 className="text-center font-bold text-2xl">contact</h2>
-                   <h4 className="text-greyLight font-bold text-lg">contact_pct</h4>
+                   <div className=" flex  flex-col h-36 justify-evenly items-center">
+                              <span className="text-3xl  font-bold" >Contact Pct</span>
+                              <span className="text-3xl  ">{edaData["On Base + Slugging"]}</span>
+                    </div>
                    <div className="grid md:grid-cols-2 sm:grid-cols-1 ">
-                    <div className="sm:my-2">
-                        <h2>Graph</h2>
-                    </div>
-                    <div className="sm:my-2">
-                        <h2>Graph</h2>
-                    </div>
-                    <div className="sm:my-2">
-                        <h2>Graph</h2>
-                    </div>
-                    <div className="sm:my-2">
-                        <h2>Graph</h2>
-                    </div>
+                   <img className="my-2" src={edaData?.pitch_per_PA_graph   + `?new=${new Date()}`}/>
+                   <img className="my-2" src={body.stat_type === "pitching" ? edaData?.callswgstr_graph : edaData?.gbfb_ratio_graph   + `?new=${new Date()}`}/>
+                
+                   <img className="my-2" src={body.stat_type === "pitching" ? edaData?.balls_inplay_9_graph : edaData?.gbfb_ratio_graph   + `?new=${new Date()}`}/>
+                   <img className="my-2" src={edaData?.babip_graph   + `?new=${new Date()}`}/>
                     </div>
                     <h2 className="text-center font-bold text-2xl">power</h2>
-                   <h4 className="text-greyLight font-bold text-lg">iso</h4>
+                    <div className=" flex  flex-col h-36 justify-evenly items-center">
+                              <span className="text-3xl  font-bold" >Isolated Power</span>
+                              <span className="text-3xl  ">{edaData["Isolated Power"]}</span>
+                    </div>
                    <div className="grid md:grid-cols-2 sm:grid-cols-1 ">
-                    <div className="sm:my-2">
-                        <h2>Graph</h2>
-                    </div>
-                    <div className="sm:my-2">
-                        <h2>Graph</h2>
-                    </div>
+                   
+                   <img className="my-2" src={edaData?.xbh_pct_graph   + `?new=${new Date()}`}/>
+                  
+                   <img className="my-2" src={body.stat_type === "pitching" ? edaData?.hr_pct_graph : edaData?.gbfb_ratio_graph   + `?new=${new Date()}`}/>
                     </div>
                 </div>
             </div>
             
-        </div>
+        </div>}
       </div>
     </div>
   );
