@@ -31,6 +31,7 @@ import { Plan } from "./pages/plan";
 import Admindashboard from "./pages/admin/dashboard/dashboard.jsx";
 import Userlist from "./pages/admin/userlist/Userlist.jsx";
 import TransactionList from "./pages/admin/transaction/transaction.jsx";
+import Neweda from "./pages/eda/neweda";
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 export const userContext = createContext();
@@ -169,6 +170,14 @@ function App() {
                     element={
                       <SecureRoute>
                         <Eda />
+                      </SecureRoute>
+                    }
+                  />
+                  <Route
+                    path="/new-eda"
+                    element={
+                      <SecureRoute>
+                        <Neweda />
                       </SecureRoute>
                     }
                   />

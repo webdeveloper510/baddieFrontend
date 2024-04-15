@@ -165,18 +165,18 @@ export const getAvailablePlan = async()=>{
     }
 }
 
-export const getAdminDashboard = async()=>{
+export const getAdminDashboard = async(data)=>{
     try {
-        const response = await authApi.get("dashboard/");
+        const response = await authApi.post("dashboard/",data);
         return response.data
     } catch (error) {
         throw (error)
     }
 }
 
-export const getUserList = async()=>{
+export const getUserList = async(data)=>{
     try {
-        const response = await authApi.get("users-list/");
+        const response = await authApi.post("users-list/",data);
         return response.data
     } catch (error) {
         throw (error)
@@ -193,9 +193,9 @@ export const userStatusChange = async({id,status}) => {
     }
 }
 
-export const getTransactions = async()=>{
+export const getTransactions = async(data)=>{
     try {
-        const response = await authApi.get("transactions/");
+        const response = await authApi.post("transactions/",data);
         return response.data
     } catch (error) {
         throw (error)
