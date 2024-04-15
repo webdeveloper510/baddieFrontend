@@ -192,3 +192,12 @@ export const userStatusChange = async({id,status}) => {
         throw (error)
     }
 }
+
+export const getTransactions = async()=>{
+    try {
+        const response = await authApi.get("transactions/");
+        return response.data
+    } catch (error) {
+        throw (error)
+    }
+}

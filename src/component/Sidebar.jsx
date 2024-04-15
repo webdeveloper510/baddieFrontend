@@ -30,6 +30,9 @@ const Sidebars = ({ show, setShow }) => {
                     <Link to="/user-list">
                         <button className={`${location.pathname.includes("user-list") ? "bg-white text-black" : "bg-lightblue text-white"} mx-2 whitespace-nowrap py-1 px-4 rounded`}>Users</button>
                     </Link>
+                    <Link to="/transaction-list">
+                        <button className={`${location.pathname.includes("transaction-list") ? "bg-white text-black" : "bg-lightblue text-white"} mx-2 whitespace-nowrap py-1 px-4 rounded`}>Transactions</button>
+                    </Link>
                         </>}
                 </div>
                 <div className='mobile-inner'>
@@ -56,6 +59,7 @@ const Sidebars = ({ show, setShow }) => {
                         <>
                         <Link to={"/admin-dashboard"} ><MenuItem className={`mt-2 font-semibold text-center hover:text-black hover:white ${location.pathname.includes("admin-dashboard") ? "bg-white text-black" : "bg-greyLight text-white"} `}>Dashboard</MenuItem> </Link>
                         <Link to={"/user-list"} ><MenuItem className={`mt-2 font-semibold text-center hover:text-black hover:white ${location.pathname.includes("user-list") ? "bg-white text-black" : "bg-greyLight text-white"} `}>Users</MenuItem> </Link>
+                        <Link to={"/transaction-list"} ><MenuItem className={`mt-2 font-semibold text-center hover:text-black hover:white ${location.pathname.includes("transaction-list") ? "bg-white text-black" : "bg-greyLight text-white"} `}>Transaction</MenuItem> </Link>
                         </>}
                         
                     </div> : <></>}

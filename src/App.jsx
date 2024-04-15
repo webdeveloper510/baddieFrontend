@@ -30,6 +30,7 @@ import Eda from "./pages/eda/eda";
 import { Plan } from "./pages/plan";
 import Admindashboard from "./pages/admin/dashboard/dashboard.jsx";
 import Userlist from "./pages/admin/userlist/Userlist.jsx";
+import TransactionList from "./pages/admin/transaction/transaction.jsx";
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 export const userContext = createContext();
@@ -86,7 +87,7 @@ function App() {
   useEffect(() => {
     onLoadApp();
   }, []);
-  if (loading) {
+  if (loading || !appLoad) {
     return (
       <div className="w-screen h-screen flex items-center justify-center">
         <Apploader size={80} />
@@ -136,6 +137,14 @@ function App() {
                     element={
                       <AdminSecureRoute>
                         <Userlist />
+                      </AdminSecureRoute>
+                    }
+                  />
+                   <Route
+                    path="/transaction-list"
+                    element={
+                      <AdminSecureRoute>
+                        <TransactionList />
                       </AdminSecureRoute>
                     }
                   />

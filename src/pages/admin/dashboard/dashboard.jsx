@@ -17,23 +17,7 @@ const Admindashboard = () => {
             setDashboardData(data)
             setTransaction(data.latest_transactions)
             console.log("🚀 ~ onLoad ~ data.latest_transactions:", data.latest_transactions)
-            const columns1Data = Object.keys(data?.latest_transactions[0]).map((key, i) => {
-                return {
-                    name: capitalizeAllWords(key.replace(/_/g, ' ')), // Replace underscores with spaces for better readability
-                    selector: row => {
-                        if (!isNaN(parseFloat(row[key]))) {
-                            return parseFloat(row[key]).toFixed(3)
-                        }
-                        return row[key]
-                    }, // Dynamically select the value based on the current key
-                    sortable: true,
-                    minWidth: "150px",
-
-                    // maxWidth: "none",
-                }
-            });
-            console.log("🚀 ~ onLoad ~ columns1Data:", columns1Data)
-            setColumns1(columns1Data)
+         
             setLoader(false);
         } catch (error) {
             alert("There is some error");
@@ -133,6 +117,9 @@ const Admindashboard = () => {
     return (
         <div className='min-h-screen bg-[#e5ebfae5] p-5 '>
             <div className='mt-12' >
+            <div className="w-full my-4 zaddie-text bg-lightgray [letter-spacing:5px] sm:text-lg  p-4 text-center rounded-xl md:text-4xl font-bold">
+                    Stats
+                </div>
                 <div className='grid grid-flow-col my-5 overflow-auto gap-3 earning-card'>
                     {[
                         {
@@ -179,7 +166,7 @@ const Admindashboard = () => {
                         },
                        
                     ].map(({ key, value, icon }) => (
-                        <div className='mx-3 flex py-3 px-5 w-64 bg-white shadow-xl  rounded-xl '>
+                        <div className='mx-3 flex py-1 px-1 w-64 bg-white shadow-xl  rounded-xl h-24 justify-start'>
                             <div className='flex justify-center items-center'>
                                 {icon}
                             </div>

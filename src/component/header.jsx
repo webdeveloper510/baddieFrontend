@@ -104,7 +104,7 @@ const Header = ({ show, setShow }) => {
                       Reset Password
                     </a>
                   </li>
-                  {user?.status != "active" && <li>
+                  {!user.is_admin && user?.status != "active" && <li>
                     <Link
                       to="/payment"
                       className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 "
@@ -112,7 +112,7 @@ const Header = ({ show, setShow }) => {
                       Buy Subscription
                     </Link>
                   </li>}
-                  {user?.status === "active" && <li>
+                  {!user.is_admin && user?.status === "active" && <li>
                     <Link
                       to={user?.status == "active"?"/plan":"/payment"}
                       className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 "
