@@ -32,6 +32,7 @@ import Admindashboard from "./pages/admin/dashboard/dashboard.jsx";
 import Userlist from "./pages/admin/userlist/Userlist.jsx";
 import TransactionList from "./pages/admin/transaction/transaction.jsx";
 import Neweda from "./pages/eda/neweda";
+import { ChangePass } from "./pages/ChangePass.jsx";
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 export const userContext = createContext();
@@ -75,6 +76,7 @@ function App() {
       // setIsLogin(false);
       // if (location.pathname != "/") navigate("/signin");
       localStorage.clear();
+      
       setLoading(false);
       setAppLoad(true);
     } catch (error) {
@@ -82,6 +84,7 @@ function App() {
       // if (location.pathname != "/") navigate("/signin");
       localStorage.clear();
       setLoading(false);
+      setAppLoad(true);
     }
   };
 
@@ -97,6 +100,7 @@ function App() {
   }
   return (
     <userContext.Provider value={{ user, setUser, appLoad }}>
+      
       <div className=" flex flex-col min-h-screen">
         {user ? (
           <>
@@ -114,6 +118,14 @@ function App() {
                     element={
                       <SecureRoute>
                         <Home />
+                      </SecureRoute>
+                    }
+                  />
+                  <Route
+                    path="/change-password"
+                    element={
+                      <SecureRoute>
+                        <ChangePass />
                       </SecureRoute>
                     }
                   />

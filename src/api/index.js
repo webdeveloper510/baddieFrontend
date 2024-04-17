@@ -201,3 +201,12 @@ export const getTransactions = async(data)=>{
         throw (error)
     }
 }
+
+export const changePassword = async(data)=>{
+    try {
+        const response = await authApi.post("change-password/",data);
+        return response.data
+    } catch (error) {
+        throw (error)
+    }
+}

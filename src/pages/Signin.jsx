@@ -29,11 +29,11 @@ export function SignIn() {
       }
    } catch (error) {
     console.log("🚀 ~ handleSubmit ~ error:", error)
-    if(error?.response?.status == 404){
+    if(error?.response?.status == 400){
       alert("Check your credentials")
       return
-    }else if(error?.response?.status == 400){
-      alert("Your subscription is expired")
+    }else if(error?.response?.status == 404){
+      alert("Check your credentials")
       return
     }else{
       alert("There is some problem")
