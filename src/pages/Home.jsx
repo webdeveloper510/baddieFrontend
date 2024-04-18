@@ -38,14 +38,11 @@ function Home() {
   }, [])
   return (
     <>
-    <div className="m-12">
-      <img  src="/baddiehome.png" alt="add" />
+    <div className="m-4">
+      <img  src="/baddiehome.png" width="100%" alt="add" />
     </div>
     <div className="flex flex-col home-mobile items-center justify-center">
-      <div className="bg-white  md:p-10 w-full image-section h-auto sm:p-40 flex flex-col items-center justify-center text-xl">
-        <img src="/home_1.png" alt="home image" />
-        <img src="/home_2.png" alt="home image" />
-      </div>
+     
       <div className="bg-white m-4 w-full flex flex-col items-center justify-start p-4 ">
         <div className="w-4/5 zaddie-text bg-lightgray [letter-spacing:5px] sm:text-lg  p-4 text-center rounded-xl md:text-4xl">
           Zaddies of MLB
@@ -59,6 +56,10 @@ function Home() {
           {loading && <Apploader className="my-8" size={60}/>}
          
         </div>
+      </div>
+      <div className="bg-white  md:p-10 w-full image-section h-auto sm:p-40 flex flex-col items-center justify-center text-xl">
+        {[1,2,3,4,5,6].map(item=>(<img key={item} src={`/website_materials_homepg_${item}.png`} alt="home image" />))}
+       
       </div>
     </div>
     </>
