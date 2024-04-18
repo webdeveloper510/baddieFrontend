@@ -33,6 +33,8 @@ import Userlist from "./pages/admin/userlist/Userlist.jsx";
 import TransactionList from "./pages/admin/transaction/transaction.jsx";
 import Neweda from "./pages/eda/neweda";
 import { ChangePass } from "./pages/ChangePass.jsx";
+import { ForgotPassword } from "./pages/ForgotPassRequest.js";
+import { ChangePassword } from "./pages/ForgotPassword.jsx";
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 export const userContext = createContext();
@@ -325,6 +327,22 @@ function App() {
               element={
                 <Guest>
                   <Payment />
+                </Guest>
+              }
+            />
+             <Route
+              path="/forgot-password"
+              element={
+                <Guest>
+                  <ForgotPassword />
+                </Guest>
+              }
+            />
+             <Route
+              path="/reset-password/:token"
+              element={
+                <Guest>
+                  <ChangePassword />
                 </Guest>
               }
             />

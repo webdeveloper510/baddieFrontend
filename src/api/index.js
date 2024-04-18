@@ -210,3 +210,22 @@ export const changePassword = async(data)=>{
         throw (error)
     }
 }
+
+export const forgotPassRequest = async(data)=>{
+    try {
+        const response = await Axios.post("send-reset-password-email/",data);
+        return response.data
+    } catch (error) {
+        throw (error)
+    }
+}
+
+
+export const forgotPassword = async(data)=>{
+    try {
+        const response = await Axios.post("reset-password/"+data.token,{password:data.password});
+        return response.data
+    } catch (error) {
+        throw (error)
+    }
+}
