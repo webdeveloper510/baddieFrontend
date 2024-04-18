@@ -146,7 +146,7 @@ export function Plan(props) {
                                             <h3 className="mb-3 text-xl font-bold leading-snug text-gray-900">Per Month {sub?.subscription_type === "month" &&
                                             <span className='text-green-800'>(Active Plan)</span>}</h3>
                                             <p className="font-medium leading-relaxed text-gray-500">
-                                                Gain access to BADDIE’s sport picks, our rigorous statistical models, curated analytics functions and more on a monthly basis. Cancel at anytime
+                                            {plans?.month?.description}
                                             </p>
                                         </div>
                                     </div>
@@ -180,8 +180,7 @@ export function Plan(props) {
                                             <h3 className="mb-3 text-xl font-bold leading-snug text-gray-900">Per Season  {sub?.subscription_type === "season" &&
                                             <span className='text-green-800'>(Active Plan)</span>}</h3>
                                             <p className="font-medium leading-relaxed text-gray-500">
-                                                Go along for the ride with BADDIE for the full season and save ~15% vs. per monthly rates
-                                            </p>
+                                            {plans?.season?.description} </p>
                                         </div>
                                     </div>
                                     <div className="px-9 pb-9 pt-8 backdrop:blur-md min-h-44">

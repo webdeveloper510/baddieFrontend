@@ -1,8 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Linechart from "./charts/linechart";
-import { ScatterChart } from "./charts/scater";
-import { BarChart } from "./charts/barchart";
-import { DoughnutChart } from "./charts/doughnut";
 import { useParams } from "react-router";
 import axios from "axios";
 import Apploader from "../component/Apploader";
@@ -58,7 +54,7 @@ function Home() {
         </div>
       </div>
       <div className="bg-white  md:p-10 w-full image-section h-auto sm:p-40 flex flex-col items-center justify-center text-xl">
-        {[1,2,3,4,5,6].map(item=>(<img key={item} src={`/website_materials_homepg_${item}.png`} alt="home image" />))}
+        {[1,2,3,4,5,6].map(item=>(<img key={item} src={`/website_materials_homepg_${item}.png`} alt="home image" className="home_image" />))}
        
       </div>
     </div>

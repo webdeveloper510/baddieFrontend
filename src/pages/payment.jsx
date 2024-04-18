@@ -117,8 +117,8 @@ export function Payment(props) {
                                         <div className="px-9 py-7">
                                             <h3 className="mb-3 text-xl font-bold leading-snug text-gray-900">Per Month</h3>
                                             <p className="font-medium leading-relaxed text-gray-500">
-                                                Gain access to BADDIE’s sport picks, our rigorous statistical models, curated analytics functions and more on a monthly basis. Cancel at anytime
-                                            </p>
+                                            {plans?.month?.description}
+                                             </p>
                                         </div>
                                     </div>
                                     <div className="px-9 pb-9 pt-8">
@@ -148,7 +148,7 @@ export function Payment(props) {
                                         <div className="px-9 py-7">
                                             <h3 className="mb-3 text-xl font-bold leading-snug text-gray-900">Per Season</h3>
                                             <p className="font-medium leading-relaxed text-gray-500">
-                                                Go along for the ride with BADDIE for the full season and save ~15% vs. per monthly rates
+                                            {plans?.season?.description}
                                             </p>
                                         </div>
                                     </div>
