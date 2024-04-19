@@ -432,12 +432,20 @@ const Neweda = () => {
                         }
                       />
                     ) : (
-                      <></>
+                     <>
+                     {edaData?.AB_PG_graph &&  <img
+                      className="my-2"
+                      src={
+                        edaData?.AB_PG_graph + `?new=${new Date()}`
+                      }
+                    />}
+                    </>
                     )}
                   </div>
                   <div>
-                    {edaData?.batters_faced_PG_graph ? (
-                      <img
+                    
+                    { ( edaData?.batters_faced_PG_graph
+                          || edaData?.TB_PG_graph) &&  <img
                         className="my-2"
                         src={
                           body.stat_type === "pitching"
@@ -445,21 +453,18 @@ const Neweda = () => {
                             : edaData?.TB_PG_graph + `?new=${new Date()}`
                         }
                       />
-                    ) : (
-                      <></>
-                    )}
+                }
+          
                   </div>
                 </div>
                 <div className="flex justify-center">
                   <div>
-                    <img
+                    {edaData?.pitches_PG_graph && <img
                       className="my-2"
                       src={
-                        body.stat_type === "pitching"
-                          ? edaData?.pitches_PG_graph
-                          : edaData?.gbfb_ratio_graph + `?new=${new Date()}`
+                        edaData?.pitches_PG_graph + `?new=${new Date()}`
                       }
-                    />
+                    />}
                   </div>
                   <div>
                     <img
@@ -518,18 +523,17 @@ const Neweda = () => {
                     />
                   </div>
                 </div>
-                <div className="flex justify-center">
-                  {body.stat_type !== "pitching" ? (
-                    <img
+                <div className="grid md:grid-cols-2 sm:grid-cols-1">
+                  {body.stat_type !== "pitching" && 
+                   <> <img
                       className="my-2"
                       src={edaData?.strike_rate_graph + `?new=${new Date()}`}
                     />
-                  ) : (
-                    <img
-                      className="my-2"
-                      src={edaData?.k_bb_graph + `?new=${new Date()}`}
-                    />
-                  )}
+                     <img
+                        className="my-2"
+                        src={edaData?.k_bb_graph + `?new=${new Date()}`}
+                      />
+                  </>}
                 </div>
                 {body.stat_type === "pitching" && (
                   <>
@@ -610,14 +614,13 @@ const Neweda = () => {
                 </div>
                 <div className="flex justify-center">
                   <div>
-                    <img
+                    {edaData?.balls_inplay_PG_graph && <img
                       className="my-2"
                       src={
-                        body.stat_type === "pitching"
-                          ? edaData?.balls_inplay_PG_graph
-                          : edaData?.gbfb_ratio_graph + `?new=${new Date()}`
+                        
+                          edaData?.balls_inplay_PG_graph + `?new=${new Date()}`
                       }
-                    />
+                    />}
                   </div>
                   <div>
                     <img
