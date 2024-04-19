@@ -296,8 +296,12 @@ canvas.scatter-charts {
     width: 100% !important;
   }
   .player-list {
-    width: 200px;
+    width: 150px;
     font-size: 18px;
+  }
+  .field-text {
+    font-size: 15px;
+    line-height: normal;
   }
   .greater {
     font-size: 14px;
@@ -333,12 +337,12 @@ canvas.scatter-charts {
   .mobile-inner {
     display: flex;
     overflow-x: auto;
-    -ms-overflow-style: none; 
-  scrollbar-width: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
   .mobile-inner::-webkit-scrollbar {
     display: none;
-}
+  }
   .sidebar-main {
     display: block;
   }
@@ -358,41 +362,47 @@ canvas.scatter-charts {
     font-size: 13px;
     line-height: normal;
   }
-  .hits-text{
+  .hits-text {
     font-size: 12px;
     line-height: normal;
   }
-  .hits-value{
+  .hits-value {
     font-size: 16px;
     line-height: normal;
   }
-  .hits-section{
+  .hits-section {
     height: 80px;
   }
-  .selector-mobile{
+  .selector-mobile {
     width: 300px;
     font-size: 18px;
     margin-bottom: 40px;
   }
-  .counter-mobile{
+  .counter-mobile {
     margin-bottom: 60px;
   }
-  .promo-code{
+  .promo-code {
     font-size: 14px;
   }
 }
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 430px) {
   .baddie-text-logo {
     font-size: 20px;
+  }
+  .player-list {
+    width: 200px;
+    font-size: 18px;
   }
   .graph-section {
     width: 90%;
     margin: auto;
   }
-  
-  .image-section {
-    height: 350px;
+  .graph-display {
+    display: block;
   }
+  /* .image-section {
+    height: 350px;
+  } */
   .baddie-text-logo2 {
     font-size: 35px;
   }
@@ -516,18 +526,18 @@ canvas.scatter-charts {
     font-size: 14px;
     line-height: normal;
   }
-  .promo-code{
+  .promo-code {
     font-size: 18px;
     width: 100%;
     margin-top: 20px;
   }
-  .input-butns{
+  .input-butns {
     display: block;
   }
-  .promo-input{
+  .promo-input {
     width: 100%;
   }
-  .subscribe-butns{
+  .subscribe-butns {
     width: 100%;
   }
 }
@@ -568,18 +578,12 @@ canvas.scatter-charts {
   .promo-code {
     font-size: 16px;
     height: 42px;
+  }
 }
-}
-
-
-
-
 
 .table-container {
   overflow-x: auto;
 }
-
-
 
 .table {
   width: auto;
@@ -588,11 +592,11 @@ canvas.scatter-charts {
 .table .rdt_TableHead {
   position: sticky !important;
   top: 0;
-  background-color: #fff; 
+  background-color: #fff;
   z-index: 2;
 }
-.table .rdt_TableHead .rdt_TableCol:nth-child(-n+2),
-.table .rdt_TableBody .rdt_TableRow > div:nth-child(-n+2) {
+.table .rdt_TableHead .rdt_TableCol:nth-child(-n + 2),
+.table .rdt_TableBody .rdt_TableRow > div:nth-child(-n + 2) {
   position: sticky;
   left: 0;
   z-index: 1;
@@ -615,44 +619,42 @@ canvas.scatter-charts {
   min-width: 50px; /* Adjust width if necessary */
 }
 .table .rdt_TableHead .rdt_TableCol:nth-child(2) {
-  left: 100px /* Adjust width if necessary */
+  left: 100px; /* Adjust width if necessary */
 }
 
 .table .rdt_TableBody .rdt_TableRow > div:nth-child(2) {
-  left: 100px /* Adjust width if necessary */
+  left: 100px; /* Adjust width if necessary */
 }
 @media screen and (min-width: 430px) {
+  /* Make the first two columns sticky */
+  .table .rdt_TableHead .rdt_TableCol:nth-child(-n + 2),
+  .table .rdt_TableBody .rdt_TableRow > div:nth-child(-n + 2) {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+  }
 
-/* Make the first two columns sticky */
-.table .rdt_TableHead .rdt_TableCol:nth-child(-n+2),
-.table .rdt_TableBody .rdt_TableRow > div:nth-child(-n+2) {
-  position: sticky;
-  left: 0;
-  z-index: 1;
-  
+  /* Ensure proper width for the first column */
+  .table .rdt_TableHead .rdt_TableCol:nth-child(1) {
+    min-width: 150px; /* Adjust width if necessary */
+  }
+
+  .table .rdt_TableBody .rdt_TableRow > div:nth-child(1) {
+    min-width: 150px; /* Adjust width if necessary */
+  }
+
+  .table .rdt_TableHead .rdt_TableCol:nth-child(2) {
+    left: 150px; /* Adjust width if necessary */
+  }
+
+  .table .rdt_TableBody .rdt_TableRow > div:nth-child(2) {
+    left: 150px; /* Adjust width if necessary */
+  }
+  /* Adjust other styles as needed */
 }
 
-/* Ensure proper width for the first column */
-.table .rdt_TableHead .rdt_TableCol:nth-child(1) {
-  min-width: 150px; /* Adjust width if necessary */
-}
-
-.table .rdt_TableBody .rdt_TableRow > div:nth-child(1) {
-  min-width: 150px; /* Adjust width if necessary */
-}
-
-.table .rdt_TableHead .rdt_TableCol:nth-child(2) {
-  left: 150px /* Adjust width if necessary */
-}
-
-.table .rdt_TableBody .rdt_TableRow > div:nth-child(2) {
-  left: 150px /* Adjust width if necessary */
-}
-/* Adjust other styles as needed */
-}
-
-.table1 .rdt_TableHead .rdt_TableCol:nth-child(-n+1),
-.table1 .rdt_TableBody .rdt_TableRow > div:nth-child(-n+1) {
+.table1 .rdt_TableHead .rdt_TableCol:nth-child(-n + 1),
+.table1 .rdt_TableBody .rdt_TableRow > div:nth-child(-n + 1) {
   position: sticky;
   left: 0;
   z-index: 1;
@@ -672,12 +674,12 @@ canvas.scatter-charts {
   background-color: #fff;
 }
 .table .rdt_TableBody .rdt_TableRow:nth-child(even) {
- background-color: #e2dbe3;
+  background-color: #e2dbe3;
 }
 
 .table1 .rdt_TableBody .rdt_TableRow:nth-child(odd) {
   background-color: #fff;
 }
 .table1 .rdt_TableBody .rdt_TableRow:nth-child(even) {
- background-color: #e2dbe3;
+  background-color: #e2dbe3;
 }

@@ -39,11 +39,11 @@ function Home() {
     </div>
     <div className="flex flex-col home-mobile items-center justify-center">
      
-      <div className="bg-white m-4 w-full flex flex-col items-center justify-start p-4 ">
+      <div className="bg-white h-auto m-4 w-full flex flex-col items-center justify-start p-4 ">
         <div className="w-4/5 zaddie-text bg-lightgray [letter-spacing:5px] sm:text-lg  p-4 text-center rounded-xl md:text-4xl">
           Zaddies of MLB
         </div>
-        <div className="grid  sm:grid-cols-1 chart-section md:grid-cols-2 gap-6 mt-5 min-h-36">
+        <div className="grid  sm:grid-cols-1 chart-section md:grid-cols-2 gap-6 mt-5 h-auto">
           {graph && graph.map((item,i)=>(
             <div  key={i} className={` my-2 ${loading?"hidden":""}`}>
               <img src={item.content.replace("storage.cloud.google.com","storage.googleapis.com") + `?new=${new Date()}`} alt="i" />
@@ -53,7 +53,7 @@ function Home() {
          
         </div>
       </div>
-      <div className="bg-white  md:p-10 w-full image-section h-auto sm:p-40 flex flex-col items-center justify-center text-xl">
+      <div className="bg-white  w-full image-section h-auto flex flex-col items-center justify-center text-xl">
         {[1,2,3,4,5,6].map(item=>(<img key={item} src={`/website_materials_homepg_${item}.png`} alt="home image" className="home_image" />))}
        
       </div>
