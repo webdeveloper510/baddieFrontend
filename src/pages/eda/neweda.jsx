@@ -422,7 +422,9 @@ const Neweda = () => {
               <div className="w-full border-4 my-3 px-2 py-5 rounded-[60px] border-black h-auto">
                 <div className="flex justify-center graph-display">
                   <div>
-                      <img
+                    {
+                      body.stat_type === "pitching" && (
+                         <img
                         className="my-2"
                         src={
                           body.stat_type === "pitching"
@@ -430,8 +432,12 @@ const Neweda = () => {
                             : edaData?.AB_PG_graph + `?new=${new Date()}`
                         }
                       />
+                      )
+                    }
+                     
                   </div>
                   <div>
+                    { body.stat_type === "pitching" && (
                       <img
                         className="my-2"
                         src={
@@ -440,20 +446,25 @@ const Neweda = () => {
                             : edaData?.TB_PG_graph + `?new=${new Date()}`
                         }
                       />
+                      )}
                   </div>
                 </div>
                 <div className="flex justify-center graph-display">
                   <div>
+                  { body.stat_type === "pitching" && (
                   <img
                       className="my-2"
                       src={edaData?.balls_inplay_9_graph + `?new=${new Date()}`}
                     />
+                  )}
                   </div>
                   <div>
+                  { body.stat_type === "pitching" && (
                     <img
                       className="my-2"
                       src={edaData?.bb_9_graph + `?new=${new Date()}`}
                     />
+                  )}
                   </div>
                 </div>
                 <div className="flex justify-center graph-display">
@@ -526,21 +537,14 @@ const Neweda = () => {
                 </div>
                 <div className="flex justify-center graph-display">
                   <div>
+                    {body.stat_type === "pitching" && (
                     <img
                       className="my-2"
                       src={edaData?.hr_9_graph + `?new=${new Date()}`}
                     />
+                    )}
                   </div>
-                  <div>
-                    <img
-                      className="my-2"
-                      src={
-                        body.stat_type === "pitching"
-                          ? edaData?.callswgstr_graph
-                          : edaData?.swgstr_graph + `?new=${new Date()}`
-                      }
-                    />
-                  </div>
+                 
                 </div>
                 {/* <div className="flex justify-center graph-display">
                   {body.stat_type !== "pitching" ? (
