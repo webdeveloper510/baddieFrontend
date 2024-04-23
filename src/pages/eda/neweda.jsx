@@ -26,7 +26,7 @@ const Neweda = () => {
     opposingTeam: "",
     type: "",
     time_frame: "TY + LY",
-    player_type: "r",
+    // player_type: "r",
   });
   const validationSchema = Yup.object().shape({
     // playerType: Yup.string()
@@ -75,7 +75,7 @@ const Neweda = () => {
         // time_frame: values.time_frame,
         player_or_team: values.type,
         handedness: values.handedness,
-        player_type: values.player_type,
+        // player_type: values.player_type,
       };
       setBody(body);
       console.log("🚀 ~ handleSubmit ~ body:", body);
@@ -136,11 +136,7 @@ const Neweda = () => {
       }
     }
   }, [tab, body]);
-  const handleSubmitOutsideFormik = () => {
-    if (formikRef.current) {
-      formikRef.current.handleSubmit();
-    }
-  };
+  
 
   useEffect(() => {
     window.addEventListener("click", (e) => {
@@ -177,11 +173,7 @@ const Neweda = () => {
           {({ isSubmitting, setFieldValue, values }) => (
             <Form>
               <div
-                className={`${
-                  edaData && values.handedness === "yes"
-                    ? "grid grid-cols-6"
-                    : "grid grid-cols-5"
-                } gap-4 player-flex text-[#2a3f5f]`}
+                className={`grid grid-cols-5 gap-4 player-flex text-[#2a3f5f]`}
               >
                 <div className="text-center col-span-2 player-select">
                   <Field
@@ -255,19 +247,18 @@ const Neweda = () => {
                               <span className="mr-2">
                                 {playerType === "pitcher"
                                   ? pitcher.player_name[
-                                      parseInt(values.playerName)
-                                    ]
+                                  parseInt(values.playerName)
+                                  ]
                                   : batter.player_name[
-                                      parseInt(values.playerName)
-                                    ]}
+                                  parseInt(values.playerName)
+                                  ]}
                               </span>
                             )}
                           </button>
                           {values.playerType != "" && (
                             <div
-                              className={`absolute right-0 mt-2 rounded-md shadow-lg  ring-1 ring-black ring-opacity-5 p-1 space-y-1 ${
-                                isOpen ? "" : "hidden"
-                              } max-h-60  w-full bg-white`}
+                              className={`absolute right-0 mt-2 rounded-md shadow-lg  ring-1 ring-black ring-opacity-5 p-1 space-y-1 ${isOpen ? "" : "hidden"
+                                } max-h-60  w-full bg-white`}
                             >
                               <input
                                 onChange={handleInputChange}
@@ -354,7 +345,7 @@ const Neweda = () => {
                     </Field>
                   )}
                 </div>
-                {edaData && values.handedness === "yes" && (
+                {/* {edaData && values.handedness === "yes" && (
                   <div className="text-center self-center col-span-1 player-select">
                     <Field
                       as="select"
@@ -368,7 +359,7 @@ const Neweda = () => {
                       <option value="l">L</option>
                     </Field>
                   </div>
-                )}
+                )} */}
                 <div className="col-span-1 flex">
                   <button
                     type="submit"
@@ -382,8 +373,8 @@ const Neweda = () => {
             </Form>
           )}
         </Formik>
-
-        {edaData && (
+         { edaData && <>
+        {body.handedness === "no" ? (
           <div className="mt-5">
             <div>
               {(body.stat_type === "pitching" && body.handedness === "no") && (
@@ -415,93 +406,149 @@ const Neweda = () => {
                 </div>
               )}
             </div>
-            <div className="text-center my-3">
-              <h1 className="font-bold text-5xl">
-                {body.stat_type === "pitching" ? "Length &" : ""} Efficiency
-              </h1>
-              <div className="w-full border-4 my-3 px-2 py-5 rounded-[60px] border-black h-auto">
-                <div className="flex justify-center graph-display">
-                <div>
-                    {
-                      body.stat_type === "pitching" ? (
-                        <>
-                        <img
-                       className="my-2"
-                       src={
-                         body.stat_type === "pitching"
-                           ? edaData?.outs_PG_graph
-                           : edaData?.AB_PG_graph + `?new=${new Date()}`
-                       }
-                       
-                     />
-                     {body.handedness == "yes" &&  
-                     <>
-                     <img
-                        className="my-2"
-                        src={
-                          edaData?.bb_9_graph + `?new=${new Date()}`
-                        }
-                      />
-                      <img
-                        className="my-2"
-                        src={
-                          edaData?.hr_9_graph + `?new=${new Date()}`
-                        }
-                      />
-                      <img
-                        className="my-2"
-                        src={
-                          edaData?.balls_inplay_9_graph + `?new=${new Date()}`
-                        }
-                      />
-                     </>
-                     }
-                     </>
-                   ) : (
-                    <>
-                    {edaData?.AB_PG_graph &&  <img
-                     className="my-2"
-                     src={
-                       edaData?.AB_PG_graph + `?new=${new Date()}`
-                     }
-                   />}
-                   </>
-                   )}
-                  
-                  </div>
-                  <div>
-                    
-                    { ( edaData?.batters_faced_PG_graph
-                          || edaData?.TB_PG_graph) &&  <img
-                        className="my-2"
-                        src={
-                          body.stat_type === "pitching"
-                            ? edaData?.batters_faced_PG_graph
-                            : edaData?.TB_PG_graph + `?new=${new Date()}`
-                        }
-                      />
-                }
-          
-                  </div>
-                </div>
-                <div className="flex justify-center graph-display">
-                  <div>
-                    {edaData?.pitches_PG_graph && <img
-                      className="my-2"
-                      src={
-                        edaData?.pitches_PG_graph + `?new=${new Date()}`
+            {
+              body.handedness === "no" &&
+              <div className="text-center my-3">
+                <h1 className="font-bold text-5xl">
+                  {body.stat_type === "pitching" ? "Length &" : ""} Efficiency
+                </h1>
+                <div className="w-full border-4 my-3 px-2 py-5 rounded-[60px] border-black h-auto">
+                  <div className="flex justify-center graph-display">
+                    <div>
+                      {
+                        body.stat_type === "pitching" ? (
+                          <>
+                            <img
+                              className="my-2"
+                              src={
+                                body.stat_type === "pitching"
+                                  ? edaData?.outs_PG_graph
+                                  : edaData?.AB_PG_graph + `?new=${new Date()}`
+                              }
+
+                            />
+                            {body.handedness == "yes" &&
+                              <>
+                                <img
+                                  className="my-2"
+                                  src={
+                                    edaData?.bb_9_graph + `?new=${new Date()}`
+                                  }
+                                />
+                                <img
+                                  className="my-2"
+                                  src={
+                                    edaData?.hr_9_graph + `?new=${new Date()}`
+                                  }
+                                />
+                                <img
+                                  className="my-2"
+                                  src={
+                                    edaData?.balls_inplay_9_graph + `?new=${new Date()}`
+                                  }
+                                />
+                              </>
+                            }
+                          </>
+                        ) : (
+                          <>
+                            {edaData?.AB_PG_graph && <img
+                              className="my-2"
+                              src={
+                                edaData?.AB_PG_graph + `?new=${new Date()}`
+                              }
+                            />}
+                          </>
+                        )}
+
+                    </div>
+                    <div>
+
+                      {(edaData?.batters_faced_PG_graph
+                        || edaData?.TB_PG_graph) && <img
+                          className="my-2"
+                          src={
+                            body.stat_type === "pitching"
+                              ? edaData?.batters_faced_PG_graph
+                              : edaData?.TB_PG_graph + `?new=${new Date()}`
+                          }
+                        />
                       }
-                    />}
+
+                    </div>
                   </div>
-                  <div>
-                    <img
-                      className="my-2"
-                      src={edaData?.pitch_per_PA_graph + `?new=${new Date()}`}
-                    />
+                  <div className="flex justify-center graph-display">
+                    <div>
+                      {edaData?.pitches_PG_graph && <img
+                        className="my-2"
+                        src={
+                          edaData?.pitches_PG_graph + `?new=${new Date()}`
+                        }
+                      />}
+                    </div>
+                    <div>
+                      <img
+                        className="my-2"
+                        src={edaData?.pitch_per_PA_graph + `?new=${new Date()}`}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            }
+            {
+              body.handedness === "yes" &&
+              <div className="text-center my-3">
+                <h1 className="font-bold text-5xl">
+                  The Topline Stats
+                </h1>
+                <div className="w-full border-4 my-3 px-2 py-5 rounded-[60px] border-black h-auto">
+                  <div className="flex justify-center graph-display">
+                    <div>
+                      <img
+                        className="my-2"
+                        src={
+                          edaData?.hnd_topstats_graph
+                          + `?new=${new Date()}`
+                        }
+
+                      />
+
+                    </div>
+                    <div>
+
+                      {(edaData?.batters_faced_PG_graph
+                        || edaData?.TB_PG_graph) && <img
+                          className="my-2"
+                          src={
+                            body.stat_type === "pitching"
+                              ? edaData?.batters_faced_PG_graph
+                              : edaData?.TB_PG_graph + `?new=${new Date()}`
+                          }
+                        />
+                      }
+
+                    </div>
+                  </div>
+                  <div className="flex justify-center graph-display">
+                    <div>
+                      {edaData?.pitches_PG_graph && <img
+                        className="my-2"
+                        src={
+                          edaData?.pitches_PG_graph + `?new=${new Date()}`
+                        }
+                      />}
+                    </div>
+                    <div>
+                      <img
+                        className="my-2"
+                        src={edaData?.pitch_per_PA_graph + `?new=${new Date()}`}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            }
             <div className="text-center my-5">
               <h1 className="font-bold  text-5xl">At The Plate</h1>
               <div className="w-full border-4 my-3 p-5 rounded-[60px] border-black h-auto">
@@ -551,16 +598,16 @@ const Neweda = () => {
                   </div>
                 </div>
                 <div className="grid md:grid-cols-2 sm:grid-cols-1">
-                  {body.stat_type !== "pitching" && 
-                   <> <img
+                  {body.stat_type !== "pitching" &&
+                    <> <img
                       className="my-2"
                       src={edaData?.strike_rate_graph + `?new=${new Date()}`}
                     />
-                     <img
+                      <img
                         className="my-2"
                         src={edaData?.k_bb_graph + `?new=${new Date()}`}
                       />
-                  </>}
+                    </>}
                 </div>
                 {body.stat_type === "pitching" && (
                   <>
@@ -644,8 +691,8 @@ const Neweda = () => {
                     {edaData?.balls_inplay_PG_graph && <img
                       className="my-2"
                       src={
-                        
-                          edaData?.balls_inplay_PG_graph + `?new=${new Date()}`
+
+                        edaData?.balls_inplay_PG_graph + `?new=${new Date()}`
                       }
                     />}
                   </div>
@@ -667,39 +714,323 @@ const Neweda = () => {
                 </div>
 
                 <div className="flex justify-center graph-display">
-                 <div>
-                 <img
-                    className="my-2"
-                    src={edaData?.xbh_pct_graph + `?new=${new Date()}`}
-                  />
-                 </div>
+                  <div>
+                    <img
+                      className="my-2"
+                      src={edaData?.xbh_pct_graph + `?new=${new Date()}`}
+                    />
+                  </div>
 
-                <div>
-                <img
-                    className="my-2"
-                    src={
-                      body.stat_type === "pitching"
-                        ? edaData?.hr_pct_graph
-                        : edaData?.hardhit_pct_graph + `?new=${new Date()}`
-                    }
-                  />
-                </div>
+                  <div>
+                    <img
+                      className="my-2"
+                      src={
+                        body.stat_type === "pitching"
+                          ? edaData?.hr_pct_graph
+                          : edaData?.hardhit_pct_graph + `?new=${new Date()}`
+                      }
+                    />
+                  </div>
                 </div>
 
                 {body.stat_type !== "pitching" && (
                   <div className=" flex item-center justify-center">
                     {edaData?.hr_pct_graph &&
-                    <img
-                      className="my-2"
-                      src={edaData?.hr_pct_graph + `?new=${new Date()}`}
-                    />
-                  }
+                      <img
+                        className="my-2"
+                        src={edaData?.hr_pct_graph + `?new=${new Date()}`}
+                      />
+                    }
                   </div>
                 )}
               </div>
             </div>
           </div>
-        )}
+        )
+          :
+          (
+            <div className="mt-5">
+
+              <div className="text-center my-3">
+                <h1 className="font-bold text-5xl">
+                  The Topline Stats
+                </h1>
+                <div className="w-full border-4 my-3 px-2 py-5 rounded-[60px] border-black h-auto">
+                  <div className="flex justify-center graph-display w-full">
+                  
+                      <img
+                        className="my-2 w-full"
+                        src={
+                          edaData?.hnd_topstats_graph
+                          + `?new=${new Date()}`
+                        }
+                      />
+                  </div>                  
+                </div>
+              </div>
+
+              <div className="text-center my-5">
+                <h1 className="font-bold  text-5xl">At The Plate</h1>
+                <div className="w-full border-4 my-3 p-5 rounded-[60px] border-black h-auto">
+                  {body.stat_type === "pitching" ? (
+                    <>
+                    <h2 className="text-center text-5xl font-bold">
+                      strikeout stuff
+                    </h2>
+                    <div className="flex justify-center graph-display">
+                    <img
+                          className="my-2"
+                          src={edaData?.hnd_k_9_graph + `?new=${new Date()}`}
+                        />
+                    </div>
+                    <div className="flex justify-center graph-display">
+                    <div>
+                      {edaData?.hnd_k_rate_graph &&  (
+                        <img
+                          className="my-2"
+                          src={edaData?.hnd_k_rate_graph + `?new=${new Date()}`}
+                        />
+                      ) }
+                    </div>
+                    <div>
+                      {edaData?.hnd_callswgstr_graph && (
+                        <img
+                          className="my-2"
+                          src={edaData?.hnd_callswgstr_graph + `?new=${new Date()}`}
+                        />
+                      )}
+                    </div>
+                  </div>
+                  <h2 className="text-center text-5xl  font-semibold my-5">
+                        command
+                      </h2>
+                      <div className="flex justify-center graph-display">
+                    <div>
+                      {edaData?.hnd_bb_9_graph &&  (
+                        <img
+                          className="my-2"
+                          src={edaData?.hnd_bb_9_graph + `?new=${new Date()}`}
+                        />
+                      ) }
+                    </div>
+                    <div>
+                      {edaData?.hnd_k_bb_graph && (
+                        <img
+                          className="my-2"
+                          src={edaData?.hnd_k_bb_graph + `?new=${new Date()}`}
+                        />
+                      )}
+                    </div>
+                  </div>
+                  <div className="flex justify-center graph-display">
+                    <div>
+                      {edaData?.hnd_strike_rate_graph &&  (
+                        <img
+                          className="my-2"
+                          src={edaData?.hnd_strike_rate_graph + `?new=${new Date()}`}
+                        />
+                      ) }
+                    </div>
+                    <div>
+                      {edaData?.hnd_pitch_perPA_graph && (
+                        <img
+                          className="my-2"
+                          src={edaData?.hnd_pitch_perPA_graph + `?new=${new Date()}`}
+                        />
+                      )}
+                    </div>
+                  </div>
+                    </>
+                  )
+                   :
+                   (
+                    <>
+                    <div className="flex justify-center graph-display">
+                    <div>
+                      {edaData?.hnd_k_rate_graph &&  (
+                        <img
+                          className="my-2"
+                          src={edaData?.hnd_k_rate_graph + `?new=${new Date()}`}
+                        />
+                      ) }
+                    </div>
+                    <div>
+                      {edaData?.hnd_k_bb_graph && (
+                        <img
+                          className="my-2"
+                          src={edaData?.hnd_k_bb_graph + `?new=${new Date()}`}
+                        />
+                      )}
+                    </div>
+                  </div>
+                 
+                      <div className="flex justify-center graph-display">
+                    <div>
+                      {edaData?.hnd_pitch_perPA_graph &&  (
+                        <img
+                          className="my-2"
+                          src={edaData?.hnd_pitch_perPA_graph + `?new=${new Date()}`}
+                        />
+                      ) }
+                    </div>
+                    <div>
+                      {edaData?.hnd_strike_rate_graph && (
+                        <img
+                          className="my-2"
+                          src={edaData?.hnd_strike_rate_graph + `?new=${new Date()}`}
+                        />
+                      )}
+                    </div>
+                  </div>
+                  <div className="flex justify-center graph-display">
+                    <div>
+                      {edaData?.hnd_swstrk_rate_graph &&  (
+                        <img
+                          className="my-2"
+                          src={edaData?.hnd_swstrk_rate_graph + `?new=${new Date()}`}
+                        />
+                      ) }
+                    </div>
+                  </div>
+                    </>
+                   )
+                  }
+                </div>
+              </div>
+              <div className="text-center my-5">
+                <h1 className="font-bold  text-5xl">In The Field</h1>
+                <div className="w-full border-4 my-3 p-5 rounded-[60px] border-black h-auto">
+                
+                  <h2 className="text-center font-bold text-5xl">contact</h2>
+                  
+                 {
+                  body.stat_type === "pitching" && (
+                    <div className="flex justify-center graph-display">
+                    {edaData?.hnd_hits_9_graph && (
+                      <div>
+                        <img
+                          className="my-2"
+                          src={edaData?.hnd_hits_9_graph + `?new=${new Date()}`}
+                        />
+                      </div>
+                    )}
+                  </div>
+                  )
+                 }
+                  <div className="flex justify-center graph-display">
+                    <div>
+                      {edaData?.hnd_bip_9_graph && <img
+                        className="my-2"
+                        src={
+
+                          edaData?.hnd_bip_9_graph + `?new=${new Date()}`
+                        }
+                      />}
+                    </div>
+                    <div>
+                      {edaData?.hnd_BABIP_graph && <img
+                        className="my-2"
+                        src={
+
+                          edaData?.hnd_BABIP_graph + `?new=${new Date()}`
+                        }
+                      />}
+                    </div>
+                    <div>
+                      {edaData?.hnd_gbfb_ratio_graph && <img
+                        className="my-2"
+                        src={
+
+                          edaData?.hnd_gbfb_ratio_graph + `?new=${new Date()}`
+                        }
+                      />}
+                    </div>
+                  </div>
+                  <h2 className="text-center font-bold text-5xl">power</h2>
+                 
+                  {body.stat_type === "pitching" ?
+                    (
+                      <>
+                      <div className="flex justify-center graph-display">
+                    <div>
+                      <img
+                        className="my-2"
+                        src={edaData?.hnd_iso_graph + `?new=${new Date()}`}
+                      />
+                    </div>
+
+                    <div>
+                      <img
+                        className="my-2"
+                        src={edaData?.hnd_xbh_pct_graph + `?new=${new Date()}`
+                        }
+                      />
+                    </div>
+                  </div>
+                  <div className="flex justify-center graph-display">
+                    <div>
+                      <img
+                        className="my-2"
+                        src={edaData?.hnd_hr_pct_graph + `?new=${new Date()}`}
+                      />
+                    </div>
+
+                    <div>
+                      <img
+                        className="my-2"
+                        src={edaData?.hnd_hr_9_graph + `?new=${new Date()}`
+                        }
+                      />
+                    </div>
+                  </div>
+                      </>
+                    )
+                    :
+                    (
+                      <>
+                      <div className="flex justify-center graph-display">
+                    <div>
+                      <img
+                        className="my-2"
+                        src={edaData?.hnd_iso_graph + `?new=${new Date()}`}
+                      />
+                    </div>
+
+                    <div>
+                      <img
+                        className="my-2"
+                        src={edaData?.hnd_hardhit_pct_graph + `?new=${new Date()}`
+                        }
+                      />
+                    </div>
+                  </div>
+                  <div className="flex justify-center graph-display">
+                    <div>
+                      <img
+                        className="my-2"
+                        src={edaData?.hnd_xbh_pct_graph + `?new=${new Date()}`}
+                      />
+                    </div>
+
+                    <div>
+                      <img
+                        className="my-2"
+                        src={edaData?.hnd_hr_pct_graph + `?new=${new Date()}`
+                        }
+                      />
+                    </div>
+                  </div>
+                      </>
+                    )
+                  }
+
+                 
+                </div>
+              </div>
+            </div>
+          )
+        }
+        </>}
       </div>
     </div>
   );
