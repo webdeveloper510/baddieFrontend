@@ -477,7 +477,10 @@ const Neweda = () => {
 
                     </div>
                   </div>
-                  <div className="flex graph-display">
+
+                  {edaData?.pitches_PG_graph &&  edaData?.pitch_per_PA_graph ?
+                  (
+                    <div className="flex graph-display">
                     <div className="image-1">
                       {edaData?.pitches_PG_graph && <img
                         className="my-2"
@@ -493,6 +496,18 @@ const Neweda = () => {
                       />
                     </div>
                   </div>
+                  )
+                  :
+                  (
+                    <div className="flex graph-display justify-center">
+                      <img
+                        className="my-2 w-[100%]"
+                        src={edaData?.pitch_per_PA_graph + `?new=${new Date()}`}
+                      />
+                  </div>
+                  )
+                  }
+                 
                 </div>
               </div>
             }
@@ -558,7 +573,9 @@ const Neweda = () => {
                   </h2>
                 )}
 
-                <div className="flex graph-display">
+                {edaData?.k_PG_graph && edaData?.k_9_graph ?
+                (
+                  <div className="flex graph-display">
                   <div className="image-1">
                     {edaData?.k_PG_graph ? (
                       <img
@@ -570,14 +587,21 @@ const Neweda = () => {
                     )}
                   </div>
                   <div className="image-1">
-                    {body.stat_type === "pitching" && (
                       <img
                         className="my-2"
                         src={edaData?.k_9_graph + `?new=${new Date()}`}
                       />
-                    )}
                   </div>
                 </div>
+                ):
+                (<div className="flex graph-display justify-center">
+                    <img
+                      className="my-2 w-[100%]"
+                      src={edaData?.k_PG_graph + `?new=${new Date()}`}
+                    />
+              </div>)
+              }
+               
 
                 <div className="flex graph-display">
                   <div className="image-1">
@@ -597,32 +621,40 @@ const Neweda = () => {
                     />
                   </div>
                 </div>
-                <div className="grid md:grid-cols-2 sm:grid-cols-1">
+
+                
                   {body.stat_type !== "pitching" &&
-                    <> <img
+                  <div className="flex graph-display">
+                    <div className="image-1">
+                    {edaData?.strike_rate_graph && <img
                       className="my-2"
                       src={edaData?.strike_rate_graph + `?new=${new Date()}`}
-                    />
-                      <img
+                    />}</div>
+                    <div className="image-1"> 
+                     {edaData?.k_bb_graph  && <img
                         className="my-2"
                         src={edaData?.k_bb_graph + `?new=${new Date()}`}
-                      />
-                    </>}
-                </div>
+                      />}
+                    </div></div>}
+                
                 {body.stat_type === "pitching" && (
                   <>
                     <h2 className="text-center text-5xl  font-semibold my-5">
                       command
                     </h2>
-                    <div className="grid md:grid-cols-2 sm:grid-cols-1 ">
+                    <div className="flex graph-display">
+                      <div className="image-1">
                       <img
                         className="my-2"
                         src={edaData?.k_bb_graph + `?new=${new Date()}`}
                       />
-                      <img
+                      </div>
+                     <div className="image-1">
+                     <img
                         className="my-2"
                         src={edaData?.strike_rate_graph + `?new=${new Date()}`}
                       />
+                     </div>
                     </div>
                   </>
                 )}
@@ -734,10 +766,10 @@ const Neweda = () => {
                 </div>
 
                 {body.stat_type !== "pitching" && (
-                  <div className=" flex item-center justify-center">
+                  <div className="flex graph-display justify-center">
                     {edaData?.hr_pct_graph &&
                       <img
-                        className="my-2"
+                        className="my-2 w-[100%]"
                         src={edaData?.hr_pct_graph + `?new=${new Date()}`}
                       />
                     }
@@ -776,9 +808,9 @@ const Neweda = () => {
                     <h2 className="text-center text-5xl font-bold">
                       strikeout stuff
                     </h2>
-                    <div className="flex graph-display">
+                    <div className="flex graph-display justify-center">
                     <img
-                          className="my-2"
+                          className="my-2 w-[100%]"
                           src={edaData?.hnd_k_9_graph + `?new=${new Date()}`}
                         />
                     </div>
@@ -881,13 +913,15 @@ const Neweda = () => {
                       )}
                     </div>
                   </div>
-                  <div className="flex graph-display w-full">
-                      {edaData?.hnd_swstrk_rate_graph &&  (
+                  <div className="flex graph-display justify-center w-full m-auto">
+                     <div className="w-full">
+                     {edaData?.hnd_swstrk_rate_graph &&  (
                         <img
-                          className="my-2"
+                          className="my-2 w-[100%]"
                           src={edaData?.hnd_swstrk_rate_graph + `?new=${new Date()}`}
                         />
                       ) }
+                     </div>
                   </div>
                     </>
                    )
@@ -902,11 +936,11 @@ const Neweda = () => {
                   
                  {
                   body.stat_type === "pitching" && (
-                    <div className="flex graph-display w-full">
+                    <div className="flex graph-display justify-center w-full">
                     {edaData?.hnd_hits_9_graph && (
                      
                         <img
-                          className="my-2"
+                          className="my-2 w-[100%]"
                           src={edaData?.hnd_hits_9_graph + `?new=${new Date()}`}
                         />
                     )}
