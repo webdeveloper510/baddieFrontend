@@ -379,8 +379,8 @@ const Neweda = () => {
             <div>
               {(body.stat_type === "pitching" && body.handedness === "no") && (
                 <div className="w-full border-4 my-3 px-2 py-5 rounded-[60px] border-black h-auto">
-                  <div className="flex justify-center graph-display">
-                    <div>
+                  <div className="flex graph-display">
+                    <div className="image-1">
                       {edaData?.ERA_graph ? (
                         <img
                           className="my-2"
@@ -391,7 +391,7 @@ const Neweda = () => {
                         <></>
                       )}
                     </div>
-                    <div>
+                    <div className="image-1">
                       {edaData?.WHIP_graph ? (
                         <img
                           className="my-2"
@@ -413,8 +413,8 @@ const Neweda = () => {
                   {body.stat_type === "pitching" ? "Length &" : ""} Efficiency
                 </h1>
                 <div className="w-full border-4 my-3 px-2 py-5 rounded-[60px] border-black h-auto">
-                  <div className="flex justify-center graph-display">
-                    <div>
+                  <div className="flex graph-display">
+                    <div className="image-1">
                       {
                         body.stat_type === "pitching" ? (
                           <>
@@ -462,7 +462,7 @@ const Neweda = () => {
                         )}
 
                     </div>
-                    <div>
+                    <div className="image-1">
 
                       {(edaData?.batters_faced_PG_graph
                         || edaData?.TB_PG_graph) && <img
@@ -477,8 +477,8 @@ const Neweda = () => {
 
                     </div>
                   </div>
-                  <div className="flex justify-center graph-display">
-                    <div>
+                  <div className="flex graph-display">
+                    <div className="image-1">
                       {edaData?.pitches_PG_graph && <img
                         className="my-2"
                         src={
@@ -486,7 +486,7 @@ const Neweda = () => {
                         }
                       />}
                     </div>
-                    <div>
+                    <div className="image-1">
                       <img
                         className="my-2"
                         src={edaData?.pitch_per_PA_graph + `?new=${new Date()}`}
@@ -503,8 +503,8 @@ const Neweda = () => {
                   The Topline Stats
                 </h1>
                 <div className="w-full border-4 my-3 px-2 py-5 rounded-[60px] border-black h-auto">
-                  <div className="flex justify-center graph-display">
-                    <div>
+                  <div className="flex graph-display">
+                    <div className="image-1">
                       <img
                         className="my-2"
                         src={
@@ -515,7 +515,7 @@ const Neweda = () => {
                       />
 
                     </div>
-                    <div>
+                    <div className="image-1">
 
                       {(edaData?.batters_faced_PG_graph
                         || edaData?.TB_PG_graph) && <img
@@ -530,8 +530,8 @@ const Neweda = () => {
 
                     </div>
                   </div>
-                  <div className="flex justify-center graph-display">
-                    <div>
+                  <div className="flex graph-display">
+                    <div className="image-1">
                       {edaData?.pitches_PG_graph && <img
                         className="my-2"
                         src={
@@ -539,7 +539,7 @@ const Neweda = () => {
                         }
                       />}
                     </div>
-                    <div>
+                    <div className="image-1">
                       <img
                         className="my-2"
                         src={edaData?.pitch_per_PA_graph + `?new=${new Date()}`}
@@ -558,8 +558,8 @@ const Neweda = () => {
                   </h2>
                 )}
 
-                <div className="flex justify-center graph-display">
-                  <div>
+                <div className="flex graph-display">
+                  <div className="image-1">
                     {edaData?.k_PG_graph ? (
                       <img
                         className="my-2"
@@ -569,7 +569,7 @@ const Neweda = () => {
                       <></>
                     )}
                   </div>
-                  <div>
+                  <div className="image-1">
                     {body.stat_type === "pitching" && (
                       <img
                         className="my-2"
@@ -579,14 +579,14 @@ const Neweda = () => {
                   </div>
                 </div>
 
-                <div className="flex justify-center graph-display">
-                  <div>
+                <div className="flex graph-display">
+                  <div className="image-1">
                     <img
                       className="my-2"
                       src={edaData?.k_rate_graph + `?new=${new Date()}`}
                     />
                   </div>
-                  <div>
+                  <div className="image-1">
                     <img
                       className="my-2"
                       src={
@@ -664,9 +664,9 @@ const Neweda = () => {
                     <span className="text-3xl  ">{edaData["Contact Pct"]}</span>
                   </div>
                 </div>
-                <div className="flex justify-center graph-display">
+                <div className="flex graph-display">
                   {edaData?.hits_PG_graph && (
-                    <div>
+                    <div className="image-1">
                       <img
                         className="my-2"
                         src={edaData?.hits_PG_graph + `?new=${new Date()}`}
@@ -674,7 +674,7 @@ const Neweda = () => {
                     </div>
                   )}
                   {(edaData?.hits_9_graph || edaData?.gbfb_ratio_graph) && (
-                    <div>
+                    <div className="image-1">
                       <img
                         className="my-2"
                         src={
@@ -686,8 +686,8 @@ const Neweda = () => {
                     </div>
                   )}
                 </div>
-                <div className="flex justify-center graph-display">
-                  <div>
+                <div className="flex graph-display">
+                  <div className="image-1">
                     {edaData?.balls_inplay_PG_graph && <img
                       className="my-2"
                       src={
@@ -696,7 +696,7 @@ const Neweda = () => {
                       }
                     />}
                   </div>
-                  <div>
+                  <div className="image-1">
                     <img
                       className="my-2"
                       src={edaData?.babip_graph + `?new=${new Date()}`}
@@ -713,15 +713,15 @@ const Neweda = () => {
                   </div>
                 </div>
 
-                <div className="flex justify-center graph-display">
-                  <div>
+                <div className="flex graph-display">
+                  <div className="image-1">
                     <img
                       className="my-2"
                       src={edaData?.xbh_pct_graph + `?new=${new Date()}`}
                     />
                   </div>
 
-                  <div>
+                  <div className="image-1">
                     <img
                       className="my-2"
                       src={
@@ -756,8 +756,7 @@ const Neweda = () => {
                   The Topline Stats
                 </h1>
                 <div className="w-full border-4 my-3 px-2 py-5 rounded-[60px] border-black h-auto">
-                  <div className="flex justify-center graph-display w-full">
-                  
+                  <div className="flex graph-display w-full">                  
                       <img
                         className="my-2 w-full"
                         src={
@@ -777,14 +776,14 @@ const Neweda = () => {
                     <h2 className="text-center text-5xl font-bold">
                       strikeout stuff
                     </h2>
-                    <div className="flex justify-center graph-display">
+                    <div className="flex graph-display">
                     <img
                           className="my-2"
                           src={edaData?.hnd_k_9_graph + `?new=${new Date()}`}
                         />
                     </div>
-                    <div className="flex justify-center graph-display">
-                    <div>
+                    <div className="flex graph-display">
+                    <div className="image-1">
                       {edaData?.hnd_k_rate_graph &&  (
                         <img
                           className="my-2"
@@ -792,7 +791,7 @@ const Neweda = () => {
                         />
                       ) }
                     </div>
-                    <div>
+                    <div className="image-1">
                       {edaData?.hnd_callswgstr_graph && (
                         <img
                           className="my-2"
@@ -804,8 +803,8 @@ const Neweda = () => {
                   <h2 className="text-center text-5xl  font-semibold my-5">
                         command
                       </h2>
-                      <div className="flex justify-center graph-display">
-                    <div>
+                      <div className="flex graph-display">
+                    <div className="image-1">
                       {edaData?.hnd_bb_9_graph &&  (
                         <img
                           className="my-2"
@@ -813,7 +812,7 @@ const Neweda = () => {
                         />
                       ) }
                     </div>
-                    <div>
+                    <div className="image-1">
                       {edaData?.hnd_k_bb_graph && (
                         <img
                           className="my-2"
@@ -822,8 +821,8 @@ const Neweda = () => {
                       )}
                     </div>
                   </div>
-                  <div className="flex justify-center graph-display">
-                    <div>
+                  <div className="flex graph-display">
+                    <div className="image-1">
                       {edaData?.hnd_strike_rate_graph &&  (
                         <img
                           className="my-2"
@@ -831,7 +830,7 @@ const Neweda = () => {
                         />
                       ) }
                     </div>
-                    <div>
+                    <div className="image-1">
                       {edaData?.hnd_pitch_perPA_graph && (
                         <img
                           className="my-2"
@@ -845,8 +844,8 @@ const Neweda = () => {
                    :
                    (
                     <>
-                    <div className="flex justify-center graph-display">
-                    <div>
+                    <div className="flex graph-display">
+                    <div className="image-1">
                       {edaData?.hnd_k_rate_graph &&  (
                         <img
                           className="my-2"
@@ -854,7 +853,7 @@ const Neweda = () => {
                         />
                       ) }
                     </div>
-                    <div>
+                    <div className="image-1">
                       {edaData?.hnd_k_bb_graph && (
                         <img
                           className="my-2"
@@ -864,8 +863,8 @@ const Neweda = () => {
                     </div>
                   </div>
                  
-                      <div className="flex justify-center graph-display">
-                    <div>
+                      <div className="flex graph-display">
+                    <div className="image-1">
                       {edaData?.hnd_pitch_perPA_graph &&  (
                         <img
                           className="my-2"
@@ -873,7 +872,7 @@ const Neweda = () => {
                         />
                       ) }
                     </div>
-                    <div>
+                    <div className="image-1">
                       {edaData?.hnd_strike_rate_graph && (
                         <img
                           className="my-2"
@@ -882,15 +881,13 @@ const Neweda = () => {
                       )}
                     </div>
                   </div>
-                  <div className="flex justify-center graph-display">
-                    <div>
+                  <div className="flex graph-display w-full">
                       {edaData?.hnd_swstrk_rate_graph &&  (
                         <img
                           className="my-2"
                           src={edaData?.hnd_swstrk_rate_graph + `?new=${new Date()}`}
                         />
                       ) }
-                    </div>
                   </div>
                     </>
                    )
@@ -905,61 +902,60 @@ const Neweda = () => {
                   
                  {
                   body.stat_type === "pitching" && (
-                    <div className="flex justify-center graph-display">
+                    <div className="flex graph-display w-full">
                     {edaData?.hnd_hits_9_graph && (
-                      <div>
+                     
                         <img
                           className="my-2"
                           src={edaData?.hnd_hits_9_graph + `?new=${new Date()}`}
                         />
-                      </div>
                     )}
                   </div>
                   )
                  }
-                  <div className="flex justify-center graph-display">
-                    <div>
-                      {edaData?.hnd_bip_9_graph && <img
+                  <div className="flex graph-display">
+                    
+                      {edaData?.hnd_bip_9_graph && <div className="image-1"><img
                         className="my-2"
                         src={
 
                           edaData?.hnd_bip_9_graph + `?new=${new Date()}`
                         }
-                      />}
-                    </div>
-                    <div>
-                      {edaData?.hnd_BABIP_graph && <img
+                      /></div>}
+                    
+                    
+                      {edaData?.hnd_BABIP_graph && <div className="image-1"><img
                         className="my-2"
                         src={
 
                           edaData?.hnd_BABIP_graph + `?new=${new Date()}`
                         }
-                      />}
-                    </div>
-                    <div>
-                      {edaData?.hnd_gbfb_ratio_graph && <img
+                      /></div>}
+                    
+                    
+                      {edaData?.hnd_gbfb_ratio_graph && <div className="image-1"> <img
                         className="my-2"
                         src={
 
                           edaData?.hnd_gbfb_ratio_graph + `?new=${new Date()}`
                         }
-                      />}
-                    </div>
+                      /></div>}
+                    
                   </div>
                   <h2 className="text-center font-bold text-5xl">power</h2>
                  
                   {body.stat_type === "pitching" ?
                     (
                       <>
-                      <div className="flex justify-center graph-display">
-                    <div>
+                      <div className="flex graph-display">
+                    <div className="image-1">
                       <img
                         className="my-2"
                         src={edaData?.hnd_iso_graph + `?new=${new Date()}`}
                       />
                     </div>
 
-                    <div>
+                    <div className="image-1">
                       <img
                         className="my-2"
                         src={edaData?.hnd_xbh_pct_graph + `?new=${new Date()}`
@@ -967,15 +963,15 @@ const Neweda = () => {
                       />
                     </div>
                   </div>
-                  <div className="flex justify-center graph-display">
-                    <div>
+                  <div className="flex graph-display">
+                    <div className="image-1">
                       <img
                         className="my-2"
                         src={edaData?.hnd_hr_pct_graph + `?new=${new Date()}`}
                       />
                     </div>
 
-                    <div>
+                    <div className="image-1">
                       <img
                         className="my-2"
                         src={edaData?.hnd_hr_9_graph + `?new=${new Date()}`
@@ -988,15 +984,15 @@ const Neweda = () => {
                     :
                     (
                       <>
-                      <div className="flex justify-center graph-display">
-                    <div>
+                      <div className="flex graph-display">
+                    <div className="image-1">
                       <img
                         className="my-2"
                         src={edaData?.hnd_iso_graph + `?new=${new Date()}`}
                       />
                     </div>
 
-                    <div>
+                    <div className="image-1">
                       <img
                         className="my-2"
                         src={edaData?.hnd_hardhit_pct_graph + `?new=${new Date()}`
@@ -1004,15 +1000,15 @@ const Neweda = () => {
                       />
                     </div>
                   </div>
-                  <div className="flex justify-center graph-display">
-                    <div>
+                  <div className="flex graph-display">
+                    <div className="image-1">
                       <img
                         className="my-2"
                         src={edaData?.hnd_xbh_pct_graph + `?new=${new Date()}`}
                       />
                     </div>
 
-                    <div>
+                    <div className="image-1">
                       <img
                         className="my-2"
                         src={edaData?.hnd_hr_pct_graph + `?new=${new Date()}`

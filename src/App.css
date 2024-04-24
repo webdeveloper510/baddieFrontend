@@ -133,7 +133,12 @@ canvas.scatter-charts {
   line-height: inherit;
   color: inherit;
 }
-
+.image-1{
+  width: 50%;
+}
+.image-2{
+  width: 50%;
+}
 .ev-text {
   font-size: 21px;
   font-weight: 500;
@@ -386,6 +391,12 @@ canvas.scatter-charts {
   }
 }
 @media screen and (max-width: 430px) {
+  .image-1{
+    width: 100%;
+  }
+  .image-2{
+    width: 100%;
+  }
   .baddie-text-logo {
     font-size: 20px;
   }
