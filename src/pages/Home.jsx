@@ -1,12 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
 import Apploader from "../component/Apploader";
+import { userContext } from "../App";
+import { getPicksSummary } from "../api";
 
 function Home() {
+
+  const {user} = useContext(userContext)
   const params = useParams();
   console.log("params", params);
   const [graph, setGraph] = useState(null);
+  const [picks , setPicks] = useState([])
+  console.log("🚀 ~ Home ~ picks:", picks)
   const [loading, setLoading] = useState(false);
   const appLoad = async () => {
     setLoading(true);
@@ -29,14 +35,61 @@ function Home() {
       });
 
   }
+
+  const getpickssummary = async () => {
+    try {
+       const response =  await getPicksSummary()
+       console.log("get picks summary", response)     
+       setPicks(response.data)
+    } catch (error) {
+      alert("There is some error");
+    } 
+  }
+
+
   useEffect(() => {
     appLoad()
+    getpickssummary()
   }, [])
   return (
     <>
-    <div className="m-4">
-      <img  src="/baddiehome.png" width="100%" alt="add" />
+    <div className="text-center mb-5">
+      <h1 className="text-white text-4xl font-bold">YTD MLB Pick Stats</h1>
     </div>
+    <div className="bg-white mx-4 border-black py-5 mb-20 border-4 h-auto rounded-[60px]">
+        <div className="grid md:grid-cols-2 sm:grid-cols-1 text-center gap-6">
+          <div className="my-3">
+            <h1 className="text-3xl font-bold underline">Total Bets</h1>
+            <h2 className="text-2xl font-bold">{picks?.total_bets}</h2>
+          </div>
+          <div className="my-3">
+            <h1 className="text-3xl font-bold underline">Win - Loss - Push</h1>
+            <h2 className="text-2xl font-bold">{`${picks?.wins} - ${picks?.losses} - ${picks?.pushes}`}</h2>
+          </div>
+          <div className="my-3">
+            <h1 className="text-3xl font-bold underline">Wins Percentage</h1>
+            <h2 className="text-2xl font-bold">{picks?.win_percentage}</h2>
+          </div>
+          <div className="my-3">
+            <h1 className="text-3xl font-bold underline">Average Odds</h1>
+            <h2 className="text-2xl font-bold">{picks?.average_odds}</h2>
+          </div>
+          <div className="my-3">
+            <h1 className="text-3xl font-bold underline">Units</h1>
+            <h2 className="text-2xl font-bold">{picks?.units}</h2>
+          </div>
+          <div className="my-3">
+            <h1 className="text-3xl font-bold underline">ROI</h1>
+            <h2 className="text-2xl font-bold">{picks?.ROI}</h2>
+          </div>
+        </div>
+    </div>
+   {
+    !user &&
+    <div className="m-4 mb-20">
+    <img  src="/baddiehome2.png" width="100%" alt="add" style={{borderRadius:"70px" , height:"550px"}} />
+  </div>
+   }
     <div className="flex flex-col home-mobile items-center justify-center">
      
       <div className="bg-white h-auto m-4 w-full flex flex-col items-center justify-start p-4 ">

@@ -229,3 +229,12 @@ export const forgotPassword = async(data)=>{
         throw (error)
     }
 }
+
+export const getPicksSummary = async()=>{
+    try {
+        const response = await Axios.get("getpicks-summary/");
+        return response.data
+    } catch (error) {
+        throw (error)
+    }
+}
