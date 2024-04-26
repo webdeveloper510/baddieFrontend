@@ -67,7 +67,7 @@ function Home() {
             <h2 className="text-2xl font-bold">{`${picks?.wins} - ${picks?.losses} - ${picks?.pushes}`}</h2>
           </div>
           <div className="my-3">
-            <h1 className="text-3xl font-bold underline">Wins Percentage</h1>
+            <h1 className="text-3xl font-bold underline">Win Percentage</h1>
             <h2 className="text-2xl font-bold">{picks?.win_percentage}%</h2>
           </div>
           <div className="my-3">
