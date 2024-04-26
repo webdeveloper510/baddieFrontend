@@ -56,7 +56,7 @@ function Home() {
     <div className="text-center mb-5">
       <h1 className="text-white text-4xl font-bold">YTD MLB Pick Stats</h1>
     </div>
-    <div className="bg-white mx-4 border-black py-5 mb-20 border-4 h-auto rounded-[60px]">
+    <div className="bg-white  border-black py-5 mb-20 w-3/4 md:w-2/3 mx-auto border-4 h-auto rounded-[60px]">
         <div className="grid md:grid-cols-2 sm:grid-cols-1 text-center gap-6">
           <div className="my-3">
             <h1 className="text-3xl font-bold underline">Total Bets</h1>
@@ -68,7 +68,7 @@ function Home() {
           </div>
           <div className="my-3">
             <h1 className="text-3xl font-bold underline">Wins Percentage</h1>
-            <h2 className="text-2xl font-bold">{picks?.win_percentage}</h2>
+            <h2 className="text-2xl font-bold">{picks?.win_percentage}%</h2>
           </div>
           <div className="my-3">
             <h1 className="text-3xl font-bold underline">Average Odds</h1>
@@ -76,11 +76,11 @@ function Home() {
           </div>
           <div className="my-3">
             <h1 className="text-3xl font-bold underline">Units</h1>
-            <h2 className="text-2xl font-bold">{picks?.units}</h2>
+            <h2 className="text-2xl text-green-500 font-bold">{`${picks?.units >=0 ? "+"+picks?.units : picks?.units}`}</h2>
           </div>
           <div className="my-3">
             <h1 className="text-3xl font-bold underline">ROI</h1>
-            <h2 className="text-2xl font-bold">{picks?.ROI}</h2>
+            <h2 className="text-2xl text-green-500 font-bold">{picks?.ROI}%</h2>
           </div>
         </div>
     </div>
