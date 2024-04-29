@@ -397,6 +397,13 @@ canvas.scatter-charts {
   .image-1{
     width: 100%;
   }
+  .slate-box{
+    padding: 10px;
+  }
+  .slate-box h1{
+    font-size: 22px;
+    white-space: nowrap;
+  }
   .baddie-text-logo {
     font-size: 20px;
   }

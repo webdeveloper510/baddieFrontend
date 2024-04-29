@@ -35,6 +35,7 @@ import Neweda from "./pages/eda/neweda";
 import { ChangePass } from "./pages/ChangePass.jsx";
 import { ForgotPassword } from "./pages/ForgotPassRequest.js";
 import { ChangePassword } from "./pages/ForgotPassword.jsx";
+import Slate from "./pages/Slate/Slate.jsx";
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 export const userContext = createContext();
@@ -192,6 +193,14 @@ function App() {
                     element={
                       <SecureRoute>
                         <Neweda />
+                      </SecureRoute>
+                    }
+                  />
+                   <Route
+                    path="/matcup"
+                    element={
+                      <SecureRoute>
+                        <Slate />
                       </SecureRoute>
                     }
                   />
