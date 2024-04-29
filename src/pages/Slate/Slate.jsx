@@ -18,13 +18,13 @@ const Slate = () => {
         </div>
         <div className="w-full border-4 my-3 px-20 slate-box py-5 rounded-[60px] text-center border-black h-auto" >
            <div className='my-3'>
-           <h1 className='font-medium text-4xl my-2'>{`Tampa Bay Rays`}</h1>
+           <h1 className='font-extrabold text-4xl my-2'>{`Tampa Bay Rays`}</h1>
            </div>
            <div className='my-3'>
            <h1 className='font-medium text-4xl my-2'>{`@`}</h1>
            </div>
            <div className='my-3'>
-           <h1 className='font-medium text-4xl my-2'>{`Chicago White Sox`}</h1>
+           <h1 className='font-extrabold text-4xl my-2'>{`Chicago White Sox`}</h1>
            </div>
            <div className='my-3'>
            <h1 className='font-medium text-4xl my-2'>{`# 1 of 3 in Series`}</h1>
