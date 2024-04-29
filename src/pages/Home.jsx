@@ -90,7 +90,7 @@ function Home() {
       
     <img  src="/website_materials_BADDIE_homepg_promo_header_mobile.png" className="md:hidden" width="100%" alt="add" style={{ height:"550px"}} />
 
-    <img  src="/baddiehome2.png" className="hidden md:block" width="100%" alt="add" style={{ height:"550px"}} />
+    <img  src="/baddiehome2.png" className="hidden md:block" width="100%" alt="add" />
   </div>
    }
     <div className="flex flex-col home-mobile items-center justify-center">
