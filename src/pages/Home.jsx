@@ -87,7 +87,10 @@ function Home() {
    {
     !user &&
     <div className="m-4 mb-20">
-    <img  src="/baddiehome2.png" width="100%" alt="add" style={{borderRadius:"70px" , height:"550px"}} />
+      
+    <img  src="/website_materials_BADDIE_homepg_promo_header_mobile.png" className="md:hidden" width="100%" alt="add" style={{borderRadius:"70px" , height:"550px"}} />
+
+    <img  src="/baddiehome2.png" className="hidden md:block" width="100%" alt="add" style={{borderRadius:"70px" , height:"550px"}} />
   </div>
    }
     <div className="flex flex-col home-mobile items-center justify-center">
