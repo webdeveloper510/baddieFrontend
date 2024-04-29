@@ -198,7 +198,7 @@ function App() {
                     }
                   />
                    <Route
-                    path="/matcup"
+                    path="/matchup"
                     element={
                       <SecureRoute>
                         <Slate />
