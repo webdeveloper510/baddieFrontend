@@ -88,6 +88,17 @@ input#steps-range::-webkit-slider-thumb {
 /* span.semicircle-percent-value {
   width: 40% !important;
 } */
+
+.react-dot-tab {
+  background: transparent !important;
+  border: none !important;
+}
+.react-dot-tab:focus {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+}
+
 canvas.scatter-charts {
   width: 100% !important;
 }

@@ -238,3 +238,12 @@ export const getPicksSummary = async()=>{
         throw (error)
     }
 }
+
+export const getMatchupData = async()=>{
+    try {
+        const response = await Axios.get("matchup/");
+        return response.data
+    } catch (error) {
+        throw (error)
+    }
+}
