@@ -56,6 +56,18 @@ input#steps-range::-webkit-slider-thumb {
   width: 250px;
   min-width: 170px !important;
 }
+
+.tab-lists{
+  .react-tabs__tab--selected {
+    background: lightgray !important;
+    border-color: black !important;
+    border: 5px solid black !important;
+    font-family: monospace;
+    color: black;
+    font-weight: 600;
+    border-radius: 5px 5px 0 0;
+  }
+}
 .react-tabs__tab--selected {
   background: lightgray !important;
   border-color: #ff5757 !important;
@@ -111,6 +123,12 @@ canvas.scatter-charts {
   color: red;
   font-size: 50px;
   font-weight: 600;
+}
+.carlos-tab{
+  background: lightgray !important;
+  color: #000 !important;
+  border-radius: 10px !important;
+  border: 2px solid #000;
 }
 .page-title {
   font-size: 30px;
@@ -184,6 +202,9 @@ canvas.scatter-charts {
   display: none;
 }
 .earning-card::-webkit-scrollbar {
+  display: none;
+}
+.mobile{
   display: none;
 }
 
@@ -337,6 +358,27 @@ canvas.scatter-charts {
   .player-select {
     width: 16rem;
   }
+  .game-box{
+    padding: 20px 10px;
+  }
+  .game-text{
+    font-size: 22px;
+  }
+  .team-text{
+    font-size: 30px;
+  }
+  .game-titles{
+    font-size: 35px;
+    white-space: nowrap;
+  }
+  .game-table-head th{
+    font-size: 16px;
+    line-height: normal;
+  }
+  .game-table-body td{
+    white-space: nowrap; 
+    font-size: 16px;
+  }
 }
 
 @media screen and (max-width: 760px) {
@@ -404,6 +446,44 @@ canvas.scatter-charts {
     font-size: 14px;
   }
 }
+
+@media screen and (max-width: 540px) {
+   .game-upper-section{
+    display: block;
+   }
+   .game-section{
+    width: 100%;
+   }
+   .game-text{
+    font-size: 30px;
+   }
+   .desktop{
+    display: none;
+   }
+   .mobile{
+    display: block;
+  }
+  .game-titles{
+    font-size: 20px;
+  }
+  .mobile-head th{
+    font-size: 12px;
+  }
+  .mobile-body td{
+    font-size: 14px;
+    text-align: center;
+  }
+  .carlos-tab{
+    font-size: 20px;
+    line-height: normal;    
+  }
+  .mobile-tab{
+    font-size: 16px;
+    width: 20%;
+  }
+}
+
+
 @media screen and (max-width: 430px) {
   .image-1{
     width: 100%;
@@ -533,6 +613,7 @@ canvas.scatter-charts {
   .research-text {
     font-size: 22px;
   }
+
 }
 @media screen and (max-width: 375px) {
   .bar-chart {
