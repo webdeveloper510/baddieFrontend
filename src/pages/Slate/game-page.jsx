@@ -445,65 +445,70 @@ const GamePage = () => {
                   </div>
                 </div>
               </TabPanel>
+              <TabPanel>
+                <div className="mt-10">
+                  <h1 className="text-center font-bold text-3xl my-2">
+                    At The Plate
+                  </h1>
+                  <div className="border-black h-auto border-2 w-full">
+                    <h1 className="text-center font-bold text-3xl my-2">
+                      strikeout stuff
+                    </h1>
+
+                    <div className="grid md:grid-cols-2 sm:grid-cols-1">
+                      <img src="/graph-image.png" alt="graph" />
+                      <img src="/graph-image.png" alt="graph" />
+                      <img src="/graph-image.png" alt="graph" />
+                      <img src="/graph-image.png" alt="graph" />
+                    </div>
+                    <h1 className="text-center font-bold text-3xl my-4">
+                      Command
+                    </h1>
+                    <div className="grid md:grid-cols-2 sm:grid-cols-1">
+                      <img src="/graph-image.png" alt="graph" />
+                      <img src="/graph-image.png" alt="graph" />
+                    </div>
+                  </div>
+                </div>
+              </TabPanel>
             </Tabs>
           </div>
 
           <div className="mt-20">
-            <h1 className="text-5xl font-bold game-titles text-center underline">
-              Top Batter Player Prop Markets
+            <h1 className="text-5xl font-bold game-titles text-center">
+             Team Defense
             </h1>
 
-            <div className="mt-20 flex justify-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="26"
-                height="26"
-                fill="currentColor"
-                className="bi bi-dot mx-[-5px]"
-                viewBox="0 0 16 16"
-              >
-                <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3" />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="26"
-                height="26"
-                fill="currentColor"
-                className="bi bi-dot mx-[-5px]"
-                viewBox="0 0 16 16"
-              >
-                <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3" />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="26"
-                height="26"
-                fill="currentColor"
-                className="bi bi-dot mx-[-5px]"
-                viewBox="0 0 16 16"
-              >
-                <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3" />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="26"
-                height="26"
-                fill="currentColor"
-                className="bi bi-dot mx-[-5px]"
-                viewBox="0 0 16 16"
-              >
-                <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3" />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="26"
-                height="26"
-                fill="currentColor"
-                className="bi bi-dot mx-[-5px]"
-                viewBox="0 0 16 16"
-              >
-                <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3" />
-              </svg>
+            <div className="rounded-3xl w-full py-5 mt-10 px-10 bg-[#0ca75e] grid md:grid-cols-3 sm:grid-cols-1">
+                <div className="px-5">
+                  <h1 className="font-bold text-4xl">INF</h1>
+                  <div className="text-end">
+                    <h3 className="font-bold text-3xl">OAA : X</h3>
+                    <h3 className="font-bold text-3xl">DRS : Y</h3>
+                    <h3 className="font-bold text-3xl">UZR_150 : Z</h3>
+                    <h3 className="font-bold text-3xl">Errors : A</h3>
+                    <h3 className="font-bold text-3xl">DPs : B</h3>
+                  </div>
+                </div>
+                <div className="px-5 border-r-8 border-l-8 border-black">
+                  <h1 className="font-bold text-4xl">OF</h1>
+                  <div className="text-end">
+                    <h3 className="font-bold text-3xl">OAA : C</h3>
+                    <h3 className="font-bold text-3xl">DRS : D</h3>
+                    <h3 className="font-bold text-3xl">UZR_150 : E</h3>
+                    <h3 className="font-bold text-3xl">Errors : F</h3>
+                  </div>
+                </div>
+                <div className="px-5">
+                  <h1 className="font-bold text-4xl">C</h1>
+                  <div className="text-end">
+                    <h3 className="font-bold text-3xl">DRS : G</h3>
+                    <h3 className="font-bold text-3xl">SB : H</h3>
+                    <h3 className="font-bold text-3xl">CS : I</h3>
+                    <h3 className="font-bold text-3xl">SB Win % : J</h3>
+                    <h3 className="font-bold text-3xl">Errors : K</h3>
+                  </div>
+                </div>
             </div>
           </div>
         </div>
