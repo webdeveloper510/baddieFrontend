@@ -284,7 +284,7 @@ function App() {
                     <Header show={show} setShow={setShow} />
                     <div className="md:flex sm:block min-h-screen w-full bg-lightblack">
                       <Sidebars show={show} setShow={setShow} />
-                      <div className="w-[94%] mobile-side">
+                      <div className="w-[100%] mobile-side">
                         <Home />
                       </div>
                     </div>

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate , useLocation} from "react-router-dom";
+import { Menu, MenuItem} from 'react-pro-sidebar';
 import { X } from "lucide-react";
 import { userContext } from "../App";
 
@@ -9,7 +10,7 @@ const Header = ({ show, setShow }) => {
   const [isLogin, setIsLogin] = useState("true");
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-
+  const location = useLocation()
   const toggleMenu = () => {
 
     setIsMenuOpen(!isMenuOpen);
@@ -34,28 +35,52 @@ const Header = ({ show, setShow }) => {
   // },[])
   return (
    
-    <div className="w-full bg-lightblack">
-      <div class="">
-        <div class="flex items-center justify-between px-4 sm:px-6 lg:px-8">
-          <div class="space-x-2">
+    <div className="w-full header_bg">
+      <div class="container top_header">
+        <div class="flex items-center justify-between">
+          {/* <div class="space-x-2">
             <span onClick={() => setShow(!show)}>
               <div className="aspect-auto cursor-pointer ">
                 <h1 className="b-logo">B</h1>
               </div>
             </span>
-          </div>
-          <div>
+          </div> */}
+     
           <Link to="/" class=" lg:block">
             <div
               to="/picks-analysis2"
-              className=" md:ms-20 sm:ms-0 aspect-auto flex items-center justify-center cursor-pointer py-2"
+              className="  sm:ms-0 aspect-auto flex items-center justify-center cursor-pointer"
             >
               <img src="/logo-img.png" className="baddie-logo" />
             </div>
           </Link>
-          </div>
+        
 
-          <div >
+         
+          <Menu className='menubar'>
+                     <div className=''>
+                        {user && user?.is_admin ?
+                            <>
+                                <Link to={"/admin-dashboard"} ><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("admin-dashboard") ? "bg-white text-black" : "bg-greyLight text-white"} `}>Dashboard</MenuItem> </Link>
+                                <Link to={"/user-list"} ><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("user-list") ? "bg-white text-black" : "bg-greyLight text-white"} `}>Users</MenuItem> </Link>
+                                <Link to={"/transaction-list"} ><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("transaction-list") ? "bg-white text-black" : "bg-greyLight text-white"} `}>Transaction</MenuItem> </Link>
+                            </>:
+                             <>
+                             <Link to="/picks-analysis"><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("picks-analysis") ? "bg-white text-black" : "bg-greyLight text-white"} `}>
+                                 Picks & analysis
+                             </MenuItem>
+                             </Link>
+                             <Link to={user?.status == "active" ? "/new-eda" : "/payment"}><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("new-eda") ? "bg-white text-black" : "bg-greyLight text-white"} `}> Player/team EDA </MenuItem></Link>
+                             <Link to={user?.status == "active" ? "/expected-value" : "/payment"}><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("expected-value") ? "bg-white text-black" : "bg-greyLight text-white"} `}>  EV calculator </MenuItem></Link>
+ 
+                             <Link to={user?.status == "active" ? "/al-ml" : "/payment"} ><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("al-ml") ? "bg-white text-black" : "bg-greyLight text-white"} `}>   AI & ML </MenuItem> </Link>
+                         </>}
+
+                    </div>  <></>
+                </Menu>
+       
+
+          <div className='flex action_btn'>
             {user ? (
               
                 <button
@@ -70,12 +95,12 @@ const Header = ({ show, setShow }) => {
             ) : (
               <>
                 <Link to="/signin">
-                <button  className="text-black  bg-lightgray py-1 text-lg rounded w-40 login-sign mt-4">
+                <button  className="text-black  bg-lightgray text-lg  w-40 login-sign">
                   login
                 </button>
                 </Link>
                 <br />
-                <Link to="/signup"><button className="text-black  bg-lightgray py-1 text-lg rounded w-40 login-sign my-2">
+                <Link to="/signup"><button className="text-black  bg-lightgray text-lg  w-40 login-sign sign-up">
                   signup
                 </button></Link>
               </>

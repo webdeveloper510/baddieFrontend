@@ -53,6 +53,16 @@ function Home() {
   }, [])
   return (
     <>
+
+<div className="top_banner border-black py-5 mb-20 fullwidth mx-auto  h-auto ">
+        <div className="text-center">
+        <h1><span>Bet</span> like a data scientist</h1>
+        <h4>Tryna Link Up?</h4>
+        <p>BADDIE's suite of tools & expert picks make betting like a data scientist easy asf. Get a taste of BADDIE's innovative take on sports betting.</p>
+          </div>
+         <p class="promo_code absolute">Use promo code <span>dIM3SDFK</span> for <span>25%</span> off the life of your monthly sub at checkout for the entire season for a limited time</p>
+          </div>
+
     <div className="text-center mb-5">
       <h1 className="text-white text-4xl font-bold">YTD MLB Pick Stats</h1>
     </div>
