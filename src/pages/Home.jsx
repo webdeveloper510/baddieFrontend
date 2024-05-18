@@ -54,7 +54,7 @@ function Home() {
   return (
     <>
 
-<div className="top_banner border-black py-5 mb-20 fullwidth mx-auto  h-auto ">
+<div className="top_banner border-black py-5 px-5 mb-20 fullwidth mx-auto  h-auto ">
         <div className="text-center">
         <h1><span>Bet</span> like a data scientist</h1>
         <h4>Tryna Link Up?</h4>
@@ -63,37 +63,67 @@ function Home() {
          <p class="promo_code absolute">Use promo code <span>dIM3SDFK</span> for <span>25%</span> off the life of your monthly sub at checkout for the entire season for a limited time</p>
           </div>
 
-    <div className="text-center mb-5">
-      <h1 className="text-white text-4xl font-bold">YTD MLB Pick Stats</h1>
-    </div>
-    <div className="bg-white  border-black py-5 mb-20 w-3/4 md:w-2/3 mx-auto border-4 h-auto rounded-[60px]">
-        <div className="grid md:grid-cols-2 sm:grid-cols-1 text-center gap-6">
-          <div className="my-3">
-            <h1 className="text-3xl font-bold underline">Total Bets</h1>
-            <h2 className="text-2xl font-bold">{picks?.total_bets}</h2>
-          </div>
-          <div className="my-3">
-            <h1 className="text-3xl font-bold underline">Win - Loss - Push</h1>
-            <h2 className="text-2xl font-bold">{`${picks?.wins} - ${picks?.losses} - ${picks?.pushes}`}</h2>
-          </div>
-          <div className="my-3">
-            <h1 className="text-3xl font-bold underline">Win Percentage</h1>
-            <h2 className="text-2xl font-bold">{picks?.win_percentage}%</h2>
-          </div>
-          <div className="my-3">
-            <h1 className="text-3xl font-bold underline">Average Odds</h1>
-            <h2 className="text-2xl font-bold">{picks?.average_odds}</h2>
-          </div>
-          <div className="my-3">
-            <h1 className="text-3xl font-bold underline">Units</h1>
-            <h2 className="text-2xl text-green-500 font-bold">{`${picks?.units >=0 ? "+"+picks?.units : picks?.units}`}</h2>
-          </div>
-          <div className="my-3">
-            <h1 className="text-3xl font-bold underline">ROI</h1>
-            <h2 className="text-2xl text-green-500 font-bold">{picks?.ROI}%</h2>
-          </div>
+
+    <div className="section2">
+    <div className="container m-auto">
+    <div className="flex">
+    <div className="col-6">
+    <img src="/section2image.png" />
+      </div>
+      <div className="col-6">
+      <h1 className="text-white text-4xl font-bold sec2heading">YTD MLB Pick Stats</h1>
+      <p>$100 unit bettors have made $1643 year to date so far
+       with BADDIE’s picks</p>
+
+       <ul>
+        <li>
+          <div className="batting_stats">
+        <h1 className="text-3xl font-bold underline">Total Bets</h1>
+        <h2 className="text-2xl font-bold">{picks?.total_bets}</h2>
         </div>
+        </li>
+        <li>
+        <div className="batting_stats">
+        <h1 className="text-3xl font-bold underline">Win Percentage</h1>
+        <h2 className="text-2xl font-bold">{picks?.win_percentage}%</h2>
+        </div>
+        </li>
+        <li>
+        <div className="batting_stats">
+        <h1 className="text-3xl font-bold underline">Units</h1>
+        <h2 className="text-2xl text-green-500 font-bold">{`${picks?.units >=0 ? "+"+picks?.units : picks?.units}`}</h2>
+        </div>
+        </li>
+        <li>
+        <div className="batting_stats">
+        <h1 className="text-3xl font-bold underline">Win - Loss - Push</h1>
+        <h2 className="text-2xl font-bold">{`${picks?.wins} - ${picks?.losses} - ${picks?.pushes}`}</h2>
+        </div>
+        </li>
+
+        <li>
+        <div className="batting_stats">
+        <h1 className="text-3xl font-bold underline">Average Odds</h1>
+        <h2 className="text-2xl font-bold">{picks?.average_odds}</h2>
+        </div>
+        </li>
+
+        <li>
+        <div className="batting_stats">
+        <h1 className="text-3xl font-bold underline">ROI</h1>
+        <h2 className="text-2xl text-green-500 font-bold">{picks?.ROI}%</h2>
+        </div>
+        </li>
+       </ul>
+       <div className="w-full btn-row">
+       <button className="text-black  bg-lightgray text-lg  w-40  button"> YTD MLB Detail</button>
+       </div>
     </div>
+    </div>
+    </div>
+    </div>
+
+
    {
     !user &&
     <div className="m-4 mb-20">
@@ -105,7 +135,7 @@ function Home() {
    }
     <div className="flex flex-col home-mobile items-center justify-center">
      
-      <div className="bg-white h-auto m-4 w-full flex flex-col items-center justify-start p-4 ">
+      <div className="h-auto m-4 w-full flex flex-col items-center justify-start p-4 ">
         <div className="w-4/5 zaddie-text bg-lightgray [letter-spacing:5px] sm:text-lg  p-4 text-center rounded-xl md:text-4xl">
           Zaddies of MLB
         </div>
@@ -119,7 +149,7 @@ function Home() {
          
         </div>
       </div>
-      <div className="bg-white  w-full image-section h-auto flex flex-col items-center justify-center text-xl">
+      <div className="w-full image-section h-auto flex flex-col items-center justify-center text-xl">
         {[1,2,3,4,5,6].map(item=>(<img key={item} src={`/website_materials_homepg_${item}.png`} alt="home image" className="home_image" />))}
        
       </div>

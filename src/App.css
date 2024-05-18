@@ -795,6 +795,8 @@ canvas.scatter-charts {
 }
 
 
+/******************** login css **************/
+
 .bg_image {
   background-image: url(../public/signup-back.png);
   background-repeat: no-repeat;
@@ -931,6 +933,10 @@ select#countries {
   --headings-font-family: "Bebas Neue", sans-serif;
 }
 
+body{
+  background:url('../public/fullbodyimage.jpg');
+}
+
 .menubar ul {
   float: left;
 }
@@ -961,7 +967,7 @@ select#countries {
   justify-content: center;
   display: flex;
   flex-direction: column;
-  background:url('../public/HomeBanner.jpg');
+  /* background:url('../public/HomeBanner.jpg'); */
 }
 
 .top_banner h1{
@@ -1006,6 +1012,7 @@ select#countries {
   text-transform:uppercase;
   font-family: var(--headings-font-family);
   border-radius:0px;
+  font-size: 25px;
 }
 
 .css-1t8x7v1 >.ps-menu-button{
@@ -1014,4 +1021,86 @@ select#countries {
 
 .sign-up , .action_btn button:hover{
   background:#FF0000 !important;
+}
+
+.col-6{
+  width:50%;
+  float: left;
+}
+.section2 {
+  float: left;
+  width: 100%;
+  margin: 50px 0px;
+}
+
+
+.sec2heading{
+  font-size:65px;
+  font-family: var(--headings-font-family);
+  font-weight:400;
+}
+.section2 p {
+  font-family: var(--body-font-family);
+  font-weight: 400;
+  color: #8E8BBF;
+  font-size: 22px;
+  margin-top: 40px;
+}
+.section2 ul {
+  float: left;
+  width: 100%;
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 8px;
+}
+.section2 ul li {
+  float: left;
+  width: 100%;
+  padding: 9px;
+  border: 1px solid rgb(255 255 255 / 19%);
+  margin: 4px 0px;
+}
+
+.section2 ul li .batting_stats {
+  float: left;
+  width: 100%;
+  font-family: var(--body-font-family);
+  font-weight: 400;
+  background: #fff;
+  padding: 35px 10px;
+}
+
+.section2 ul li h1 {
+  font-size: 25px;
+  font-weight: 400;
+  text-decoration: none;
+  text-align: center;
+  font-family: var(--headings-font-family);
+  font-weight: 400;
+}
+
+.section2 ul li h2 {
+  font-size: 37px;
+  font-weight: 900;
+  text-decoration: none;
+  text-align: center;
+  font-family: var(--body-font-family);
+  margin-top: 10px;
+}
+
+.button{
+  background: #FF0000 ;
+  color: #fff;
+  padding: 20px 0px;
+  text-transform:uppercase;
+  font-family: var(--headings-font-family);
+  border-radius:0px;
+  font-size: 25px;
+}
+
+
+.btn-row {
+  margin-top: 30px;
+  float: left;
 }
