@@ -54,9 +54,10 @@ export function SignIn() {
   });
 
   return (
+    // <div className="test">
     <section>
       <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
-        <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md">
+        <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md inner_bg">
           <div className="mb-2 flex justify-center">
            <Link to={"/"}>
            <div className="bg-black aspect-auto w-16 rounded-full p-4">
@@ -64,14 +65,14 @@ export function SignIn() {
             </div>
            </Link>
           </div>
-          <h2 className="text-center text-2xl font-bold leading-tight text-black">
+          <h2 className="text-center text-2xl font-bold leading-tight main_heading">
             Sign in to your account
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-600 ">
+          <p className="mt-2 text-center text-sm text-gray-600 dont-have">
             Don't have an account?
             <Link
               to="/signup"
-              className="font-semibold text-black transition-all duration-200 hover:underline"
+              className="font-semibold text-black transition-all duration-200 hover:underline have_acc"
             >
               Create a account
             </Link>
@@ -93,7 +94,7 @@ export function SignIn() {
                   <div>
                     <label
                       htmlFor="email"
-                      className="text-base font-medium text-gray-900"
+                      className="text-base font-medium text-gray-900 custom_label"
                     >
                       Email address
                     </label>
@@ -115,16 +116,10 @@ export function SignIn() {
                     <div className="flex items-center justify-between">
                       <label
                         htmlFor="password"
-                        className="text-base font-medium text-gray-900"
+                        className="text-base font-medium text-gray-900 custom_label"
                       >
                         Password
                       </label>
-                      <Link
-                        to="/forgot-password"
-                        className="text-sm font-semibold text-black hover:underline"
-                      >
-                        Forgot password?
-                      </Link>
                     </div>
                     <div className="mt-2">
                       <Field
@@ -143,11 +138,21 @@ export function SignIn() {
                   <div>
                     <button
                       type="submit"
-                      className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
+                      className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80 get_started"
                       disabled={isSubmitting}
                     >
                       Get started <ArrowRight className="ml-2" size={16} />
                     </button>
+                   
+                    <div className="flex items-center justify-between forgot_passs">
+                      <Link
+                        to="/forgot-password"
+                        className="text-sm font-semibold text-black hover:underline"
+                      >
+                        Forgot password?
+                      </Link>
+                    </div>
+
                   </div>
                 </div>
               </Form>
@@ -156,5 +161,6 @@ export function SignIn() {
         </div>
       </div>
     </section>
+    // </div>
   );
 }
