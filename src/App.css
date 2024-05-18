@@ -116,9 +116,8 @@ canvas.scatter-charts {
   width: 100% !important;
 }
 .baddie-logo {
-  width: 300px;
-  height: 140px;
-  object-fit: cover;
+  width: 130px;
+  object-fit: contain;
 }
 .b-logo {
   color: red;
@@ -795,6 +794,7 @@ canvas.scatter-charts {
   background-color: #e2dbe3;
 }
 
+
 .bg_image {
   background-image: url(../public/signup-back.png);
   background-repeat: no-repeat;
@@ -870,4 +870,96 @@ canvas.scatter-charts {
 }
 .forgot_passs a {
   color: #fff;
+
+}
+/******************** homepage css **************/
+
+:root {
+  --body-font-family: "Inter", sans-serif;
+  --headings-font-family: "Bebas Neue", sans-serif;
+}
+
+.menubar ul {
+  float: left;
+}
+.menubar ul a {
+  width: auto;
+  float: left;
+}
+
+.menubar ul a span {
+  font-family: var(--body-font-family);
+  font-weight: 400;
+}
+
+.top_header{
+  margin:0 auto;
+}
+
+.header_bg{
+  background:rgba(25, 26, 42, 0.4);
+  position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.top_banner {
+  height: 100vh;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  background:url('../public/HomeBanner.jpg');
+}
+
+.top_banner h1{
+  font-size:140px;
+  color:#fff;
+  font-family: var(--headings-font-family);
+}
+
+.top_banner h1 span{
+  color:#FF0000;
+}
+
+.top_banner h4{
+  font-size: 30px;
+  color: #fff;
+  font-family: var(--headings-font-family);
+  font-weight: 600;
+  letter-spacing: 1.2px;
+}
+
+.top_banner p{
+  font-size: 20px;
+  color: rgb(255 255 255 / 80%);
+  font-family: var(--body-font-family);
+  font-weight: 400;
+  bottom: 24px;
+  text-align: center;
+  margin: 0 auto;
+  right: 0;
+  left: 0;
+}
+
+.top_banner p span{
+  color:#FF0000;
+}
+.action_btn button {
+  background: transparent;
+  color: #fff;
+  border-left:1px solid rgb(255 255 255 / 10%);
+  border-right:1px solid rgb(255 255 255 / 10%);
+  padding: 20px 0px;
+  text-transform:uppercase;
+  font-family: var(--headings-font-family);
+  border-radius:0px;
+}
+
+.css-1t8x7v1 >.ps-menu-button{
+  height:auto !important;
+}
+
+.sign-up , .action_btn button:hover{
+  background:#FF0000 !important;
 }

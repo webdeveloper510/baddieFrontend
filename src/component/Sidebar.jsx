@@ -43,7 +43,7 @@ const Sidebars = ({ show, setShow }) => {
                     </div>
                 </div> : <></>
             }
-            <Sidebar className='sidebar-outer' style={{
+            {/* <Sidebar className='sidebar-outer' style={{
                 borderColor: '#1a1a1a !important',
             }} collapsed={show} backgroundColor="#1a1a1a">
                 <Menu >
@@ -67,7 +67,7 @@ const Sidebars = ({ show, setShow }) => {
 
                     </div> : <></>}
                 </Menu>
-            </Sidebar>
+            </Sidebar> */}
         </>
     );
 };
