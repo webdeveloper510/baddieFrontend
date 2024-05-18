@@ -105,7 +105,7 @@ function App() {
   return (
     <userContext.Provider value={{ user, setUser, appLoad }}>
       
-      <div className={`flex flex-col min-h-screen ${location.pathname === '/signin' || location.pathname=== '/signup' ? 'bg_image': ''}`}>
+      <div className={`flex flex-col min-h-screen ${location.pathname === '/signin' || location.pathname=== '/signup' || location.pathname=== '/forgot-password' ? 'bg_image': ''}`}>
         {user ? (
           <>
             <Header show={show} setShow={setShow} />

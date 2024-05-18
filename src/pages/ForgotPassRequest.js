@@ -30,11 +30,11 @@ export function ForgotPassword() {
   return (
     <section>
       <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
-        <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md">
-          <h2 className="text-center text-2xl font-bold leading-tight text-black">
+        <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md inner_bg">
+          <h2 className="text-center text-2xl font-bold leading-tight main_heading">
             Forgot your password?
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
+          <p className="mt-2 text-center text-sm text-gray-600 dont-have">
             Enter your email address below and we'll send you a link to reset your password.
           </p>
           {!emailSent && <Formik
@@ -53,7 +53,7 @@ export function ForgotPassword() {
                   <div>
                     <label
                       htmlFor="email"
-                      className="text-base font-medium text-gray-900"
+                      className="text-base font-medium text-gray-900 custom_label"
                     >
                       Email address
                     </label>
@@ -74,7 +74,7 @@ export function ForgotPassword() {
                   <div>
                     <button
                       type="submit"
-                      className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
+                      className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80 get_started"
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? "Sending..." : "Send Reset Link"}{" "}
@@ -91,11 +91,11 @@ export function ForgotPassword() {
                       We've sent instructions to reset your password to your email address. Please check your inbox.
                     </p>
                   )}
-          <p className="mt-8 text-center text-sm text-gray-600 ">
+          <p className="mt-8 text-center text-sm text-gray-600 dont-have">
             Remember your password?{" "}
             <Link
               to="/signin"
-              className="font-semibold text-black transition-all duration-200 hover:underline"
+              className="font-semibold text-black transition-all duration-200 hover:underline dont-have"
             >
               Sign in
             </Link>

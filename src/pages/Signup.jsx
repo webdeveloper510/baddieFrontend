@@ -49,7 +49,7 @@ export function SignUp() {
   return (
     <section>
       <div className="flex items-center justify-center px-4 py-4 sm:px-6 sm:py-4 lg:px-8 lg:py-4">
-        <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md">
+        <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-mdcode inner_bg">
           <div className="mb-2 flex justify-center">
             <Link to={"/payment"} >
               <div className="bg-black aspect-auto w-16 rounded-full p-4">
@@ -57,14 +57,14 @@ export function SignUp() {
               </div>
             </Link>
           </div>
-          <h2 className="text-center text-2xl font-bold leading-tight text-black">
+          <h2 className="text-center text-2xl font-bold leading-tight main_heading">
             Sign up to create account
           </h2>
-          <p className="mt-2 text-center text-base text-gray-600">
+          <p className="mt-2 text-center text-base text-gray-600 dont-have">
             Already have an account?
             <Link
               to="/signin"
-              className="font-medium text-black transition-all duration-200 hover:underline"
+              className="font-medium text-black transition-all duration-200 hover:underline have_acc"
             >
               Sign In
             </Link>
@@ -88,10 +88,11 @@ export function SignUp() {
             {({ isSubmitting }) => (
               <Form className="mt-8">
                 <div className="space-y-5">
-                  <div>
+                <div className="outer-name">
+                  <div className="f-name">
                     <label
                       htmlFor="firstName"
-                      className="text-base font-medium text-gray-900"
+                      className="text-base font-medium text-gray-900 custom_label"
                     >
                       First Name
                     </label>
@@ -109,10 +110,10 @@ export function SignUp() {
                       />
                     </div>
                   </div>
-                  <div>
+                  <div className="l-name">
                     <label
                       htmlFor="lastName"
-                      className="text-base font-medium text-gray-900"
+                      className="text-base font-medium text-gray-900 custom_label"
                     >
                       Last Name
                     </label>
@@ -131,10 +132,11 @@ export function SignUp() {
                       />
                     </div>
                   </div>
+                  </div>
                   <div>
                     <label
                       htmlFor="email"
-                      className="text-base font-medium text-gray-900"
+                      className="text-base font-medium text-gray-900 custom_label custom_label"
                     >
                       Email address
                     </label>
@@ -155,7 +157,7 @@ export function SignUp() {
                   </div>
                   <div >
 
-                    <label for="countries" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select State (Optional) </label>
+                    <label for="countries" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400 custom_label">Select State (Optional) </label>
                     <Field as="select" name="state" id="countries" className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50">
                       <option value="-" >Choose a State</option>
                       {usStates.map((item, i) => {
@@ -168,7 +170,7 @@ export function SignUp() {
                     <div className="flex items-center justify-between">
                       <label
                         htmlFor="password"
-                        className="text-base font-medium text-gray-900"
+                        className="text-base font-medium text-gray-900 custom_label"
                       >
                         Password
                       </label>
@@ -191,7 +193,7 @@ export function SignUp() {
                   <div>
                     <label
                       htmlFor="confirmPassword"
-                      className="text-base font-medium text-gray-900"
+                      className="text-base font-medium text-gray-900 custom_label"
                     >
                       Confirm Password
                     </label>
@@ -213,7 +215,7 @@ export function SignUp() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
+                      className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80 get_started"
                     >
                       Create Account{" "}
                       <ArrowRight className="ml-2" size={16} />
