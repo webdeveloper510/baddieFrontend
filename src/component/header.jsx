@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link, useNavigate , useLocation} from "react-router-dom";
 import { Menu, MenuItem} from 'react-pro-sidebar';
+import { CiMenuFries } from "react-icons/ci";
 import { X } from "lucide-react";
 import { userContext } from "../App";
 
@@ -11,10 +12,12 @@ const Header = ({ show, setShow }) => {
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const location = useLocation()
-  const toggleMenu = () => {
 
+
+  const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+  
   const navigate = useNavigate()
   const dropdownRef = useRef()
   const toggleDropdown = (e) => {
@@ -38,15 +41,15 @@ const Header = ({ show, setShow }) => {
     <div className="w-full header_bg">
       <div class="container top_header">
         <div class="flex items-center justify-between">
-          {/* <div class="space-x-2">
+         
+      <div className="col">
+      <div class="space-x-2 mobile-toggle-btn">
             <span onClick={() => setShow(!show)}>
-              <div className="aspect-auto cursor-pointer ">
-                <h1 className="b-logo">B</h1>
-              </div>
+            <CiMenuFries />
             </span>
-          </div> */}
-     
-          <Link to="/" class=" lg:block">
+          </div>
+
+          <Link to="/" class=" lg:block mobile-logo-hide">
             <div
               to="/picks-analysis2"
               className="  sm:ms-0 aspect-auto flex items-center justify-center cursor-pointer"
@@ -54,32 +57,43 @@ const Header = ({ show, setShow }) => {
               <img src="/logo-img.png" className="baddie-logo" />
             </div>
           </Link>
+          </div>
         
 
-         
+          <div className="col">
+          <Link to="/" class=" lg:block mobile-logo">
+            <div
+              to="/picks-analysis2"
+              className="  sm:ms-0 aspect-auto flex items-center justify-center cursor-pointer"
+            >
+              <img src="/logo-img.png" className="baddie-logo" />
+            </div>
+          </Link>
+
           <Menu className='menubar'>
                      <div className=''>
                         {user && user?.is_admin ?
                             <>
-                                <Link to={"/admin-dashboard"} ><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("admin-dashboard") ? "bg-white text-black" : "bg-greyLight text-white"} `}>Dashboard</MenuItem> </Link>
-                                <Link to={"/user-list"} ><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("user-list") ? "bg-white text-black" : "bg-greyLight text-white"} `}>Users</MenuItem> </Link>
-                                <Link to={"/transaction-list"} ><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("transaction-list") ? "bg-white text-black" : "bg-greyLight text-white"} `}>Transaction</MenuItem> </Link>
+                                <Link to={"/admin-dashboard"} ><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("admin-dashboard") ? "bg-white text-black active" : "bg-greyLight text-white"} `}>Dashboard</MenuItem> </Link>
+                                <Link to={"/user-list"} ><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("user-list") ? "bg-white text-black active" : "bg-greyLight text-white"} `}>Users</MenuItem> </Link>
+                                <Link to={"/transaction-list"} ><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("transaction-list") ? "bg-white text-black active" : "bg-greyLight text-white"} `}>Transaction</MenuItem> </Link>
                             </>:
                              <>
-                             <Link to="/picks-analysis"><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("picks-analysis") ? "bg-white text-black" : "bg-greyLight text-white"} `}>
+                             <Link to="/picks-analysis"><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("picks-analysis") ? "bg-white text-black active" : "bg-greyLight text-white"} `}>
                                  Picks & analysis
                              </MenuItem>
                              </Link>
-                             <Link to={user?.status == "active" ? "/new-eda" : "/payment"}><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("new-eda") ? "bg-white text-black" : "bg-greyLight text-white"} `}> Player/team EDA </MenuItem></Link>
-                             <Link to={user?.status == "active" ? "/expected-value" : "/payment"}><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("expected-value") ? "bg-white text-black" : "bg-greyLight text-white"} `}>  EV calculator </MenuItem></Link>
+                             <Link to={user?.status == "active" ? "/new-eda" : "/payment"}><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("new-eda") ? "bg-white text-black active" : "bg-greyLight text-white"} `}> Player/team EDA </MenuItem></Link>
+                             <Link to={user?.status == "active" ? "/expected-value" : "/payment"}><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("expected-value") ? "bg-white text-black active" : "bg-greyLight text-white"} `}>  EV calculator </MenuItem></Link>
  
-                             <Link to={user?.status == "active" ? "/al-ml" : "/payment"} ><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("al-ml") ? "bg-white text-black" : "bg-greyLight text-white"} `}>   AI & ML </MenuItem> </Link>
+                             <Link to={user?.status == "active" ? "/al-ml" : "/payment"} ><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("al-ml") ? "bg-white text-black active" : "bg-greyLight text-white"} `}>   AI & ML </MenuItem> </Link>
                          </>}
 
                     </div>  <></>
                 </Menu>
-       
+       </div>
 
+<div className="col">
           <div className='flex action_btn'>
             {user ? (
               
@@ -170,6 +184,8 @@ const Header = ({ show, setShow }) => {
                 </div>
               </div>
             )}
+          </div>
+
           </div>
           
         </div>

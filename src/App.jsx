@@ -4,6 +4,7 @@ import { createContext, useEffect, useState } from "react";
 import Home from "./pages/Home";
 import Sidebars from "./component/Sidebar.jsx";
 import Header from "./component/header";
+import Footer from "./component/footer";
 import {
   Navigate,
   Route,
@@ -122,6 +123,7 @@ function App() {
                     element={
                       <SecureRoute>
                         <Home />
+                        <Footer />
                       </SecureRoute>
                     }
                   />
@@ -282,10 +284,11 @@ function App() {
                 <Guest>
                   <>
                     <Header show={show} setShow={setShow} />
-                    <div className="md:flex sm:block min-h-screen w-full">
+                    <div className="sm:block min-h-screen w-full">
                       <Sidebars show={show} setShow={setShow} />
                       <div className="w-[100%] mobile-side">
                         <Home />
+                        <Footer />
                       </div>
                     </div>
                   </>
@@ -302,6 +305,7 @@ function App() {
                       <Sidebars show={show} setShow={setShow} />
                       <div className="w-[94%] mobile-side">
                         <Page1 />
+                        <Footer />
                       </div>
                     </div>
                   </>
@@ -318,6 +322,7 @@ function App() {
                       <Sidebars show={show} setShow={setShow} />
                       <div className="w-[94%] mobile-side">
                         <Page2 />
+                        <Footer />
                       </div>
                     </div>
                   </>
