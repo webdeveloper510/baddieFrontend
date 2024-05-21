@@ -103,7 +103,7 @@ export function Payment(props) {
             <section className="relative w-full overflow-hidden pb-14">
 
                 <div className="relative  z-10 mx-auto max-w-7xl px-4 inner_back">
-                    <div className="mx-auto md:max-w-4xl">
+                   {!open && <div className="mx-auto md:max-w-4xl">
 
                         <div class="flex flex-col space-y-8 pb-10 pt-12 text-center md:pt-24">
                             <p class="text-3xl font-bold text-gray-900 md:text-5xl md:leading-10 main_heading">
@@ -173,7 +173,7 @@ export function Payment(props) {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>}
                 </div>
             </section>
 

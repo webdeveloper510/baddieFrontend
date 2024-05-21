@@ -1030,14 +1030,14 @@ button.inline-flex.h-12.animate-shimmer.items-center.justify-center.subscribe-bu
   word-wrap: break-word;
   font-family: var(--body-font-family);
   height: 55px;
-  width: 75%;
+  width: 72%;
   }  
   .promo-code {
     opacity: inherit;
     background: #fff !important;
     border: 1px white solid;
     color: #f00 !important;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 400;
     line-height: 27.09px;
     word-wrap: break-word;
