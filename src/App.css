@@ -1030,7 +1030,7 @@ button.inline-flex.h-12.animate-shimmer.items-center.justify-center.subscribe-bu
   word-wrap: break-word;
   font-family: var(--body-font-family);
   height: 55px;
-  width: 72%;
+  width: 60%;
   }  
   .promo-code {
     opacity: inherit;
@@ -1044,6 +1044,7 @@ button.inline-flex.h-12.animate-shimmer.items-center.justify-center.subscribe-bu
     font-family: var(--body-font-family);
     height: 55px;
     font-family: var(--headings-font-family);
+    width: 40%;
 } 
 
 .inner_popop .CardField-input-wrapper {
