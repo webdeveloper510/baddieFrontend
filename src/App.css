@@ -926,6 +926,210 @@ select#countries {
   width: 49%;
   margin-left: 1%;
 }
+.inner_back {
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: 0px 0px 38.23143005371094px rgba(255, 255, 255, 0.08) inset;
+  border-radius: 30px;
+  backdrop-filter: blur(32.26px);
+   margin-top: 8%;
+   max-width: 65rem; 
+}
+.inner_back .mx-auto.md\:max-w-4xl {
+  max-width: 100%;
+}
+.need_bg {
+  background: #593941;
+  border: 1px solid #ffffff75;
+  padding-top: 10px; 
+}
+.per_month {
+  color: white;
+  font-size: 18px;
+  font-family: Inter;
+  font-weight: 400;
+  line-height: 21.69px;
+  word-wrap: break-word;
+  font-family: var(--body-font-family);
+}
+.amount {
+  color: #FF0000;
+  font-size: 55px;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 49.89px;
+  word-wrap: break-word;
+  font-family: var(--headings-font-family);
+}
+p.starting {
+  color: white;
+  font-size: 25px;
+  font-family: var(--headings-font-family);
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 22.68px;
+  word-wrap: break-word;
+  margin-top: 15px;
+}	
+.description {
+  color: white;
+  font-size: 18px;
+  font-family: Inter;
+  font-weight: 400;
+  line-height: 23.1px;
+  word-wrap: break-word;
+  font-family: var(--body-font-family);
+  padding-right: 77px;
+  min-height: 115px;
+}
+.Select_plan {
+  background: #FF0000 !important;
+  height: 55px;
+  color: white;
+  font-size: 30px;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 27.21px;
+  word-wrap: break-word;
+  font-family: var(--headings-font-family);
+}
+.out_plan
+{
+  display: grid;
+}
+.inner_popop {
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: 0px 0px 38.23143005371094px rgba(255, 255, 255, 0.08) inset;
+  border-radius: 30px;
+  backdrop-filter: blur(32.26px);
+}
+.custom_popup {
+  max-width: 40px;
+  max-width: 42rem;
+  height: 450px;
+}
+button.inline-flex.h-12.animate-shimmer.items-center.justify-center.subscribe-butns.w-full {
+  background: #FF0000 !important;
+  height: 55px;
+  color: white;
+  font-size: 30px;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 27.21px;
+  word-wrap: break-word;
+  font-family: var(--headings-font-family);
+  margin-top: 30px;
+}
+.custom_input {
+  opacity: 0.50;
+  background: #593941 !important;
+  border: 1px white solid;
+  color: #fff !important;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 27.09px;
+  word-wrap: break-word;
+  font-family: var(--body-font-family);
+  height: 55px;
+  width: 75%;
+  }  
+  .promo-code {
+    opacity: inherit;
+    background: #fff !important;
+    border: 1px white solid;
+    color: #f00 !important;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27.09px;
+    word-wrap: break-word;
+    font-family: var(--body-font-family);
+    height: 55px;
+    font-family: var(--headings-font-family);
+} 
+
+.inner_popop .CardField-input-wrapper {
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  transition: .4s cubic-bezier(.25,.46,.45,.94);
+  transition-property: left, right;
+  white-space: nowrap;
+  width: 100%;
+  height: 50px;
+}
+.inner_popop .ElementsApp input {
+  height: 55px;
+}
+.inner_popop iframe {
+  height: 55px !important;
+  opacity: 0.50;
+  background: #593941 !important;
+  border: 1px white solid;
+  color: #fff !important;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 27.09px;
+  word-wrap: break-word;
+  font-family: var(--body-font-family);
+}
+.CardBrandIcon-container {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 2em;
+  height: 55px;
+}
+.CardBrandIcon-container {
+  height: 55px !important;
+}
+.inner_popop .ElementsApp {
+  font-size: 14px;
+  height: 4.2em;
+}
+.inner_popop .ElementsApp>* {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  height: 55px;
+}
+.inner_popop .CardField-input-wrapper {
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  transition: .4s cubic-bezier(.25,.46,.45,.94);
+  transition-property: left, right;
+  white-space: nowrap;
+  width: 100%;
+  height: 50px;
+}
+.inner_popop .ElementsApp input {
+  height: 55px;
+}
+.InputContainer .InputElement {
+  height: 55px !important;
+  color: #fff !important;
+}
+.inner_popop .InputContainer .InputElement {
+  position: absolute;
+  top: 0;
+  height: 55px;
+}
+.ElementsApp {
+  top: 15px !important;
+}
+.ElementsApp.is-empty {
+  top: 15px;
+}
+.close {
+  background: #1D0E13;
+      color: #FF0000;
+      padding: 5px;
+      border-radius: 7px;
+    }
 /******************** homepage css **************/
 
 :root {

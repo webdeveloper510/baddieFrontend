@@ -66,11 +66,11 @@ export function Payment(props) {
                                 leaveFrom="opacity-100 translate-y-0 md:scale-100"
                                 leaveTo="opacity-0 translate-y-4 md:translate-y-0 md:scale-95"
                             >
-                                <Dialog.Panel className="flex w-full transform text-left text-base transition md:my-8 md:max-w-2xl md:px-4 lg:max-w-4xl min-h-[50vh]">
-                                    <div className="relative flex w-full items-center overflow-hidden bg-slate-100 px-4 pb-8 pt-14 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">
+                                <Dialog.Panel className="flex w-full transform text-left text-base transition md:my-8 md:max-w-2xl md:px-4 lg:max-w-4xl min-h-[50vh] custom_popup">
+                                    <div className="relative flex w-full items-center overflow-hidden bg-slate-100 px-4 pb-8 pt-14 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8 inner_popop">
                                         <button
                                             type="button"
-                                            className="absolute right-4 top-4 text-gray-400 hover:text-gray-500 sm:right-6 sm:top-8 md:right-6 md:top-6 lg:right-8 lg:top-8"
+                                            className="absolute right-4 top-4 text-gray-400 hover:text-gray-500 sm:right-6 sm:top-8 md:right-6 md:top-6 lg:right-8 lg:top-8 close"
                                             onClick={() => setOpen(false)}
                                         >
                                             <span className="sr-only">Close</span>
@@ -79,8 +79,8 @@ export function Payment(props) {
 
                                         <div className="grid w-full grid-cols-1 items-start gap-x-6 gap-y-8 sm:grid-cols-12 lg:gap-x-8">
                                             <div className="sm:col-span-8 lg:col-span-12">
-                                                <h2 className="text-2xl font-bold text-gray-900 sm:pr-12">Enter Card details</h2>
-                                                <h3>You selected {selectedPlan} plan.</h3>
+                                                <h2 className="text-2xl font-bold text-gray-900 sm:pr-12 text-center main_heading">Enter Card details</h2>
+                                                <h3 className='dont-have text-center'>You selected {selectedPlan} plan.</h3>
 
                                                 <Elements className="h-full" stripe={stripePromise}>
                                                     <CheckoutForm
@@ -100,37 +100,37 @@ export function Payment(props) {
                     </div>
                 </Dialog>
             </Transition.Root>
-            <section className="relative w-full overflow-hidden bg-white pb-14">
+            <section className="relative w-full overflow-hidden pb-14">
 
-                <div className="relative  z-10 mx-auto max-w-7xl px-4">
+                <div className="relative  z-10 mx-auto max-w-7xl px-4 inner_back">
                     <div className="mx-auto md:max-w-4xl">
 
                         <div class="flex flex-col space-y-8 pb-10 pt-12 text-center md:pt-24">
-                            <p class="text-3xl font-bold text-gray-900 md:text-5xl md:leading-10">
-                                Simple, transparent pricing
+                            <p class="text-3xl font-bold text-gray-900 md:text-5xl md:leading-10 main_heading">
+                                Simple, transparent pricing 
                             </p>
                         </div>
                         <div className="-m-5 flex flex-wrap p-4">
                             <div className="w-full p-5 md:w-1/2">
-                                <div className="rounded-md border bg-white bg-opacity-90">
-                                    <div className=" border-b min-h-[14rem]">
+                                <div className="rounded-md border bg-opacity-90 need_bg">
+                                    <div className="min-h-[14rem]">
                                         <div className="px-9 py-7">
-                                            <h3 className="mb-3 text-xl font-bold leading-snug text-gray-900">Per Month</h3>
-                                            <p className="font-medium leading-relaxed text-gray-500">
+                                            <h3 className="mb-3 text-xl font-bold leading-snug text-gray-900 per_month">Per Month</h3>
+                                             <h4 className="mb-6 text-lg font-semibold leading-normal text-gray-600 amount">
+                                            <span className="">${plans?.month?.amount}/month</span>
+                                            <p className="starting">Starting from</p>
+                                        </h4> 
+                                        <p className="font-medium leading-relaxed text-gray-500 description">
                                             {plans?.month?.description}
                                              </p>
                                         </div>
                                     </div>
                                     <div className="px-9 pb-9 pt-8">
 
-                                        <p className="mb-6 text-lg font-semibold leading-normal text-gray-600">
-                                            <span>Starting from</span>
-                                            <span className="ml-2 text-2xl text-gray-900">${plans?.month?.amount}/month</span>
-                                        </p>
-                                        <div className="md:inline-block">
+                                        <div className="out_plan">
                                             <button
                                                 type="button"
-                                                className="inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
+                                                className="inline-flex h-12 animate-shimmer items-center justify-center Select_plan"
                                                 onClick={() => {
                                                     setSelectedPlan("month")
                                                     setOpen(true)
@@ -143,28 +143,28 @@ export function Payment(props) {
                                 </div>
                             </div>
                             <div className="w-full p-5 md:w-1/2">
-                                <div className="rounded-md border bg-white bg-opacity-90">
-                                    <div className=" border-b min-h-[14rem]">
+                                <div className="rounded-md border bg-white bg-opacity-90 need_bg">
+                                    <div className="min-h-[14rem]">
                                         <div className="px-9 py-7">
-                                            <h3 className="mb-3 text-xl font-bold leading-snug text-gray-900">Per Season</h3>
-                                            <p className="font-medium leading-relaxed text-gray-500">
+                                            <h3 className="mb-3 text-xl font-bold leading-snug text-gray-900 per_month">Per Season</h3>
+											<h4 className="mb-6 text-lg font-semibold leading-normal text-gray-600 amount">
+                                            <span className="">${plans?.season?.amount}/season</span>
+                                            <p className="starting">Starting from</p>
+                                        </h4> 
+                                            <p className="font-medium leading-relaxed text-gray-500 description">
                                             {plans?.season?.description}
                                             </p>
                                         </div>
                                     </div>
-                                    <div className="px-9 pb-9 pt-8 backdrop:blur-md">
-                                        <p className="mb-6 text-lg font-semibold leading-normal text-gray-600">
-                                            <span>Starting from</span>
-                                            <span className="ml-2 text-2xl text-gray-900">${plans?.season?.amount}/season</span>
-                                        </p>
-                                        <div className="md:inline-block">
+                                    <div className="px-9 pb-9 pt-8 backdrop:blur-md">          
+                                        <div className="out_plan">
                                             <button
                                                 onClick={() => {
                                                     setSelectedPlan("season")
                                                     setOpen(true)
                                                 }}
                                                 type="button"
-                                                className="inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
+                                                className="inline-flex h-12 animate-shimmer items-center justify-center Select_plan"
                                             >
                                                 Select Plan
                                             </button>
@@ -287,7 +287,7 @@ const CheckoutForm = ({ selectedPlan, bodyData, plans }) => {
                     placeholder="Enter promo code"
                     value={promoCode}
                     onChange={(e) =>{ setPromoCode(e.target.value);setPromoData(null)}}
-                    className={`border ${promoData?"border-green-300":"border-gray-300"} rounded-md px-3 py-2 mr-2 focus:outline-none focus:ring-1 promo-input focus:ring-gray-500`}
+                    className={`border ${promoData?"border-green-300":"border-gray-300"} rounded-md px-3 py-2 mr-2 focus:outline-none focus:ring-1 promo-input focus:ring-gray-500 custom_input`}
                 />
 
                {promoData ? <button
@@ -310,7 +310,7 @@ const CheckoutForm = ({ selectedPlan, bodyData, plans }) => {
             <div className="flex items-center my-4  ">
             {loading ? <Apploader size={3} /> : (
                 <button
-                    className="inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 subscribe-butns"
+                    className="inline-flex h-12 animate-shimmer items-center justify-center rounded-md border subscribe-butns w-full"
                     type="submit"
                     disabled={!stripe || !elements}
                 >
