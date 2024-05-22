@@ -90,27 +90,27 @@ function Home() {
   const bets = [
     {
       heading: 'Total Bets',
-      content: '70'
+      content: picks?.total_bets,
     },
     {
       heading: 'Win Percentage',
-      content: '61.43%'
+      content: `${picks?.win_percentage } %`,
     },
     {
       heading: 'Units',
-      content: '+10.55'
+      content:`${picks?.units >=0 ? "+"+picks?.units : picks?.units}` ,
     },
     {
       heading: 'Win - Loss - Push',
-      content: '43 - 27 - 0'
+      content: `${picks?.wins} - ${picks?.losses} - ${picks?.pushes}` ,
     },
     {
       heading: 'Average Odds',
-      content: '-111'
+      content: picks?.average_odds ,
     },
     {
       heading: 'ROI',
-      content: '15.07%'
+      content: `${picks?.ROI} %` ,
     },
   ];
 
@@ -137,12 +137,14 @@ function Home() {
 
 
 
+    
+
 
     <div className="section2">
     <div className="container m-auto">
     <div className="flex items-center bets-section">
     <div className="col-6">
-    <img src="/section2image.png" />
+    <img src="/section2image.png" alt="logo"/>
       </div>
       <div className="col-6">
       <h1 className="text-white text-4xl font-bold sec2heading">YTD MLB Pick Stats</h1>
