@@ -148,7 +148,7 @@ function Home() {
       </div>
       <div className="col-6">
       <h1 className="text-white text-4xl font-bold sec2heading">YTD MLB Pick Stats</h1>
-      <p>$100 unit bettors have made $1643 year to date so far
+      <p>$100 unit bettors have made ${picks?.units*100} year to date so far
        with BADDIE’s picks</p>
 
        <ul>
