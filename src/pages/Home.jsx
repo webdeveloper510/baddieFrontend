@@ -137,8 +137,6 @@ function Home() {
 
 
 
-    
-
 
     <div className="section2">
     <div className="container m-auto">
@@ -165,7 +163,7 @@ function Home() {
 
        
        <div className="w-full btn-row">
-       <button className="text-black  bg-lightgray text-lg  w-40  button"> YTD MLB Detail</button>
+       <button className="text-black  bg-lightgray text-lg  w-40  button"><a href="https://storage.googleapis.com/baddie_fe_content/BADDIE%20MLB%202024%20Pick%20Summary.xlsx">YTD MLB Detail</a></button>
        </div>
     </div>
     </div>
@@ -245,7 +243,7 @@ function Home() {
           <p>{item.content}</p>
           {index === 4 && 
           <button className="text-black  bg-lightgray text-lg  w-100 login-sign bet-mlb-btn">
-                  YTD MLB Detail
+                  <a href="https://storage.googleapis.com/baddie_fe_content/BADDIE%20MLB%202024%20Pick%20Summary.xlsx">YTD MLB Detail</a>
                 </button>}
                 </div>
         </div>

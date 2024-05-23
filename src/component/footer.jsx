@@ -6,24 +6,24 @@ import { FaSquareXTwitter } from "react-icons/fa6";
 import { userContext } from "../App";
 
 function Footer () {
-    const googleTranslateElementInit = () => {
-        new window.google.translate.TranslateElement(
-          {
-            pageLanguage: "en",
-            autoDisplay: false
-          },
-          "google_translate_element"
-        );
-      };
-      useEffect(() => {
-        var addScript = document.createElement("script");
-        addScript.setAttribute(
-          "src",
-          "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-        );
-        document.body.appendChild(addScript);
-        window.googleTranslateElementInit = googleTranslateElementInit;
-      }, []);
+    // const googleTranslateElementInit = () => {
+    //     new window.google.translate.TranslateElement(
+    //       {
+    //         pageLanguage: "en",
+    //         autoDisplay: false
+    //       },
+    //       "google_translate_element"
+    //     );
+    //   };
+    //   useEffect(() => {
+    //     var addScript = document.createElement("script");
+    //     addScript.setAttribute(
+    //       "src",
+    //       "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+    //     );
+    //     document.body.appendChild(addScript);
+    //     window.googleTranslateElementInit = googleTranslateElementInit;
+    //   }, []);
   
   return (
    
@@ -65,7 +65,7 @@ function Footer () {
         <span className="copyright">Lovingly crafted by
         <Link href="/" className="hover:underline"> Baddie Sports LLC</Link>. All Rights Reserved.</span>
 
-        <div id="google_translate_element"></div>
+        {/* <div id="google_translate_element"></div> */}
 
             <ul class="flex flex-wrap items-center mt-3 text-sm font-medium sm:mt-0 footer-menu">
                 <li>
