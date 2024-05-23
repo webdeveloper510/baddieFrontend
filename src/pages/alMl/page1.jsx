@@ -5,7 +5,7 @@ import { userContext } from "../../App";
 const AlPage1 = () => {
   
   return (
-    <div className="flex flex-col items-center justify-center px-4">
+    <div className="flex flex-col items-center justify-center px-4 top_space">
       <h4 className="text-white page-title text-center font-bold mb-4">
         AI & ML
       </h4>

@@ -46,9 +46,10 @@ export function ChangePass() {
   });
 
   return (
-    <section className="bg-white">
-      <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
-        <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md">
+    <section>
+      <div class="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
+      <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md inner_bg out_changpass">
+        <div className="">
           <div className="mb-2 flex justify-center">
            <Link to={"/"}>
            <div className="bg-black aspect-auto w-16 rounded-full p-4">
@@ -70,12 +71,12 @@ export function ChangePass() {
             }}
           >
             {({ isSubmitting }) => (
-              <Form className="mt-8">
+              <Form className="mt-8 pass_reset">
                 <div className="space-y-5">
                   <div>
                     <label
                       htmlFor="oldPassword"
-                      className="text-base font-medium text-gray-900"
+                      className="text-base font-medium text-gray-900 custom_label"
                     >
                       Password
                     </label>
@@ -97,7 +98,7 @@ export function ChangePass() {
                     <div className="flex items-center justify-between">
                       <label
                         htmlFor="password"
-                        className="text-base font-medium text-gray-900"
+                        className="text-base font-medium text-gray-900 custom_label"
                       >
                         New Password
                       </label>
@@ -108,7 +109,7 @@ export function ChangePass() {
                         type="password"
                         name="password"
                         placeholder="New Password"
-                        className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                        className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm  focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 get_started"
                       />
                       <ErrorMessage
                         name="password"
@@ -120,7 +121,7 @@ export function ChangePass() {
                   <div>
                     <button
                       type="submit"
-                      className="inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 w-full"
+                      className="inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 w-full get_started"
                       disabled={isSubmitting}
                     >
                      Change Password
@@ -131,6 +132,7 @@ export function ChangePass() {
             )}
           </Formik>
         </div>
+      </div>
       </div>
     </section>
   );

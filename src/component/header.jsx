@@ -130,11 +130,11 @@ const Header = ({ show, setShow }) => {
                 className="z-20 absolute right-2 bg-white  divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
                 
               >
-                <div className="bg-white px-4 py-3 text-sm text-gray-900 text-black">
-                  <div>{`${user?.firstname} ${user?.lastname}`}</div>
+                <div className=" px-4 py-3 text-sm text-gray-900 text-black">
+                  <div className="u_name">{`${user?.firstname} ${user?.lastname}`}</div>
                   <div className="font-medium truncate">{user?.email}</div>
                 </div>
-                <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
+                <ul className="py-2 text-sm text-gray-700 dark:text-gray-200 reset flex link_pass">
                   <li>
                     <Link
                       to="/change-password"
@@ -168,7 +168,7 @@ const Header = ({ show, setShow }) => {
                     </a>
                   </li> */}
                 </ul>
-                <div className="py-2">
+                <div className="py-2 out_rest">
                   <button
                   onClick={()=>{
                     localStorage.clear();
@@ -177,7 +177,7 @@ const Header = ({ show, setShow }) => {
 
                   }}
                     href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 "
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 user_out"
                   >
                     Sign out
                   </button>

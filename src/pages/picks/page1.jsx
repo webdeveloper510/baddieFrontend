@@ -41,7 +41,7 @@ const Page1 = () => {
     </div>
   }
   return (
-    <div className="flex flex-col items-center justify-center px-4 py-10">
+    <div className="flex flex-col items-center justify-center px-4 py-10 top_space">
       <h4 className="text-white page-title text-center lowercase font-bold mb-4">
         Sports picks & analytics hub
       </h4>

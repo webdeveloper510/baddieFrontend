@@ -153,7 +153,7 @@ const Neweda = () => {
     );
   }
   return (
-    <div className="flex flex-col items-center w-[100%] bg-lightblack  px-4 min-w-full">
+    <div className="flex flex-col items-center w-[100%] bg-lightblack  px-4 min-w-full top_space">
       <div className="text-center">
         <h4 className="text-white page-title font-bold mb-4">
           player & team exploratory data analysis

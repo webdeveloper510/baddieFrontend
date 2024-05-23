@@ -1480,6 +1480,127 @@ select.goog-te-combo {
   border: 1px solid;
 }
 
+/**************** inner page header ****************/
+.top_space {
+  padding-top: 80px;
+}
+
+div#dropdownInformation {
+  background: rgba(255, 255, 255, 0.14);
+  background: rgb(231 127 127 / 51%);
+  box-shadow: 0px 0px 38.23143005371094px rgba(255, 255, 255, 0.08) inset;
+
+  backdrop-filter: blur(32.26px);
+  position: absolute;
+  right: 5%;
+  top: 100%;
+  border-radius: 10%;
+  padding: 10px;
+  min-width: 230px;
+}
+.action_btn button {
+  background: transparent;
+  color: #fff;
+  border-left: 1px solid rgb(255 255 255 / 10%);
+  border-right: 1px solid rgb(255 255 255 / 10%);
+  padding: 20px 0px;
+  text-transform: uppercase;
+  font-family: var(--headings-font-family);
+  border-radius: 0px;
+  font-size: 25px;
+}
+.font-medium.truncate {
+  color: white;
+  font-size: 16px;
+  font-family: var(--body-font-family);
+  font-weight: 400;
+  word-wrap: break-word;
+
+}
+.u_name {
+  color: white;
+font-size: 22px;
+font-family: var(--headings-font-family);
+font-weight: 400;
+text-transform: uppercase;
+line-height: 22.68px;
+word-wrap: break-word
+}
+.reset {
+  border-top: 0.80px #ffffff54 solid;
+}
+.link_pass li a {
+  color: white;
+  font-size: 17.88px;
+  font-family: Bebas Neue;
+  font-weight: 400;
+  font-family: var(--headings-font-family);
+  line-height: 18.03px;
+  word-wrap: break-word;
+}
+.out_rest {
+  border-top: none;
+}
+.inner_bg input {
+width: 100%;
+background: #59394100 !important;
+border: 1px solid #ffffff40 !important;
+padding: 15px 0px;
+line-height: 0.25rem;
+font-size: 24px;
+}
+.user_out {
+  width: 100% !important;
+  padding: 10px 0px !important;
+  font-size: 18px !important;
+  line-height: 1.25rem !important;
+  border: 1px solid #ffffff5c;
+}
+.user_out:hover {
+  width: 100% !important;
+  padding: 10px 0px !important;
+  font-size: 18px !important;
+  line-height: 1.25rem !important;
+  border: 1px solid #ffffff5c;
+  background: red !important;
+}
+.out_changpass {
+  margin-top: 5%;
+}
+.pass_reset input {
+  word-wrap: break-word;
+  background: #593941 !important;
+  border: 1px solid #fff;
+  font-size: 18px;
+  font-weight: 400;
+  height: 55px;
+  line-height: 27.09px;
+  opacity: .5;
+  padding-left: .75rem;
+  text-transform: capitalize;
+}
+.pass_reset input::placholder {
+ color: #fff;
+     text-transform: capitalize;
+}
+.plan_pop {
+  background: #766662;
+  width: 35rem;
+  margin: 0 auto;
+  border-radius: 35px;
+  padding: 30px;
+}
+.plan_pop h2 {
+  word-wrap: break-word;
+  color: #fff;
+  font-family: Impact;
+  font-family: Bebas Neue, sans-serif;
+  font-family: var(--headings-font-family);
+  font-size: 27.92px;
+  font-weight: 400;
+  line-height: 29.79px;
+  text-transform: uppercase;
+}
 /********************* responisve start **********************/
 
 @media only screen and (max-width: 1499px) {
@@ -1648,5 +1769,28 @@ margin-top:20px;
 }
 .top_banner h1 {
   font-size: 40px;
+}
+}
+@media only screen and (max-width: 480px) {
+.amount {
+  font-size: 42px;
+  line-height: 45.89px;
+}
+.Select_plan {
+  height: 42px;
+}
+.main_heading {
+  font-size: 45.92px;
+}
+.inn_plans {
+  margin-top: 25%;
+}	
+.out_changpass {
+  margin-top: 15%;
+}
+.plan_pop {
+  width: 20rem;
+  padding: 10px;
+  margin-top: 35%;
 }
 }

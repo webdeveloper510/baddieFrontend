@@ -110,7 +110,7 @@ function App() {
         {user ? (
           <>
             <Header show={show} setShow={setShow} />
-            <div className="md:flex sm:block min-h-screen bg-lightblack w-full">
+            <div className="md:flex sm:block min-h-screen w-full">
               <Sidebars show={show} setShow={setShow} />
               <div
                 className={`${
