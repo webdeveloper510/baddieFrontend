@@ -114,7 +114,7 @@ function App() {
               <Sidebars show={show} setShow={setShow} />
               <div
                 className={`${
-                  !show ? "w-[86%] mobile-side" : "w-[96%] mobile-side"
+                  !show ? "w-[86%] mobile-side" : "w-[100%] mobile-side"
                 }`}
               >
                 <Routes>

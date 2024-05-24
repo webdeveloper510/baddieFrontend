@@ -64,12 +64,34 @@ const Slate = () => {
                           <h1 className="font-medium text-4xl my-2">{`Park: ${data.data.venue_name[i]}`}</h1>
                         </div>
 
-                        <Link to="/game-page">
-                          <div className="rounded-[40px] bg-[#0d9957] py-2 my-5">
+                        <div className="grid md:grid-cols-2 sm:grid-cols-1 gap-12">
+                        <div className="">
+                          <Link to="/game-page">
+                          <div className="rounded-[40px] !h-[250px] bg-[#40ecd9] py-2 my-5">
                             <h1 className="font-medium text-3xl my-2">
-                              Fangraphs Park Factors
+                              Weather
                             </h1>
-                            <div className="grid md:grid-cols-3 sm:grid-cols-1 mb-2">
+                            <div className="text-left px-10 mb-2">
+                              <h1 className="font-medium text-3xl my-2">
+                                {`{Game_Temp}`}
+                              </h1>
+                              <h1 className="font-medium text-3xl my-2">
+                               {`{Game_Precip}%`}
+                              </h1>
+                              <h1 className="font-medium text-3xl my-2">
+                                change of <br/> precip
+                              </h1>
+                            </div>
+                          </div>
+                        </Link>
+                          </div>
+                          <div className="">
+                          <Link to="/game-page">
+                          <div className="rounded-[40px] h-[250px]  bg-[#ac82e5] py-2 my-5">
+                            <h1 className="font-medium text-3xl my-2">
+                              SC Park Factors
+                            </h1>
+                            <div className="grid grid-cols-1 mb-2">
                               <h1 className="font-medium text-3xl my-2">
                                 3yr: {data.data?.[`3yr`][i]}
                               </h1>
@@ -82,6 +104,8 @@ const Slate = () => {
                             </div>
                           </div>
                         </Link>
+                          </div>
+                        </div>
                       </div>
                     </TabPanel>
                   ))
