@@ -232,7 +232,7 @@ export const forgotPassword = async(data)=>{
 
 export const getPicksSummary = async()=>{
     try {
-        const response = await Axios.get("getpicks-summary/");
+        const response = await authApi.get("getpicks-summary/");
         return response.data
     } catch (error) {
         throw (error)
@@ -241,7 +241,7 @@ export const getPicksSummary = async()=>{
 
 export const getMatchupData = async()=>{
     try {
-        const response = await Axios.get("matchup/");
+        const response = await authApi.get("matchup/");
         return response.data
     } catch (error) {
         throw (error)
