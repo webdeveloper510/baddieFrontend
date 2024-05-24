@@ -1,9 +1,26 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import { getDamnEvcal } from "../../api";
 // import graphImage from "/graph-image.png"
 
 const GamePage = () => {
+
+  const [data, setData] = useState(null)
+  console.log("🚀 ~ GamePage ~ data:", data)
+
+  const { state } = useLocation()
+  console.log("🚀 ~ GamePage ~ state:", state)
+
+  useEffect(()=>{
+    getDamnEvcal(state).then((res)=>{
+      console.log("damn evcal data", res)
+      setData(res)
+    }).catch((error)=>{
+      console.log(error)
+    })
+  },[state])
+
   return (
     <>
       <div className="flex flex-col items-center w-[100%] bg-lightblack  px-4 min-w-full">
@@ -14,7 +31,7 @@ const GamePage = () => {
         </div>
         <div className="bg-white  m-auto flex flex-col px-20 h-auto main-section py-10 text-xl min-w-full">
           <div className="text-center">
-            <h1 className="font-bold text-7xl">The Matchup</h1>
+            <h1 className="font-bold text-7xl">Daily aggregate matchup</h1>
           </div>
           <div className="flex mt-16 game-upper-section">
             <div className="w-[60%] game-section">
@@ -109,43 +126,43 @@ const GamePage = () => {
                     <td className="border-l-2 border-l-black border-2 border-[#b1aeae]">
                       Ks
                     </td>
-                    <td className="border-2 border-[#b1aeae]">-110</td>
+                    <td className="border-2 border-[#b1aeae]">{data?.response1?.odds_k_under}</td>
                     <td className="border-2 border-[#b1aeae]">-107</td>
                     <td className="border-2 border-[#b1aeae]">4.5</td>
-                    <td className="border-2 border-[#b1aeae]">-120</td>
+                    <td className="border-2 border-[#b1aeae]">{data?.response1?.odds_k_over}</td>
                     <td className="border-r-2 border-r-black border-2 border-[#b1aeae]">
                       -130
                     </td>
                     <td className="bg-[#ffff00] border-b-2 border-b-[#2bf92b]">
-                      Fair Value
+                    {data?.response3?.k_line_call}
                     </td>
                   </tr>
                   <tr className="text-center">
                     <td className="border-l-2 border-l-black border-2 border-[#b1aeae]">
                       Hits Allowed
                     </td>
-                    <td className="border-2 border-[#b1aeae]">-110</td>
+                    <td className="border-2 border-[#b1aeae]">{data?.response1?.odds_hits_under}</td>
                     <td className="border-2 border-[#b1aeae]">-107</td>
                     <td className="border-2 border-[#b1aeae]">4.5</td>
-                    <td className="border-2 border-[#b1aeae]">-120</td>
+                    <td className="border-2 border-[#b1aeae]">{data?.response1?.odds_hits_over}</td>
                     <td className="border-r-2">-130</td>
                     <td className="bg-[#66ff66] border-b-2 border-b-[#2bf92b] border-r-2 border-r-[#2bf92b]">
-                      Fair Value
+                    {data?.response3?.hits_line_call}
                     </td>
                   </tr>
                   <tr className="text-center">
                     <td className="border-l-2 border-l-black border-2 border-[#b1aeae]">
                       Outs
                     </td>
-                    <td className="border-2 border-[#b1aeae]">-110</td>
+                    <td className="border-2 border-[#b1aeae]">{data?.response1?.odds_outs_under}</td>
                     <td className="border-2 border-[#b1aeae]">-107</td>
                     <td className="border-2 border-[#b1aeae]">4.5</td>
-                    <td className="border-2 border-[#b1aeae]">-120</td>
+                    <td className="border-2 border-[#b1aeae]">{data?.response1?.odds_outs_over}</td>
                     <td className="border-r-2 border-r-black border-[#b1aeae] border-2">
                       -130
                     </td>
                     <td className="bg-[#66ff66] border-b-2 border-b-[#2bf92b] border-r-2 border-r-[#2bf92b]">
-                      Fair Value
+                    {data?.response3?.outs_line_call}
                     </td>
                   </tr>
                   <tr className="text-center">
@@ -153,7 +170,7 @@ const GamePage = () => {
                       Earned Runs
                     </td>
                     <td className="border-b-2 border-black border-r-2 border-r-[#b1aeae]">
-                      -110
+                    {data?.response1?.odds_er_under}
                     </td>
                     <td className="border-b-2 border-black border-r-2 border-r-[#b1aeae]">
                       -107
@@ -162,12 +179,12 @@ const GamePage = () => {
                       4.5
                     </td>
                     <td className="border-b-2 border-black border-r-2 border-r-[#b1aeae]">
-                      -120
+                    {data?.response1?.odds_er_over}
                     </td>
                     <td className="border-b-2 border-r-2 border-t-[#b1aeae] border-t-2 border-black">
                       -130
                     </td>
-                    <td className="bg-[#f7c7ac]">Fair Value</td>
+                    <td className="bg-[#f7c7ac]">{data?.response3?.er_line_call}</td>
                   </tr>
                   <tr className="text-center">
                     <td className="" rowSpan={4}>
@@ -212,7 +229,7 @@ const GamePage = () => {
                       -130
                     </td>
                     <td className="bg-[#66ff66] border-b-2 border-b-[#2bf92b] border-r-2 border-r-[#2bf92b]">
-                      Fair Value
+                    {data?.response3?.hits_line_call}
                     </td>
                   </tr>
                   <tr className="text-center">
@@ -234,7 +251,7 @@ const GamePage = () => {
                     <td className="border-b-2 border-r-2 border-t-[#b1aeae] border-t-2 border-black">
                       -130
                     </td>
-                    <td className="bg-[#ffff00]">Fair Value</td>
+                    <td className="bg-[#ffff00]">{data?.response3?.er_line_call}</td>
                   </tr>
                 </tbody>
               </table>

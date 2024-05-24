@@ -208,7 +208,7 @@ function App() {
                     }
                   />
                    <Route
-                    path="/game-page"
+                    path="/dam"
                     element={
                       <SecureRoute>
                         <GamePage />

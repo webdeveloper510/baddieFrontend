@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import { getMatchupData } from "../../api";
+import { getMatchupData, getWeatherData } from "../../api";
 
 const Slate = () => {
   const [data, setData] = useState(null);
+  const [weather, setWeather] = useState(true);
+  console.log("🚀 ~ Slate ~ weather:", weather);
+  const [damData, setDamData] = useState([])
 
   const getmatchup = () => {
     getMatchupData()
@@ -17,9 +20,37 @@ const Slate = () => {
       });
   };
 
+  const navigate = useNavigate()
+
+  const getWeather = () => {
+    getWeatherData()
+      .then((res) => {
+        console.log("res weather", res);
+        setWeather(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   useEffect(() => {
     getmatchup();
+    getWeather();
   }, []);
+
+  const handleDamPage =()=>{
+   const body = {
+    stat_type: "pitcher",
+    metric_type_input:"Ks",
+    player_id : 669373,
+    player_name:"Skubal, Tarik",
+    opp_team:"AZ",
+    home_away:"away"
+  }
+
+  navigate("/dam", {state:body})
+
+  }
 
   return (
     <>
@@ -32,18 +63,18 @@ const Slate = () => {
         <div className="bg-white  m-auto flex flex-col px-20 main-section py-10 text-xl min-w-full">
           <div className="text-center">
             <h1 className="font-bold text-5xl">The Slate</h1>
-            <h1 className="font-medium text-3xl my-2">{data?.date_key}</h1>
+            <h1 className="font-medium text-3xl my-2">{weather?.date_key}</h1>
           </div>
 
           <div className="my-10 px-10">
             <Tabs>
-              {data?.data?.hr?.length > 0
-                ? data?.data?.date?.map((item, i) => (
+              {weather?.data?.hr?.length > 0
+                ? weather?.data?.date?.map((item, i) => (
                     <TabPanel key={i}>
                       <div className="w-full border-4 my-3 px-20 slate-box py-5 rounded-[60px] text-center border-black h-auto">
                         <div className="my-3">
                           <h1 className="font-extrabold text-4xl my-2">
-                            {data?.data?.teams_away_team_name?.[i]}
+                            {weather?.data?.teams_away_team_name?.[i]}
                           </h1>
                         </div>
                         <div className="my-3">
@@ -51,59 +82,68 @@ const Slate = () => {
                         </div>
                         <div className="my-3">
                           <h1 className="font-extrabold text-4xl my-2">
-                            {data?.data?.teams_home_team_name?.[i]}
+                            {weather?.data?.teams_home_team_name?.[i]}
                           </h1>
                         </div>
                         <div className="my-3">
-                          <h1 className="font-medium text-4xl my-2">{`Game ${data.data.series_game_number[i]} of ${data.data.games_in_series[i]} in Series`}</h1>
+                          <h1 className="font-medium text-4xl my-2">{`Game ${weather.data.series_game_number[i]} of ${weather.data.games_in_series[i]} in Series`}</h1>
                         </div>
                         <div className="my-3">
-                          <h1 className="font-medium text-4xl my-2">{`issa ${data.data.day_night[i]} game`}</h1>
+                          <h1 className="font-medium text-4xl my-2">{`issa ${weather.data.day_night[i]} game`}</h1>
                         </div>
                         <div className="my-3">
-                          <h1 className="font-medium text-4xl my-2">{`Park: ${data.data.venue_name[i]}`}</h1>
+                          <h1 className="font-medium text-4xl my-2">{`Park: ${weather.data.venue_name[i]}`}</h1>
                         </div>
 
                         <div className="grid md:grid-cols-2 sm:grid-cols-1 gap-12">
-                        <div className="">
-                          <Link to="/game-page">
-                          <div className="rounded-[40px] !h-[250px] bg-[#40ecd9] py-2 my-5">
-                            <h1 className="font-medium text-3xl my-2">
-                              Weather
-                            </h1>
-                            <div className="text-left px-10 mb-2">
-                              <h1 className="font-medium text-3xl my-2">
-                                {`{Game_Temp}`}
-                              </h1>
-                              <h1 className="font-medium text-3xl my-2">
-                               {`{Game_Precip}%`}
-                              </h1>
-                              <h1 className="font-medium text-3xl my-2">
-                                change of <br/> precip
-                              </h1>
+                          <div className="">
+                            <div>
+                              <div className="rounded-[40px] !h-[250px] bg-[#40ecd9] py-2 my-5">
+                                <h1 className="font-medium text-3xl my-2">
+                                  Weather
+                                </h1>
+                                <div className="text-left px-10 mb-2">
+                                  <h1 className="font-medium text-3xl my-2">
+                                    {weather?.data?.Game_Temp?.[i]}
+                                  </h1>
+                                  <div className="grid md:grid-cols-2 sm:grid-cols-1">
+                                    <div>
+                                      <h1 className="font-medium text-3xl my-2">
+                                        {`${weather?.data?.Game_Precip?.[i]} % `}
+                                      </h1>
+                                      
+                                    </div>
+                                    <div>
+                                      <h1 className="font-medium text-end text-3xl my-2">
+                                        {weather?.data?.Game_Wind_MPH?.[i]}
+                                      </h1>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
-                          </div>
-                        </Link>
                           </div>
                           <div className="">
-                          <Link to="/game-page">
-                          <div className="rounded-[40px] h-[250px]  bg-[#ac82e5] py-2 my-5">
-                            <h1 className="font-medium text-3xl my-2">
-                              SC Park Factors
-                            </h1>
-                            <div className="grid grid-cols-1 mb-2">
-                              <h1 className="font-medium text-3xl my-2">
-                                3yr: {data.data?.[`3yr`][i]}
-                              </h1>
-                              <h1 className="font-medium text-3xl my-2">
-                                1yr: {data.data?.[`1yr`][i]}
-                              </h1>
-                              <h1 className="font-medium text-3xl my-2">
-                                HR: {data.data?.hr[i]}
-                              </h1>
+                            <div onClick={()=>{
+                              handleDamPage()
+                            }}>
+                              <div className="rounded-[40px] h-[250px]  bg-[#ac82e5] py-2 my-5">
+                                <h1 className="font-medium text-3xl my-2">
+                                  SC Park Factors
+                                </h1>
+                                <div className="grid grid-cols-1 mb-2">
+                                  <h1 className="font-medium text-3xl my-2">
+                                    3yr: {weather.data?.[`3yr`][i]}
+                                  </h1>
+                                  <h1 className="font-medium text-3xl my-2">
+                                    1yr: {weather.data?.[`1yr`][i]}
+                                  </h1>
+                                  <h1 className="font-medium text-3xl my-2">
+                                    HR: {weather.data?.hr[i]}
+                                  </h1>
+                                </div>
+                              </div>
                             </div>
-                          </div>
-                        </Link>
                           </div>
                         </div>
                       </div>
@@ -209,7 +249,7 @@ const Slate = () => {
           </TabPanel> */}
               <TabList className="flex flex-wrap mt-3   text-center justify-center">
                 {/* Total Products */}
-                {data?.data?.date?.map((item, i) => (
+                {weather?.data?.date?.map((item, i) => (
                   <Tab className="cursor-pointer react-dot-tab" key={i}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
