@@ -267,3 +267,13 @@ export const getDamnEvcal = async(data)=>{
         throw (error)
     }
 }
+
+export const getSingleMatchup = async(data)=>{
+    console.log("datadatadatadata", data)
+    try {
+        const response = await authApi.post("single-matchup/", data);
+        return response.data
+    } catch (error) {
+        throw (error)
+    }
+}

@@ -2,33 +2,80 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { getMatchupData, getWeatherData } from "../../api";
+import Apploader from "../../component/Apploader";
+import DirectionImage from "../../component/DirectionImage";
 
 const Slate = () => {
   const [data, setData] = useState(null);
+  const [loader, setLoader] = useState(false);
   const [weather, setWeather] = useState(true);
   console.log("🚀 ~ Slate ~ weather:", weather);
-  const [damData, setDamData] = useState([])
+
+  const wind_direction = [
+    {
+     name : "SE",
+     degree : "270deg",
+     scale : 1.14,
+    },
+    {
+      name : "WNW",
+      degree : "0deg",
+      scale : 1.14,
+     },
+     {
+      name : "SSW",
+      degree : "0deg",
+      scale : 1.14,
+     },
+     {
+      name : "WSW",
+      degree : "292.5deg",
+      scale : 1.13,
+     },
+     {
+      name : "SSE",
+      degree : "315deg",
+      scale : 1.13,
+     },
+     {
+      name : "W",
+      degree : "90deg",
+      scale : 1.11,
+     },
+     {
+      name : "ENE",
+      degree : "248.5deg",
+      scale : 1.09,
+     },
+  ]
 
   const getmatchup = () => {
+    setLoader(true);
     getMatchupData()
       .then((res) => {
+        setLoader(false);
         console.log("res", res);
         setData(res);
+        // setWeather(res);
       })
       .catch((error) => {
+        setLoader(false);
         console.log(error);
       });
   };
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const getWeather = () => {
+    setLoader(true);
     getWeatherData()
       .then((res) => {
+        setLoader(false);
         console.log("res weather", res);
         setWeather(res);
       })
       .catch((error) => {
+        setLoader(false);
         console.log(error);
       });
   };
@@ -38,23 +85,57 @@ const Slate = () => {
     getWeather();
   }, []);
 
-  const handleDamPage =()=>{
-   const body = {
-    stat_type: "pitcher",
-    metric_type_input:"Ks",
-    player_id : 669373,
-    player_name:"Skubal, Tarik",
-    opp_team:"AZ",
-    home_away:"away"
-  }
+  const handleDamPage = (i) => {
+    const body = [
+      {
+        stat_type: "pitcher",
+        metric_type_input: "Ks",
+        player_id: 669373,
+        player_name: "Skubal, Tarik",
+        opp_team: "AZ",
+        home_away: "away",
+      },
+      {
+        stat_type: "pitcher",
+        metric_type_input: "Ks",
+        player_id: 669373,
+        player_name: "Abreu, Albert",
+        opp_team: "CHC",
+        home_away: "home",
+      },
+      {
+        teams_away_team_name: weather?.data?.teams_away_team_name?.[i],
+        teams_home_team_name : weather?.data?.teams_home_team_name?.[i],
+        series_game_number : weather?.data?.series_game_number[i],
+        games_in_series : weather?.data?.games_in_series[i],
+        day_night : weather?.data?.day_night[i],
+        venue_name : weather?.data?.venue_name[i],
+        Game_Temp : weather?.data?.Game_Temp?.[i],
+        Game_Precip : weather?.data?.Game_Precip?.[i],
+        Game_Wind_MPH : weather?.data?.Game_Wind_MPH?.[i],
+        year3 : weather?.data?.[`3yr`][i],
+        year1 : weather?.data?.[`1yr`][i],
+        hr : weather?.data?.hr[i],
+        Game_Wind_Direction : weather?.data?.Game_Wind_Direction?.[i],
+        index : i,
+        game_pk : weather?.data?.game_pk?.[i]
+      },
+    ];
 
-  navigate("/dam", {state:body})
+    navigate("/game-page", { state: body });
+  };
 
+  if (loader) {
+    return (
+      <div className="w-full h-full flex items-center justify-center">
+        <Apploader size={80} />
+      </div>
+    );
   }
 
   return (
     <>
-      <div className="flex flex-col items-center w-[100%] bg-lightblack  px-4 min-w-full">
+      <div className="flex flex-col pt-20 items-center w-[100%] bg-lightblack  px-4 min-w-full">
         <div className="text-center">
           <h2 className="text-white page-title text-4xl font-bold mb-4">
             daily matchup aggregate
@@ -71,7 +152,9 @@ const Slate = () => {
               {weather?.data?.hr?.length > 0
                 ? weather?.data?.date?.map((item, i) => (
                     <TabPanel key={i}>
-                      <div className="w-full border-4 my-3 px-20 slate-box py-5 rounded-[60px] text-center border-black h-auto">
+                      <div   onClick={() => {
+                                handleDamPage(i);
+                              }} className="w-full cursor-pointer border-4 my-3 px-20 slate-box py-5 rounded-[60px] text-center border-black h-auto">
                         <div className="my-3">
                           <h1 className="font-extrabold text-4xl my-2">
                             {weather?.data?.teams_away_team_name?.[i]}
@@ -103,19 +186,23 @@ const Slate = () => {
                                   Weather
                                 </h1>
                                 <div className="text-left px-10 mb-2">
-                                  <h1 className="font-medium text-3xl my-2">
-                                    {weather?.data?.Game_Temp?.[i]}
-                                  </h1>
+                                 
                                   <div className="grid md:grid-cols-2 sm:grid-cols-1">
                                     <div>
+                                    <h1 className="font-medium text-3xl my-2">
+                                    {`${weather?.data?.Game_Temp?.[i]}°`}
+                                  </h1>
                                       <h1 className="font-medium text-3xl my-2">
-                                        {`${weather?.data?.Game_Precip?.[i]} % `}
+                                        {`${weather?.data?.Game_Precip?.[i]}% `}
                                       </h1>
-                                      
+                                      <h1 className="font-medium text-3xl my-2">
+                                        Chance of precip
+                                      </h1>
                                     </div>
                                     <div>
+                                      <DirectionImage windDirection={wind_direction} name={weather?.data?.Game_Wind_Direction?.[i]}/>
                                       <h1 className="font-medium text-end text-3xl my-2">
-                                        {weather?.data?.Game_Wind_MPH?.[i]}
+                                        {`${weather?.data?.Game_Wind_MPH?.[i]}MPH`}
                                       </h1>
                                     </div>
                                   </div>
@@ -123,10 +210,10 @@ const Slate = () => {
                               </div>
                             </div>
                           </div>
-                          <div className="">
-                            <div onClick={()=>{
-                              handleDamPage()
-                            }}>
+                          <div>
+                            <div
+                             
+                            >
                               <div className="rounded-[40px] h-[250px]  bg-[#ac82e5] py-2 my-5">
                                 <h1 className="font-medium text-3xl my-2">
                                   SC Park Factors
@@ -151,102 +238,6 @@ const Slate = () => {
                   ))
                 : ""}
 
-              {/* <TabPanel>
-          <div className="w-full border-4 my-3 px-20 slate-box py-5 rounded-[60px] text-center border-black h-auto" >
-           <div className='my-3'>
-           <h1 className='font-extrabold text-4xl my-2'>{`Tampa Bay Rays`}</h1>
-           </div>
-           <div className='my-3'>
-           <h1 className='font-medium text-4xl my-2'>{`@`}</h1>
-           </div>
-           <div className='my-3'>
-           <h1 className='font-extrabold text-4xl my-2'>{`Chicago White Sox`}</h1>
-           </div>
-           <div className='my-3'>
-           <h1 className='font-medium text-4xl my-2'>{`# 1 of 3 in Series`}</h1>
-           </div>
-           <div className='my-3'>
-           <h1 className='font-medium text-4xl my-2'>{`issa day game`}</h1>
-           </div>
-           <div className='my-3'>
-           <h1 className='font-medium text-4xl my-2'>{`Park: Guaran Rate Field`}</h1>
-           </div>
-
-           <Link to="/game-page">
-           <div className='rounded-[40px] bg-[#0d9957] py-2 my-5'>
-           <h1 className='font-medium text-3xl my-2'>Fangraphs Park Factors</h1>
-           <div className='grid md:grid-cols-3 sm:grid-cols-1 mb-2'>
-           <h1 className='font-medium text-3xl my-2'>3yr: {`95`}</h1>
-           <h1 className='font-medium text-3xl my-2'>1yr: {`98`}</h1>
-           <h1 className='font-medium text-3xl my-2'>HR: {`101`}</h1>
-           </div>
-           </div></Link>
-        </div>
-          </TabPanel>
-          <TabPanel>
-          <div className="w-full border-4 my-3 px-20 slate-box py-5 rounded-[60px] text-center border-black h-auto" >
-           <div className='my-3'>
-           <h1 className='font-extrabold text-4xl my-2'>{`Tampa Bay Rays`}</h1>
-           </div>
-           <div className='my-3'>
-           <h1 className='font-medium text-4xl my-2'>{`@`}</h1>
-           </div>
-           <div className='my-3'>
-           <h1 className='font-extrabold text-4xl my-2'>{`Chicago White Sox`}</h1>
-           </div>
-           <div className='my-3'>
-           <h1 className='font-medium text-4xl my-2'>{`# 1 of 3 in Series`}</h1>
-           </div>
-           <div className='my-3'>
-           <h1 className='font-medium text-4xl my-2'>{`issa day game`}</h1>
-           </div>
-           <div className='my-3'>
-           <h1 className='font-medium text-4xl my-2'>{`Park: Guaran Rate Field`}</h1>
-           </div>
-
-           <Link to="/game-page">
-           <div className='rounded-[40px] bg-[#0d9957] py-2 my-5'>
-           <h1 className='font-medium text-3xl my-2'>Fangraphs Park Factors</h1>
-           <div className='grid md:grid-cols-3 sm:grid-cols-1 mb-2'>
-           <h1 className='font-medium text-3xl my-2'>3yr: {`02`}</h1>
-           <h1 className='font-medium text-3xl my-2'>1yr: {`02`}</h1>
-           <h1 className='font-medium text-3xl my-2'>HR: {`02`}</h1>
-           </div>
-           </div></Link>
-        </div>
-          </TabPanel>
-          <TabPanel>
-          <div className="w-full border-4 my-3 px-20 slate-box py-5 rounded-[60px] text-center border-black h-auto" >
-           <div className='my-3'>
-           <h1 className='font-extrabold text-4xl my-2'>{`Tampa Bay Rays`}</h1>
-           </div>
-           <div className='my-3'>
-           <h1 className='font-medium text-4xl my-2'>{`@`}</h1>
-           </div>
-           <div className='my-3'>
-           <h1 className='font-extrabold text-4xl my-2'>{`Chicago White Sox`}</h1>
-           </div>
-           <div className='my-3'>
-           <h1 className='font-medium text-4xl my-2'>{`# 1 of 3 in Series`}</h1>
-           </div>
-           <div className='my-3'>
-           <h1 className='font-medium text-4xl my-2'>{`issa day game`}</h1>
-           </div>
-           <div className='my-3'>
-           <h1 className='font-medium text-4xl my-2'>{`Park: Guaran Rate Field`}</h1>
-           </div>
-
-           <Link to="/game-page">
-           <div className='rounded-[40px] bg-[#0d9957] py-2 my-5'>
-           <h1 className='font-medium text-3xl my-2'>Fangraphs Park Factors</h1>
-           <div className='grid md:grid-cols-3 sm:grid-cols-1 mb-2'>
-           <h1 className='font-medium text-3xl my-2'>3yr: {`03`}</h1>
-           <h1 className='font-medium text-3xl my-2'>1yr: {`03`}</h1>
-           <h1 className='font-medium text-3xl my-2'>HR: {`03`}</h1>
-           </div>
-           </div></Link>
-        </div>
-          </TabPanel> */}
               <TabList className="flex flex-wrap mt-3   text-center justify-center">
                 {/* Total Products */}
                 {weather?.data?.date?.map((item, i) => (

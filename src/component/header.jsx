@@ -36,6 +36,20 @@ const Header = ({ show, setShow }) => {
   //     }
   //   })
   // },[])
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [dropdownRef]);
+  
   return (
    
     <div className="w-full header_bg">
@@ -81,6 +95,10 @@ const Header = ({ show, setShow }) => {
                              <>
                              <Link to="/picks-analysis"><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("picks-analysis") ? "bg-white text-black active" : "bg-greyLight text-white"} `}>
                                  Picks & analysis
+                             </MenuItem>
+                             </Link>
+                             <Link to="/matchup"><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("matchup") ? "bg-white text-black active" : "bg-greyLight text-white"} `}>
+                                 Dam
                              </MenuItem>
                              </Link>
                              <Link to={user?.status == "active" ? "/new-eda" : "/payment"}><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("new-eda") ? "bg-white text-black active" : "bg-greyLight text-white"} `}> Player/team EDA </MenuItem></Link>
