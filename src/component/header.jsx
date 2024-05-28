@@ -97,10 +97,7 @@ const Header = ({ show, setShow }) => {
                                  Picks & analysis
                              </MenuItem>
                              </Link>
-                             <Link to="/matchup"><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("matchup") ? "bg-white text-black active" : "bg-greyLight text-white"} `}>
-                                 Dam
-                             </MenuItem>
-                             </Link>
+                             
                              <Link to={user?.status == "active" ? "/new-eda" : "/payment"}><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("new-eda") ? "bg-white text-black active" : "bg-greyLight text-white"} `}> Player/team EDA </MenuItem></Link>
                              <Link to={user?.status == "active" ? "/expected-value" : "/payment"}><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("expected-value") ? "bg-white text-black active" : "bg-greyLight text-white"} `}>  EV calculator </MenuItem></Link>
  

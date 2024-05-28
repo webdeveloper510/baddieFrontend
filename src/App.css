@@ -1529,6 +1529,12 @@ word-wrap: break-word
 .reset {
   border-top: 0.80px #ffffff54 solid;
 }
+.mathup-icon{
+  margin-left: auto;
+}
+.game-page-icon{
+  margin: auto;
+}
 .link_pass li a {
   color: white;
   font-size: 17.88px;

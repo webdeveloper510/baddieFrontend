@@ -13,41 +13,41 @@ const Slate = () => {
 
   const wind_direction = [
     {
-     name : "SE",
-     degree : "270deg",
-     scale : 1.14,
+      name: "SE",
+      degree: "270deg",
+      scale: 1.14,
     },
     {
-      name : "WNW",
-      degree : "0deg",
-      scale : 1.14,
-     },
-     {
-      name : "SSW",
-      degree : "0deg",
-      scale : 1.14,
-     },
-     {
-      name : "WSW",
-      degree : "292.5deg",
-      scale : 1.13,
-     },
-     {
-      name : "SSE",
-      degree : "315deg",
-      scale : 1.13,
-     },
-     {
-      name : "W",
-      degree : "90deg",
-      scale : 1.11,
-     },
-     {
-      name : "ENE",
-      degree : "248.5deg",
-      scale : 1.09,
-     },
-  ]
+      name: "WNW",
+      degree: "0deg",
+      scale: 1.14,
+    },
+    {
+      name: "SSW",
+      degree: "0deg",
+      scale: 1.14,
+    },
+    {
+      name: "WSW",
+      degree: "292.5deg",
+      scale: 1.13,
+    },
+    {
+      name: "SSE",
+      degree: "315deg",
+      scale: 1.13,
+    },
+    {
+      name: "W",
+      degree: "90deg",
+      scale: 1.11,
+    },
+    {
+      name: "ENE",
+      degree: "248.5deg",
+      scale: 1.09,
+    },
+  ];
 
   const getmatchup = () => {
     setLoader(true);
@@ -104,21 +104,8 @@ const Slate = () => {
         home_away: "home",
       },
       {
-        teams_away_team_name: weather?.data?.teams_away_team_name?.[i],
-        teams_home_team_name : weather?.data?.teams_home_team_name?.[i],
-        series_game_number : weather?.data?.series_game_number[i],
-        games_in_series : weather?.data?.games_in_series[i],
-        day_night : weather?.data?.day_night[i],
-        venue_name : weather?.data?.venue_name[i],
-        Game_Temp : weather?.data?.Game_Temp?.[i],
-        Game_Precip : weather?.data?.Game_Precip?.[i],
-        Game_Wind_MPH : weather?.data?.Game_Wind_MPH?.[i],
-        year3 : weather?.data?.[`3yr`][i],
-        year1 : weather?.data?.[`1yr`][i],
-        hr : weather?.data?.hr[i],
-        Game_Wind_Direction : weather?.data?.Game_Wind_Direction?.[i],
-        index : i,
-        game_pk : weather?.data?.game_pk?.[i]
+        index: i,
+        game_pk: weather?.data?.game_pk?.[i],
       },
     ];
 
@@ -152,9 +139,12 @@ const Slate = () => {
               {weather?.data?.hr?.length > 0
                 ? weather?.data?.date?.map((item, i) => (
                     <TabPanel key={i}>
-                      <div   onClick={() => {
-                                handleDamPage(i);
-                              }} className="w-full cursor-pointer border-4 my-3 px-20 slate-box py-5 rounded-[60px] text-center border-black h-auto">
+                      <div
+                        onClick={() => {
+                          handleDamPage(i);
+                        }}
+                        className="w-full cursor-pointer border-4 my-3 px-20 slate-box py-5 rounded-[60px] text-center border-black h-auto"
+                      >
                         <div className="my-3">
                           <h1 className="font-extrabold text-4xl my-2">
                             {weather?.data?.teams_away_team_name?.[i]}
@@ -169,13 +159,13 @@ const Slate = () => {
                           </h1>
                         </div>
                         <div className="my-3">
-                          <h1 className="font-medium text-4xl my-2">{`Game ${weather.data.series_game_number[i]} of ${weather.data.games_in_series[i]} in Series`}</h1>
+                          <h1 className="font-medium text-4xl my-2">{`Game ${weather?.data.series_game_number[i]} of ${weather?.data.games_in_series[i]} in Series`}</h1>
                         </div>
                         <div className="my-3">
-                          <h1 className="font-medium text-4xl my-2">{`issa ${weather.data.day_night[i]} game`}</h1>
+                          <h1 className="font-medium text-4xl my-2">{`issa ${weather?.data.day_night[i]} game`}</h1>
                         </div>
                         <div className="my-3">
-                          <h1 className="font-medium text-4xl my-2">{`Park: ${weather.data.venue_name[i]}`}</h1>
+                          <h1 className="font-medium text-4xl my-2">{`Park: ${weather?.data.venue_name[i]}`}</h1>
                         </div>
 
                         <div className="grid md:grid-cols-2 sm:grid-cols-1 gap-12">
@@ -186,12 +176,11 @@ const Slate = () => {
                                   Weather
                                 </h1>
                                 <div className="text-left px-10 mb-2">
-                                 
                                   <div className="grid md:grid-cols-2 sm:grid-cols-1">
                                     <div>
-                                    <h1 className="font-medium text-3xl my-2">
-                                    {`${weather?.data?.Game_Temp?.[i]}°`}
-                                  </h1>
+                                      <h1 className="font-medium text-3xl my-2">
+                                        {`${weather?.data?.Game_Temp?.[i]}°`}
+                                      </h1>
                                       <h1 className="font-medium text-3xl my-2">
                                         {`${weather?.data?.Game_Precip?.[i]}% `}
                                       </h1>
@@ -199,8 +188,16 @@ const Slate = () => {
                                         Chance of precip
                                       </h1>
                                     </div>
-                                    <div>
-                                      <DirectionImage windDirection={wind_direction} name={weather?.data?.Game_Wind_Direction?.[i]}/>
+                                    <div className="text-end">
+                                      <DirectionImage
+                                        classname={"matchup"}
+                                        windDirection={wind_direction}
+                                        name={
+                                          weather?.data?.Game_Wind_Direction?.[
+                                            i
+                                          ]
+                                        }
+                                      />
                                       <h1 className="font-medium text-end text-3xl my-2">
                                         {`${weather?.data?.Game_Wind_MPH?.[i]}MPH`}
                                       </h1>
@@ -211,22 +208,20 @@ const Slate = () => {
                             </div>
                           </div>
                           <div>
-                            <div
-                             
-                            >
+                            <div>
                               <div className="rounded-[40px] h-[250px]  bg-[#ac82e5] py-2 my-5">
                                 <h1 className="font-medium text-3xl my-2">
                                   SC Park Factors
                                 </h1>
                                 <div className="grid grid-cols-1 mb-2">
                                   <h1 className="font-medium text-3xl my-2">
-                                    3yr: {weather.data?.[`3yr`][i]}
+                                    3yr: {weather?.data?.[`3yr`][i]}
                                   </h1>
                                   <h1 className="font-medium text-3xl my-2">
-                                    1yr: {weather.data?.[`1yr`][i]}
+                                    1yr: {weather?.data?.[`1yr`][i]}
                                   </h1>
                                   <h1 className="font-medium text-3xl my-2">
-                                    HR: {weather.data?.hr[i]}
+                                    HR: {weather?.data?.hr[i]}
                                   </h1>
                                 </div>
                               </div>
