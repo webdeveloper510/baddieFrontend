@@ -56,6 +56,33 @@ const GamePage = () => {
     },
   ];
 
+  const bgColor = [
+    {
+      name : "Under Edge",
+      color : "#22c55e",
+    },
+    {
+      name : "Over Edge",
+      color : "#22c55e",
+    },
+    {
+      name : "Under Edge - Potential Outlier",
+      color : "#ff7800",
+    },
+    {
+      name : "Over Edge - Potential Outlier",
+      color : "#ff7800",
+    },
+    {
+      name : "Fair Value",
+      color : "transparent",
+    },
+    {
+      name : "No Edge - No Value",
+      color : "#f93e3e",
+    },
+  ]
+
   const getWeather = () => {
     // setLoader(true);
     getWeatherData()
@@ -110,6 +137,15 @@ const GamePage = () => {
         <Apploader size={80} />
       </div>
     );
+  }
+
+  const callColor = (value) => {
+    const matchObj = bgColor.find((item) => item?.name === value);
+    return (
+      <td className={`border-b-2 border-b-gray`} style={{background : matchObj?.color}}>
+       {value}
+    </td>
+    )
   }
 
   return (
@@ -246,9 +282,10 @@ const GamePage = () => {
                     <td className="border-r-2 border-r-black border-2 border-[#b1aeae]">
                       {data?.response1?.odds_k_over}
                     </td>
-                    <td className="bg-[#ffff00] border-b-2 border-b-[#2bf92b]">
+                     { callColor(data?.response3?.k_line_call)}
+                    {/* <td className="bg-[#ffff00] border-b-2 border-b-[#2bf92b]">
                       {data?.response3?.k_line_call}
-                    </td>
+                    </td> */}
                   </tr>
                   <tr className="text-center">
                     <td className="border-l-2 border-l-black border-2 border-[#b1aeae]">
@@ -263,9 +300,10 @@ const GamePage = () => {
                     <td className="border-r-2">
                       {data?.response1?.odds_hits_over}
                     </td>
-                    <td className="bg-[#66ff66] border-b-2 border-b-[#2bf92b] border-r-2 border-r-[#2bf92b]">
+                    { callColor(data?.response3?.hits_line_call)}
+                    {/* <td className="bg-[#66ff66] border-b-2 border-b-[#2bf92b] border-r-2 border-r-[#2bf92b]">
                       {data?.response3?.hits_line_call}
-                    </td>
+                    </td> */}
                   </tr>
                   <tr className="text-center">
                     <td className="border-l-2 border-l-black border-2 border-[#b1aeae]">
@@ -280,9 +318,10 @@ const GamePage = () => {
                     <td className="border-r-2 border-r-black border-[#b1aeae] border-2">
                       {data?.response1?.odds_outs_over}
                     </td>
-                    <td className="bg-[#66ff66] border-b-2 border-b-[#2bf92b] border-r-2 border-r-[#2bf92b]">
+                    { callColor(data?.response3?.outs_line_call)}
+                    {/* <td className="bg-[#66ff66] border-b-2 border-b-[#2bf92b] border-r-2 border-r-[#2bf92b]">
                       {data?.response3?.outs_line_call}
-                    </td>
+                    </td> */}
                   </tr>
                   <tr className="text-center">
                     <td className="border-b-2 border-l-2 border-2 border-r-[#b1aeae] border-t-[#b1aeae] border-black">
@@ -303,9 +342,10 @@ const GamePage = () => {
                     <td className="border-b-2 border-r-2 border-t-[#b1aeae] border-t-2 border-black">
                       {data?.response1?.odds_er_over}
                     </td>
-                    <td className="bg-[#f7c7ac]">
+                    { callColor(data?.response3?.er_line_call)}
+                    {/* <td className="bg-[#f7c7ac]">
                       {data?.response3?.er_line_call}
-                    </td>
+                    </td> */}
                   </tr>
                   <tr className="text-center">
                     <td className="" rowSpan={4}>
@@ -323,9 +363,10 @@ const GamePage = () => {
                     <td className="border-r-2 border-r-black border-2 border-[#b1aeae]">
                       {data?.response4?.odds_k_over}
                     </td>
-                    <td className="bg-[#ffff00] border-b-2 border-b-[#2bf92b]">
+                    { callColor(data?.reponse6?.k_line_call)}
+                    {/* <td className="bg-[#ffff00] border-b-2 border-b-[#2bf92b]">
                       {data?.reponse6?.k_line_call}
-                    </td>
+                    </td> */}
                   </tr>
                   <tr className="text-center">
                     <td className="border-l-2 border-l-black border-2 border-[#b1aeae]">
@@ -340,9 +381,10 @@ const GamePage = () => {
                     <td className="border-r-2">
                       {data?.response4?.odds_hits_over}
                     </td>
-                    <td className="bg-[#66ff66] border-b-2 border-b-[#2bf92b] border-r-2 border-r-[#2bf92b]">
+                    { callColor(data?.reponse6?.hits_line_call)}
+                    {/* <td className="bg-[#66ff66] border-b-2 border-b-[#2bf92b] border-r-2 border-r-[#2bf92b]">
                       {data?.reponse6?.hits_line_call}
-                    </td>
+                    </td> */}
                   </tr>
                   <tr className="text-center">
                     <td className="border-l-2 border-l-black border-2 border-[#b1aeae]">
@@ -357,9 +399,10 @@ const GamePage = () => {
                     <td className="border-r-2 border-r-black border-[#b1aeae] border-2">
                       {data?.response4?.odds_outs_over}
                     </td>
-                    <td className="bg-[#66ff66] border-b-2 border-b-[#2bf92b] border-r-2 border-r-[#2bf92b]">
+                    { callColor(data?.reponse6?.outs_line_call)}
+                    {/* <td className="bg-[#66ff66] border-b-2 border-b-[#2bf92b] border-r-2 border-r-[#2bf92b]">
                       {data?.reponse6?.outs_line_call}
-                    </td>
+                    </td> */}
                   </tr>
                   <tr className="text-center">
                     <td className="border-b-2 border-l-2 border-2 border-r-[#b1aeae] border-t-[#b1aeae] border-black">
@@ -380,9 +423,10 @@ const GamePage = () => {
                     <td className="border-b-2 border-r-2 border-t-[#b1aeae] border-t-2 border-black">
                       {data?.response4?.odds_er_over}
                     </td>
-                    <td className="bg-[#ffff00]">
+                    { callColor(data?.reponse6?.er_line_call)}
+                    {/* <td className="bg-[#ffff00]">
                       {data?.reponse6?.er_line_call}
-                    </td>
+                    </td> */}
                   </tr>
                 </tbody>
               </table>
