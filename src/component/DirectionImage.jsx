@@ -26,7 +26,7 @@ function DirectionImage({ windDirection, name , classname}) {
           style={{
             fill: "#f99d1e",
             stroke: "#000000",
-            transform: `rotate(${matchObj?.degree}) scale(${matchObj?.scale})`,
+            transform: `rotate(${matchObj?.degree ? matchObj?.degree : "0deg"}) scale(${matchObj?.scale})`,
             transformOrigin: "center",
             transformBox: "fill-box",
           }}

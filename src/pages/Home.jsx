@@ -128,8 +128,8 @@ function Home() {
     <h4>Tryna Link Up?</h4>
         <p>BADDIE's suite of tools & expert picks make betting like a data scientist easy asf. Get a taste of BADDIE's innovative take on sports betting.</p>
           </div>
-         <p class="promo_code absolute">Use promo code <span>dIM3SDFK</span> for <span>25%</span> off the life of 
-         your monthly sub at checkout for the entire season for a limited time</p>
+         {/* <p class="promo_code absolute">Use promo code <span>dIM3SDFK</span> for <span>25%</span> off the life of 
+         your monthly sub at checkout for the entire season for a limited time</p> */}
   
    </>   
    }
@@ -146,7 +146,7 @@ function Home() {
       </div>
       <div className="col-6">
       <h1 className="text-white text-4xl font-bold sec2heading">YTD MLB Pick Stats</h1>
-      <p>$100 unit bettors have made ${picks?.units*100} year to date so far
+      <p>$100 unit bettors have made ${Math.floor(picks?.units*100)} year to date so far
        with BADDIE’s picks</p>
 
        <ul>
