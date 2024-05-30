@@ -176,19 +176,22 @@ const Slate = () => {
                                   Weather
                                 </h1>
                                 <div className="text-left px-10 mb-2">
-                                  <div className="grid md:grid-cols-2 sm:grid-cols-1">
-                                    <div>
-                                      <h1 className="font-medium text-3xl my-2">
+                                  <div className="grid md:grid-cols-3 sm:grid-cols-1">
+                                    <div className="flex justify-center items-center">
+                                      <h1 className="font-medium text-center text-3xl my-2">
                                         {`${weather?.data?.Game_Temp?.[i]}°`}
                                       </h1>
-                                      <h1 className="font-medium text-3xl my-2">
+                                      
+                                    </div>
+                                    <div>
+                                    <h1 className="font-medium text-center text-3xl my-2">
                                         {`${weather?.data?.Game_Precip?.[i]}% `}
                                       </h1>
-                                      <h1 className="font-medium text-3xl my-2">
+                                      <h1 className="font-medium text-center text-2xl my-2">
                                         Chance of precip
                                       </h1>
                                     </div>
-                                    <div className="text-end">
+                                    <div className="text-center">
                                       <DirectionImage
                                         classname={"matchup"}
                                         windDirection={wind_direction}
@@ -198,7 +201,7 @@ const Slate = () => {
                                           ]
                                         }
                                       />
-                                      <h1 className="font-medium text-end text-3xl my-2">
+                                      <h1 className="font-medium text-end text-2xl my-2">
                                         {`${weather?.data?.Game_Wind_MPH?.[i]}MPH`}
                                       </h1>
                                     </div>
@@ -213,7 +216,7 @@ const Slate = () => {
                                 <h1 className="font-medium text-3xl my-2">
                                   SC Park Factors
                                 </h1>
-                                <div className="grid grid-cols-1 mb-2">
+                                <div className="flex justify-evenly  h-[160px] mb-2 items-center">
                                   <h1 className="font-medium text-3xl my-2">
                                     3yr: {weather?.data?.[`3yr`][i]}
                                   </h1>

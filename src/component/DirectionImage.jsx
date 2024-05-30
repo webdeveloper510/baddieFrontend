@@ -5,7 +5,7 @@ function DirectionImage({ windDirection, name , classname}) {
 
   return (
     <div className="my-2" >      
-      <svg viewBox="0 0 100 100" className={classname ? 'mathup-icon' : "game-page-icon"}  style={{width:"50px"}}>
+      <svg viewBox="0 0 100 100"   style={{width:"50px", margin:"auto"}}>
         <path
           style={{
             fill: "#0099ed",
