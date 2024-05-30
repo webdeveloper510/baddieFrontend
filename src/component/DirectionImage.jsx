@@ -34,7 +34,7 @@ function DirectionImage({ windDirection, name , classname}) {
         />
       </svg>
 
-      <h1 className="font-medium  text-2xl my-2">{name}</h1>
+      <h1 className="font-medium  2x:text-4xl xl:text-2xl my-2">{name}</h1>
     </div>
   );
 }

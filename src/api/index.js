@@ -277,3 +277,13 @@ export const getSingleMatchup = async(data)=>{
         throw (error)
     }
 }
+
+export const getTeamDefense = async(data)=>{
+    console.log("datadatadatadata", data)
+    try {
+        const response = await authApi.post("team-defense/", data);
+        return response.data
+    } catch (error) {
+        throw (error)
+    }
+}

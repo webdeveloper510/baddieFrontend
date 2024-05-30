@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import { getDamnEvcal, getSingleMatchup, getWeatherData } from "../../api";
+import { getDamnEvcal, getSingleMatchup, getWeatherData, getTeamDefense } from "../../api";
 import Apploader from "../../component/Apploader";
 import DirectionImage from "../../component/DirectionImage";
 // import graphImage from "/graph-image.png"
@@ -9,6 +9,8 @@ import DirectionImage from "../../component/DirectionImage";
 const GamePage = () => {
   const [data, setData] = useState(null);
   const [data2, setData2] = useState(null);
+  const [team, setTeam] = useState(null);
+  console.log("🚀 ~ GamePage ~ team:", team)
   const [player, setPlayer] = useState(null);
   const [weather, setWeather] = useState(true);
   const [loader, setLoader] = useState(false);
@@ -111,6 +113,16 @@ const GamePage = () => {
       });
   };
 
+  const getTeamdata = () => {
+    getTeamDefense({ game_pk: state?.[2].game_pk })
+      .then((res) => {
+        setTeam(res)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const getMatchupData = () => {
     // setLoader(true);
     getSingleMatchup({ game_pk: state?.[2].game_pk })
@@ -129,6 +141,7 @@ const GamePage = () => {
     getAwayData();
     getMatchupData();
     getWeather();
+    getTeamdata()
   }, []);
 
   if (loader) {
@@ -249,7 +262,7 @@ const GamePage = () => {
 
           <div>
           {
-            data?.response1?.odds_hits_over  ?  "" : <p className="text-2xl font-medium text-center mt-5 game-titles">No Props Available At This Time</p>
+            data?.response1?.odds_hits_over  ?  "" : <p className="text-2xl font-medium text-[#ff0000] text-center mt-5 game-titles">No Props Available At This Time</p>
            }
           </div>
 
@@ -733,30 +746,32 @@ const GamePage = () => {
           <div className="mt-20">
             <div>
               <div className="rounded-[50px]  px-20 bg-[#40ecd9] py-5 my-5">
-                <h1 className="font-medium text-center text-5xl underline mb-10">
-                  Weather
-                </h1>
+                
                 <div className="text-left px-5 mb-2">
                   <div className="grid md:grid-cols-3 sm:grid-cols-1">
-                    <div>
-                      <h1 className="font-medium text-4xl my-2">
+                    <div className="flex justify-center items-center">
+                      <h1 className="font-medium text-5xl mt-20 my-2">
                         {`${weather?.data?.Game_Temp?.[index]}°`}
                       </h1>
-                      <h1 className="font-medium text-4xl my-2">
+                     
+                    </div>
+                    <div className="text-center">
+                    <h1 className="font-medium text-center text-5xl underline mb-10">
+                    Weather
+                </h1>
+                    <h1 className="font-medium text-4xl mt-4 my-2">
                         {`${weather?.data?.Game_Precip?.[index]}% `}
                       </h1>
                       <h1 className="font-medium text-4xl my-2">
                         Chance of precip
                       </h1>
                     </div>
-                    <div className="text-center">
-                      <DirectionImage
+                    <div className="text-center mt-4">
+                    <DirectionImage
                         windDirection={wind_direction}
                         name={weather?.data?.Game_Wind_Direction?.[index]}
                       />
-                    </div>
-                    <div>
-                      <h1 className="font-medium text-end text-4xl my-2">
+                      <h1 className="font-medium text-center text-4xl my-2">
                         {`${weather?.data?.Game_Wind_MPH?.[index]}MPH`}
                       </h1>
                     </div>
@@ -862,31 +877,31 @@ const GamePage = () => {
              <div className="px-5">
              <h1 className="font-bold text-center mb-5 text-4xl">C</h1>
                 <div className="text-end">
-                  <h3 className="font-bold text-3xl">DRS : {data?.away_response_dict?.Catcher?.DRS}</h3>
-                  <h3 className="font-bold text-3xl">SB : {data?.away_response_dict?.Catcher?.SB}</h3>
-                  <h3 className="font-bold text-3xl">CS : {data?.away_response_dict?.Catcher?.CS}</h3>
-                  <h3 className="font-bold text-3xl">SB Win % : {data?.away_response_dict?.Catcher?.J}</h3>
-                  <h3 className="font-bold text-3xl">Errors : {data?.away_response_dict?.Catcher?.Errors}</h3>
+                  <h3 className="font-bold text-3xl">DRS : {team?.away_team_response?.Catcher?.DRS}</h3>
+                  <h3 className="font-bold text-3xl">SB : {team?.away_team_response?.Catcher?.SB}</h3>
+                  <h3 className="font-bold text-3xl">CS : {team?.away_team_response?.Catcher?.CS}</h3>
+                  <h3 className="font-bold text-3xl">SB Win % : {team?.away_team_response?.Catcher?.J}</h3>
+                  <h3 className="font-bold text-3xl">Errors : {team?.away_team_response?.Catcher?.Errors}</h3>
                 
                 </div>
               </div>
               <div className="px-5 border-r-8 border-l-8 border-black">
               <h1 className="font-bold text-center mb-5 text-4xl">INF</h1>
                 <div className="text-end">
-                  <h3 className="font-bold text-3xl">OAA : {data?.away_response_dict?.Infield?.OAA}</h3>
-                  <h3 className="font-bold text-3xl">DRS : {data?.away_response_dict?.Infield?.DP}</h3>
-                  <h3 className="font-bold text-3xl">UZR_150 : {data?.away_response_dict?.Infield?.UZR_150}</h3>
-                  <h3 className="font-bold text-3xl">Errors : {data?.away_response_dict?.Infield?.Errors}</h3>
-                  <h3 className="font-bold text-3xl">DPs : {data?.away_response_dict?.Infield?.DRS}</h3>               
+                  <h3 className="font-bold text-3xl">OAA : {team?.away_team_response?.Infield?.OAA}</h3>
+                  <h3 className="font-bold text-3xl">DRS : {team?.away_team_response?.Infield?.DP}</h3>
+                  <h3 className="font-bold text-3xl">UZR_150 : {team?.away_team_response?.Infield?.UZR_150}</h3>
+                  <h3 className="font-bold text-3xl">Errors : {team?.away_team_response?.Infield?.Errors}</h3>
+                  <h3 className="font-bold text-3xl">DPs : {team?.away_team_response?.Infield?.DRS}</h3>               
                 </div>
               </div>
               <div className="px-5">
               <h1 className="font-bold text-center mb-5 text-4xl">OF</h1>
                 <div className="text-end">
-                  <h3 className="font-bold text-3xl">OAA : {data?.away_response_dict?.Outfield?.OAA}</h3>
-                  <h3 className="font-bold text-3xl">DRS : {data?.away_response_dict?.Outfield?.DRS}</h3>
-                  <h3 className="font-bold text-3xl">UZR_150 : {data?.away_response_dict?.Outfield?.UZR_150}</h3>
-                  <h3 className="font-bold text-3xl">Errors : {data?.away_response_dict?.Outfield?.Errors}</h3>
+                  <h3 className="font-bold text-3xl">OAA : {team?.away_team_response?.Outfield?.OAA}</h3>
+                  <h3 className="font-bold text-3xl">DRS : {team?.away_team_response?.Outfield?.DRS}</h3>
+                  <h3 className="font-bold text-3xl">UZR_150 : {team?.away_team_response?.Outfield?.UZR_150}</h3>
+                  <h3 className="font-bold text-3xl">Errors : {team?.away_team_response?.Outfield?.Errors}</h3>
                 </div>
               </div>
              </div>
@@ -898,37 +913,37 @@ const GamePage = () => {
               Team Defense
             </h1>
              {/* <div>
-                <h1 className="text-3xl font-bold game-titles text-center  my-10">{weather?.data?.teams_home_team_name?.[index]}</h1>
+                <h1 className="text-3xl font-bold game-titles text-center  my-10">{weather?.team?.teams_home_team_name?.[index]}</h1>
               </div> */}
              <div className="grid md:grid-cols-3">
              <div className="px-5">
              <h1 className="font-bold text-center mb-5 text-4xl">C</h1>
                 <div className="text-end">
-                  <h3 className="font-bold text-3xl">DRS : {data?.home_response_dict?.Catcher?.DRS}</h3>
-                  <h3 className="font-bold text-3xl">SB : {data?.home_response_dict?.Catcher?.SB}</h3>
-                  <h3 className="font-bold text-3xl">CS : {data?.home_response_dict?.Catcher?.CS}</h3>
-                  <h3 className="font-bold text-3xl">SB Win % : {data?.home_response_dict?.Catcher?.J}</h3>
-                  <h3 className="font-bold text-3xl">Errors : {data?.home_response_dict?.Catcher?.Errors}</h3>
+                  <h3 className="font-bold text-3xl">DRS : {team?.home_team_response?.Catcher?.DRS}</h3>
+                  <h3 className="font-bold text-3xl">SB : {team?.home_team_response?.Catcher?.SB}</h3>
+                  <h3 className="font-bold text-3xl">CS : {team?.home_team_response?.Catcher?.CS}</h3>
+                  <h3 className="font-bold text-3xl">SB Win % : {team?.home_team_response?.Catcher?.J}</h3>
+                  <h3 className="font-bold text-3xl">Errors : {team?.home_team_response?.Catcher?.Errors}</h3>
                 
                 </div>
               </div>
               <div className="px-5 border-r-8 border-l-8 border-black">
               <h1 className="font-bold text-center mb-5 text-4xl">INF</h1>
                 <div className="text-end">
-                  <h3 className="font-bold text-3xl">OAA : {data?.home_response_dict?.Infield?.OAA}</h3>
-                  <h3 className="font-bold text-3xl">DRS : {data?.home_response_dict?.Infield?.DP}</h3>
-                  <h3 className="font-bold text-3xl">UZR_150 : {data?.home_response_dict?.Infield?.UZR_150}</h3>
-                  <h3 className="font-bold text-3xl">Errors : {data?.home_response_dict?.Infield?.Errors}</h3>
-                  <h3 className="font-bold text-3xl">DPs : {data?.home_response_dict?.Infield?.DRS}</h3>               
+                  <h3 className="font-bold text-3xl">OAA : {team?.home_team_response?.Infield?.OAA}</h3>
+                  <h3 className="font-bold text-3xl">DRS : {team?.home_team_response?.Infield?.DP}</h3>
+                  <h3 className="font-bold text-3xl">UZR_150 : {team?.home_team_response?.Infield?.UZR_150}</h3>
+                  <h3 className="font-bold text-3xl">Errors : {team?.home_team_response?.Infield?.Errors}</h3>
+                  <h3 className="font-bold text-3xl">DPs : {team?.home_team_response?.Infield?.DRS}</h3>               
                 </div>
               </div>
               <div className="px-5">
               <h1 className="font-bold text-center mb-5 text-4xl">OF</h1>
                 <div className="text-end">
-                  <h3 className="font-bold text-3xl">OAA : {data?.home_response_dict?.Outfield?.OAA}</h3>
-                  <h3 className="font-bold text-3xl">DRS : {data?.home_response_dict?.Outfield?.DRS}</h3>
-                  <h3 className="font-bold text-3xl">UZR_150 : {data?.home_response_dict?.Outfield?.UZR_150}</h3>
-                  <h3 className="font-bold text-3xl">Errors : {data?.home_response_dict?.Outfield?.Errors}</h3>
+                  <h3 className="font-bold text-3xl">OAA : {team?.home_team_response?.Outfield?.OAA}</h3>
+                  <h3 className="font-bold text-3xl">DRS : {team?.home_team_response?.Outfield?.DRS}</h3>
+                  <h3 className="font-bold text-3xl">UZR_150 : {team?.home_team_response?.Outfield?.UZR_150}</h3>
+                  <h3 className="font-bold text-3xl">Errors : {team?.home_team_response?.Outfield?.Errors}</h3>
                 </div>
               </div>
              </div>
