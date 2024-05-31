@@ -1,11 +1,11 @@
 import React from "react";
 
-function DirectionImage({ windDirection, name , classname}) {
+function DirectionImage({ windDirection, name }) {
   const matchObj = windDirection.find((item) => item.name === name);
 
   return (
     <div className="my-2" >      
-      <svg viewBox="0 0 100 100"   style={{width:"50px", margin:"auto"}}>
+      <svg viewBox="0 0 100 100"  className="direction-image"  style={{width:"50px", margin:"auto"}} >
         <path
           style={{
             fill: "#0099ed",
@@ -34,7 +34,7 @@ function DirectionImage({ windDirection, name , classname}) {
         />
       </svg>
 
-      <h1 className="font-medium  2x:text-4xl xl:text-2xl my-2">{name}</h1>
+      <h1 className="font-medium wind-name wind-mdh my-2">{name}</h1>
     </div>
   );
 }

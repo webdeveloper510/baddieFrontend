@@ -101,7 +101,7 @@ const GamePage = () => {
 
   const getAwayData = () => {
     setLoader(true);
-    getDamnEvcal({ game_pk: state?.[2].game_pk })
+    getDamnEvcal({ game_pk: state?.[2].game_pk , date_key: state?.[2]?.date_key})
       .then((res) => {
         setLoader(false);
         console.log("damn evcal data", res);
@@ -125,7 +125,7 @@ const GamePage = () => {
 
   const getMatchupData = () => {
     // setLoader(true);
-    getSingleMatchup({ game_pk: state?.[2].game_pk })
+    getSingleMatchup({ game_pk: state?.[2].game_pk , date_key: state?.[2]?.date_key})
       .then((res) => {
         // setLoader(false);
         console.log("getSingleMatchup", res);
@@ -748,7 +748,7 @@ const GamePage = () => {
               <div className="rounded-[50px]  px-20 bg-[#40ecd9] py-5 my-5">
                 
                 <div className="text-left px-5 mb-2">
-                  <div className="grid md:grid-cols-3 sm:grid-cols-1">
+                  <div className="grid grid-cols-3 ">
                     <div className="flex justify-center items-center">
                       <h1 className="font-medium text-5xl mt-20 my-2">
                         {`${weather?.data?.Game_Temp?.[index]}°`}
