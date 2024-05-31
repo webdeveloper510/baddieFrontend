@@ -1,6 +1,6 @@
 import React from "react";
 
-function DirectionImage({ windDirection, name }) {
+function DirectionImage({ windDirection, name ,newclass}) {
   const matchObj = windDirection.find((item) => item.name === name);
 
   return (
@@ -34,7 +34,7 @@ function DirectionImage({ windDirection, name }) {
         />
       </svg>
 
-      <h1 className="font-medium wind-name wind-mdh my-2">{name}</h1>
+      <h1 className={`font-medium wind-name my-2 ${newclass ?  "text-4xl" : "wind-mdh"}`}>{name}</h1>
     </div>
   );
 }

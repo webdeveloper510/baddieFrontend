@@ -768,6 +768,7 @@ const GamePage = () => {
                     </div>
                     <div className="text-center mt-4">
                     <DirectionImage
+                        newclass="newclass"
                         windDirection={wind_direction}
                         name={weather?.data?.Game_Wind_Direction?.[index]}
                       />
