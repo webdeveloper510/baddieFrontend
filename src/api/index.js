@@ -287,3 +287,14 @@ export const getTeamDefense = async(data)=>{
         throw (error)
     }
 }
+
+
+export const postDamnMetric = async(data)=>{
+    console.log("datadatadatadata", data)
+    try {
+        const response = await authApi.post("damn-metric/", data);
+        return response.data
+    } catch (error) {
+        throw (error)
+    }
+}

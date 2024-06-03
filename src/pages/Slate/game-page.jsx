@@ -1,20 +1,38 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import { getDamnEvcal, getSingleMatchup, getWeatherData, getTeamDefense } from "../../api";
+import {
+  getDamnEvcal,
+  getSingleMatchup,
+  getWeatherData,
+  getTeamDefense,
+  postDamnMetric,
+} from "../../api";
 import Apploader from "../../component/Apploader";
 import DirectionImage from "../../component/DirectionImage";
 // import graphImage from "/graph-image.png"
 
 const GamePage = () => {
+
+  const navigate = useNavigate()
   const [data, setData] = useState(null);
   const [data2, setData2] = useState(null);
   const [team, setTeam] = useState(null);
-  console.log("🚀 ~ GamePage ~ team:", team)
+  console.log("🚀 ~ GamePage ~ team:", team);
   const [player, setPlayer] = useState(null);
   const [weather, setWeather] = useState(true);
   const [loader, setLoader] = useState(false);
+  const [metricType, setMetricType] = useState("");
+  const [loader2 , setLoader2] = useState(false)
+  const [range, setRange] = useState(5);
+  const [rangeMax, setRangeMax] = useState(10);
+  const [rangeDefault, setRangeDefault] = useState(5);
+  const [equality, setEquality] = useState("less than or equal to");
   console.log("🚀 ~ GamePage ~ data:", data);
+  const [damnMetric , setDamnMetric] = useState(null)
+
+
+
 
   const { state } = useLocation();
   const index = state?.[2]?.index;
@@ -60,30 +78,65 @@ const GamePage = () => {
 
   const bgColor = [
     {
-      name : "Under Edge",
-      color : "#22c55e",
+      name: "Under Edge",
+      color: "#22c55e",
     },
     {
-      name : "Over Edge",
-      color : "#22c55e",
+      name: "Over Edge",
+      color: "#22c55e",
     },
     {
-      name : "Under Edge - Potential Outlier",
-      color : "#ff7800",
+      name: "Under Edge - Potential Outlier",
+      color: "#ff7800",
     },
     {
-      name : "Over Edge - Potential Outlier",
-      color : "#ff7800",
+      name: "Over Edge - Potential Outlier",
+      color: "#ff7800",
     },
     {
-      name : "Fair Value",
-      color : "transparent",
+      name: "Fair Value",
+      color: "transparent",
     },
     {
-      name : "No Edge - No Value",
-      color : "#f93e3e",
+      name: "No Edge - No Value",
+      color: "#f93e3e",
     },
-  ]
+  ];
+
+  useEffect(() => {
+    switch (metricType) {
+      case "Ks": {
+        setRangeMax(10);
+        setRangeDefault(5);
+        setRange(5);
+        break;
+      }
+      case "Hits Allowed": {
+        setRangeMax(10);
+        setRangeDefault(5);
+        setRange(5);
+        break;
+      }
+      case "Walks": {
+        setRangeMax(5);
+        setRangeDefault(2);
+        setRange(1);
+        break;
+      }
+      case "Outs": {
+        setRangeMax(27);
+        setRangeDefault(15);
+        setRange(15);
+        break;
+      }
+      case "Earned Runs": {
+        setRangeMax(5);
+        setRangeDefault(15);
+        setRange(2);
+        break;
+      }
+    }
+  }, [metricType]);
 
   const getWeather = () => {
     // setLoader(true);
@@ -101,7 +154,10 @@ const GamePage = () => {
 
   const getAwayData = () => {
     setLoader(true);
-    getDamnEvcal({ game_pk: state?.[2].game_pk , date_key: state?.[2]?.date_key})
+    getDamnEvcal({
+      game_pk: state?.[2].game_pk,
+      date_key: state?.[2]?.date_key,
+    })
       .then((res) => {
         setLoader(false);
         console.log("damn evcal data", res);
@@ -114,9 +170,9 @@ const GamePage = () => {
   };
 
   const getTeamdata = () => {
-    getTeamDefense({ game_pk: state?.[2].game_pk })
+    getTeamDefense({ away_team_name : player?.data?.player_name_away , home_team_name : player?.data?.player_name_home})
       .then((res) => {
-        setTeam(res)
+        setTeam(res);
       })
       .catch((error) => {
         console.log(error);
@@ -125,11 +181,19 @@ const GamePage = () => {
 
   const getMatchupData = () => {
     // setLoader(true);
-    getSingleMatchup({ game_pk: state?.[2].game_pk , date_key: state?.[2]?.date_key})
+    getSingleMatchup({
+      game_pk: state?.[2].game_pk,
+      date_key: state?.[2]?.date_key,
+    })
       .then((res) => {
         // setLoader(false);
         console.log("getSingleMatchup", res);
         setPlayer(res);
+        if(res?.data?.player_name_away == "" && res?.data?.player_name_home == ""){
+           
+        }else{
+          // navigate("/matchup")
+        }
       })
       .catch((error) => {
         // setLoader(false);
@@ -137,12 +201,49 @@ const GamePage = () => {
       });
   };
 
-  useEffect(() => {    
+  useEffect(() => {
     getAwayData();
     getMatchupData();
     getWeather();
-    getTeamdata()
+    getTeamdata();
   }, []);
+
+
+  const handeSubmit = (value) => {
+    setLoader2(true)
+    console.log("valueeeeeeeeeeee", value)
+    const awayData = {
+      stat_type : "pitcher",
+      player_id : player?.data?.player_id_away,
+      opp_team_id : player?.data?.opp_team_id_away,
+      home_away : "away",
+      metric_type : metricType,
+      prop_type : equality,
+      metric_val : range,
+    }
+
+    const homeData = {
+      stat_type : "pitcher",
+      player_id : player?.data?.player_id_home,
+      opp_team_id : player?.data?.opp_team_id_home,
+      home_away : "home",
+      metric_type : metricType,
+      prop_type : equality,
+      metric_val : range,
+    }
+
+    const newData = value === "away" ? awayData : homeData
+
+
+    postDamnMetric(newData).then((res)=>{
+      setLoader2(false)
+      console.log("res val", res)
+      setDamnMetric(res)
+    }).catch((error)=>{
+      console.log(error)
+      setLoader2(false)
+    })
+  }
 
   if (loader) {
     return (
@@ -155,16 +256,18 @@ const GamePage = () => {
   const callColor = (value) => {
     const matchObj = bgColor.find((item) => item?.name === value);
     return (
-      <td className={`border-b-2 border-b-gray`} style={{background : matchObj?.color}}>
-       {value}
-    </td>
-    )
-  }
+      <td
+        className={`border-b-2 border-b-gray`}
+        style={{ background: matchObj?.color }}
+      >
+        {value}
+      </td>
+    );
+  };
 
   return (
     <>
       <div className="flex flex-col pt-16 items-center w-[100%] bg-lightblack  px-4 min-w-full">
-        
         <div className="bg-white  m-auto flex flex-col px-20 h-auto main-section py-10 text-xl min-w-full">
           <div className="text-center">
             <h1 className="font-bold text-7xl">daily aggregate matchup</h1>
@@ -238,11 +341,11 @@ const GamePage = () => {
             <div className="w-[40%] game-section flex justify-center items-center">
               <div className="text-center desktop">
                 <h1 className="text-5xl font-bold leading-normal team-text">
-                  {player?.data?.player_name_away}
+                  {player?.data?.player_name_away ? player?.data?.player_name_away : "TBD"}
                 </h1>
                 <p className="text-5xl">Vs. </p>
                 <h1 className="text-5xl font-bold leading-normal team-text">
-                  {player?.data?.player_name_home}
+                  {player?.data?.player_name_home ? player?.data?.player_name_home : "TBD"}
                 </h1>
               </div>
               <div className="text-center mobile mt-5">
@@ -260,11 +363,15 @@ const GamePage = () => {
               Starting Pitcher Player Props Markets
             </h1>
 
-          <div>
-          {
-            data?.response1?.odds_hits_over  ?  "" : <p className="text-2xl font-medium text-[#ff0000] text-center mt-5 game-titles">No Props Available At This Time</p>
-           }
-          </div>
+            <div>
+              {data?.response1?.odds_hits_over ? (
+                ""
+              ) : (
+                <p className="text-2xl font-medium text-[#ff0000] text-center mt-5 game-titles">
+                  No Props Available At This Time
+                </p>
+              )}
+            </div>
 
             <div className="mt-10 desktop">
               <table className="w-[100%]">
@@ -292,16 +399,38 @@ const GamePage = () => {
                     <td className="border-l-2 border-l-black border-2 border-[#b1aeae]">
                       Ks
                     </td>
-                    <td className="border-2 border-[#b1aeae]">{data?.response1?.["under_odds_Over/Under (Strikeouts)"] ? data?.response1?.["under_odds_Over/Under (Strikeouts)"] : "-"}</td>
                     <td className="border-2 border-[#b1aeae]">
-                      {data?.response1?.odds_k_under ? data?.response1?.odds_k_under : "-"}
+                      {data?.response1?.["under_odds_Over/Under (Strikeouts)"]
+                        ? data?.response1?.[
+                            "under_odds_Over/Under (Strikeouts)"
+                          ]
+                        : "-"}
                     </td>
-                    <td className="border-2 font-semibold border-[#b1aeae]">{data?.response1?.["line_Over/Under (Strikeouts)"] ? data?.response1?.["line_Over/Under (Strikeouts)"] : "-"}</td>
-                    <td className="border-2 border-[#b1aeae]">{data?.response1?.["over_odds_Over/Under (Strikeouts)"] ? data?.response1?.["over_odds_Over/Under (Strikeouts)"] : "-"}</td>
+                    <td className="border-2 border-[#b1aeae]">
+                      {data?.response1?.odds_k_under
+                        ? data?.response1?.odds_k_under
+                        : "-"}
+                    </td>
+                    <td className="border-2 font-semibold border-[#b1aeae]">
+                      {data?.response1?.["line_Over/Under (Strikeouts)"]
+                        ? data?.response1?.["line_Over/Under (Strikeouts)"]
+                        : "-"}
+                    </td>
+                    <td className="border-2 border-[#b1aeae]">
+                      {data?.response1?.["over_odds_Over/Under (Strikeouts)"]
+                        ? data?.response1?.["over_odds_Over/Under (Strikeouts)"]
+                        : "-"}
+                    </td>
                     <td className="border-r-2 border-r-black border-2 border-[#b1aeae]">
-                      {data?.response1?.odds_k_over ? data?.response1?.odds_k_over : "-"}
+                      {data?.response1?.odds_k_over
+                        ? data?.response1?.odds_k_over
+                        : "-"}
                     </td>
-                     { callColor(data?.response3?.k_line_call ? data?.response3?.k_line_call : "-")}
+                    {callColor(
+                      data?.response3?.k_line_call
+                        ? data?.response3?.k_line_call
+                        : "-"
+                    )}
                     {/* <td className="bg-[#ffff00] border-b-2 border-b-[#2bf92b]">
                       {data?.response3?.k_line_call}
                     </td> */}
@@ -310,16 +439,40 @@ const GamePage = () => {
                     <td className="border-l-2 border-l-black border-2 border-[#b1aeae]">
                       Hits Allowed
                     </td>
-                    <td className="border-2 border-[#b1aeae]">{data?.response1?.["under_odds_Over/Under (Hits Allowed)"] ? data?.response1?.["under_odds_Over/Under (Hits Allowed)"] : "-"}</td>
                     <td className="border-2 border-[#b1aeae]">
-                      {data?.response1?.odds_hits_under ? data?.response1?.odds_hits_under : "-"}
+                      {data?.response1?.["under_odds_Over/Under (Hits Allowed)"]
+                        ? data?.response1?.[
+                            "under_odds_Over/Under (Hits Allowed)"
+                          ]
+                        : "-"}
                     </td>
-                    <td className="border-2 font-semibold border-[#b1aeae]">{data?.response1?.["line_Over/Under (Hits Allowed)"] ? data?.response1?.["line_Over/Under (Hits Allowed)"] : "-"}</td>
-                    <td className="border-2 border-[#b1aeae]">{data?.response1?.["over_odds_Over/Under (Hits Allowed)"] ? data?.response1?.["over_odds_Over/Under (Hits Allowed)"] : "-"}</td>
+                    <td className="border-2 border-[#b1aeae]">
+                      {data?.response1?.odds_hits_under
+                        ? data?.response1?.odds_hits_under
+                        : "-"}
+                    </td>
+                    <td className="border-2 font-semibold border-[#b1aeae]">
+                      {data?.response1?.["line_Over/Under (Hits Allowed)"]
+                        ? data?.response1?.["line_Over/Under (Hits Allowed)"]
+                        : "-"}
+                    </td>
+                    <td className="border-2 border-[#b1aeae]">
+                      {data?.response1?.["over_odds_Over/Under (Hits Allowed)"]
+                        ? data?.response1?.[
+                            "over_odds_Over/Under (Hits Allowed)"
+                          ]
+                        : "-"}
+                    </td>
                     <td className="border-r-2">
-                      {data?.response1?.odds_hits_over ? data?.response1?.odds_hits_over : "-"}
+                      {data?.response1?.odds_hits_over
+                        ? data?.response1?.odds_hits_over
+                        : "-"}
                     </td>
-                    { callColor(data?.response3?.hits_line_call ? data?.response3?.hits_line_call : "-")}
+                    {callColor(
+                      data?.response3?.hits_line_call
+                        ? data?.response3?.hits_line_call
+                        : "-"
+                    )}
                     {/* <td className="bg-[#66ff66] border-b-2 border-b-[#2bf92b] border-r-2 border-r-[#2bf92b]">
                       {data?.response3?.hits_line_call}
                     </td> */}
@@ -345,21 +498,39 @@ const GamePage = () => {
                       Earned Runs
                     </td>
                     <td className="border-b-2 border-black border-r-2 border-r-[#b1aeae]">
-                    {data?.response1?.["under_odds_Over/Under (Earned Runs)"] ? data?.response1?.["under_odds_Over/Under (Earned Runs)"] : "-"}
+                      {data?.response1?.["under_odds_Over/Under (Earned Runs)"]
+                        ? data?.response1?.[
+                            "under_odds_Over/Under (Earned Runs)"
+                          ]
+                        : "-"}
                     </td>
                     <td className="border-b-2 border-black border-r-2 border-r-[#b1aeae]">
-                      {data?.response1?.odds_er_under  ? data?.response1?.odds_er_under : "-"}
+                      {data?.response1?.odds_er_under
+                        ? data?.response1?.odds_er_under
+                        : "-"}
                     </td>
                     <td className="border-b-2 font-semibold border-black border-r-2 border-r-[#b1aeae]">
-                    {data?.response1?.["line_Over/Under (Earned Runs)"] ? data?.response1?.["line_Over/Under (Earned Runs)"] : "-"}
+                      {data?.response1?.["line_Over/Under (Earned Runs)"]
+                        ? data?.response1?.["line_Over/Under (Earned Runs)"]
+                        : "-"}
                     </td>
                     <td className="border-b-2 border-black border-r-2 border-r-[#b1aeae]">
-                    {data?.response1?.["over_odds_Over/Under (Earned Runs)"] ? data?.response1?.["over_odds_Over/Under (Earned Runs)"] : "-"}
+                      {data?.response1?.["over_odds_Over/Under (Earned Runs)"]
+                        ? data?.response1?.[
+                            "over_odds_Over/Under (Earned Runs)"
+                          ]
+                        : "-"}
                     </td>
                     <td className="border-b-2 border-r-2 border-t-[#b1aeae] border-t-2 border-black">
-                      {data?.response1?.odds_er_over   ? data?.response1?.odds_er_over : "-"}
+                      {data?.response1?.odds_er_over
+                        ? data?.response1?.odds_er_over
+                        : "-"}
                     </td>
-                    { callColor(data?.response3?.er_line_call   ? data?.response3?.er_line_call : "-")}
+                    {callColor(
+                      data?.response3?.er_line_call
+                        ? data?.response3?.er_line_call
+                        : "-"
+                    )}
                     {/* <td className="bg-[#f7c7ac]">
                       {data?.response3?.er_line_call}
                     </td> */}
@@ -371,16 +542,38 @@ const GamePage = () => {
                     <td className="border-l-2 border-l-black border-2 border-[#b1aeae]">
                       Ks
                     </td>
-                    <td className="border-2 border-[#b1aeae]">{data?.response4?.["under_odds_Over/Under (Strikeouts)"] ? data?.response4?.["under_odds_Over/Under (Strikeouts)"] : "-"}</td>
                     <td className="border-2 border-[#b1aeae]">
-                      {data?.response4?.odds_k_under   ? data?.response4?.odds_k_under : "-"}
+                      {data?.response4?.["under_odds_Over/Under (Strikeouts)"]
+                        ? data?.response4?.[
+                            "under_odds_Over/Under (Strikeouts)"
+                          ]
+                        : "-"}
                     </td>
-                    <td className="border-2 font-semibold border-[#b1aeae]">{data?.response4?.["line_Over/Under (Strikeouts)"] ? data?.response4?.["line_Over/Under (Strikeouts)"] : "-"}</td>
-                    <td className="border-2 border-[#b1aeae]">{data?.response4?.["over_odds_Over/Under (Strikeouts)"] ? data?.response4?.["over_odds_Over/Under (Strikeouts)"] : "-"}</td>
+                    <td className="border-2 border-[#b1aeae]">
+                      {data?.response4?.odds_k_under
+                        ? data?.response4?.odds_k_under
+                        : "-"}
+                    </td>
+                    <td className="border-2 font-semibold border-[#b1aeae]">
+                      {data?.response4?.["line_Over/Under (Strikeouts)"]
+                        ? data?.response4?.["line_Over/Under (Strikeouts)"]
+                        : "-"}
+                    </td>
+                    <td className="border-2 border-[#b1aeae]">
+                      {data?.response4?.["over_odds_Over/Under (Strikeouts)"]
+                        ? data?.response4?.["over_odds_Over/Under (Strikeouts)"]
+                        : "-"}
+                    </td>
                     <td className="border-r-2 border-r-black border-2 border-[#b1aeae]">
-                      {data?.response4?.odds_k_over    ? data?.response4?.odds_k_over : "-"}
+                      {data?.response4?.odds_k_over
+                        ? data?.response4?.odds_k_over
+                        : "-"}
                     </td>
-                    { callColor(data?.reponse6?.k_line_call    ? data?.reponse6?.k_line_call : "-")}
+                    {callColor(
+                      data?.reponse6?.k_line_call
+                        ? data?.reponse6?.k_line_call
+                        : "-"
+                    )}
                     {/* <td className="bg-[#ffff00] border-b-2 border-b-[#2bf92b]">
                       {data?.reponse6?.k_line_call}
                     </td> */}
@@ -389,16 +582,40 @@ const GamePage = () => {
                     <td className="border-l-2 border-l-black border-2 border-[#b1aeae]">
                       Hits Allowed
                     </td>
-                    <td className="border-2 border-[#b1aeae]">{data?.response4?.["under_odds_Over/Under (Hits Allowed)"] ? data?.response4?.["under_odds_Over/Under (Hits Allowed)"] : "-"}</td>
                     <td className="border-2 border-[#b1aeae]">
-                      {data?.response4?.odds_hits_under    ? data?.response4?.odds_hits_under : "-"}
+                      {data?.response4?.["under_odds_Over/Under (Hits Allowed)"]
+                        ? data?.response4?.[
+                            "under_odds_Over/Under (Hits Allowed)"
+                          ]
+                        : "-"}
                     </td>
-                    <td className="border-2 font-semibold border-[#b1aeae]">{data?.response4?.["line_Over/Under (Hits Allowed)"] ? data?.response4?.["line_Over/Under (Hits Allowed)"] : "-"}</td>
-                    <td className="border-2 border-[#b1aeae]">{data?.response4?.["over_odds_Over/Under (Hits Allowed)"] ? data?.response4?.["over_odds_Over/Under (Hits Allowed)"] : "-"}</td>
+                    <td className="border-2 border-[#b1aeae]">
+                      {data?.response4?.odds_hits_under
+                        ? data?.response4?.odds_hits_under
+                        : "-"}
+                    </td>
+                    <td className="border-2 font-semibold border-[#b1aeae]">
+                      {data?.response4?.["line_Over/Under (Hits Allowed)"]
+                        ? data?.response4?.["line_Over/Under (Hits Allowed)"]
+                        : "-"}
+                    </td>
+                    <td className="border-2 border-[#b1aeae]">
+                      {data?.response4?.["over_odds_Over/Under (Hits Allowed)"]
+                        ? data?.response4?.[
+                            "over_odds_Over/Under (Hits Allowed)"
+                          ]
+                        : "-"}
+                    </td>
                     <td className="border-r-2">
-                      {data?.response4?.odds_hits_over     ? data?.response4?.odds_hits_over : "-"}
+                      {data?.response4?.odds_hits_over
+                        ? data?.response4?.odds_hits_over
+                        : "-"}
                     </td>
-                    { callColor(data?.reponse6?.hits_line_call      ? data?.reponse6?.hits_line_call : "-")}
+                    {callColor(
+                      data?.reponse6?.hits_line_call
+                        ? data?.reponse6?.hits_line_call
+                        : "-"
+                    )}
                     {/* <td className="bg-[#66ff66] border-b-2 border-b-[#2bf92b] border-r-2 border-r-[#2bf92b]">
                       {data?.reponse6?.hits_line_call}
                     </td> */}
@@ -424,21 +641,39 @@ const GamePage = () => {
                       Earned Runs
                     </td>
                     <td className="border-b-2 border-black border-r-2 border-r-[#b1aeae]">
-                    {data?.response4?.["under_odds_Over/Under (Earned Runs)"] ? data?.response4?.["under_odds_Over/Under (Earned Runs)"] : "-"}
+                      {data?.response4?.["under_odds_Over/Under (Earned Runs)"]
+                        ? data?.response4?.[
+                            "under_odds_Over/Under (Earned Runs)"
+                          ]
+                        : "-"}
                     </td>
                     <td className="border-b-2 border-black border-r-2 border-r-[#b1aeae]">
-                      {data?.response4?.odds_er_under ? data?.response4?.odds_er_under : "-"}
+                      {data?.response4?.odds_er_under
+                        ? data?.response4?.odds_er_under
+                        : "-"}
                     </td>
                     <td className="border-b-2 font-semibold border-black border-r-2 border-r-[#b1aeae]">
-                    {data?.response4?.["line_Over/Under (Earned Runs)"] ? data?.response4?.["line_Over/Under (Earned Runs)"] : "-"}
+                      {data?.response4?.["line_Over/Under (Earned Runs)"]
+                        ? data?.response4?.["line_Over/Under (Earned Runs)"]
+                        : "-"}
                     </td>
                     <td className="border-b-2 border-black border-r-2 border-r-[#b1aeae]">
-                    {data?.response4?.["over_odds_Over/Under (Earned Runs)"] ? data?.response4?.["over_odds_Over/Under (Earned Runs)"] : "-"}
+                      {data?.response4?.["over_odds_Over/Under (Earned Runs)"]
+                        ? data?.response4?.[
+                            "over_odds_Over/Under (Earned Runs)"
+                          ]
+                        : "-"}
                     </td>
                     <td className="border-b-2 border-r-2 border-t-[#b1aeae] border-t-2 border-black">
-                      {data?.response4?.odds_er_over ? data?.response4?.odds_er_over : "-"}
+                      {data?.response4?.odds_er_over
+                        ? data?.response4?.odds_er_over
+                        : "-"}
                     </td>
-                    { callColor(data?.reponse6?.er_line_call  ? data?.reponse6?.er_line_call : "-")}
+                    {callColor(
+                      data?.reponse6?.er_line_call
+                        ? data?.reponse6?.er_line_call
+                        : "-"
+                    )}
                     {/* <td className="bg-[#ffff00]">
                       {data?.reponse6?.er_line_call}
                     </td> */}
@@ -448,7 +683,9 @@ const GamePage = () => {
             </div>
 
             <div className="mt-10 mobile">
-              <h1 className="text-xl font-bold text-center">{player?.data?.player_name_away}</h1>
+              <h1 className="text-xl font-bold text-center">
+                {player?.data?.player_name_away}
+              </h1>
               <table className="w-[100%] mt-5">
                 <thead className="mobile-head">
                   <tr>
@@ -485,16 +722,24 @@ const GamePage = () => {
                       Under EV calc Estimate
                     </th>
                     <td className="border-2 border-[#c1bfbf]">
-                      {data?.response1?.odds_k_under  ? data?.response1?.odds_k_under : "-"}
+                      {data?.response1?.odds_k_under
+                        ? data?.response1?.odds_k_under
+                        : "-"}
                     </td>
                     <td className="border-2 border-[#c1bfbf]">
-                      {data?.response1?.odds_hits_under  ? data?.response1?.odds_hits_under : "-"}
+                      {data?.response1?.odds_hits_under
+                        ? data?.response1?.odds_hits_under
+                        : "-"}
                     </td>
                     <td className="border-2 border-[#c1bfbf]">
-                      {data?.response1?.odds_outs_under   ? data?.response1?.odds_outs_under : "-"}
+                      {data?.response1?.odds_outs_under
+                        ? data?.response1?.odds_outs_under
+                        : "-"}
                     </td>
                     <td className="border-2 border-[#c1bfbf] border-r-2 border-r-black">
-                      {data?.response1?.odds_er_under   ? data?.response1?.odds_er_under : "-"}
+                      {data?.response1?.odds_er_under
+                        ? data?.response1?.odds_er_under
+                        : "-"}
                     </td>
                   </tr>
                   <tr>
@@ -524,16 +769,24 @@ const GamePage = () => {
                       Over EV calc Estimate
                     </th>
                     <td className="border-2 border-[#c1bfbf] border-b-2 border-b-black">
-                      {data?.response1?.odds_k_over   ? data?.response1?.odds_k_over : "-"}
+                      {data?.response1?.odds_k_over
+                        ? data?.response1?.odds_k_over
+                        : "-"}
                     </td>
                     <td className="border-2 border-[#c1bfbf] border-b-2 border-b-black">
-                      {data?.response1?.odds_hits_over ? data?.response1?.odds_hits_over : "-"}
+                      {data?.response1?.odds_hits_over
+                        ? data?.response1?.odds_hits_over
+                        : "-"}
                     </td>
                     <td className="border-2 border-[#c1bfbf] border-b-2 border-b-black">
-                      {data?.response1?.odds_outs_over  ? data?.response1?.odds_outs_over : "-"}
+                      {data?.response1?.odds_outs_over
+                        ? data?.response1?.odds_outs_over
+                        : "-"}
                     </td>
                     <td className="border-2 border-[#c1bfbf] border-r-2 border-r-black border-b-2 border-b-black">
-                     {data?.response1?.odds_er_over   ? data?.response1?.odds_er_over : "-"}
+                      {data?.response1?.odds_er_over
+                        ? data?.response1?.odds_er_over
+                        : "-"}
                     </td>
                   </tr>
                   <tr>
@@ -541,16 +794,24 @@ const GamePage = () => {
                       Call
                     </th>
                     <td className="bg-[#ffff00] border-b-2 border-b-[#2bf92b]">
-                      {data?.response3?.k_line_call ? data?.response3?.k_line_call : "-"}
+                      {data?.response3?.k_line_call
+                        ? data?.response3?.k_line_call
+                        : "-"}
                     </td>
                     <td className="bg-[#66ff66] border-2 border-[#2bf92b]">
-                      {data?.response3?.hits_line_call  ? data?.response3?.hits_line_call : "-"}
+                      {data?.response3?.hits_line_call
+                        ? data?.response3?.hits_line_call
+                        : "-"}
                     </td>
                     <td className="bg-[#66ff66] border-2 border-[#2bf92b]">
-                      {data?.response3?.outs_line_call   ? data?.response3?.outs_line_call : "-"}
+                      {data?.response3?.outs_line_call
+                        ? data?.response3?.outs_line_call
+                        : "-"}
                     </td>
                     <td className="bg-[#f7c7ac] ">
-                      {data?.response3?.er_line_call  ? data?.response3?.er_line_call : "-"}
+                      {data?.response3?.er_line_call
+                        ? data?.response3?.er_line_call
+                        : "-"}
                     </td>
                   </tr>
                 </tbody>
@@ -596,11 +857,25 @@ const GamePage = () => {
                     <th className="w-[20%] m-auto font-medium text-sm flex-nowrap leading-none border-r-2 border-r-black">
                       Under EV calc Estimate
                     </th>
-                    <td className="border-2 border-[#c1bfbf]">{data?.response4?.odds_k_under ? data?.response4?.odds_k_under : "-"}</td>
-                    <td className="border-2 border-[#c1bfbf]">{data?.response4?.odds_hits_under  ? data?.response4?.odds_hits_under : "-"}</td>
-                    <td className="border-2 border-[#c1bfbf]">{data?.response4?.odds_outs_under   ? data?.response4?.odds_outs_under : "-"}</td>
+                    <td className="border-2 border-[#c1bfbf]">
+                      {data?.response4?.odds_k_under
+                        ? data?.response4?.odds_k_under
+                        : "-"}
+                    </td>
+                    <td className="border-2 border-[#c1bfbf]">
+                      {data?.response4?.odds_hits_under
+                        ? data?.response4?.odds_hits_under
+                        : "-"}
+                    </td>
+                    <td className="border-2 border-[#c1bfbf]">
+                      {data?.response4?.odds_outs_under
+                        ? data?.response4?.odds_outs_under
+                        : "-"}
+                    </td>
                     <td className="border-2 border-[#c1bfbf] border-r-2 border-r-black">
-                    {data?.response4?.odds_er_under  ? data?.response4?.odds_er_under : "-"}
+                      {data?.response4?.odds_er_under
+                        ? data?.response4?.odds_er_under
+                        : "-"}
                     </td>
                   </tr>
                   <tr>
@@ -630,16 +905,24 @@ const GamePage = () => {
                       Over EV calc Estimate
                     </th>
                     <td className="border-2 border-[#c1bfbf] border-b-2 border-b-black">
-                    {data?.response4?.odds_k_under  ? data?.response4?.odds_k_under : "-"}
+                      {data?.response4?.odds_k_under
+                        ? data?.response4?.odds_k_under
+                        : "-"}
                     </td>
                     <td className="border-2 border-[#c1bfbf] border-b-2 border-b-black">
-                    {data?.response4?.odds_hits_under   ? data?.response4?.odds_hits_under : "-"}
+                      {data?.response4?.odds_hits_under
+                        ? data?.response4?.odds_hits_under
+                        : "-"}
                     </td>
                     <td className="border-2 border-[#c1bfbf] border-b-2 border-b-black">
-                    {data?.response4?.odds_outs_under ? data?.response4?.odds_outs_under : "-"}
+                      {data?.response4?.odds_outs_under
+                        ? data?.response4?.odds_outs_under
+                        : "-"}
                     </td>
                     <td className="border-2 border-[#c1bfbf] border-r-2 border-r-black border-b-2 border-b-black">
-                    {data?.response4?.odds_er_under  ? data?.response4?.odds_er_under : "-"}
+                      {data?.response4?.odds_er_under
+                        ? data?.response4?.odds_er_under
+                        : "-"}
                     </td>
                   </tr>
                   <tr>
@@ -647,15 +930,25 @@ const GamePage = () => {
                       Call
                     </th>
                     <td className="bg-[#ffff00] border-b-2 border-b-[#2bf92b]">
-                    {data?.response3?.k_line_call   ? data?.response3?.k_line_call : "-"}
+                      {data?.response3?.k_line_call
+                        ? data?.response3?.k_line_call
+                        : "-"}
                     </td>
                     <td className="bg-[#66ff66] border-2 border-[#2bf92b]">
-                    {data?.response3?.hits_line_call   ? data?.response3?.hits_line_call : "-"}
+                      {data?.response3?.hits_line_call
+                        ? data?.response3?.hits_line_call
+                        : "-"}
                     </td>
                     <td className="bg-[#66ff66] border-2 border-[#2bf92b]">
-                    {data?.response3?.outs_line_call  ? data?.response3?.outs_line_call : "-"}
+                      {data?.response3?.outs_line_call
+                        ? data?.response3?.outs_line_call
+                        : "-"}
                     </td>
-                    <td className="bg-[#ffff00]">{data?.response3?.er_line_call  ? data?.response3?.er_line_call : "-"}</td>
+                    <td className="bg-[#ffff00]">
+                      {data?.response3?.er_line_call
+                        ? data?.response3?.er_line_call
+                        : "-"}
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -744,22 +1037,216 @@ const GamePage = () => {
           </div> */}
 
           <div className="mt-20">
+            <Tabs>
+              <TabList className="!flex justify-between tab-lists">
+                <Tab className="bg-gray border-2 border-black p-3 text-2xl carlos-tab w-[45%] text-center">
+                  {weather?.data?.teams_away_team_name?.[index]}
+                </Tab>
+                <Tab className="bg-gray border-2 border-black p-3 text-2xl carlos-tab w-[45%] text-center">
+                  {weather?.data?.teams_home_team_name?.[index]}
+                </Tab>
+              </TabList>
+
+              <TabPanel>
+                <div className="w-full border-4 mt-20 my-3 px-10  slate-box game-box py-5 rounded-[30px] text-center border-black h-auto">
+                 {
+                  loader2 ?  <div className="flex justify-center"><Apploader size={80} /></div> : <div>
+                     <div className="flex justify-between">
+                    <div>
+                      <select onChange={(e)=>setMetricType(e.target.value)} className="py-3 bg-[#e6e6e6] !border-0 px-9 my-5 player-list rounded w-full text-center focus:outline-none appearance-none">
+                        <option disabled value="">
+                          metric
+                        </option>
+                        {[
+                          "Ks",
+                          "Hits Allowed",
+                          "Walks",
+                          "Outs",
+                          "Earned Runs",
+                        ].map((item, i) => (
+                          <option key={i} value={item}>
+                            {item}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div className="text-center w-96 text-[#2a3f5f]  player-select">
+                      <select
+                        className=" player-list selector-mobile w-full  greater py-3 bg-[#e6e6e6] !border-0 px-9 rounded mt-6"
+                        value={equality}
+                        onChange={(e) => setEquality(e.target.value)}
+                      >
+                        <option value="less than or equal to">
+                          less than or equal to
+                        </option>
+                        <option value="equal to">equal to</option>
+                        <option value="greater than">greater than</option>
+                      </select>
+                    </div>
+                    <div className="flex items-center justify-center">
+                      <button
+                        onClick={()=>handeSubmit("away")}
+                        className="bg-black w-40 text-white px-5 my-4 py-2 rounded"
+                      >
+                        run
+                      </button>
+                    </div>
+                  </div>
+                  <div className="w-full">
+                    <div className="text-center">
+                      <span className="text-2xl font-bold">
+                        {range}
+                      </span>
+                    </div>
+                    <div className="w-[50%] m-auto progress-bars my-5">
+                      <input
+                        id="steps-range"
+                        type="range"
+                        min="0"
+                        max={rangeMax}
+                        value={range}
+                        step="1"
+                        className="w-full h-2 bg-red-600 rounded-lg appearance-none cursor-pointer"
+                        onChange={(e) => {
+                          setRange(e.target.value);
+                        }}
+                      ></input>
+                      <div className="flex justify-between">
+                        <h4>0</h4>
+                        <h4>{rangeMax}</h4>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex mt-5 justify-evenly">
+                    <div>
+                      <h3 className="text-lg font-medium">
+                        Expected Probability
+                      </h3>
+                      <h2 className="text-4xl mt-3 font-semibold">{damnMetric?.probability}</h2>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-medium">
+                        Fair Value Estimate (US Odds)
+                      </h3>
+                      <h2 className="text-4xl mt-3 font-semibold">
+                      {damnMetric?.fairvalue ? `${damnMetric?.fairvalue} or better` : ""} 
+                      </h2>
+                    </div>
+                  </div>
+                  </div>
+                 }
+                </div>
+              </TabPanel>
+              <TabPanel>
+              <div className="w-full border-4 mt-20 my-3 px-10  slate-box game-box py-5 rounded-[30px] text-center border-black h-auto">
+                 {
+                  loader2 ?  <div className="flex justify-center"><Apploader size={80} /></div> : <div>
+                     <div className="flex justify-between">
+                    <div>
+                      <select onChange={(e)=>setMetricType(e.target.value)} className="py-3 bg-[#e6e6e6] !border-0 px-9 my-5 player-list rounded w-full text-center focus:outline-none appearance-none">
+                        <option disabled value="">
+                          metric
+                        </option>
+                        {[
+                          "Ks",
+                          "Hits Allowed",
+                          "Walks",
+                          "Outs",
+                          "Earned Runs",
+                        ].map((item, i) => (
+                          <option key={i} value={item}>
+                            {item}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div className="text-center w-96 text-[#2a3f5f]  player-select">
+                      <select
+                        className=" player-list selector-mobile w-full  greater py-3 bg-[#e6e6e6] !border-0 px-9 rounded mt-6"
+                        value={equality}
+                        onChange={(e) => setEquality(e.target.value)}
+                      >
+                        <option value="less than or equal to">
+                          less than or equal to
+                        </option>
+                        <option value="equal to">equal to</option>
+                        <option value="greater than">greater than</option>
+                      </select>
+                    </div>
+                    <div className="flex items-center justify-center">
+                      <button
+                        onClick={()=>handeSubmit("home")}
+                        className="bg-black w-40 text-white px-5 my-4 py-2 rounded"
+                      >
+                        run
+                      </button>
+                    </div>
+                  </div>
+                  <div className="w-full">
+                    <div className="text-center">
+                      <span className="text-2xl font-bold">
+                        {range}
+                      </span>
+                    </div>
+                    <div className="w-[50%] m-auto progress-bars my-5">
+                      <input
+                        id="steps-range"
+                        type="range"
+                        min="0"
+                        max={rangeMax}
+                        value={range}
+                        step="1"
+                        className="w-full h-2 bg-red-600 rounded-lg appearance-none cursor-pointer"
+                        onChange={(e) => {
+                          setRange(e.target.value);
+                        }}
+                      ></input>
+                      <div className="flex justify-between">
+                        <h4>0</h4>
+                        <h4>{rangeMax}</h4>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex mt-5 justify-evenly">
+                    <div>
+                      <h3 className="text-lg font-medium">
+                        Expected Probability
+                      </h3>
+                      <h2 className="text-4xl mt-3 font-semibold">{damnMetric?.probability}</h2>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-medium">
+                        Fair Value Estimate (US Odds)
+                      </h3>
+                      <h2 className="text-4xl mt-3 font-semibold">
+                      {damnMetric?.fairvalue ? `${damnMetric?.fairvalue} or better` : ""} 
+                      </h2>
+                    </div>
+                  </div>
+                  </div>
+                 }
+                </div>
+              </TabPanel>
+            </Tabs>
+          </div>
+
+          <div className="mt-20">
             <div>
               <div className="rounded-[50px]  px-20 bg-[#40ecd9] py-5 my-5">
-                
                 <div className="text-left px-5 mb-2">
                   <div className="grid grid-cols-3 ">
                     <div className="flex justify-center items-center">
                       <h1 className="font-medium text-5xl mt-20 my-2">
                         {`${weather?.data?.Game_Temp?.[index]}°`}
                       </h1>
-                     
                     </div>
                     <div className="text-center">
-                    <h1 className="font-medium text-center text-5xl underline mb-10">
-                    Weather
-                </h1>
-                    <h1 className="font-medium text-4xl mt-4 my-2">
+                      <h1 className="font-medium text-center text-5xl underline mb-10">
+                        Weather
+                      </h1>
+                      <h1 className="font-medium text-4xl mt-4 my-2">
                         {`${weather?.data?.Game_Precip?.[index]}% `}
                       </h1>
                       <h1 className="font-medium text-4xl my-2">
@@ -767,7 +1254,7 @@ const GamePage = () => {
                       </h1>
                     </div>
                     <div className="text-center mt-4">
-                    <DirectionImage
+                      <DirectionImage
                         newclass="newclass"
                         windDirection={wind_direction}
                         name={weather?.data?.Game_Wind_Direction?.[index]}
@@ -779,7 +1266,7 @@ const GamePage = () => {
                   </div>
                 </div>
 
-                <div className="mt-20 mb-5 p-2 w-[100%] overflow-x-auto">
+                <div className="mt-20 mb-5 p-2 lg:w-[98%] md:max-w-[70vw] m-auto overflow-x-auto">
                   <table className="w-full">
                     <thead>
                       <tr>
@@ -795,58 +1282,142 @@ const GamePage = () => {
                     </thead>
                     <tbody>
                       <tr>
-                        <th className="text-left px-5">{weather?.data?.GH_N2_Time[index]}</th>
-                        <td className="text-center px-5">{weather?.data?.GH_N2_Temp[index]}</td>
-                        <td className="text-center px-5">{weather?.data?.GH_N2_Precip[index]}</td>
-                        <td className="text-center px-5">{weather?.data?.GH_N2_Humidity[index]}</td>
-                        <td className="text-center px-5">{weather?.data?.GH_N2_Dewpoint[index]}</td>
-                        <td className="text-center px-5">{weather?.data?.GH_N2_Wind_Dir[index]}</td>
-                        <td className="text-center px-5">{weather?.data?.GH_N2_Wind_MPH[index]} MPH</td>
+                        <th className="text-left px-5">
+                          {weather?.data?.GH_N2_Time[index]}
+                        </th>
+                        <td className="text-center px-5">
+                          {weather?.data?.GH_N2_Temp[index]}
+                        </td>
+                        <td className="text-center px-5">
+                          {weather?.data?.GH_N2_Precip[index]}
+                        </td>
+                        <td className="text-center px-5">
+                          {weather?.data?.GH_N2_Humidity[index]}
+                        </td>
+                        <td className="text-center px-5">
+                          {weather?.data?.GH_N2_Dewpoint[index]}
+                        </td>
+                        <td className="text-center px-5">
+                          {weather?.data?.GH_N2_Wind_Dir[index]}
+                        </td>
+                        <td className="text-center px-5 whitespace-nowrap">
+                          {weather?.data?.GH_N2_Wind_MPH[index]} MPH
+                        </td>
                       </tr>
                       <tr className="border-b-2">
-                        <th className="text-left  px-5">{weather?.data?.GH_N1_Time[index]}</th>
-                        <td className="text-center px-5">{weather?.data?.GH_N1_Temp[index]}</td>
-                        <td className="text-center px-5">{weather?.data?.GH_N1_Precip[index]}</td>
-                        <td className="text-center px-5">{weather?.data?.GH_N1_Humidity[index]}</td>
-                        <td className="text-center px-5">{weather?.data?.GH_N1_Dewpoint[index]}</td>
-                        <td className="text-center px-5">{weather?.data?.GH_N1_Wind_Dir[index]}</td>
-                        <td className="text-center px-5">{weather?.data?.GH_N1_Wind_MPH[index]} MPH</td>
+                        <th className="text-left  px-5">
+                          {weather?.data?.GH_N1_Time[index]}
+                        </th>
+                        <td className="text-center px-5">
+                          {weather?.data?.GH_N1_Temp[index]}
+                        </td>
+                        <td className="text-center px-5">
+                          {weather?.data?.GH_N1_Precip[index]}
+                        </td>
+                        <td className="text-center px-5">
+                          {weather?.data?.GH_N1_Humidity[index]}
+                        </td>
+                        <td className="text-center px-5">
+                          {weather?.data?.GH_N1_Dewpoint[index]}
+                        </td>
+                        <td className="text-center px-5">
+                          {weather?.data?.GH_N1_Wind_Dir[index]}
+                        </td>
+                        <td className="text-center px-5">
+                          {weather?.data?.GH_N1_Wind_MPH[index]} MPH
+                        </td>
                       </tr>
                       <tr>
-                        <th className="text-left px-5">{weather?.data?.GH_1_Time[index]}</th>
-                        <td className="text-center px-5">{weather?.data?.GH_1_Temp[index]}</td>
-                        <td className="text-center px-5">{weather?.data?.GH_1_Precip[index]}</td>
-                        <td className="text-center px-5">{weather?.data?.GH_1_Humidity[index]}</td>
-                        <td className="text-center px-5">{weather?.data?.GH_1_Dewpoint[index]}</td>
-                        <td className="text-center px-5">{weather?.data?.GH_1_Wind_Dir[index]}</td>
-                        <td className="text-center px-5">{weather?.data?.GH_1_Wind_MPH[index]} MPH</td>
+                        <th className="text-left px-5">
+                          {weather?.data?.GH_1_Time[index]}
+                        </th>
+                        <td className="text-center px-5">
+                          {weather?.data?.GH_1_Temp[index]}
+                        </td>
+                        <td className="text-center px-5">
+                          {weather?.data?.GH_1_Precip[index]}
+                        </td>
+                        <td className="text-center px-5">
+                          {weather?.data?.GH_1_Humidity[index]}
+                        </td>
+                        <td className="text-center px-5">
+                          {weather?.data?.GH_1_Dewpoint[index]}
+                        </td>
+                        <td className="text-center px-5">
+                          {weather?.data?.GH_1_Wind_Dir[index]}
+                        </td>
+                        <td className="text-center px-5">
+                          {weather?.data?.GH_1_Wind_MPH[index]} MPH
+                        </td>
                       </tr>
                       <tr>
-                        <th className="text-left px-5">{weather?.data?.GH_2_Time[index]}</th>
-                        <td className="text-center px-5">{weather?.data?.GH_2_Temp[index]}</td>
-                        <td className="text-center px-5">{weather?.data?.GH_2_Precip[index]}</td>
-                        <td className="text-center px-5">{weather?.data?.GH_2_Humidity[index]}</td>
-                        <td className="text-center px-5">{weather?.data?.GH_2_Dewpoint[index]}</td>
-                        <td className="text-center px-5">{weather?.data?.GH_2_Wind_Dir[index]}</td>
-                        <td className="text-center px-5">{weather?.data?.GH_2_Wind_MPH[index]} MPH</td>
+                        <th className="text-left px-5">
+                          {weather?.data?.GH_2_Time[index]}
+                        </th>
+                        <td className="text-center px-5">
+                          {weather?.data?.GH_2_Temp[index]}
+                        </td>
+                        <td className="text-center px-5">
+                          {weather?.data?.GH_2_Precip[index]}
+                        </td>
+                        <td className="text-center px-5">
+                          {weather?.data?.GH_2_Humidity[index]}
+                        </td>
+                        <td className="text-center px-5">
+                          {weather?.data?.GH_2_Dewpoint[index]}
+                        </td>
+                        <td className="text-center px-5">
+                          {weather?.data?.GH_2_Wind_Dir[index]}
+                        </td>
+                        <td className="text-center px-5">
+                          {weather?.data?.GH_2_Wind_MPH[index]} MPH
+                        </td>
                       </tr>
                       <tr>
-                        <th className="text-left px-5">{weather?.data?.GH_3_Time[index]}</th>
-                        <td className="text-center px-5">{weather?.data?.GH_3_Temp[index]}</td>
-                        <td className="text-center px-5">{weather?.data?.GH_3_Precip[index]}</td>
-                        <td className="text-center px-5">{weather?.data?.GH_3_Humidity[index]}</td>
-                        <td className="text-center px-5">{weather?.data?.GH_3_Dewpoint[index]}</td>
-                        <td className="text-center px-5">{weather?.data?.GH_3_Wind_Dir[index]}</td>
-                        <td className="text-center px-5">{weather?.data?.GH_3_Wind_MPH[index]} MPH</td>
+                        <th className="text-left px-5">
+                          {weather?.data?.GH_3_Time[index]}
+                        </th>
+                        <td className="text-center px-5">
+                          {weather?.data?.GH_3_Temp[index]}
+                        </td>
+                        <td className="text-center px-5">
+                          {weather?.data?.GH_3_Precip[index]}
+                        </td>
+                        <td className="text-center px-5">
+                          {weather?.data?.GH_3_Humidity[index]}
+                        </td>
+                        <td className="text-center px-5">
+                          {weather?.data?.GH_3_Dewpoint[index]}
+                        </td>
+                        <td className="text-center px-5">
+                          {weather?.data?.GH_3_Wind_Dir[index]}
+                        </td>
+                        <td className="text-center px-5">
+                          {weather?.data?.GH_3_Wind_MPH[index]} MPH
+                        </td>
                       </tr>
                       <tr>
-                        <th className="text-left px-5">{weather?.data?.GH_4_Time[index]}</th>
-                        <td className="text-center px-5">{weather?.data?.GH_4_Temp[index]}</td>
-                        <td className="text-center px-5">{weather?.data?.GH_4_Precip[index]}</td>
-                        <td className="text-center px-5">{weather?.data?.GH_4_Humidity[index]}</td>
-                        <td className="text-center px-5">{weather?.data?.GH_4_Dewpoint[index]}</td>
-                        <td className="text-center px-5">{weather?.data?.GH_4_Wind_Dir[index]}</td>
-                        <td className="text-center px-5">{weather?.data?.GH_4_Wind_MPH[index]} MPH</td>
+                        <th className="text-left px-5">
+                          {weather?.data?.GH_4_Time[index]}
+                        </th>
+                        <td className="text-center px-5">
+                          {weather?.data?.GH_4_Temp[index]}
+                        </td>
+                        <td className="text-center px-5">
+                          {weather?.data?.GH_4_Precip[index]}
+                        </td>
+                        <td className="text-center px-5">
+                          {weather?.data?.GH_4_Humidity[index]}
+                        </td>
+                        <td className="text-center px-5">
+                          {weather?.data?.GH_4_Dewpoint[index]}
+                        </td>
+                        <td className="text-center px-5">
+                          {weather?.data?.GH_4_Wind_Dir[index]}
+                        </td>
+                        <td className="text-center px-5">
+                          {weather?.data?.GH_4_Wind_MPH[index]} MPH
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -856,102 +1427,165 @@ const GamePage = () => {
           </div>
 
           <div className="mt-20">
-          <Tabs>
-          <TabList className="!flex justify-between tab-lists">
-            <Tab className="bg-gray border-2 border-black p-3 text-2xl carlos-tab w-[45%] text-center">
-            {weather?.data?.teams_away_team_name?.[index]}
-            </Tab>
-            <Tab className="bg-gray border-2 border-black p-3 text-2xl carlos-tab w-[45%] text-center">
-            {weather?.data?.teams_home_team_name?.[index]}
-            </Tab>
-          </TabList>
+            <Tabs>
+              <TabList className="!flex justify-between tab-lists">
+                <Tab className="bg-gray border-2 border-black p-3 text-2xl carlos-tab w-[45%] text-center">
+                  {weather?.data?.teams_away_team_name?.[index]}
+                </Tab>
+                <Tab className="bg-gray border-2 border-black p-3 text-2xl carlos-tab w-[45%] text-center">
+                  {weather?.data?.teams_home_team_name?.[index]}
+                </Tab>
+              </TabList>
 
-          <TabPanel>
-          <div className="rounded-3xl w-full py-5 mt-10 px-10 bg-[#0ca75e] ">
-            <h1 className="text-5xl font-bold game-titles text-center my-3">
-              Team Defense
-            </h1>
-              {/* <div>
+              <TabPanel>
+                <div className="rounded-3xl w-full py-5 mt-10 px-10 bg-[#0ca75e] ">
+                  <h1 className="text-5xl font-bold game-titles text-center my-3">
+                    Team Defense
+                  </h1>
+                  {/* <div>
                 <h1 className="text-3xl font-bold game-titles text-center  my-10">{weather?.data?.teams_away_team_name?.[index]}</h1>
               </div> */}
-             <div className="grid md:grid-cols-3">
-             <div className="px-5">
-             <h1 className="font-bold text-center mb-5 text-4xl">C</h1>
-                <div className="text-end">
-                  <h3 className="font-bold text-3xl">DRS : {team?.away_team_response?.Catcher?.DRS}</h3>
-                  <h3 className="font-bold text-3xl">SB : {team?.away_team_response?.Catcher?.SB}</h3>
-                  <h3 className="font-bold text-3xl">CS : {team?.away_team_response?.Catcher?.CS}</h3>
-                  <h3 className="font-bold text-3xl">SB Win % : {team?.away_team_response?.Catcher?.J}</h3>
-                  <h3 className="font-bold text-3xl">Errors : {team?.away_team_response?.Catcher?.Errors}</h3>
-                
+                  <div className="grid md:grid-cols-3">
+                    <div className="px-5">
+                      <h1 className="font-bold text-center mb-5 text-4xl">C</h1>
+                      <div className="text-end">
+                        <h3 className="font-bold text-3xl">
+                          DRS : {team?.away_team_response?.Catcher?.DRS}
+                        </h3>
+                        <h3 className="font-bold text-3xl">
+                          SB : {team?.away_team_response?.Catcher?.SB}
+                        </h3>
+                        <h3 className="font-bold text-3xl">
+                          CS : {team?.away_team_response?.Catcher?.CS}
+                        </h3>
+                        <h3 className="font-bold text-3xl">
+                          SB Win % : {team?.away_team_response?.Catcher?.J}
+                        </h3>
+                        <h3 className="font-bold text-3xl">
+                          Errors : {team?.away_team_response?.Catcher?.Errors}
+                        </h3>
+                      </div>
+                    </div>
+                    <div className="px-5 border-r-8 border-l-8 border-black">
+                      <h1 className="font-bold text-center mb-5 text-4xl">
+                        INF
+                      </h1>
+                      <div className="text-end">
+                        <h3 className="font-bold text-3xl">
+                          OAA : {team?.away_team_response?.Infield?.OAA}
+                        </h3>
+                        <h3 className="font-bold text-3xl">
+                          DRS : {team?.away_team_response?.Infield?.DP}
+                        </h3>
+                        <h3 className="font-bold text-3xl">
+                          UZR_150 : {team?.away_team_response?.Infield?.UZR_150}
+                        </h3>
+                        <h3 className="font-bold text-3xl">
+                          Errors : {team?.away_team_response?.Infield?.Errors}
+                        </h3>
+                        <h3 className="font-bold text-3xl">
+                          DPs : {team?.away_team_response?.Infield?.DRS}
+                        </h3>
+                      </div>
+                    </div>
+                    <div className="px-5">
+                      <h1 className="font-bold text-center mb-5 text-4xl">
+                        OF
+                      </h1>
+                      <div className="text-end">
+                        <h3 className="font-bold text-3xl">
+                          OAA : {team?.away_team_response?.Outfield?.OAA}
+                        </h3>
+                        <h3 className="font-bold text-3xl">
+                          DRS : {team?.away_team_response?.Outfield?.DRS}
+                        </h3>
+                        <h3 className="font-bold text-3xl">
+                          UZR_150 :{" "}
+                          {team?.away_team_response?.Outfield?.UZR_150}
+                        </h3>
+                        <h3 className="font-bold text-3xl">
+                          Errors : {team?.away_team_response?.Outfield?.Errors}
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div className="px-5 border-r-8 border-l-8 border-black">
-              <h1 className="font-bold text-center mb-5 text-4xl">INF</h1>
-                <div className="text-end">
-                  <h3 className="font-bold text-3xl">OAA : {team?.away_team_response?.Infield?.OAA}</h3>
-                  <h3 className="font-bold text-3xl">DRS : {team?.away_team_response?.Infield?.DP}</h3>
-                  <h3 className="font-bold text-3xl">UZR_150 : {team?.away_team_response?.Infield?.UZR_150}</h3>
-                  <h3 className="font-bold text-3xl">Errors : {team?.away_team_response?.Infield?.Errors}</h3>
-                  <h3 className="font-bold text-3xl">DPs : {team?.away_team_response?.Infield?.DRS}</h3>               
-                </div>
-              </div>
-              <div className="px-5">
-              <h1 className="font-bold text-center mb-5 text-4xl">OF</h1>
-                <div className="text-end">
-                  <h3 className="font-bold text-3xl">OAA : {team?.away_team_response?.Outfield?.OAA}</h3>
-                  <h3 className="font-bold text-3xl">DRS : {team?.away_team_response?.Outfield?.DRS}</h3>
-                  <h3 className="font-bold text-3xl">UZR_150 : {team?.away_team_response?.Outfield?.UZR_150}</h3>
-                  <h3 className="font-bold text-3xl">Errors : {team?.away_team_response?.Outfield?.Errors}</h3>
-                </div>
-              </div>
-             </div>
-            </div>
-          </TabPanel>
-          <TabPanel>
-          <div className="rounded-3xl w-full py-5 mt-10 px-10 bg-[#0ca75e] ">
-            <h1 className="text-5xl font-bold game-titles text-center my-3">
-              Team Defense
-            </h1>
-             {/* <div>
+              </TabPanel>
+              <TabPanel>
+                <div className="rounded-3xl w-full py-5 mt-10 px-10 bg-[#0ca75e] ">
+                  <h1 className="text-5xl font-bold game-titles text-center my-3">
+                    Team Defense
+                  </h1>
+                  {/* <div>
                 <h1 className="text-3xl font-bold game-titles text-center  my-10">{weather?.team?.teams_home_team_name?.[index]}</h1>
               </div> */}
-             <div className="grid md:grid-cols-3">
-             <div className="px-5">
-             <h1 className="font-bold text-center mb-5 text-4xl">C</h1>
-                <div className="text-end">
-                  <h3 className="font-bold text-3xl">DRS : {team?.home_team_response?.Catcher?.DRS}</h3>
-                  <h3 className="font-bold text-3xl">SB : {team?.home_team_response?.Catcher?.SB}</h3>
-                  <h3 className="font-bold text-3xl">CS : {team?.home_team_response?.Catcher?.CS}</h3>
-                  <h3 className="font-bold text-3xl">SB Win % : {team?.home_team_response?.Catcher?.J}</h3>
-                  <h3 className="font-bold text-3xl">Errors : {team?.home_team_response?.Catcher?.Errors}</h3>
-                
+                  <div className="grid md:grid-cols-3">
+                    <div className="px-5">
+                      <h1 className="font-bold text-center mb-5 text-4xl">C</h1>
+                      <div className="text-end">
+                        <h3 className="font-bold text-3xl">
+                          DRS : {team?.home_team_response?.Catcher?.DRS}
+                        </h3>
+                        <h3 className="font-bold text-3xl">
+                          SB : {team?.home_team_response?.Catcher?.SB}
+                        </h3>
+                        <h3 className="font-bold text-3xl">
+                          CS : {team?.home_team_response?.Catcher?.CS}
+                        </h3>
+                        <h3 className="font-bold text-3xl">
+                          SB Win % : {team?.home_team_response?.Catcher?.J}
+                        </h3>
+                        <h3 className="font-bold text-3xl">
+                          Errors : {team?.home_team_response?.Catcher?.Errors}
+                        </h3>
+                      </div>
+                    </div>
+                    <div className="px-5 border-r-8 border-l-8 border-black">
+                      <h1 className="font-bold text-center mb-5 text-4xl">
+                        INF
+                      </h1>
+                      <div className="text-end">
+                        <h3 className="font-bold text-3xl">
+                          OAA : {team?.home_team_response?.Infield?.OAA}
+                        </h3>
+                        <h3 className="font-bold text-3xl">
+                          DRS : {team?.home_team_response?.Infield?.DP}
+                        </h3>
+                        <h3 className="font-bold text-3xl">
+                          UZR_150 : {team?.home_team_response?.Infield?.UZR_150}
+                        </h3>
+                        <h3 className="font-bold text-3xl">
+                          Errors : {team?.home_team_response?.Infield?.Errors}
+                        </h3>
+                        <h3 className="font-bold text-3xl">
+                          DPs : {team?.home_team_response?.Infield?.DRS}
+                        </h3>
+                      </div>
+                    </div>
+                    <div className="px-5">
+                      <h1 className="font-bold text-center mb-5 text-4xl">
+                        OF
+                      </h1>
+                      <div className="text-end">
+                        <h3 className="font-bold text-3xl">
+                          OAA : {team?.home_team_response?.Outfield?.OAA}
+                        </h3>
+                        <h3 className="font-bold text-3xl">
+                          DRS : {team?.home_team_response?.Outfield?.DRS}
+                        </h3>
+                        <h3 className="font-bold text-3xl">
+                          UZR_150 :{" "}
+                          {team?.home_team_response?.Outfield?.UZR_150}
+                        </h3>
+                        <h3 className="font-bold text-3xl">
+                          Errors : {team?.home_team_response?.Outfield?.Errors}
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div className="px-5 border-r-8 border-l-8 border-black">
-              <h1 className="font-bold text-center mb-5 text-4xl">INF</h1>
-                <div className="text-end">
-                  <h3 className="font-bold text-3xl">OAA : {team?.home_team_response?.Infield?.OAA}</h3>
-                  <h3 className="font-bold text-3xl">DRS : {team?.home_team_response?.Infield?.DP}</h3>
-                  <h3 className="font-bold text-3xl">UZR_150 : {team?.home_team_response?.Infield?.UZR_150}</h3>
-                  <h3 className="font-bold text-3xl">Errors : {team?.home_team_response?.Infield?.Errors}</h3>
-                  <h3 className="font-bold text-3xl">DPs : {team?.home_team_response?.Infield?.DRS}</h3>               
-                </div>
-              </div>
-              <div className="px-5">
-              <h1 className="font-bold text-center mb-5 text-4xl">OF</h1>
-                <div className="text-end">
-                  <h3 className="font-bold text-3xl">OAA : {team?.home_team_response?.Outfield?.OAA}</h3>
-                  <h3 className="font-bold text-3xl">DRS : {team?.home_team_response?.Outfield?.DRS}</h3>
-                  <h3 className="font-bold text-3xl">UZR_150 : {team?.home_team_response?.Outfield?.UZR_150}</h3>
-                  <h3 className="font-bold text-3xl">Errors : {team?.home_team_response?.Outfield?.Errors}</h3>
-                </div>
-              </div>
-             </div>
-            </div>
-          
-          </TabPanel>
-        </Tabs>
+              </TabPanel>
+            </Tabs>
 
             {/* <div className="rounded-3xl w-full py-5 mt-10 px-10 bg-[#0ca75e] ">
             <h1 className="text-5xl font-bold game-titles text-center my-3">

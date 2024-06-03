@@ -363,7 +363,7 @@ const Expected = () => {
             </p> */}
                 {/* {evalData?<Bar options={options} data={data} />: */}
 
-                <img src={evalData[0] + `?new=${new Date()}`}></img>
+                <img src={evalData[0] + `?new=${new Date()}`} alt="graph-images"></img>
               </div>
               {/* <div className="graph-section">
               {evalData?.length > 0 && <img src={evalData[1]+`?new=${new Date()}`}></img>}
