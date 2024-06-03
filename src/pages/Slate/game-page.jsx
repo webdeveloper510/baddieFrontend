@@ -167,7 +167,7 @@ const GamePage = () => {
         
         <div className="bg-white  m-auto flex flex-col px-20 h-auto main-section py-10 text-xl min-w-full">
           <div className="text-center">
-            <h1 className="font-bold text-7xl">Daily aggregate matchup</h1>
+            <h1 className="font-bold text-7xl">daily aggregate matchup</h1>
           </div>
           <div className="flex mt-16 game-upper-section">
             <div className="w-[60%] game-section">
@@ -779,7 +779,7 @@ const GamePage = () => {
                   </div>
                 </div>
 
-                <div className="mt-20 mb-5 p-2 w-[100%] bg-[#00ffff] overflow-x-auto">
+                <div className="mt-20 mb-5 p-2 w-[100%] overflow-x-auto">
                   <table className="w-full">
                     <thead>
                       <tr>
@@ -803,8 +803,8 @@ const GamePage = () => {
                         <td className="text-center px-5">{weather?.data?.GH_N2_Wind_Dir[index]}</td>
                         <td className="text-center px-5">{weather?.data?.GH_N2_Wind_MPH[index]} MPH</td>
                       </tr>
-                      <tr>
-                        <th className="text-left border-b-2 px-5">{weather?.data?.GH_N1_Time[index]}</th>
+                      <tr className="border-b-2">
+                        <th className="text-left  px-5">{weather?.data?.GH_N1_Time[index]}</th>
                         <td className="text-center px-5">{weather?.data?.GH_N1_Temp[index]}</td>
                         <td className="text-center px-5">{weather?.data?.GH_N1_Precip[index]}</td>
                         <td className="text-center px-5">{weather?.data?.GH_N1_Humidity[index]}</td>
