@@ -296,7 +296,7 @@ const GamePage = () => {
                     <td className="border-2 border-[#b1aeae]">
                       {data?.response1?.odds_k_under ? data?.response1?.odds_k_under : "-"}
                     </td>
-                    <td className="border-2 border-[#b1aeae]">{data?.response1?.["line_Over/Under (Strikeouts)"] ? data?.response1?.["line_Over/Under (Strikeouts)"] : "-"}</td>
+                    <td className="border-2 font-semibold border-[#b1aeae]">{data?.response1?.["line_Over/Under (Strikeouts)"] ? data?.response1?.["line_Over/Under (Strikeouts)"] : "-"}</td>
                     <td className="border-2 border-[#b1aeae]">{data?.response1?.["over_odds_Over/Under (Strikeouts)"] ? data?.response1?.["over_odds_Over/Under (Strikeouts)"] : "-"}</td>
                     <td className="border-r-2 border-r-black border-2 border-[#b1aeae]">
                       {data?.response1?.odds_k_over ? data?.response1?.odds_k_over : "-"}
@@ -314,7 +314,7 @@ const GamePage = () => {
                     <td className="border-2 border-[#b1aeae]">
                       {data?.response1?.odds_hits_under ? data?.response1?.odds_hits_under : "-"}
                     </td>
-                    <td className="border-2 border-[#b1aeae]">{data?.response1?.["line_Over/Under (Hits Allowed)"] ? data?.response1?.["line_Over/Under (Hits Allowed)"] : "-"}</td>
+                    <td className="border-2 font-semibold border-[#b1aeae]">{data?.response1?.["line_Over/Under (Hits Allowed)"] ? data?.response1?.["line_Over/Under (Hits Allowed)"] : "-"}</td>
                     <td className="border-2 border-[#b1aeae]">{data?.response1?.["over_odds_Over/Under (Hits Allowed)"] ? data?.response1?.["over_odds_Over/Under (Hits Allowed)"] : "-"}</td>
                     <td className="border-r-2">
                       {data?.response1?.odds_hits_over ? data?.response1?.odds_hits_over : "-"}
@@ -350,7 +350,7 @@ const GamePage = () => {
                     <td className="border-b-2 border-black border-r-2 border-r-[#b1aeae]">
                       {data?.response1?.odds_er_under  ? data?.response1?.odds_er_under : "-"}
                     </td>
-                    <td className="border-b-2 border-black border-r-2 border-r-[#b1aeae]">
+                    <td className="border-b-2 font-semibold border-black border-r-2 border-r-[#b1aeae]">
                     {data?.response1?.["line_Over/Under (Earned Runs)"] ? data?.response1?.["line_Over/Under (Earned Runs)"] : "-"}
                     </td>
                     <td className="border-b-2 border-black border-r-2 border-r-[#b1aeae]">
@@ -375,7 +375,7 @@ const GamePage = () => {
                     <td className="border-2 border-[#b1aeae]">
                       {data?.response4?.odds_k_under   ? data?.response4?.odds_k_under : "-"}
                     </td>
-                    <td className="border-2 border-[#b1aeae]">{data?.response4?.["line_Over/Under (Strikeouts)"] ? data?.response4?.["line_Over/Under (Strikeouts)"] : "-"}</td>
+                    <td className="border-2 font-semibold border-[#b1aeae]">{data?.response4?.["line_Over/Under (Strikeouts)"] ? data?.response4?.["line_Over/Under (Strikeouts)"] : "-"}</td>
                     <td className="border-2 border-[#b1aeae]">{data?.response4?.["over_odds_Over/Under (Strikeouts)"] ? data?.response4?.["over_odds_Over/Under (Strikeouts)"] : "-"}</td>
                     <td className="border-r-2 border-r-black border-2 border-[#b1aeae]">
                       {data?.response4?.odds_k_over    ? data?.response4?.odds_k_over : "-"}
@@ -393,7 +393,7 @@ const GamePage = () => {
                     <td className="border-2 border-[#b1aeae]">
                       {data?.response4?.odds_hits_under    ? data?.response4?.odds_hits_under : "-"}
                     </td>
-                    <td className="border-2 border-[#b1aeae]">{data?.response4?.["line_Over/Under (Hits Allowed)"] ? data?.response4?.["line_Over/Under (Hits Allowed)"] : "-"}</td>
+                    <td className="border-2 font-semibold border-[#b1aeae]">{data?.response4?.["line_Over/Under (Hits Allowed)"] ? data?.response4?.["line_Over/Under (Hits Allowed)"] : "-"}</td>
                     <td className="border-2 border-[#b1aeae]">{data?.response4?.["over_odds_Over/Under (Hits Allowed)"] ? data?.response4?.["over_odds_Over/Under (Hits Allowed)"] : "-"}</td>
                     <td className="border-r-2">
                       {data?.response4?.odds_hits_over     ? data?.response4?.odds_hits_over : "-"}
@@ -429,7 +429,7 @@ const GamePage = () => {
                     <td className="border-b-2 border-black border-r-2 border-r-[#b1aeae]">
                       {data?.response4?.odds_er_under ? data?.response4?.odds_er_under : "-"}
                     </td>
-                    <td className="border-b-2 border-black border-r-2 border-r-[#b1aeae]">
+                    <td className="border-b-2 font-semibold border-black border-r-2 border-r-[#b1aeae]">
                     {data?.response4?.["line_Over/Under (Earned Runs)"] ? data?.response4?.["line_Over/Under (Earned Runs)"] : "-"}
                     </td>
                     <td className="border-b-2 border-black border-r-2 border-r-[#b1aeae]">
@@ -779,7 +779,7 @@ const GamePage = () => {
                   </div>
                 </div>
 
-                <div className="border-2 mt-20 mb-5 p-2 w-[100%] border-white bg-[#00ffff] overflow-x-auto">
+                <div className="mt-20 mb-5 p-2 w-[100%] bg-[#00ffff] overflow-x-auto">
                   <table className="w-full">
                     <thead>
                       <tr>
@@ -795,7 +795,7 @@ const GamePage = () => {
                     </thead>
                     <tbody>
                       <tr>
-                        <th className="text-left px-5">GH_N2_Time</th>
+                        <th className="text-left px-5">{weather?.data?.GH_N2_Time[index]}</th>
                         <td className="text-center px-5">{weather?.data?.GH_N2_Temp[index]}</td>
                         <td className="text-center px-5">{weather?.data?.GH_N2_Precip[index]}</td>
                         <td className="text-center px-5">{weather?.data?.GH_N2_Humidity[index]}</td>
@@ -804,7 +804,7 @@ const GamePage = () => {
                         <td className="text-center px-5">{weather?.data?.GH_N2_Wind_MPH[index]} MPH</td>
                       </tr>
                       <tr>
-                        <th className="text-left px-5">GH_N1_Time</th>
+                        <th className="text-left border-b-2 px-5">{weather?.data?.GH_N1_Time[index]}</th>
                         <td className="text-center px-5">{weather?.data?.GH_N1_Temp[index]}</td>
                         <td className="text-center px-5">{weather?.data?.GH_N1_Precip[index]}</td>
                         <td className="text-center px-5">{weather?.data?.GH_N1_Humidity[index]}</td>
@@ -813,7 +813,7 @@ const GamePage = () => {
                         <td className="text-center px-5">{weather?.data?.GH_N1_Wind_MPH[index]} MPH</td>
                       </tr>
                       <tr>
-                        <th className="text-left px-5">GH_1_Time</th>
+                        <th className="text-left px-5">{weather?.data?.GH_1_Time[index]}</th>
                         <td className="text-center px-5">{weather?.data?.GH_1_Temp[index]}</td>
                         <td className="text-center px-5">{weather?.data?.GH_1_Precip[index]}</td>
                         <td className="text-center px-5">{weather?.data?.GH_1_Humidity[index]}</td>
@@ -822,7 +822,7 @@ const GamePage = () => {
                         <td className="text-center px-5">{weather?.data?.GH_1_Wind_MPH[index]} MPH</td>
                       </tr>
                       <tr>
-                        <th className="text-left px-5">GH_2_Time</th>
+                        <th className="text-left px-5">{weather?.data?.GH_2_Time[index]}</th>
                         <td className="text-center px-5">{weather?.data?.GH_2_Temp[index]}</td>
                         <td className="text-center px-5">{weather?.data?.GH_2_Precip[index]}</td>
                         <td className="text-center px-5">{weather?.data?.GH_2_Humidity[index]}</td>
@@ -831,7 +831,7 @@ const GamePage = () => {
                         <td className="text-center px-5">{weather?.data?.GH_2_Wind_MPH[index]} MPH</td>
                       </tr>
                       <tr>
-                        <th className="text-left px-5">GH_3_Time</th>
+                        <th className="text-left px-5">{weather?.data?.GH_3_Time[index]}</th>
                         <td className="text-center px-5">{weather?.data?.GH_3_Temp[index]}</td>
                         <td className="text-center px-5">{weather?.data?.GH_3_Precip[index]}</td>
                         <td className="text-center px-5">{weather?.data?.GH_3_Humidity[index]}</td>
@@ -840,7 +840,7 @@ const GamePage = () => {
                         <td className="text-center px-5">{weather?.data?.GH_3_Wind_MPH[index]} MPH</td>
                       </tr>
                       <tr>
-                        <th className="text-left px-5">GH_4_Time</th>
+                        <th className="text-left px-5">{weather?.data?.GH_4_Time[index]}</th>
                         <td className="text-center px-5">{weather?.data?.GH_4_Temp[index]}</td>
                         <td className="text-center px-5">{weather?.data?.GH_4_Precip[index]}</td>
                         <td className="text-center px-5">{weather?.data?.GH_4_Humidity[index]}</td>
