@@ -192,7 +192,7 @@ const GamePage = () => {
           player_id : res?.data?.player_id_away,
           opp_team_id : res?.data?.opp_team_id_away,
           home_away : "away",
-          metric_type : metricType,
+          metric_type : "Ks",
           prop_type : equality,
           metric_val : range,
         }
@@ -1067,8 +1067,8 @@ const GamePage = () => {
                      <div className="flex justify-between">
                     <div>
                       <select onChange={(e)=>setMetricType(e.target.value)} className="py-3 bg-[#e6e6e6] !border-0 px-9 my-5 player-list rounded w-full text-center focus:outline-none appearance-none">
-                        <option disabled value="">
-                          metric
+                        <option value="">
+                          {metricType}
                         </option>
                         {[
                           "Ks",
@@ -1158,8 +1158,8 @@ const GamePage = () => {
                      <div className="flex justify-between">
                     <div>
                       <select onChange={(e)=>setMetricType(e.target.value)} className="py-3 bg-[#e6e6e6] !border-0 px-9 my-5 player-list rounded w-full text-center focus:outline-none appearance-none">
-                        <option disabled value="">
-                          metric
+                        <option value={metricType}>
+                        {metricType}
                         </option>
                         {[
                           "Ks",
