@@ -238,7 +238,7 @@ const Slate = () => {
                     </TabPanel>
                   ))
                 : <div className="flex justify-center items-center">
-                    <h1 className="font-medium">'No Matchups Currently Found'?</h1>
+                    <h1 className="font-medium">No Matchups Currently Found.</h1>
                   </div>
                   }
 

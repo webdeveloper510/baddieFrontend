@@ -1854,8 +1854,31 @@ div#dropdownInformation {
    .tab-lists {
     justify-content: space-around;
   }
+  .weather-text{
+    display: flex;
+  }
+  .weather-text1{
+    width: 20%;
+  }
+  .weather-text2{
+    width: 60%;
+  }
+  .weather-text3{
+    width: 20%;
+  }
+  .game-data{
+    margin-top: 2rem;
+  }
   .weather-text h1{
     font-size: 20px;
+  }
+  .table-header th{
+    font-size: 16px;
+    line-height: normal;
+  }
+  .table-body th, td{
+    font-size: 16px;
+    line-height: normal;
   }
   .carlos-tab {
     font-size: 14px;
