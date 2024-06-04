@@ -22,7 +22,7 @@ const GamePage = () => {
   const [player, setPlayer] = useState(null);
   const [weather, setWeather] = useState(true);
   const [loader, setLoader] = useState(false);
-  const [metricType, setMetricType] = useState("");
+  const [metricType, setMetricType] = useState("Ks");
   const [loader2 , setLoader2] = useState(false)
   const [range, setRange] = useState(5);
   const [rangeMax, setRangeMax] = useState(10);
@@ -176,18 +176,6 @@ const GamePage = () => {
       });
   };
 
-  // const getTeamdata = () => {
-
-   
-  //   getTeamDefense({ away_team_name : weather?.data?.teams_away_team_name?.[index] , home_team_name : weather?.data?.teams_home_team_name?.[index]})
-  //     .then((res) => {
-  //       setTeam(res);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
-
   const getMatchupData = () => {
     // setLoader(true);
     getSingleMatchup({
@@ -198,11 +186,28 @@ const GamePage = () => {
         // setLoader(false);
         console.log("getSingleMatchup", res);
         setPlayer(res);
-        if(res?.data?.player_name_away == "" && res?.data?.player_name_home == ""){
-           
-        }else{
-          // navigate("/matchup")
+
+        const awayData = {
+          stat_type : "pitcher",
+          player_id : res?.data?.player_id_away,
+          opp_team_id : res?.data?.opp_team_id_away,
+          home_away : "away",
+          metric_type : metricType,
+          prop_type : equality,
+          metric_val : range,
         }
+
+    //  if(res?.data?.player_id_away && res?.data?.opp_team_id_away){
+      setLoader2(true)
+      postDamnMetric(awayData).then((res)=>{
+        setLoader2(false)
+        console.log("res val", res)
+        setDamnMetric(res)
+      }).catch((error)=>{
+        console.log(error)
+        setLoader2(false)
+      })
+    // }
       })
       .catch((error) => {
         // setLoader(false);
@@ -214,7 +219,6 @@ const GamePage = () => {
     getAwayData();
     getMatchupData();
     getWeather();
-    // getTeamdata();
   }, []);
 
 
@@ -1046,12 +1050,12 @@ const GamePage = () => {
           </div> */}
 
           <div className="mt-20">
-            <Tabs>
+            <Tabs >
               <TabList className="!flex justify-between tab-lists">
-                <Tab className="bg-gray border-2 border-black p-3 text-2xl carlos-tab w-[45%] text-center">
+                <Tab onClick={()=>handeSubmit("away")} className="bg-gray border-2 border-black p-3 text-2xl carlos-tab w-[45%] text-center">
                   {weather?.data?.teams_away_team_name?.[index]}
                 </Tab>
-                <Tab className="bg-gray border-2 border-black p-3 text-2xl carlos-tab w-[45%] text-center">
+                <Tab onClick={()=>handeSubmit("home")} className="bg-gray border-2 border-black p-3 text-2xl carlos-tab w-[45%] text-center">
                   {weather?.data?.teams_home_team_name?.[index]}
                 </Tab>
               </TabList>
@@ -1132,14 +1136,14 @@ const GamePage = () => {
                       <h3 className="text-lg font-medium">
                         Expected Probability
                       </h3>
-                      <h2 className="text-4xl mt-3 font-semibold">{damnMetric?.probability}</h2>
+                      <h2 className="text-4xl mt-3 font-semibold">{damnMetric?.probability ? damnMetric?.probability : "0"}</h2>
                     </div>
                     <div>
                       <h3 className="text-lg font-medium">
                         Fair Value Estimate (US Odds)
                       </h3>
                       <h2 className="text-4xl mt-3 font-semibold">
-                      {damnMetric?.fairvalue ? `${damnMetric?.fairvalue} or better` : ""} 
+                      {damnMetric?.fairvalue ? `${damnMetric?.fairvalue} or better` : "0"} 
                       </h2>
                     </div>
                   </div>
@@ -1223,14 +1227,14 @@ const GamePage = () => {
                       <h3 className="text-lg font-medium">
                         Expected Probability
                       </h3>
-                      <h2 className="text-4xl mt-3 font-semibold">{damnMetric?.probability}</h2>
+                      <h2 className="text-4xl mt-3 font-semibold">{damnMetric?.probability ? damnMetric?.probability : " 0"}</h2>
                     </div>
                     <div>
                       <h3 className="text-lg font-medium">
                         Fair Value Estimate (US Odds)
                       </h3>
                       <h2 className="text-4xl mt-3 font-semibold">
-                      {damnMetric?.fairvalue ? `${damnMetric?.fairvalue} or better` : ""} 
+                      {damnMetric?.fairvalue ? `${damnMetric?.fairvalue} or better` : "0"} 
                       </h2>
                     </div>
                   </div>
