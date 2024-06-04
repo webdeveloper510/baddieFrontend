@@ -190,7 +190,7 @@ const GamePage = () => {
         const awayData = {
           stat_type : "pitcher",
           player_id : res?.data?.player_id_away,
-          opp_team_id : res?.data?.opp_team_id_away,
+          opp_team_id : res?.data?.opp_team_id_home,
           home_away : "away",
           metric_type : "Ks",
           prop_type : equality,
@@ -228,7 +228,7 @@ const GamePage = () => {
     const awayData = {
       stat_type : "pitcher",
       player_id : player?.data?.player_id_away,
-      opp_team_id : player?.data?.opp_team_id_away,
+      opp_team_id : player?.data?.opp_team_id_home,
       home_away : "away",
       metric_type : metricType,
       prop_type : equality,
@@ -238,7 +238,7 @@ const GamePage = () => {
     const homeData = {
       stat_type : "pitcher",
       player_id : player?.data?.player_id_home,
-      opp_team_id : player?.data?.opp_team_id_home,
+      opp_team_id : player?.data?.opp_team_id_away,
       home_away : "home",
       metric_type : metricType,
       prop_type : equality,
@@ -1059,10 +1059,10 @@ const GamePage = () => {
             <Tabs >
               <TabList className="!flex justify-between tab-lists">
                 <Tab onClick={()=>handeSubmit("away")} className="bg-gray border-2 border-black p-3 text-2xl carlos-tab w-[45%] text-center">
-                  {weather?.data?.teams_away_team_name?.[index]}
+                  {player?.data?.player_name_away}
                 </Tab>
                 <Tab onClick={()=>handeSubmit("home")} className="bg-gray border-2 border-black p-3 text-2xl carlos-tab w-[45%] text-center">
-                  {weather?.data?.teams_home_team_name?.[index]}
+                  {player?.data?.player_name_home}
                 </Tab>
               </TabList>
 
