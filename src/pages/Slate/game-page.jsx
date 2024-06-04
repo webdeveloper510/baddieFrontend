@@ -189,9 +189,9 @@ const GamePage = () => {
 
         const awayData = {
           stat_type : "pitcher",
-          player_id : res?.data?.player_id_away,
-          opp_team_id : res?.data?.opp_team_id_home,
-          home_away : "away",
+          player_id : res?.data?.player_id_away ? res?.data?.player_id_away : res?.data?.player_id_home,
+          opp_team_id : res?.data?.player_id_away ? res?.data?.opp_team_id_home : res?.data?.opp_team_id_away,
+          home_away : res?.data?.player_id_away ? "away" : "home",
           metric_type : "Ks",
           prob_type : equality,
           metric_val : range,
@@ -996,201 +996,210 @@ const GamePage = () => {
 
          
 
+          {
+            player?.data?.player_name_away == "" && player?.data?.player_name_home == "" ?
+           ""
+          :
           <div className="mt-20">
-            <Tabs >
-              <TabList className="!flex justify-between tab-lists">
-                <Tab onClick={()=>handeSubmit("away")} className="bg-gray border-2 border-black p-3 text-2xl carlos-tab w-[45%] text-center">
-                  {player?.data?.player_name_away}
-                </Tab>
-                <Tab onClick={()=>handeSubmit("home")} className="bg-gray border-2 border-black p-3 text-2xl carlos-tab w-[45%] text-center">
-                  {player?.data?.player_name_home}
-                </Tab>
-              </TabList>
+          <Tabs >
+            <TabList className="!flex justify-between tab-lists">
+              { player?.data?.player_name_away == "" ?
+                "" : <Tab onClick={()=>handeSubmit("away")} className="bg-gray border-2 border-black p-3 text-2xl carlos-tab w-[45%] text-center">
+                {player?.data?.player_name_away ? player?.data?.player_name_away : "TBD"}
+              </Tab>
+              }
+              <Tab onClick={()=>handeSubmit("home")} className="bg-gray border-2 border-black p-3 text-2xl carlos-tab w-[45%] text-center">
+                {player?.data?.player_name_home ? player?.data?.player_name_home : "TBD"}
+              </Tab>
+            </TabList>
 
-              <TabPanel>
-                <div className="w-full border-4 mt-20 my-3 px-10  slate-box game-box py-5 rounded-[30px] text-center border-black h-auto">
-                 {
-                  loader2 ?  <div className="flex justify-center"><Apploader size={80} /></div> : <div>
-                     <div className="flex justify-between metric-sections">
-                    <div>
-                      <select onChange={(e)=>setMetricType(e.target.value)} className="py-3 bg-[#e6e6e6] !border-0 px-9 my-5 player-list rounded w-full text-center focus:outline-none appearance-none">
-                        <option value="">
-                          {metricType}
-                        </option>
-                        {[
-                          "Ks",
-                          "Hits Allowed",
-                          "Walks",
-                          "Outs",
-                          "Earned Runs",
-                        ].map((item, i) => (
-                          <option key={i} value={item}>
-                            {item}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-
-                    <div className="text-center w-96 text-[#2a3f5f]  player-select">
-                      <select
-                        className=" player-list selector-mobile w-full  greater py-3 bg-[#e6e6e6] !border-0 px-9 rounded mt-6"
-                        value={equality}
-                        onChange={(e) => setEquality(e.target.value)}
-                      >
-                        <option value="less than or equal to">
-                          less than or equal to
-                        </option>
-                        <option value="equal to">equal to</option>
-                        <option value="greater than">greater than</option>
-                      </select>
-                    </div>
-                    <div className="flex items-center justify-center">
-                      <button
-                        onClick={()=>handeSubmit("away")}
-                        className="bg-black w-40 text-white px-5 my-4 py-2 rounded"
-                      >
-                        run
-                      </button>
-                    </div>
-                  </div>
-                  <div className="w-full">
-                    <div className="text-center">
-                      <span className="text-2xl font-bold">
-                        {range}
-                      </span>
-                    </div>
-                    <div className="w-[50%] m-auto progress-bars my-5">
-                      <input
-                        id="steps-range"
-                        type="range"
-                        min="0"
-                        max={rangeMax}
-                        value={range}
-                        step="1"
-                        className="w-full h-2 bg-red-600 rounded-lg appearance-none cursor-pointer"
-                        onChange={(e) => {
-                          setRange(e.target.value);
-                        }}
-                      ></input>
-                      <div className="flex justify-between">
-                        <h4>0</h4>
-                        <h4>{rangeMax}</h4>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex mt-5 justify-evenly">
-                    <div>
-                      <h3 className="text-lg font-medium">
-                        Expected Probability
-                      </h3>
-                      <h2 className="text-4xl mt-3 font-semibold metric-data">{damnMetric?.probability ? damnMetric?.probability : "0"}</h2>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-medium">
-                        Fair Value Estimate (US Odds)
-                      </h3>
-                      <h2 className="text-4xl mt-3 font-semibold metric-data">
-                      {damnMetric?.fairvalue ? `${damnMetric?.fairvalue} or better` : "0"} 
-                      </h2>
-                    </div>
-                  </div>
-                  </div>
-                 }
-                </div>
-              </TabPanel>
+            {player?.data?.player_name_away == "" ? "" :
               <TabPanel>
               <div className="w-full border-4 mt-20 my-3 px-10  slate-box game-box py-5 rounded-[30px] text-center border-black h-auto">
-                 {
-                  loader2 ?  <div className="flex justify-center"><Apploader size={80} /></div> : <div>
-                     <div className="flex justify-between metric-sections">
-                    <div>
-                      <select onChange={(e)=>setMetricType(e.target.value)} className="py-3 bg-[#e6e6e6] !border-0 px-9 my-5 player-list rounded w-full text-center focus:outline-none appearance-none">
-                        <option value={metricType}>
+               {
+                loader2 ?  <div className="flex justify-center"><Apploader size={80} /></div> : <div>
+                   <div className="flex justify-between metric-sections">
+                  <div>
+                    <select onChange={(e)=>setMetricType(e.target.value)} className="py-3 bg-[#e6e6e6] !border-0 px-9 my-5 player-list rounded w-full text-center focus:outline-none appearance-none">
+                      <option value="">
                         {metricType}
+                      </option>
+                      {[
+                        "Ks",
+                        "Hits Allowed",
+                        "Walks",
+                        "Outs",
+                        "Earned Runs",
+                      ].map((item, i) => (
+                        <option key={i} value={item}>
+                          {item}
                         </option>
-                        {[
-                          "Ks",
-                          "Hits Allowed",
-                          "Walks",
-                          "Outs",
-                          "Earned Runs",
-                        ].map((item, i) => (
-                          <option key={i} value={item}>
-                            {item}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
+                      ))}
+                    </select>
+                  </div>
 
-                    <div className="text-center w-96 text-[#2a3f5f]  player-select">
-                      <select
-                        className=" player-list selector-mobile w-full  greater py-3 bg-[#e6e6e6] !border-0 px-9 rounded mt-6"
-                        value={equality}
-                        onChange={(e) => setEquality(e.target.value)}
-                      >
-                        <option value="less than or equal to">
-                          less than or equal to
-                        </option>
-                        <option value="equal to">equal to</option>
-                        <option value="greater than">greater than</option>
-                      </select>
-                    </div>
-                    <div className="flex items-center justify-center">
-                      <button
-                        onClick={()=>handeSubmit("home")}
-                        className="bg-black w-40 text-white px-5 my-4 py-2 rounded"
-                      >
-                        run
-                      </button>
-                    </div>
+                  <div className="text-center w-96 text-[#2a3f5f]  player-select">
+                    <select
+                      className=" player-list selector-mobile w-full  greater py-3 bg-[#e6e6e6] !border-0 px-9 rounded mt-6"
+                      value={equality}
+                      onChange={(e) => setEquality(e.target.value)}
+                    >
+                      <option value="less than or equal to">
+                        less than or equal to
+                      </option>
+                      <option value="equal to">equal to</option>
+                      <option value="greater than">greater than</option>
+                    </select>
                   </div>
-                  <div className="w-full">
-                    <div className="text-center">
-                      <span className="text-2xl font-bold">
-                        {range}
-                      </span>
-                    </div>
-                    <div className="w-[50%] m-auto progress-bars my-5">
-                      <input
-                        id="steps-range"
-                        type="range"
-                        min="0"
-                        max={rangeMax}
-                        value={range}
-                        step="1"
-                        className="w-full h-2 bg-red-600 rounded-lg appearance-none cursor-pointer"
-                        onChange={(e) => {
-                          setRange(e.target.value);
-                        }}
-                      ></input>
-                      <div className="flex justify-between">
-                        <h4>0</h4>
-                        <h4>{rangeMax}</h4>
-                      </div>
-                    </div>
+                  <div className="flex items-center justify-center">
+                    <button
+                      onClick={()=>handeSubmit("away")}
+                      className="bg-black w-40 text-white px-5 my-4 py-2 rounded"
+                    >
+                      run
+                    </button>
                   </div>
-                  <div className="flex mt-5 justify-evenly">
-                    <div>
-                      <h3 className="text-lg font-medium">
-                        Expected Probability
-                      </h3>
-                      <h2 className="text-4xl mt-3 font-semibold metric-data">{damnMetric?.probability ? damnMetric?.probability : " 0"}</h2>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-medium">
-                        Fair Value Estimate (US Odds)
-                      </h3>
-                      <h2 className="text-4xl mt-3 font-semibold metric-data">
-                      {damnMetric?.fairvalue ? `${damnMetric?.fairvalue} or better` : "0"} 
-                      </h2>
-                    </div>
-                  </div>
-                  </div>
-                 }
                 </div>
-              </TabPanel>
-            </Tabs>
-          </div>
+                <div className="w-full">
+                  <div className="text-center">
+                    <span className="text-2xl font-bold">
+                      {range}
+                    </span>
+                  </div>
+                  <div className="w-[50%] m-auto progress-bars my-5">
+                    <input
+                      id="steps-range"
+                      type="range"
+                      min="0"
+                      max={rangeMax}
+                      value={range}
+                      step="1"
+                      className="w-full h-2 bg-red-600 rounded-lg appearance-none cursor-pointer"
+                      onChange={(e) => {
+                        setRange(e.target.value);
+                      }}
+                    ></input>
+                    <div className="flex justify-between">
+                      <h4>0</h4>
+                      <h4>{rangeMax}</h4>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex mt-5 justify-evenly">
+                  <div>
+                    <h3 className="text-lg font-medium">
+                      Expected Probability
+                    </h3>
+                    <h2 className="text-4xl mt-3 font-semibold metric-data">{damnMetric?.probability ? damnMetric?.probability : "0"}</h2>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-medium">
+                      Fair Value Estimate (US Odds)
+                    </h3>
+                    <h2 className="text-4xl mt-3 font-semibold metric-data">
+                    {damnMetric?.fairvalue ? `${damnMetric?.fairvalue} or better` : "0"} 
+                    </h2>
+                  </div>
+                </div>
+                </div>
+               }
+              </div>
+            </TabPanel>
+            }
+            <TabPanel>
+            <div className="w-full border-4 mt-20 my-3 px-10  slate-box game-box py-5 rounded-[30px] text-center border-black h-auto">
+               {
+                loader2 ?  <div className="flex justify-center"><Apploader size={80} /></div> : <div>
+                   <div className="flex justify-between metric-sections">
+                  <div>
+                    <select onChange={(e)=>setMetricType(e.target.value)} className="py-3 bg-[#e6e6e6] !border-0 px-9 my-5 player-list rounded w-full text-center focus:outline-none appearance-none">
+                      <option value={metricType}>
+                      {metricType}
+                      </option>
+                      {[
+                        "Ks",
+                        "Hits Allowed",
+                        "Walks",
+                        "Outs",
+                        "Earned Runs",
+                      ].map((item, i) => (
+                        <option key={i} value={item}>
+                          {item}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className="text-center w-96 text-[#2a3f5f]  player-select">
+                    <select
+                      className=" player-list selector-mobile w-full  greater py-3 bg-[#e6e6e6] !border-0 px-9 rounded mt-6"
+                      value={equality}
+                      onChange={(e) => setEquality(e.target.value)}
+                    >
+                      <option value="less than or equal to">
+                        less than or equal to
+                      </option>
+                      <option value="equal to">equal to</option>
+                      <option value="greater than">greater than</option>
+                    </select>
+                  </div>
+                  <div className="flex items-center justify-center">
+                    <button
+                      onClick={()=>handeSubmit("home")}
+                      className="bg-black w-40 text-white px-5 my-4 py-2 rounded"
+                    >
+                      run
+                    </button>
+                  </div>
+                </div>
+                <div className="w-full">
+                  <div className="text-center">
+                    <span className="text-2xl font-bold">
+                      {range}
+                    </span>
+                  </div>
+                  <div className="w-[50%] m-auto progress-bars my-5">
+                    <input
+                      id="steps-range"
+                      type="range"
+                      min="0"
+                      max={rangeMax}
+                      value={range}
+                      step="1"
+                      className="w-full h-2 bg-red-600 rounded-lg appearance-none cursor-pointer"
+                      onChange={(e) => {
+                        setRange(e.target.value);
+                      }}
+                    ></input>
+                    <div className="flex justify-between">
+                      <h4>0</h4>
+                      <h4>{rangeMax}</h4>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex mt-5 justify-evenly">
+                  <div>
+                    <h3 className="text-lg font-medium">
+                      Expected Probability
+                    </h3>
+                    <h2 className="text-4xl mt-3 font-semibold metric-data">{damnMetric?.probability ? damnMetric?.probability : " 0"}</h2>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-medium">
+                      Fair Value Estimate (US Odds)
+                    </h3>
+                    <h2 className="text-4xl mt-3 font-semibold metric-data">
+                    {damnMetric?.fairvalue ? `${damnMetric?.fairvalue} or better` : "0"} 
+                    </h2>
+                  </div>
+                </div>
+                </div>
+               }
+              </div>
+            </TabPanel>
+          </Tabs>
+        </div>
+          }
 
           <div className="mt-20">
             <div>
