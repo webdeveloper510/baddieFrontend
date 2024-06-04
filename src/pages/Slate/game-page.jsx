@@ -283,12 +283,13 @@ const GamePage = () => {
       <div className="flex flex-col pt-16 items-center w-[100%] bg-lightblack  px-4 min-w-full">
         <div className="bg-white  m-auto flex flex-col px-20 h-auto main-section py-10 text-xl min-w-full">
           <div className="text-center">
-            <h1 className="font-bold text-7xl">daily aggregate matchup</h1>
+            <h1 className="font-bold text-7xl main-heading">daily aggregate matchup</h1>
           </div>
           <div className="flex mt-16 game-upper-section">
             <div className="w-[60%] game-section">
               <div className="w-full border-4 my-3 px-10  slate-box game-box py-5 rounded-[60px] text-center border-black h-auto">
-                <div className="my-1">
+               <div className="flex_section">
+               <div className="my-1">
                   <h1 className="font-extrabold text-3xl game-text">
                     {weather?.data?.teams_away_team_name?.[index]}
                   </h1>
@@ -301,6 +302,9 @@ const GamePage = () => {
                     {weather?.data?.teams_home_team_name?.[index]}
                   </h1>
                 </div>
+               </div>
+                <div className="inner_section">
+                <div className="game-inner-text">
                 <div className="my-1">
                   <h1 className="font-medium text-3xl game-text">{`Game ${weather?.data?.series_game_number[index]} of ${weather?.data?.games_in_series[index]} in Series`}</h1>
                 </div>
@@ -310,13 +314,14 @@ const GamePage = () => {
                 <div className="my-1">
                   <h1 className="font-medium text-3xl game-text">{`Park: ${weather?.data?.venue_name[index]}`}</h1>
                 </div>
+                </div>
 
                 <div>
-                  <div className="rounded-[40px]  bg-[#ac82e5] py-2 my-5">
+                  <div className="rounded-[40px] purple-card  bg-[#ac82e5] py-2 my-5">
                     <h1 className="font-medium text-3xl my-2">
                       SC Park Factors
                     </h1>
-                    <div className="grid grid-cols-3  mb-2">
+                    <div className="grid md:grid-cols-3 sm:grid-cols-1  mb-2">
                       <h1 className="font-medium text-3xl my-2">
                         3yr: {weather?.data?.[`3yr`][index]}
                       </h1>
@@ -328,6 +333,7 @@ const GamePage = () => {
                       </h1>
                     </div>
                   </div>
+                </div>
                 </div>
 
                 {/* <div>
@@ -1064,7 +1070,7 @@ const GamePage = () => {
                 <div className="w-full border-4 mt-20 my-3 px-10  slate-box game-box py-5 rounded-[30px] text-center border-black h-auto">
                  {
                   loader2 ?  <div className="flex justify-center"><Apploader size={80} /></div> : <div>
-                     <div className="flex justify-between">
+                     <div className="flex justify-between metric-sections">
                     <div>
                       <select onChange={(e)=>setMetricType(e.target.value)} className="py-3 bg-[#e6e6e6] !border-0 px-9 my-5 player-list rounded w-full text-center focus:outline-none appearance-none">
                         <option value="">
@@ -1136,13 +1142,13 @@ const GamePage = () => {
                       <h3 className="text-lg font-medium">
                         Expected Probability
                       </h3>
-                      <h2 className="text-4xl mt-3 font-semibold">{damnMetric?.probability ? damnMetric?.probability : "0"}</h2>
+                      <h2 className="text-4xl mt-3 font-semibold metric-data">{damnMetric?.probability ? damnMetric?.probability : "0"}</h2>
                     </div>
                     <div>
                       <h3 className="text-lg font-medium">
                         Fair Value Estimate (US Odds)
                       </h3>
-                      <h2 className="text-4xl mt-3 font-semibold">
+                      <h2 className="text-4xl mt-3 font-semibold metric-data">
                       {damnMetric?.fairvalue ? `${damnMetric?.fairvalue} or better` : "0"} 
                       </h2>
                     </div>
@@ -1155,7 +1161,7 @@ const GamePage = () => {
               <div className="w-full border-4 mt-20 my-3 px-10  slate-box game-box py-5 rounded-[30px] text-center border-black h-auto">
                  {
                   loader2 ?  <div className="flex justify-center"><Apploader size={80} /></div> : <div>
-                     <div className="flex justify-between">
+                     <div className="flex justify-between metric-sections">
                     <div>
                       <select onChange={(e)=>setMetricType(e.target.value)} className="py-3 bg-[#e6e6e6] !border-0 px-9 my-5 player-list rounded w-full text-center focus:outline-none appearance-none">
                         <option value={metricType}>
@@ -1227,13 +1233,13 @@ const GamePage = () => {
                       <h3 className="text-lg font-medium">
                         Expected Probability
                       </h3>
-                      <h2 className="text-4xl mt-3 font-semibold">{damnMetric?.probability ? damnMetric?.probability : " 0"}</h2>
+                      <h2 className="text-4xl mt-3 font-semibold metric-data">{damnMetric?.probability ? damnMetric?.probability : " 0"}</h2>
                     </div>
                     <div>
                       <h3 className="text-lg font-medium">
                         Fair Value Estimate (US Odds)
                       </h3>
-                      <h2 className="text-4xl mt-3 font-semibold">
+                      <h2 className="text-4xl mt-3 font-semibold metric-data">
                       {damnMetric?.fairvalue ? `${damnMetric?.fairvalue} or better` : "0"} 
                       </h2>
                     </div>
@@ -1247,9 +1253,9 @@ const GamePage = () => {
 
           <div className="mt-20">
             <div>
-              <div className="rounded-[50px]  px-20 bg-[#40ecd9] py-5 my-5">
+              <div className="rounded-[50px]  px-20 bg-[#40ecd9] py-5 my-5 mobile_padding">
                 <div className="text-left px-5 mb-2">
-                  <div className="grid grid-cols-3 ">
+                  <div className="grid grid-cols-3 weather-text">
                     <div className="flex justify-center items-center">
                       <h1 className="font-medium text-5xl mt-20 my-2">
                         {`${weather?.data?.Game_Temp?.[index]}°`}
@@ -1279,7 +1285,7 @@ const GamePage = () => {
                   </div>
                 </div>
 
-                <div className="mt-20 mb-5 p-2 lg:w-[98%] md:max-w-[70vw] m-auto overflow-x-auto">
+                <div className="mt-20 mb-5 p-2 lg:w-[98%] md:max-w-[70vw] m-auto table-outer-section overflow-x-auto">
                   <table className="w-full">
                     <thead>
                       <tr>

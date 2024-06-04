@@ -237,7 +237,10 @@ const Slate = () => {
                       </div>
                     </TabPanel>
                   ))
-                : ""}
+                : <div className="flex justify-center items-center">
+                    <h1 className="font-medium">'No Matchups Currently Found'?</h1>
+                  </div>
+                  }
 
               <TabList className="flex flex-wrap mt-3   text-center justify-center">
                 {/* Total Products */}
