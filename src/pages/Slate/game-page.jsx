@@ -145,6 +145,13 @@ const GamePage = () => {
         // setLoader(false);
         console.log("res weather data", res);
         setWeather(res);
+        getTeamDefense({ away_team_name : res?.data?.teams_away_team_name?.[index] , home_team_name : res?.data?.teams_home_team_name?.[index]})
+        .then((response) => {
+          setTeam(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
       })
       .catch((error) => {
         // setLoader(false);
@@ -169,15 +176,17 @@ const GamePage = () => {
       });
   };
 
-  const getTeamdata = () => {
-    getTeamDefense({ away_team_name : player?.data?.player_name_away , home_team_name : player?.data?.player_name_home})
-      .then((res) => {
-        setTeam(res);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  // const getTeamdata = () => {
+
+   
+  //   getTeamDefense({ away_team_name : weather?.data?.teams_away_team_name?.[index] , home_team_name : weather?.data?.teams_home_team_name?.[index]})
+  //     .then((res) => {
+  //       setTeam(res);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
 
   const getMatchupData = () => {
     // setLoader(true);
@@ -205,7 +214,7 @@ const GamePage = () => {
     getAwayData();
     getMatchupData();
     getWeather();
-    getTeamdata();
+    // getTeamdata();
   }, []);
 
 
