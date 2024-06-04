@@ -419,34 +419,32 @@ const GamePage = () => {
                       Ks
                     </td>
                     <td className="border-2 border-[#b1aeae]">
-                      {data?.response1?.["under_odds_Over/Under (Strikeouts)"]
-                        ? data?.response1?.[
-                            "under_odds_Over/Under (Strikeouts)"
-                          ]
+                      {data?.response1?.k_line
+                        ? data?.response1?.k_line_under_odds
                         : "-"}
                     </td>
                     <td className="border-2 border-[#b1aeae]">
-                      {data?.response1?.odds_k_under
+                      {data?.response1?.k_line
                         ? data?.response1?.odds_k_under
                         : "-"}
                     </td>
                     <td className="border-2 font-semibold border-[#b1aeae]">
-                      {data?.response1?.["line_Over/Under (Strikeouts)"]
-                        ? data?.response1?.["line_Over/Under (Strikeouts)"]
+                      {data?.response1?.k_line
+                        ? data?.response1?.k_line
                         : "-"}
                     </td>
                     <td className="border-2 border-[#b1aeae]">
-                      {data?.response1?.["over_odds_Over/Under (Strikeouts)"]
-                        ? data?.response1?.["over_odds_Over/Under (Strikeouts)"]
+                      {data?.response1?.k_line
+                        ? data?.response1?.k_line_over_odds
                         : "-"}
                     </td>
                     <td className="border-r-2 border-r-black border-2 border-[#b1aeae]">
-                      {data?.response1?.odds_k_over
+                      {data?.response1?.k_line
                         ? data?.response1?.odds_k_over
                         : "-"}
                     </td>
                     {callColor(
-                      data?.response3?.k_line_call
+                      data?.response3?.k_line
                         ? data?.response3?.k_line_call
                         : "-"
                     )}
@@ -459,36 +457,32 @@ const GamePage = () => {
                       Hits Allowed
                     </td>
                     <td className="border-2 border-[#b1aeae]">
-                      {data?.response1?.["under_odds_Over/Under (Hits Allowed)"]
-                        ? data?.response1?.[
-                            "under_odds_Over/Under (Hits Allowed)"
-                          ]
+                      {data?.response1?.hits_line
+                        ? data?.response1?.hits_line_under_odds
                         : "-"}
                     </td>
                     <td className="border-2 border-[#b1aeae]">
-                      {data?.response1?.odds_hits_under
+                      {data?.response1?.hits_line
                         ? data?.response1?.odds_hits_under
                         : "-"}
                     </td>
                     <td className="border-2 font-semibold border-[#b1aeae]">
-                      {data?.response1?.["line_Over/Under (Hits Allowed)"]
-                        ? data?.response1?.["line_Over/Under (Hits Allowed)"]
+                      {data?.response1?.hits_line
+                        ? data?.response1?.hits_line
                         : "-"}
                     </td>
                     <td className="border-2 border-[#b1aeae]">
-                      {data?.response1?.["over_odds_Over/Under (Hits Allowed)"]
-                        ? data?.response1?.[
-                            "over_odds_Over/Under (Hits Allowed)"
-                          ]
+                      {data?.response1?.hits_line
+                        ? data?.response1?.hits_line_over_odds
                         : "-"}
                     </td>
                     <td className="border-r-2">
-                      {data?.response1?.odds_hits_over
+                      {data?.response1?.hits_line
                         ? data?.response1?.odds_hits_over
                         : "-"}
                     </td>
                     {callColor(
-                      data?.response3?.hits_line_call
+                      data?.response3?.hits_line
                         ? data?.response3?.hits_line_call
                         : "-"
                     )}
@@ -517,36 +511,32 @@ const GamePage = () => {
                       Earned Runs
                     </td>
                     <td className="border-b-2 border-black border-r-2 border-r-[#b1aeae]">
-                      {data?.response1?.["under_odds_Over/Under (Earned Runs)"]
-                        ? data?.response1?.[
-                            "under_odds_Over/Under (Earned Runs)"
-                          ]
+                      {data?.response1?.er_line
+                        ? data?.response1?.er_line_under_odds
                         : "-"}
                     </td>
                     <td className="border-b-2 border-black border-r-2 border-r-[#b1aeae]">
-                      {data?.response1?.odds_er_under
+                      {data?.response1?.er_line
                         ? data?.response1?.odds_er_under
                         : "-"}
                     </td>
                     <td className="border-b-2 font-semibold border-black border-r-2 border-r-[#b1aeae]">
-                      {data?.response1?.["line_Over/Under (Earned Runs)"]
-                        ? data?.response1?.["line_Over/Under (Earned Runs)"]
+                      {data?.response1?.er_line
+                        ? data?.response1?.er_line
                         : "-"}
                     </td>
                     <td className="border-b-2 border-black border-r-2 border-r-[#b1aeae]">
-                      {data?.response1?.["over_odds_Over/Under (Earned Runs)"]
-                        ? data?.response1?.[
-                            "over_odds_Over/Under (Earned Runs)"
-                          ]
+                      {data?.response1?.er_line
+                        ? data?.response1?.er_line_over_odds
                         : "-"}
                     </td>
                     <td className="border-b-2 border-r-2 border-t-[#b1aeae] border-t-2 border-black">
-                      {data?.response1?.odds_er_over
+                      {data?.response1?.er_line
                         ? data?.response1?.odds_er_over
                         : "-"}
                     </td>
                     {callColor(
-                      data?.response3?.er_line_call
+                      data?.response1?.er_line
                         ? data?.response3?.er_line_call
                         : "-"
                     )}
@@ -562,39 +552,37 @@ const GamePage = () => {
                       Ks
                     </td>
                     <td className="border-2 border-[#b1aeae]">
-                      {data?.response4?.["line_Over/Under (Strikeouts)"]
-                        ? data?.response4?.[
-                            "under_odds_Over/Under (Strikeouts)"
-                          ]
+                      {data?.response4?.k_line
+                        ? data?.response4?.k_line_under_odds
                         : "-"}
                     </td>
                     <td className="border-2 border-[#b1aeae]">
-                      {data?.response4?.["line_Over/Under (Strikeouts)"]
+                      {data?.response4?.k_line
                         ? data?.response4?.odds_k_under
                         : "-"}
                     </td>
                     <td className="border-2 font-semibold border-[#b1aeae]">
-                      {data?.response4?.["line_Over/Under (Strikeouts)"]
-                        ? data?.response4?.["line_Over/Under (Strikeouts)"]
+                      {data?.response4?.k_line
+                        ? data?.response4?.k_line
                         : "-"}
                     </td>
                     <td className="border-2 border-[#b1aeae]">
-                      {data?.response4?.["line_Over/Under (Strikeouts)"]
-                        ? data?.response4?.["over_odds_Over/Under (Strikeouts)"]
+                      {data?.response4?.k_line
+                        ? data?.response4?.k_line_over_odds
                         : "-"}
                     </td>
                     <td className="border-r-2 border-r-black border-2 border-[#b1aeae]">
-                      {data?.response4?.["line_Over/Under (Strikeouts)"]
+                      {data?.response4?.k_line
                         ? data?.response4?.odds_k_over
                         : "-"}
                     </td>
                     {callColor(
-                     data?.response4?.["line_Over/Under (Strikeouts)"]
-                        ? data?.reponse6?.k_line_call
+                     data?.response4?.k_line
+                        ? data?.response6?.k_line_call
                         : "-"
                     )}
                     {/* <td className="bg-[#ffff00] border-b-2 border-b-[#2bf92b]">
-                      {data?.reponse6?.k_line_call}
+                      {data?.response6?.k_line_call}
                     </td> */}
                   </tr>
                   <tr className="text-center">
@@ -602,41 +590,37 @@ const GamePage = () => {
                       Hits Allowed
                     </td>
                     <td className="border-2 border-[#b1aeae]">
-                      {data?.response4?.["line_Over/Under (Hits Allowed)"]
-                        ? data?.response4?.[
-                            "under_odds_Over/Under (Hits Allowed)"
-                          ]
+                      {data?.response4?.hits_line
+                        ? data?.response4?.hits_line_under_odds
                         : "-"}
                     </td>
                     <td className="border-2 border-[#b1aeae]">
-                      {data?.response4?.["line_Over/Under (Hits Allowed)"]
+                      {data?.response4?.hits_line
                         ? data?.response4?.odds_hits_under
                         : "-"}
                     </td>
                     <td className="border-2 font-semibold border-[#b1aeae]">
-                      {data?.response4?.["line_Over/Under (Hits Allowed)"]
-                        ? data?.response4?.["line_Over/Under (Hits Allowed)"]
+                      {data?.response4?.hits_line
+                        ? data?.response4?.hits_line
                         : "-"}
                     </td>
                     <td className="border-2 border-[#b1aeae]">
-                      {data?.response4?.["line_Over/Under (Hits Allowed)"]
-                        ? data?.response4?.[
-                            "over_odds_Over/Under (Hits Allowed)"
-                          ]
+                      {data?.response4?.hits_line
+                        ? data?.response4?.hits_line_over_odds
                         : "-"}
                     </td>
                     <td className="border-r-2">
-                      {data?.response4?.["line_Over/Under (Hits Allowed)"]
+                      {data?.response4?.hits_line
                         ? data?.response4?.odds_hits_over
                         : "-"}
                     </td>
                     {callColor(
-                      data?.response4?.["line_Over/Under (Hits Allowed)"]
-                        ? data?.reponse6?.hits_line_call
+                      data?.response4?.hits_line
+                        ? data?.response6?.hits_line_call
                         : "-"
                     )}
                     {/* <td className="bg-[#66ff66] border-b-2 border-b-[#2bf92b] border-r-2 border-r-[#2bf92b]">
-                      {data?.reponse6?.hits_line_call}
+                      {data?.response6?.hits_line_call}
                     </td> */}
                   </tr>
                   {/* <tr className="text-center">
@@ -652,7 +636,7 @@ const GamePage = () => {
                     <td className="border-r-2 border-r-black border-[#b1aeae] border-2">
                       {data?.response4?.odds_outs_over       ? data?.response4?.odds_outs_over : "-"}
                     </td>
-                    { callColor(data?.reponse6?.outs_line_call      ? data?.reponse6?.outs_line_call : "-")}
+                    { callColor(data?.response6?.outs_line_call      ? data?.response6?.outs_line_call : "-")}
                    
                   </tr> */}
                   <tr className="text-center">
@@ -660,41 +644,37 @@ const GamePage = () => {
                       Earned Runs
                     </td>
                     <td className="border-b-2 border-black border-r-2 border-r-[#b1aeae]">
-                      {data?.response4?.["line_Over/Under (Earned Runs)"]
-                        ? data?.response4?.[
-                            "under_odds_Over/Under (Earned Runs)"
-                          ]
+                      {data?.response4?.er_line
+                        ? data?.response4?.er_line_under_odds
                         : "-"}
                     </td>
                     <td className="border-b-2 border-black border-r-2 border-r-[#b1aeae]">
-                      {data?.response4?.["line_Over/Under (Earned Runs)"]
+                      {data?.response4?.er_line
                         ? data?.response4?.odds_er_under
                         : "-"}
                     </td>
                     <td className="border-b-2 font-semibold border-black border-r-2 border-r-[#b1aeae]">
-                      {data?.response4?.["line_Over/Under (Earned Runs)"]
-                        ? data?.response4?.["line_Over/Under (Earned Runs)"]
+                      {data?.response4?.er_line
+                        ? data?.response4?.er_line
                         : "-"}
                     </td>
                     <td className="border-b-2 border-black border-r-2 border-r-[#b1aeae]">
-                      {data?.response4?.["line_Over/Under (Earned Runs)"]
-                        ? data?.response4?.[
-                            "over_odds_Over/Under (Earned Runs)"
-                          ]
+                      {data?.response4?.er_line
+                        ? data?.response4?.er_line_over_odds
                         : "-"}
                     </td>
                     <td className="border-b-2 border-r-2 border-t-[#b1aeae] border-t-2 border-black">
-                      {data?.response4?.["line_Over/Under (Earned Runs)"]
+                      {data?.response4?.er_line
                         ? data?.response4?.odds_er_over
                         : "-"}
                     </td>
                     {callColor(
-                      data?.response4?.["line_Over/Under (Earned Runs)"]
-                        ? data?.reponse6?.er_line_call
+                      data?.response4?.er_line
+                        ? data?.response6?.er_line_call
                         : "-"
                     )}
                     {/* <td className="bg-[#ffff00]">
-                      {data?.reponse6?.er_line_call}
+                      {data?.response6?.er_line_call}
                     </td> */}
                   </tr>
                 </tbody>
@@ -729,26 +709,18 @@ const GamePage = () => {
                     <th className="w-[20%] m-auto font-medium text-sm flex-nowrap leading-none border-r-2 border-r-black">
                       Under Odds
                     </th>
-                    <td className="border-2 border-[#c1bfbf]">{data?.response1?.["line_Over/Under (Strikeouts)"]
-                        ? data?.response1?.[
-                            "under_odds_Over/Under (Strikeouts)"
-                          ]
+                    <td className="border-2 border-[#c1bfbf]">{data?.response1?.k_line
+                        ? data?.response1?.k_line_under_odds
                         : "-"}</td>
-                    <td className="border-2 border-[#c1bfbf]"> {data?.response1?.["line_Over/Under (Hits Allowed)"]
-                        ? data?.response1?.[
-                            "under_odds_Over/Under (Hits Allowed)"
-                          ]
+                    <td className="border-2 border-[#c1bfbf]"> {data?.response1?.hits_line
+                        ? data?.response1?.hits_line_under_odds
                         : "-"}</td>
                     {/* <td className="border-2 border-[#c1bfbf]">{data?.response1?.["under_odds_Over/Under (Earned Runs)"]
-                        ? data?.response1?.[
-                            "under_odds_Over/Under (Earned Runs)"
-                          ]
+                        ? data?.response1?.er_line_under_odds
                         : "-"}</td> */}
                     <td className="border-2 border-[#c1bfbf] border-r-2 border-r-black">
-                    {data?.response1?.["line_Over/Under (Earned Runs)"]
-                        ? data?.response1?.[
-                            "under_odds_Over/Under (Earned Runs)"
-                          ]
+                    {data?.response1?.er_line
+                        ? data?.response1?.er_line_under_odds
                         : "-"}
                     </td>
                   </tr>
@@ -757,12 +729,12 @@ const GamePage = () => {
                       Under EV calc Estimate
                     </th>
                     <td className="border-2 border-[#c1bfbf]">
-                      {data?.response1?.["line_Over/Under (Strikeouts)"]
+                      {data?.response1?.k_line
                         ? data?.response1?.odds_k_under
                         : "-"}
                     </td>
                     <td className="border-2 border-[#c1bfbf]">
-                      {data?.response1?.["line_Over/Under (Hits Allowed)"]
+                      {data?.response1?.hits_line
                         ? data?.response1?.odds_hits_under
                         : "-"}
                     </td>
@@ -772,7 +744,7 @@ const GamePage = () => {
                         : "-"}
                     </td> */}
                     <td className="border-2 border-[#c1bfbf] border-r-2 border-r-black">
-                      {data?.response1?.["line_Over/Under (Earned Runs)"]
+                      {data?.response1?.er_line
                         ? data?.response1?.odds_er_under
                         : "-"}
                     </td>
@@ -781,16 +753,16 @@ const GamePage = () => {
                     <th className="w-[20%] m-auto font-medium text-sm flex-nowrap leading-none border-r-2 border-r-black">
                       Line
                     </th>
-                    <td className="border-2 border-[#c1bfbf]">{data?.response1?.["line_Over/Under (Strikeouts)"]
-                        ? data?.response1?.["line_Over/Under (Strikeouts)"]
+                    <td className="border-2 border-[#c1bfbf]">{data?.response1?.k_line
+                        ? data?.response1?.k_line
                         : "-"}</td>
-                    <td className="border-2 border-[#c1bfbf]">{data?.response1?.["line_Over/Under (Hits Allowed)"]
-                        ? data?.response1?.["line_Over/Under (Hits Allowed)"]
+                    <td className="border-2 border-[#c1bfbf]">{data?.response1?.hits_line
+                        ? data?.response1?.hits_line
                         : "-"}</td>
                     {/* <td className="border-2 border-[#c1bfbf]">-110</td> */}
                     <td className="border-2 border-[#c1bfbf] border-r-2 border-r-black">
-                    {data?.response1?.["line_Over/Under (Earned Runs)"]
-                        ? data?.response1?.["line_Over/Under (Earned Runs)"]
+                    {data?.response1?.er_line
+                        ? data?.response1?.er_line
                         : "-"}
                     </td>
                   </tr>
@@ -798,20 +770,18 @@ const GamePage = () => {
                     <th className="w-[20%] m-auto font-medium text-sm flex-nowrap leading-none border-r-2 border-r-black">
                       Ever Odds
                     </th>
-                    <td className="border-2 border-[#c1bfbf]">{data?.response1?.["line_Over/Under (Strikeouts)"]
-                        ? data?.response1?.["over_odds_Over/Under (Strikeouts)"]
+                    <td className="border-2 border-[#c1bfbf]">{data?.response1?.k_line
+                        ? data?.response1?.k_line_over_odds
                         : "-"}</td>
-                    <td className="border-2 border-[#c1bfbf]">{data?.response1?.["line_Over/Under (Hits Allowed)"]
+                    <td className="border-2 border-[#c1bfbf]">{data?.response1?.hits_line
                         ? data?.response1?.[
                             "over_odds_Over/Under (Hits Allowed)"
                           ]
                         : "-"}</td>
                     {/* <td className="border-2 border-[#c1bfbf]">-110</td> */}
                     <td className="border-2 border-[#c1bfbf] border-r-2 border-r-black">
-                    {data?.response1?.["line_Over/Under (Earned Runs)"]
-                        ? data?.response1?.[
-                            "over_odds_Over/Under (Earned Runs)"
-                          ]
+                    {data?.response1?.er_line
+                        ? data?.response1?.er_line_over_odds
                         : "-"}
                     </td>
                   </tr>
@@ -820,12 +790,12 @@ const GamePage = () => {
                       Over EV calc Estimate
                     </th>
                     <td className="border-2 border-[#c1bfbf] border-b-2 border-b-black">
-                      {data?.response1?.["line_Over/Under (Strikeouts)"]
+                      {data?.response1?.k_line
                         ? data?.response1?.odds_k_over
                         : "-"}
                     </td>
                     <td className="border-2 border-[#c1bfbf] border-b-2 border-b-black">
-                      {data?.response1?.["line_Over/Under (Hits Allowed)"]
+                      {data?.response1?.hits_line
                         ? data?.response1?.odds_hits_over
                         : "-"}
                     </td>
@@ -835,7 +805,7 @@ const GamePage = () => {
                         : "-"}
                     </td> */}
                     <td className="border-2 border-[#c1bfbf] border-r-2 border-r-black border-b-2 border-b-black">
-                      {data?.response1?.["line_Over/Under (Earned Runs)"]
+                      {data?.response1?.er_line
                         ? data?.response1?.odds_er_over
                         : "-"}
                     </td>
@@ -845,12 +815,12 @@ const GamePage = () => {
                       Call
                     </th>
                     <td className="bg-[#ffff00] border-b-2 border-b-[#2bf92b]">
-                      {data?.response1?.["line_Over/Under (Strikeouts)"]
+                      {data?.response1?.k_line
                         ? data?.response3?.k_line_call
                         : "-"}
                     </td>
                     <td className="bg-[#66ff66] border-2 border-[#2bf92b]">
-                      {data?.response1?.["line_Over/Under (Hits Allowed)"]
+                      {data?.response1?.hits_line
                         ? data?.response3?.hits_line_call
                         : "-"}
                     </td>
@@ -860,7 +830,7 @@ const GamePage = () => {
                         : "-"}
                     </td> */}
                     <td className="bg-[#f7c7ac] ">
-                      {data?.response1?.["line_Over/Under (Earned Runs)"]
+                      {data?.response1?.er_line
                         ? data?.response3?.er_line_call
                         : "-"}
                     </td>
@@ -897,22 +867,16 @@ const GamePage = () => {
                     <th className="w-[20%] m-auto font-medium text-sm flex-nowrap leading-none border-r-2 border-r-black">
                       Under Odds
                     </th>
-                    <td className="border-2 border-[#c1bfbf]">{data?.response4?.["line_Over/Under (Strikeouts)"]
-                        ? data?.response4?.[
-                            "under_odds_Over/Under (Strikeouts)"
-                          ]
+                    <td className="border-2 border-[#c1bfbf]">{data?.response4?.k_line
+                        ? data?.response4?.k_line_under_odds
                         : "-"}</td>
-                    <td className="border-2 border-[#c1bfbf]">{data?.response4?.["line_Over/Under (Hits Allowed)"]
-                        ? data?.response4?.[
-                            "under_odds_Over/Under (Hits Allowed)"
-                          ]
+                    <td className="border-2 border-[#c1bfbf]">{data?.response4?.hits_line
+                        ? data?.response4?.hits_line_under_odds
                         : "-"}</td>
                     {/* <td className="border-2 border-[#c1bfbf]">-110</td> */}
                     <td className="border-2 border-[#c1bfbf] border-r-2 border-r-black">
-                    {data?.response4?.["line_Over/Under (Earned Runs)"]
-                        ? data?.response4?.[
-                            "under_odds_Over/Under (Earned Runs)"
-                          ]
+                    {data?.response4?.er_line
+                        ? data?.response4?.er_line_under_odds
                         : "-"}
                     </td>
                   </tr>
@@ -921,12 +885,12 @@ const GamePage = () => {
                       Under EV calc Estimate
                     </th>
                     <td className="border-2 border-[#c1bfbf]">
-                      {data?.response4?.["line_Over/Under (Strikeouts)"]
+                      {data?.response4?.k_line
                         ? data?.response4?.odds_k_under
                         : "-"}
                     </td>
                     <td className="border-2 border-[#c1bfbf]">
-                      {data?.response4?.["line_Over/Under (Hits Allowed)"]
+                      {data?.response4?.hits_line
                         ? data?.response4?.odds_hits_under
                         : "-"}
                     </td>
@@ -936,7 +900,7 @@ const GamePage = () => {
                         : "-"}
                     </td> */}
                     <td className="border-2 border-[#c1bfbf] border-r-2 border-r-black">
-                      {data?.response4?.["line_Over/Under (Earned Runs)"]
+                      {data?.response4?.er_line
                         ? data?.response4?.odds_er_under
                         : "-"}
                     </td>
@@ -945,16 +909,16 @@ const GamePage = () => {
                     <th className="w-[20%] m-auto font-medium text-sm flex-nowrap leading-none border-r-2 border-r-black">
                       Line
                     </th>
-                    <td className="border-2 border-[#c1bfbf]">{data?.response4?.["line_Over/Under (Strikeouts)"]
-                        ? data?.response4?.["line_Over/Under (Strikeouts)"]
+                    <td className="border-2 border-[#c1bfbf]">{data?.response4?.k_line
+                        ? data?.response4?.k_line
                         : "-"}</td>
-                    <td className="border-2 border-[#c1bfbf]"> {data?.response4?.["line_Over/Under (Hits Allowed)"]
-                        ? data?.response4?.["line_Over/Under (Hits Allowed)"]
+                    <td className="border-2 border-[#c1bfbf]"> {data?.response4?.hits_line
+                        ? data?.response4?.hits_line
                         : "-"}</td>
                     {/* <td className="border-2 border-[#c1bfbf]">-110</td> */}
                     <td className="border-2 border-[#c1bfbf] border-r-2 border-r-black">
-                    {data?.response4?.["line_Over/Under (Hits Allowed)"]
-                        ? data?.response4?.["line_Over/Under (Earned Runs)"]
+                    {data?.response4?.hits_line
+                        ? data?.response4?.er_line
                         : "-"}
                     </td>
                   </tr>
@@ -962,15 +926,15 @@ const GamePage = () => {
                     <th className="w-[20%] m-auto font-medium text-sm flex-nowrap leading-none border-r-2 border-r-black">
                       Ever Odds
                     </th>
-                    <td className="border-2 border-[#c1bfbf]">{data?.response4?.["line_Over/Under (Strikeouts)"]
-                        ? data?.response4?.["over_odds_Over/Under (Strikeouts)"]
+                    <td className="border-2 border-[#c1bfbf]">{data?.response4?.k_line
+                        ? data?.response4?.k_line_over_odds
                         : "-"}</td>
-                    <td className="border-2 border-[#c1bfbf]">{data?.response4?.["line_Over/Under (Strikeouts)"]
+                    <td className="border-2 border-[#c1bfbf]">{data?.response4?.k_line
                         ? data?.response4?.["over_odds_Over/Under (Hits Allowed)"]
                         : "-"}</td>
                     {/* <td className="border-2 border-[#c1bfbf]">-110</td> */}
                     <td className="border-2 border-[#c1bfbf] border-r-2 border-r-black">
-                    {data?.response4?.["line_Over/Under (Strikeouts)"]
+                    {data?.response4?.k_line
                         ? data?.response4?.["over_odds_Over/Under (Earned Runs)"]
                         : "-"}
                     </td>
@@ -980,12 +944,12 @@ const GamePage = () => {
                       Over EV calc Estimate
                     </th>
                     <td className="border-2 border-[#c1bfbf] border-b-2 border-b-black">
-                      {data?.response4?.["line_Over/Under (Strikeouts)"]
+                      {data?.response4?.k_line
                         ? data?.response4?.odds_k_under
                         : "-"}
                     </td>
                     <td className="border-2 border-[#c1bfbf] border-b-2 border-b-black">
-                      {data?.response4?.["line_Over/Under (Hits Allowed)"]
+                      {data?.response4?.hits_line
                         ? data?.response4?.odds_hits_under
                         : "-"}
                     </td>
@@ -995,7 +959,7 @@ const GamePage = () => {
                         : "-"}
                     </td> */}
                     <td className="border-2 border-[#c1bfbf] border-r-2 border-r-black border-b-2 border-b-black">
-                      {data?.response4?.["line_Over/Under (Earned Runs)"]
+                      {data?.response4?.er_line
                         ? data?.response4?.odds_er_under
                         : "-"}
                     </td>
@@ -1005,12 +969,12 @@ const GamePage = () => {
                       Call
                     </th>
                     <td className="bg-[#ffff00] border-b-2 border-b-[#2bf92b]">
-                      {data?.response4?.["line_Over/Under (Strikeouts)"]
+                      {data?.response4?.k_line
                         ? data?.response3?.k_line_call
                         : "-"}
                     </td>
                     <td className="bg-[#66ff66] border-2 border-[#2bf92b]">
-                      {data?.response4?.["line_Over/Under (Hits Allowed)"]
+                      {data?.response4?.hits_line
                         ? data?.response3?.hits_line_call
                         : "-"}
                     </td>
@@ -1020,7 +984,7 @@ const GamePage = () => {
                         : "-"}
                     </td> */}
                     <td className="bg-[#ffff00]">
-                      {data?.response4?.["line_Over/Under (Earned Runs)"]
+                      {data?.response4?.er_line
                         ? data?.response3?.er_line_call
                         : "-"}
                     </td>
