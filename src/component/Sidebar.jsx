@@ -27,6 +27,8 @@ const Sidebars = ({ show, setShow }) => {
                                 <Link to="/picks-analysis">
                                     <button className={`${location.pathname.includes("picks-analysis") ? "bg-white text-black" : "bg-lightblue text-white"} mx-2 whitespace-nowrap py-1 px-4 rounded`}> picks & analysis</button>
                                 </Link>
+                                <Link to={user?.status == "active" ? "/dam" : "/payment"}>
+                                    <button className={`${location.pathname.includes("dam") ? "bg-white text-black" : "bg-lightblue text-white"} whitespace-nowrap mx-2 py-1 px-4 rounded`}> DAM</button></Link>
                                 <Link to={user?.status == "active" ? "/new-eda" : "/payment"}>
                                     <button className={`${location.pathname.includes("new-eda") ? "bg-white text-black" : "bg-lightblue text-white"} whitespace-nowrap mx-2 py-1 px-4 rounded`}> player/team EDA</button></Link>
                                 <Link to={user?.status == "active" ? "/expected-value" : "/payment"}>
