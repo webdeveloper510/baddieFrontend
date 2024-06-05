@@ -217,7 +217,7 @@ const Slate = () => {
                                     </div>
                                   </div>
                                   {
-                                  weather?.data?.Game_Temp?.[i] ? "" : <h1 className="font-medium text-center whitespace-nowrap  text-2xl mt-[10px]  my-2">
+                                  weather?.data?.Game_Temp?.[i] ? "" : <h1 className="font-medium text-center whitespace-nowrap  text-xl mt-[10px]  my-2">
                                   No weather data available at this time
                                 </h1>
                                 }
