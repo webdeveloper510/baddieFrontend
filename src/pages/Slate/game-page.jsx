@@ -1205,192 +1205,209 @@ const GamePage = () => {
             <div>
               <div className="rounded-[50px]  px-20 bg-[#40ecd9] py-5 my-5 mobile_padding">
                 <div className="text-left px-5 mb-2">
+                 {
+                  weather?.data?.Game_Temp?.[index]
+                  ?
                   <div className="grid grid-cols-3 weather-text">
-                    <div className="flex justify-center weather-text1 items-center">
-                      <h1 className="font-medium text-5xl game-data mt-20 my-2">
-                        {`${weather?.data?.Game_Temp?.[index]}°`}
-                      </h1>
-                    </div>
-                    <div className="text-center weather-text2">
-                      <h1 className="font-medium text-center text-5xl underline mb-10">
-                        Weather
-                      </h1>
-                      <h1 className="font-medium text-4xl mt-4 my-2">
-                        {`${weather?.data?.Game_Precip?.[index]}% `}
-                      </h1>
-                      <h1 className="font-medium text-4xl my-2">
-                        Chance of precip
-                      </h1>
-                    </div>
-                    <div className="text-center mt-4 weather-text3">
-                      <DirectionImage
-                        newclass="newclass"
-                        windDirection={wind_direction}
-                        name={weather?.data?.Game_Wind_Direction?.[index]}
-                      />
-                      <h1 className="font-medium text-center text-4xl my-2">
-                        {`${weather?.data?.Game_Wind_MPH?.[index]}MPH`}
-                      </h1>
-                    </div>
+                  <div className="flex justify-center weather-text1 items-center">
+                    <h1 className="font-medium text-5xl game-data mt-20 my-2">
+                      {`${weather?.data?.Game_Temp?.[index]}°`}
+                    </h1>
+                  </div>
+                  <div className="text-center weather-text2">
+                    <h1 className="font-medium text-center text-5xl underline mb-10">
+                      Weather
+                    </h1>
+                    <h1 className="font-medium text-4xl mt-4 my-2">
+                      {`${weather?.data?.Game_Precip?.[index]}% `}
+                    </h1>
+                    <h1 className="font-medium text-4xl my-2">
+                      Chance of precip
+                    </h1>
+                  </div>
+                  <div className="text-center mt-4 weather-text3">
+                    <DirectionImage
+                      newclass="newclass"
+                      windDirection={wind_direction}
+                      name={weather?.data?.Game_Wind_Direction?.[index]}
+                    />
+                    <h1 className="font-medium text-center text-4xl my-2">
+                      {`${weather?.data?.Game_Wind_MPH?.[index]}MPH`}
+                    </h1>
                   </div>
                 </div>
-
-                <div className="mt-20 mb-5 p-2 lg:w-[98%] md:max-w-[70vw] m-auto table-outer-section overflow-x-auto">
-                  <table className="w-full">
-                    <thead className="table-header">
-                      <tr>
-                        <th className="text-left px-5"></th>
-                        <th className="text-left px-5">Temp (F)</th>
-                        <th className="text-left px-5">Chance of Precip</th>
-                        <th className="text-left px-5">Humidity</th>
-                        <th className="text-left px-5">Dewpoint</th>
-                        <th colSpan="2" className="text-center px-5">
-                          Wind
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody className="table-body">
-                      <tr>
-                        <th className="text-left px-5">
-                          {weather?.data?.GH_N2_Time[index]}
-                        </th>
-                        <td className="text-center px-5">
-                          {weather?.data?.GH_N2_Temp[index]}
-                        </td>
-                        <td className="text-center px-5">
-                          {weather?.data?.GH_N2_Precip[index]}
-                        </td>
-                        <td className="text-center px-5">
-                          {weather?.data?.GH_N2_Humidity[index]}
-                        </td>
-                        <td className="text-center px-5">
-                          {weather?.data?.GH_N2_Dewpoint[index]}
-                        </td>
-                        <td className="text-center px-5">
-                          {weather?.data?.GH_N2_Wind_Dir[index]}
-                        </td>
-                        <td className="text-center px-5 whitespace-nowrap">
-                          {weather?.data?.GH_N2_Wind_MPH[index]} MPH
-                        </td>
-                      </tr>
-                      <tr className="border-b-2">
-                        <th className="text-left  px-5">
-                          {weather?.data?.GH_N1_Time[index]}
-                        </th>
-                        <td className="text-center px-5">
-                          {weather?.data?.GH_N1_Temp[index]}
-                        </td>
-                        <td className="text-center px-5">
-                          {weather?.data?.GH_N1_Precip[index]}
-                        </td>
-                        <td className="text-center px-5">
-                          {weather?.data?.GH_N1_Humidity[index]}
-                        </td>
-                        <td className="text-center px-5">
-                          {weather?.data?.GH_N1_Dewpoint[index]}
-                        </td>
-                        <td className="text-center px-5">
-                          {weather?.data?.GH_N1_Wind_Dir[index]}
-                        </td>
-                        <td className="text-center px-5">
-                          {weather?.data?.GH_N1_Wind_MPH[index]} MPH
-                        </td>
-                      </tr>
-                      <tr>
-                        <th className="text-left px-5">
-                          {weather?.data?.GH_1_Time[index]}
-                        </th>
-                        <td className="text-center px-5">
-                          {weather?.data?.GH_1_Temp[index]}
-                        </td>
-                        <td className="text-center px-5">
-                          {weather?.data?.GH_1_Precip[index]}
-                        </td>
-                        <td className="text-center px-5">
-                          {weather?.data?.GH_1_Humidity[index]}
-                        </td>
-                        <td className="text-center px-5">
-                          {weather?.data?.GH_1_Dewpoint[index]}
-                        </td>
-                        <td className="text-center px-5">
-                          {weather?.data?.GH_1_Wind_Dir[index]}
-                        </td>
-                        <td className="text-center px-5">
-                          {weather?.data?.GH_1_Wind_MPH[index]} MPH
-                        </td>
-                      </tr>
-                      <tr>
-                        <th className="text-left px-5">
-                          {weather?.data?.GH_2_Time[index]}
-                        </th>
-                        <td className="text-center px-5">
-                          {weather?.data?.GH_2_Temp[index]}
-                        </td>
-                        <td className="text-center px-5">
-                          {weather?.data?.GH_2_Precip[index]}
-                        </td>
-                        <td className="text-center px-5">
-                          {weather?.data?.GH_2_Humidity[index]}
-                        </td>
-                        <td className="text-center px-5">
-                          {weather?.data?.GH_2_Dewpoint[index]}
-                        </td>
-                        <td className="text-center px-5">
-                          {weather?.data?.GH_2_Wind_Dir[index]}
-                        </td>
-                        <td className="text-center px-5">
-                          {weather?.data?.GH_2_Wind_MPH[index]} MPH
-                        </td>
-                      </tr>
-                      <tr>
-                        <th className="text-left px-5">
-                          {weather?.data?.GH_3_Time[index]}
-                        </th>
-                        <td className="text-center px-5">
-                          {weather?.data?.GH_3_Temp[index]}
-                        </td>
-                        <td className="text-center px-5">
-                          {weather?.data?.GH_3_Precip[index]}
-                        </td>
-                        <td className="text-center px-5">
-                          {weather?.data?.GH_3_Humidity[index]}
-                        </td>
-                        <td className="text-center px-5">
-                          {weather?.data?.GH_3_Dewpoint[index]}
-                        </td>
-                        <td className="text-center px-5">
-                          {weather?.data?.GH_3_Wind_Dir[index]}
-                        </td>
-                        <td className="text-center px-5">
-                          {weather?.data?.GH_3_Wind_MPH[index]} MPH
-                        </td>
-                      </tr>
-                      <tr>
-                        <th className="text-left px-5">
-                          {weather?.data?.GH_4_Time[index]}
-                        </th>
-                        <td className="text-center px-5">
-                          {weather?.data?.GH_4_Temp[index]}
-                        </td>
-                        <td className="text-center px-5">
-                          {weather?.data?.GH_4_Precip[index]}
-                        </td>
-                        <td className="text-center px-5">
-                          {weather?.data?.GH_4_Humidity[index]}
-                        </td>
-                        <td className="text-center px-5">
-                          {weather?.data?.GH_4_Dewpoint[index]}
-                        </td>
-                        <td className="text-center px-5">
-                          {weather?.data?.GH_4_Wind_Dir[index]}
-                        </td>
-                        <td className="text-center px-5">
-                          {weather?.data?.GH_4_Wind_MPH[index]} MPH
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                :
+                <>
+                <h1 className="font-medium text-center text-5xl underline mb-10">
+                      Weather
+                    </h1>
+                    <h1 className="font-medium text-red-600 text-center text-3xl  mb-10">
+                    No weather data available at this time
+                    </h1>
+                    </>
+                  
+                    
+                 }
                 </div>
+
+              
+                <div className="mt-20 mb-5 p-2 lg:w-[98%] md:max-w-[70vw] m-auto table-outer-section overflow-x-auto">
+                <table className="w-full">
+                  <thead className="table-header">
+                    <tr>
+                      <th className="text-left px-5"></th>
+                      <th className="text-left px-5">Temp (F)</th>
+                      <th className="text-left px-5">Chance of Precip</th>
+                      <th className="text-left px-5">Humidity</th>
+                      <th className="text-left px-5">Dewpoint</th>
+                      <th colSpan="2" className="text-center px-5">
+                        Wind
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="table-body">
+                    <tr>
+                      <th className="text-left px-5">
+                        {weather?.data?.GH_N2_Time?.[index] ? weather?.data?.GH_N2_Time?.[index] : "-"}
+                      </th>
+                      <td className="text-center px-5">
+                        {weather?.data?.GH_N2_Temp?.[index] ? weather?.data?.GH_N2_Temp?.[index] : "-"}
+                      </td>
+                      <td className="text-center px-5">
+                        {weather?.data?.GH_N2_Temp?.[index] ? weather?.data?.GH_N2_Precip?.[index] : "-"}
+                      </td>
+                      <td className="text-center px-5">
+                        {weather?.data?.GH_N2_Temp?.[index] ? weather?.data?.GH_N2_Humidity?.[index] : "-" }
+                      </td>
+                      <td className="text-center px-5">
+                        {weather?.data?.GH_N2_Temp?.[index] ? weather?.data?.GH_N2_Dewpoint?.[index] : "-"}
+                      </td>
+                      <td className="text-center px-5">
+                        {weather?.data?.GH_N2_Wind_Dir?.[index] ? weather?.data?.GH_N2_Wind_Dir?.[index] : "-" }
+                      </td>
+                      <td className="text-center px-5 whitespace-nowrap">
+                        {weather?.data?.GH_N2_Wind_MPH?.[index] ? `${weather?.data?.GH_N2_Wind_MPH?.[index]} MPH` : "-" } 
+                      </td>
+                    </tr>
+                    <tr className="border-b-2">
+                      <th className="text-left  px-5">
+                        {weather?.data?.GH_N1_Time?.[index] ? weather?.data?.GH_N1_Time?.[index] : "-" }
+                      </th>
+                      <td className="text-center px-5">
+                        {weather?.data?.GH_N1_Temp?.[index] ? weather?.data?.GH_N1_Temp?.[index] : "-" }
+                      </td>
+                      <td className="text-center px-5">
+                        {weather?.data?.GH_N1_Temp?.[index] ? weather?.data?.GH_N1_Precip?.[index] : "-" }
+                      </td>
+                      <td className="text-center px-5">
+                        {weather?.data?.GH_N1_Humidity?.[index] ? weather?.data?.GH_N1_Humidity?.[index] :"-"}
+                      </td>
+                      <td className="text-center px-5">
+                        {weather?.data?.GH_N1_Dewpoint?.[index] ? weather?.data?.GH_N1_Dewpoint?.[index] : "-"}
+                      </td>
+                      <td className="text-center px-5">
+                        {weather?.data?.GH_N1_Wind_Dir?.[index] ? weather?.data?.GH_N1_Wind_Dir?.[index] : "-"}
+                      </td>
+                      <td className="text-center px-5">
+                        {weather?.data?.GH_N1_Wind_MPH?.[index] ? `${weather?.data?.GH_N1_Wind_MPH?.[index]} MPH` : "-"} 
+                      </td>
+                    </tr>
+                    <tr>
+                      <th className="text-left px-5">
+                        {weather?.data?.GH_1_Time?.[index] ? weather?.data?.GH_1_Time?.[index] : "-"}
+                      </th>
+                      <td className="text-center px-5">
+                        {weather?.data?.GH_1_Temp?.[index] ? weather?.data?.GH_1_Temp?.[index] : "-"}
+                      </td>
+                      <td className="text-center px-5">
+                        {weather?.data?.GH_1_Temp?.[index] ? weather?.data?.GH_1_Precip?.[index] :"-"}
+                      </td>
+                      <td className="text-center px-5">
+                        {weather?.data?.GH_1_Humidity?.[index] ? weather?.data?.GH_1_Humidity?.[index] : "-"}
+                      </td>
+                      <td className="text-center px-5">
+                        {weather?.data?.GH_1_Dewpoint?.[index] ? weather?.data?.GH_1_Dewpoint?.[index] : "-"}
+                      </td>
+                      <td className="text-center px-5">
+                        {weather?.data?.GH_1_Wind_Dir?.[index] ?weather?.data?.GH_1_DGH_1_Wind_Direwpoint?.[index] : "-"}
+                      </td>
+                      <td className="text-center px-5">
+                        {weather?.data?.GH_1_Wind_MPH?.[index] ? `${weather?.data?.GH_1_Wind_MPH?.[index]} MPH` : "-" }
+                      </td>
+                    </tr>
+                    <tr>
+                      <th className="text-left px-5">
+                        {weather?.data?.GH_2_Time?.[index] ? weather?.data?.GH_2_Time?.[index] :"-"}
+                      </th>
+                      <td className="text-center px-5">
+                        {weather?.data?.GH_2_Temp?.[index] ? weather?.data?.GH_2_Temp?.[index] : "-"}
+                      </td>
+                      <td className="text-center px-5">
+                        {weather?.data?.GH_2_Temp?.[index] ? weather?.data?.GH_2_Precip?.[index] :"-"}
+                      </td>
+                      <td className="text-center px-5">
+                        {weather?.data?.GH_2_Humidity?.[index] ? weather?.data?.GH_2_Humidity?.[index] :"-"}
+                      </td>
+                      <td className="text-center px-5">
+                        {weather?.data?.GH_2_Dewpoint?.[index] ? weather?.data?.GH_2_Dewpoint?.[index] : "-"}
+                      </td>
+                      <td className="text-center px-5">
+                        {weather?.data?.GH_2_Wind_Dir?.[index] ? weather?.data?.GH_2_Wind_Dir?.[index] : "-"}
+                      </td>
+                      <td className="text-center px-5">
+                        {weather?.data?.GH_2_Wind_MPH?.[index] ? `${weather?.data?.GH_2_Wind_MPH?.[index]} MPH` : "-" } 
+                      </td>
+                    </tr>
+                    <tr>
+                      <th className="text-left px-5">
+                        {weather?.data?.GH_3_Time?.[index] ? weather?.data?.GH_3_Time?.[index] : "-"}
+                      </th>
+                      <td className="text-center px-5">
+                        {weather?.data?.GH_3_Temp?.[index] ? weather?.data?.GH_3_Temp?.[index] : "-"}
+                      </td>
+                      <td className="text-center px-5">
+                        {weather?.data?.GH_3_Temp?.[index] ? weather?.data?.GH_3_Precip?.[index] : "-"}
+                      </td>
+                      <td className="text-center px-5">
+                        {weather?.data?.GH_3_Humidity?.[index] ? weather?.data?.GH_3_Humidity?.[index] : "-"}
+                      </td>
+                      <td className="text-center px-5">
+                        {weather?.data?.GH_3_Dewpoint?.[index] ? weather?.data?.GH_3_Dewpoint?.[index] : "-"}
+                      </td>
+                      <td className="text-center px-5">
+                        {weather?.data?.GH_3_Wind_Dir?.[index] ? weather?.data?.GH_3_Wind_Dir?.[index] : "-"}
+                      </td>
+                      <td className="text-center px-5">
+                        {weather?.data?.GH_3_Wind_MPH?.[index] ? `${weather?.data?.GH_3_Wind_MPH?.[index]} MPH` : "-"} 
+                      </td>
+                    </tr>
+                    <tr>
+                      <th className="text-left px-5">
+                        {weather?.data?.GH_4_Time?.[index] ? weather?.data?.GH_4_Time?.[index] : "-"}
+                      </th>
+                      <td className="text-center px-5">
+                        {weather?.data?.GH_4_Temp?.[index] ? weather?.data?.GH_4_Temp?.[index] : "-"}
+                      </td>
+                      <td className="text-center px-5">
+                        {weather?.data?.GH_4_Temp?.[index] ? weather?.data?.GH_4_Precip?.[index] :"-"}
+                      </td>
+                      <td className="text-center px-5">
+                        {weather?.data?.GH_4_Humidity?.[index] ? weather?.data?.GH_4_Humidity?.[index] : "-"}
+                      </td>
+                      <td className="text-center px-5">
+                        {weather?.data?.GH_4_Dewpoint?.[index] ? weather?.data?.GH_4_Dewpoint?.[index] : "-"}
+                      </td>
+                      <td className="text-center px-5">
+                        {weather?.data?.GH_4_Wind_Dir?.[index] ? weather?.data?.GH_4_Wind_Dir?.[index] :"-"}
+                      </td>
+                      <td className="text-center px-5">
+                        {weather?.data?.GH_4_Wind_MPH?.[index] ? `${weather?.data?.GH_4_Wind_MPH?.[index]} MPH` :"-"} 
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+             
               </div>
             </div>
           </div>

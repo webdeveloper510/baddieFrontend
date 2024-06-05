@@ -178,7 +178,7 @@ const Slate = () => {
                                   <div className="flex">
                                     <div className="flex justify-center items-center w-[20%]">
                                       <h1 className="font-medium game-temp text-center xl:text-3xl 2xl:text-5xl lg:3xl md:3xl 2xl:mt-12 xl:mt-12 lg:mt-5 md:mt-10 sm:mt-5 mb-2">
-                                        {`${weather?.data?.Game_Temp?.[i]}°`}
+                                        {weather?.data?.Game_Temp?.[i] ? `${weather?.data?.Game_Temp?.[i]}°` : ""}
                                       </h1>
                                       
                                     </div>
@@ -186,29 +186,41 @@ const Slate = () => {
                                     <h1 className="font-medium text-center underline xl:text-3xl 2xl:text-5xl lg:3xl md:3xl  my-2">
                                   Weather
                                 </h1>
+                               
                                     <h1 className="font-medium text-center xl:text-3xl 2xl:text-5xl lg:3xl md:3xl  mt-8 mb-2">
-                                        {`${weather?.data?.Game_Precip?.[i]}% `}
+                                        {weather?.data?.Game_Temp?.[i] ? `${weather?.data?.Game_Precip?.[i]}% ` : ""}
                                       </h1>
-                                      <h1 className="font-medium text-center chance-precip whitespace-nowrap wind-mdh text-2xl md:mt-[-10px]  my-2">
+                                      {
+                                        weather?.data?.Game_Temp?.[i] ?
+                                        <h1 className="font-medium text-center chance-precip whitespace-nowrap wind-mdh text-2xl md:mt-[-10px]  my-2">
                                         Chance of precip
                                       </h1>
+                                      :""
+                                      }
                                     </div>
                                     <div className="text-center w-[20%] mt-6 md:mt-2 direction">
+                                     {
+                                      weather?.data?.Game_Temp?.[i] ? 
                                       <DirectionImage
-                                        classname={"matchup"}
-                                        windDirection={wind_direction}
-                                        name={
-                                          weather?.data?.Game_Wind_Direction?.[
-                                            i
-                                          ]
-                                        }
-                                      />
+                                      classname={"matchup"}
+                                      windDirection={wind_direction}
+                                      name={
+                                        weather?.data?.Game_Wind_Direction?.[
+                                          i
+                                        ]
+                                      }
+                                    /> :""
+                                     }
                                       <h1 className="font-medium text-end wind-mdh text-2xl  my-2">
-                                        {`${weather?.data?.Game_Wind_MPH?.[i]}MPH`}
+                                        {weather?.data?.Game_Wind_MPH?.[i] ? `${weather?.data?.Game_Wind_MPH?.[i]}MPH` : ""}
                                       </h1>
                                     </div>
                                   </div>
-                                  
+                                  {
+                                  weather?.data?.Game_Temp?.[i] ? "" : <h1 className="font-medium text-center whitespace-nowrap  text-2xl mt-[10px]  my-2">
+                                  No weather data available at this time
+                                </h1>
+                                }
                                 </div>
                               </div>
                             </div>
