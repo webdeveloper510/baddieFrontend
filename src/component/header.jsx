@@ -97,6 +97,7 @@ const Header = ({ show, setShow }) => {
                                  Picks & analysis
                              </MenuItem>
                              </Link>
+                             <Link to={user?.status == "active" ? "/dam" : "/payment"}><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("dam") ? "bg-white text-black active" : "bg-greyLight text-white"} `}> Dam </MenuItem></Link>
                              {/* <Link to="/matchup"><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("matchup") ? "bg-white text-black active" : "bg-greyLight text-white"} `}>
                                  DAM
                              </MenuItem>

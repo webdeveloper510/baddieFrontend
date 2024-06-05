@@ -200,7 +200,7 @@ function App() {
                     }
                   />
                    <Route
-                    path="/matchup"
+                    path="/dam"
                     element={
                       <SecureRoute>
                         <Slate />
