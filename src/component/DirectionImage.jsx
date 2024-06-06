@@ -1,7 +1,7 @@
 import React from "react";
 
-function DirectionImage({ windDirection, name ,newclass}) {
-  const matchObj = windDirection.find((item) => item.name === name);
+function DirectionImage({ windDirection, name ,newclass, windDir}) {
+  // const matchObj = windDirection.find((item) => item.name === name);
 
   return (
     <div className="my-2" >      
@@ -26,7 +26,7 @@ function DirectionImage({ windDirection, name ,newclass}) {
           style={{
             fill: "#f99d1e",
             stroke: "#000000",
-            transform: `rotate(${matchObj?.degree ? matchObj?.degree : "0deg"}) scale(${matchObj?.scale})`,
+            transform: `rotate(${windDir}deg) scale(1.11)`,
             transformOrigin: "center",
             transformBox: "fill-box",
           }}

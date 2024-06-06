@@ -483,7 +483,54 @@ canvas.scatter-charts {
   }
 }
 
+.mobile-team-defense{
+  display: none;
+}
+
+@media screen and (max-width : 480px) {
+  .desktop-team-defense{
+    display: none;
+  }  
+  .mobile-team-defense{
+    display: block;
+  }
+  .team-defence{
+    font-size: 32px;
+  }
+  .team-defense-section{
+    padding: 20px 0px;
+  }
+  .outer-section{
+    padding: 5px;
+  }
+  .team-defense-section{
+    border-radius: 70px;
+  }
+  .main-section {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.chance-precip{
+  text-align: center;
+  line-height: 1.5;
+}
+ .card-sec{
+  height: 170px;
+ }
+
+
+}
 @media screen and (max-width: 430px) {
+  .chance-precip{   
+    text-align: center;
+    line-height: 1.5;
+  }
+  .bullpen-title{
+    font-size: 20px;
+  }
+  .bullpen-data{
+    font-size: 16px;
+  }
   .image-1 {
     width: 100%;
   }
@@ -1602,6 +1649,13 @@ div#dropdownInformation {
   line-height: 29.79px;
   text-transform: uppercase;
 }
+.chance-precip{
+  text-align: center;
+  line-height: 1.5;
+}
+.chance-text{
+  text-align: center;
+}
 /********************* responisve start **********************/
 
 @media only screen and (max-width: 1499px) {
@@ -1822,6 +1876,12 @@ div#dropdownInformation {
   .top_banner h1 {
     font-size: 40px;
   }
+  .slate-box {
+    padding: 20px 10px;
+}
+.chance-text{
+  text-align: center;
+}
 }
 
 @media screen and (max-width: 430px) {
@@ -1870,15 +1930,17 @@ div#dropdownInformation {
     margin-top: 2rem;
   }
   .weather-text h1{
-    font-size: 20px;
+    font-size: 26px;
   }
   .table-header th{
-    font-size: 16px;
+    font-size: 10px;
     line-height: normal;
+    padding: 5px;
   }
   .table-body th, td{
-    font-size: 16px;
+    font-size: 10px;
     line-height: normal;
+    white-space: nowrap;
   }
   .carlos-tab {
     font-size: 14px;
@@ -1893,6 +1955,9 @@ div#dropdownInformation {
     line-height: normal;
     margin-bottom: 0px;
     
+  }
+  .second-box h1{
+    font-size: 26px;
   }
   .main-heading{
     font-size: 24px;
@@ -1913,8 +1978,11 @@ div#dropdownInformation {
     margin-top: 0px;
   }
   .second-box {
-    height: 120px;
-  }
+    height: 95px;
+}
+.park-heading{
+  font-size: 24px;
+}
   .upper-text {
     font-size: 1.2rem;
   }
@@ -1922,10 +1990,7 @@ div#dropdownInformation {
     padding-left: 1rem;
     padding-right: 1rem;
   }
-  .main-section {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
+  
   .wind-mdh {
     font-size: 16px;
   }

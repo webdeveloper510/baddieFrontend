@@ -172,7 +172,7 @@ const Slate = () => {
                         <div className="grid md:grid-cols-2 bottom-boxes sm:grid-cols-1 gap-12 md:gap-4 sm:gap-4">
                           <div className="">
                             <div>
-                              <div className="rounded-[40px] h-[200px] main-box bg-[#40ecd9] py-2 my-5">
+                              <div className="rounded-[40px] card-sec h-[200px] main-box bg-[#40ecd9] py-2 my-5">
                                 
                                 <div className="text-left px-10 mb-2">
                                   <div className="flex">
@@ -193,7 +193,7 @@ const Slate = () => {
                                       {
                                         weather?.data?.Game_Temp?.[i] ?
                                         <h1 className="font-medium text-center chance-precip whitespace-nowrap wind-mdh text-2xl md:mt-[-10px]  my-2">
-                                        Chance of precip
+                                        Chance of <br/> precip
                                       </h1>
                                       :""
                                       }
@@ -203,6 +203,7 @@ const Slate = () => {
                                       weather?.data?.Game_Temp?.[i] ? 
                                       <DirectionImage
                                       classname={"matchup"}
+                                      windDir={weather?.data?.Game_Wind_Dir_SVG_Rotate?.[i]}
                                       windDirection={wind_direction}
                                       name={
                                         weather?.data?.Game_Wind_Direction?.[
@@ -227,19 +228,19 @@ const Slate = () => {
                           </div>
                           <div>
                             <div>
-                              <div className="rounded-[40px] h-[200px] main-box  bg-[#ac82e5] py-2 my-5">
-                                <h1 className="font-medium xl:text-3xl 2xl:text-5xl lg:3xl md:3xl my-2">
+                              <div className="rounded-[40px] card-sec h-[200px] main-box  bg-[#ac82e5] py-2 my-5">
+                                <h1 className="font-medium park-heading xl:text-3xl 2xl:text-5xl lg:3xl md:3xl my-2">
                                   SC Park Factors
                                 </h1>
                                 <div className="flex justify-evenly  2xl:h-[120px] lg:h-[100px] md:h-[110px] second-box mb-2 items-center">
-                                  <h1 className="font-medium xl:text-3xl 2xl:text-5xl lg:3xl md:3xl my-2">
-                                    3yr: {weather?.data?.[`3yr`][i]}
+                                  <h1 className="font-medium xl:text-4xl 2xl:text-5xl lg:3xl md:3xl my-2">
+                                    3yr: <br/> {weather?.data?.[`3yr`][i]}
                                   </h1>
-                                  <h1 className="font-medium  xl:text-3xl 2xl:text-5xl lg:3xl md:3xl my-2">
-                                    1yr: {weather?.data?.[`1yr`][i]}
+                                  <h1 className="font-medium  xl:text-4xl 2xl:text-5xl lg:3xl md:3xl my-2">
+                                    1yr: <br/> {weather?.data?.[`1yr`][i]}
                                   </h1>
-                                  <h1 className="font-medium  xl:text-3xl 2xl:text-5xl lg:3xl md:3xl my-2">
-                                    HR: {weather?.data?.hr[i]}
+                                  <h1 className="font-medium  xl:text-4xl 2xl:text-5xl lg:3xl md:3xl my-2">
+                                    HR: <br/> {weather?.data?.hr[i]}
                                   </h1>
                                 </div>
                               </div>

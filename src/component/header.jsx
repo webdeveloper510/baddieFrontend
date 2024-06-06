@@ -93,20 +93,20 @@ const Header = ({ show, setShow }) => {
                                 <Link to={"/transaction-list"} ><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("transaction-list") ? "bg-white text-black active" : "bg-greyLight text-white"} `}>Transaction</MenuItem> </Link>
                             </>:
                              <>
-                             <Link to="/picks-analysis"><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("picks-analysis") ? "bg-white text-black active" : "bg-greyLight text-white"} `}>
+                             <Link to="/picks-analysis"><MenuItem className={`font-semibold mx-3 text-center hover:text-black hover:white ${location.pathname.includes("picks-analysis") ? "bg-white text-black active" : "bg-greyLight text-white"} `}>
                                  Picks & analysis
                              </MenuItem>
                              </Link>
-                             <Link to={user?.status == "active" ? "/dam" : "/payment"}><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("dam") ? "bg-white text-black active" : "bg-greyLight text-white"} `}> DAM </MenuItem></Link>
+                             <Link to={user?.status == "active" ? "/dam" : "/payment"}><MenuItem className={`mx-3 font-semibold text-center hover:text-black hover:white ${location.pathname.includes("dam") ? "bg-white text-black active" : "bg-greyLight text-white"} `}> DAM </MenuItem></Link>
                              {/* <Link to="/matchup"><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("matchup") ? "bg-white text-black active" : "bg-greyLight text-white"} `}>
                                  DAM
                              </MenuItem>
                              </Link> */}
                              
-                             <Link to={user?.status == "active" ? "/new-eda" : "/payment"}><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("new-eda") ? "bg-white text-black active" : "bg-greyLight text-white"} `}> Player/team EDA </MenuItem></Link>
-                             <Link to={user?.status == "active" ? "/expected-value" : "/payment"}><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("expected-value") ? "bg-white text-black active" : "bg-greyLight text-white"} `}>  EV calculator </MenuItem></Link>
+                             <Link to={user?.status == "active" ? "/new-eda" : "/payment"}><MenuItem className={`mx-3 font-semibold text-center hover:text-black hover:white ${location.pathname.includes("new-eda") ? "bg-white text-black active" : "bg-greyLight text-white"} `}> Player/team EDA </MenuItem></Link>
+                             <Link to={user?.status == "active" ? "/expected-value" : "/payment"}><MenuItem className={`mx-3 font-semibold text-center hover:text-black hover:white ${location.pathname.includes("expected-value") ? "bg-white text-black active" : "bg-greyLight text-white"} `}>  EV calculator </MenuItem></Link>
  
-                             <Link to={user?.status == "active" ? "/al-ml" : "/payment"} ><MenuItem className={`font-semibold text-center hover:text-black hover:white ${location.pathname.includes("al-ml") ? "bg-white text-black active" : "bg-greyLight text-white"} `}>   AI & ML </MenuItem> </Link>
+                             <Link to={user?.status == "active" ? "/al-ml" : "/payment"} ><MenuItem className={`mx-3 font-semibold text-center hover:text-black hover:white ${location.pathname.includes("al-ml") ? "bg-white text-black active" : "bg-greyLight text-white"} `}>   AI & ML </MenuItem> </Link>
                          </>}
 
                     </div>  <></>

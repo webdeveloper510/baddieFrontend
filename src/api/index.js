@@ -298,3 +298,14 @@ export const postDamnMetric = async(data)=>{
         throw (error)
     }
 }
+
+
+export const postStatsWorkload = async(data)=>{
+    console.log("datadatadatadata", data)
+    try {
+        const response = await authApi.post("stats-workload/", data);
+        return response.data
+    } catch (error) {
+        throw (error)
+    }
+}
