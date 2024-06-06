@@ -191,22 +191,22 @@ const GamePage = () => {
       });
   };
 
-  const getAwayData = () => {
-    setLoader(true);
-    getDamnEvcal({
-      game_pk: state?.[2].game_pk,
-      date_key: state?.[2]?.date_key,
-    })
-      .then((res) => {
-        setLoader(false);
-        console.log("damn evcal data", res);
-        setData(res);
-      })
-      .catch((error) => {
-        setLoader(false);
-        console.log(error);
-      });
-  };
+  // const getAwayData = () => {
+  //   setLoader(true);
+  //   getDamnEvcal({
+  //     game_pk: state?.[2].game_pk,
+  //     date_key: state?.[2]?.date_key,
+  //   })
+  //     .then((res) => {
+  //       setLoader(false);
+  //       console.log("damn evcal data", res);
+  //       setData(res);
+  //     })
+  //     .catch((error) => {
+  //       setLoader(false);
+  //       console.log(error);
+  //     });
+  // };
 
   const getMatchupData = () => {
     // setLoader(true);
@@ -254,7 +254,7 @@ const GamePage = () => {
   };
 
   useEffect(() => {
-    getAwayData();
+    // getAwayData();
     getMatchupData();
     getWeather();
   }, []);

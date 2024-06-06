@@ -81,7 +81,7 @@ const Slate = () => {
   };
 
   useEffect(() => {
-    getmatchup();
+    // getmatchup();
     getWeather();
   }, []);
 
