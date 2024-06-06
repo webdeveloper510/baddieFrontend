@@ -1422,12 +1422,13 @@ const GamePage = () => {
                         Bullpen Workload
                         <span className="mt-5 block">Last 5 Days</span>
                       </h1>
-
-                       <p>Pitcher count</p>
                       <div className="mt-20 mb-5 p-2 lg:w-[98%] md:max-w-[70vw] m-auto table-outer-section overflow-x-auto">
-                        
-                      <table className="w-full bg-white">
+                    
+                        <table className="w-full bg-white">
                           <thead className="table-header">
+                            <tr>
+                              <th colSpan="6">Pitch count</th>
+                            </tr>
                             <tr className="border-b-2 py-4">
                             <th className="text-center px-5">Pitcher</th>
                               {
@@ -1448,8 +1449,8 @@ const GamePage = () => {
                               segmentData?.map((item,i)=>{
                                 return(
                                   <tr className="border-b-2 py-3">
-                                   <td className="text-center px-5">{bullpendata?.[i]}</td>
-                                  <td className="text-left px-5">{item?.[`${columns1?.[0]}`]}</td>
+                                  <td className="text-center px-5">{bullpendata?.[i]}</td>
+                                  <td className="text-center px-5">{item?.[`${columns1?.[0]}`]}</td>
                                   <td className="text-center px-5">{item?.[`${columns1?.[1]}`]}</td>
                                   <td className="text-center px-5">{item?.[`${columns1?.[2]}`]}</td>
                                   <td className="text-center px-5">{item?.[`${columns1?.[3]}`]}</td>
