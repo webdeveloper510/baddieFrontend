@@ -1092,7 +1092,6 @@ const GamePage = () => {
                               <th colSpan="6">Pitch count</th>
                             </tr>
                             <tr className="border-b-2 py-4">
-                            <th className="text-center px-5">Pitcher</th>
                               {
                                 columns1?.length > 0 ?
                                 columns1?.map((item)=>{
@@ -1111,81 +1110,18 @@ const GamePage = () => {
                               segmentData?.map((item,i)=>{
                                 return(
                                   <tr className="border-b-2 py-3">
-                                  <td className="text-center px-5">{bullpendata?.[i]}</td>
                                   <td className="text-center px-5">{item?.[`${columns1?.[0]}`]}</td>
                                   <td className="text-center px-5">{item?.[`${columns1?.[1]}`]}</td>
                                   <td className="text-center px-5">{item?.[`${columns1?.[2]}`]}</td>
                                   <td className="text-center px-5">{item?.[`${columns1?.[3]}`]}</td>
-                                  <td className="text-center px-5">{item?.[`${columns1?.[4]}`]}</td>                                  
+                                  <td className="text-center px-5">{item?.[`${columns1?.[4]}`]}</td> 
+                                  <td className="text-center px-5">{item?.[`${columns1?.[5]}`]}</td> 
                                  </tr>
                                 )
                               }):
                               ""
                             }
-                            {/* <tr className="border-b-2 py-3">
-                              <td className="text-left px-5">Caleb Thielbar</td>
-                              <td className="text-center px-5">0</td>
-                              <td className="text-center px-5">0</td>
-                              <td className="text-center px-5">9</td>
-                              <td className="text-center px-5">0</td>
-                              <td className="text-center px-5">16</td>
-                            </tr>
-                            <tr className="border-b-2 py-3">
-                              <td className="text-left px-5">Caleb Thielbar</td>
-                              <td className="text-center px-5">0</td>
-                              <td className="text-center px-5">0</td>
-                              <td className="text-center px-5">9</td>
-                              <td className="text-center px-5">0</td>
-                              <td className="text-center px-5">16</td>
-                            </tr>
-                            <tr className="border-b-2 py-3">
-                              <td className="text-left px-5">Caleb Thielbar</td>
-                              <td className="text-center px-5">0</td>
-                              <td className="text-center px-5">0</td>
-                              <td className="text-center px-5">9</td>
-                              <td className="text-center px-5">0</td>
-                              <td className="text-center px-5">16</td>
-                            </tr>
-                            <tr className="border-b-2 py-3">
-                              <td className="text-left px-5">Caleb Thielbar</td>
-                              <td className="text-center px-5">0</td>
-                              <td className="text-center px-5">0</td>
-                              <td className="text-center px-5">9</td>
-                              <td className="text-center px-5">0</td>
-                              <td className="text-center px-5">16</td>
-                            </tr>
-                            <tr className="border-b-2 py-3">
-                              <td className="text-left px-5">Caleb Thielbar</td>
-                              <td className="text-center px-5">0</td>
-                              <td className="text-center px-5">0</td>
-                              <td className="text-center px-5">9</td>
-                              <td className="text-center px-5">0</td>
-                              <td className="text-center px-5">16</td>
-                            </tr>
-                            <tr className="border-b-2 py-3">
-                              <td className="text-left px-5">Caleb Thielbar</td>
-                              <td className="text-center px-5">0</td>
-                              <td className="text-center px-5">0</td>
-                              <td className="text-center px-5">9</td>
-                              <td className="text-center px-5">0</td>
-                              <td className="text-center px-5">16</td>
-                            </tr>
-                            <tr className="border-b-2 py-3">
-                              <td className="text-left px-5">Caleb Thielbar</td>
-                              <td className="text-center px-5">0</td>
-                              <td className="text-center px-5">0</td>
-                              <td className="text-center px-5">9</td>
-                              <td className="text-center px-5">0</td>
-                              <td className="text-center px-5">16</td>
-                            </tr>
-                            <tr className="border-b-2 py-3">
-                              <td className="text-left px-5">Caleb Thielbar</td>
-                              <td className="text-center px-5">0</td>
-                              <td className="text-center px-5">0</td>
-                              <td className="text-center px-5">9</td>
-                              <td className="text-center px-5">0</td>
-                              <td className="text-center px-5">16</td>
-                            </tr> */}
+                          
                           </tbody>
                         </table>
                       </div>
@@ -1430,7 +1366,6 @@ const GamePage = () => {
                               <th colSpan="6">Pitch count</th>
                             </tr>
                             <tr className="border-b-2 py-4">
-                            <th className="text-center px-5">Pitcher</th>
                               {
                                 columns1?.length > 0 ?
                                 columns1?.map((item)=>{
@@ -1449,12 +1384,12 @@ const GamePage = () => {
                               segmentData?.map((item,i)=>{
                                 return(
                                   <tr className="border-b-2 py-3">
-                                  <td className="text-center px-5">{bullpendata?.[i]}</td>
                                   <td className="text-center px-5">{item?.[`${columns1?.[0]}`]}</td>
                                   <td className="text-center px-5">{item?.[`${columns1?.[1]}`]}</td>
                                   <td className="text-center px-5">{item?.[`${columns1?.[2]}`]}</td>
                                   <td className="text-center px-5">{item?.[`${columns1?.[3]}`]}</td>
                                   <td className="text-center px-5">{item?.[`${columns1?.[4]}`]}</td>                                  
+                                  <td className="text-center px-5">{item?.[`${columns1?.[5]}`]}</td>                                  
                                  </tr>
                                 )
                               }):

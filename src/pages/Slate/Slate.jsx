@@ -174,7 +174,7 @@ const Slate = () => {
                             <div>
                               <div className="rounded-[40px] card-sec h-[200px] main-box bg-[#40ecd9] py-2 my-5">
                                 
-                                <div className="text-left px-10 mb-2">
+                                <div className="text-left px-10 green-box mb-2">
                                   <div className="flex">
                                     <div className="flex justify-center items-center w-[20%]">
                                       <h1 className="font-medium game-temp text-center xl:text-3xl 2xl:text-5xl lg:3xl md:3xl 2xl:mt-12 xl:mt-12 lg:mt-5 md:mt-10 sm:mt-5 mb-2">
@@ -218,7 +218,7 @@ const Slate = () => {
                                     </div>
                                   </div>
                                   {
-                                  weather?.data?.Game_Temp?.[i] ? "" : <h1 className="font-medium text-center whitespace-nowrap  text-xl mt-[10px]  my-2">
+                                  weather?.data?.Game_Temp?.[i] ? "" : <h1 className="font-medium no-data-text text-center whitespace-nowrap  text-xl mt-[10px]  my-2">
                                   No weather data available at this time
                                 </h1>
                                 }
