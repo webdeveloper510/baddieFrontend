@@ -33,8 +33,10 @@ const GamePage = () => {
   const [damnMetric, setDamnMetric] = useState(null);
   const [statsworkload, setStatsworkload] = useState(null);
   const [columns1, setColumns1] = useState([]);
+  const [homeheading, setHomeheading] = useState([]);
   const [statsLoader, setStatsLoader] = useState(false);
   const [segmentData, setSegmentData] = useState([]);
+  const [homeWorkload, setHomeWorkload] = useState([]);
 
   const { state } = useLocation();
   const index = state?.[2]?.index;
@@ -162,13 +164,14 @@ const GamePage = () => {
             console.log(error);
           });
         postStatsWorkload({
-          team_id: res?.data?.teams_away_team_id?.[index],
+          away_team_id: res?.data?.teams_away_team_id?.[index],
+          home_team_id: res?.data?.teams_home_team_id?.[index],
           date_key: state?.[2]?.date_key,
         })
           .then((resStat) => {
             console.log("resssss stats", resStat);
             setStatsworkload(resStat);
-            const data = resStat?.workload;
+            const data = resStat?.away_workload;
             const keys = Object.keys(data);
             setColumns1(keys);
             const result = data[keys[0]].map((item, index) => {
@@ -178,8 +181,21 @@ const GamePage = () => {
               });
               return newObject;
             });
+            
+            setSegmentData(result)
 
-            setSegmentData(result);
+            const datahome = resStat?.home_workload;
+            const keyshome = Object.keys(datahome);
+            setHomeheading(keyshome);
+            const resulthome = datahome[keyshome[0]].map((item, index) => {
+              let newObject = {};
+              keys.forEach((k) => {
+                newObject[k] = datahome[k][index];
+              });
+              return newObject;
+            });
+
+            setHomeWorkload(resulthome);
           })
           .catch((error) => {
             console.log(error);
@@ -992,21 +1008,13 @@ const GamePage = () => {
             <Tabs>
               <TabList className="!flex justify-between tab-lists">
                 <Tab
-                  onClick={() => {
-                    handleStatsWorkload(
-                      weather?.data?.teams_away_team_id?.[index]
-                    );
-                  }}
+                 
                   className="bg-gray border-2 border-black p-3 text-2xl carlos-tab w-[45%] text-center"
                 >
                   {weather?.data?.teams_away_team_name?.[index]}
                 </Tab>
                 <Tab
-                  onClick={() => {
-                    handleStatsWorkload(
-                      weather?.data?.teams_home_team_id?.[index]
-                    );
-                  }}
+                  
                   className="bg-gray border-2 border-black p-3 text-2xl carlos-tab w-[45%] text-center"
                 >
                   {weather?.data?.teams_home_team_name?.[index]}
@@ -1032,22 +1040,22 @@ const GamePage = () => {
                           </h1>
                           <div className="text-center mt-5">
                             <h3 className="text-white bullpen-data text-4xl my-2">
-                              ERA : {statsworkload?.stats?.[0]?.L30_ERA}
+                              ERA : {statsworkload?.away_stats?.[0]?.L30_ERA}
                             </h3>
                             <h3 className="text-white bullpen-data  text-4xl my-2">
-                              WHIP : {statsworkload?.stats?.[0]?.L30_WHIP}
+                              WHIP : {statsworkload?.away_stats?.[0]?.L30_WHIP}
                             </h3>
                             <h3 className="text-white bullpen-data text-4xl my-2">
                               KS/Game :
-                              {statsworkload?.stats?.[0]?.L30_K_PerGame}
+                              {statsworkload?.away_stats?.[0]?.L30_K_PerGame}
                             </h3>
                             <h3 className="text-white bullpen-data text-4xl my-2">
                               Walks/Game :
-                              {statsworkload?.stats?.[0]?.L30_Walks_PerGame}
+                              {statsworkload?.away_stats?.[0]?.L30_Walks_PerGame}
                             </h3>
                             <h3 className="text-white bullpen-data text-4xl my-2">
                               HRs/Game :
-                              {statsworkload?.stats?.[0]?.L30_HRs_PerGame}
+                              {statsworkload?.away_stats?.[0]?.L30_HRs_PerGame}
                             </h3>
                           </div>
                         </div>
@@ -1057,22 +1065,22 @@ const GamePage = () => {
                           </h1>
                           <div className="text-center mt-5">
                             <h3 className="text-white bullpen-data text-4xl my-2">
-                              ERA : {statsworkload?.stats?.[0]?.YTD_ERA}
+                              ERA : {statsworkload?.away_stats?.[0]?.YTD_ERA}
                             </h3>
                             <h3 className="text-white bullpen-data  text-4xl my-2">
-                              WHIP : {statsworkload?.stats?.[0]?.YTD_WHIP}
+                              WHIP : {statsworkload?.away_stats?.[0]?.YTD_WHIP}
                             </h3>
                             <h3 className="text-white bullpen-data text-4xl my-2">
                               KS/Game :
-                              {statsworkload?.stats?.[0]?.YTD_K_PerGame}
+                              {statsworkload?.away_stats?.[0]?.YTD_K_PerGame}
                             </h3>
                             <h3 className="text-white bullpen-data text-4xl my-2">
                               Walks/Game :
-                              {statsworkload?.stats?.[0]?.YTD_Walks_PerGame}
+                              {statsworkload?.away_stats?.[0]?.YTD_Walks_PerGame}
                             </h3>
                             <h3 className="text-white bullpen-data text-4xl my-2">
                               HRs/Game :
-                              {statsworkload?.stats?.[0]?.YTD_HRs_PerGame}
+                              {statsworkload?.away_stats?.[0]?.YTD_HRs_PerGame}
                             </h3>
                           </div>
                         </div>
@@ -1096,7 +1104,7 @@ const GamePage = () => {
                                 columns1?.length > 0 ?
                                 columns1?.map((item)=>{
                                   return(
-                                    <th className="text-center px-5">{item}</th>
+                                    <th className="text-center px-5">{item?.replace("_"," ")}</th>
                                   )
                                 })
                                 :""
@@ -1306,22 +1314,22 @@ const GamePage = () => {
                           </h1>
                           <div className="text-center mt-5">
                             <h3 className="text-white bullpen-data text-4xl my-2">
-                              ERA : {statsworkload?.stats?.[0]?.L30_ERA}
+                              ERA : {statsworkload?.home_stats?.[0]?.L30_ERA}
                             </h3>
                             <h3 className="text-white bullpen-data  text-4xl my-2">
-                              WHIP : {statsworkload?.stats?.[0]?.L30_WHIP}
+                              WHIP : {statsworkload?.home_stats?.[0]?.L30_WHIP}
                             </h3>
                             <h3 className="text-white bullpen-data text-4xl my-2">
                               KS/Game :
-                              {statsworkload?.stats?.[0]?.L30_K_PerGame}
+                              {statsworkload?.home_stats?.[0]?.L30_K_PerGame}
                             </h3>
                             <h3 className="text-white bullpen-data text-4xl my-2">
                               Walks/Game :
-                              {statsworkload?.stats?.[0]?.L30_Walks_PerGame}
+                              {statsworkload?.home_stats?.[0]?.L30_Walks_PerGame}
                             </h3>
                             <h3 className="text-white bullpen-data text-4xl my-2">
                               HRs/Game :
-                              {statsworkload?.stats?.[0]?.L30_HRs_PerGame}
+                              {statsworkload?.home_stats?.[0]?.L30_HRs_PerGame}
                             </h3>
                           </div>
                         </div>
@@ -1331,22 +1339,22 @@ const GamePage = () => {
                           </h1>
                           <div className="text-center mt-5">
                             <h3 className="text-white bullpen-data text-4xl my-2">
-                              ERA : {statsworkload?.stats?.[0]?.YTD_ERA}
+                              ERA : {statsworkload?.home_stats?.[0]?.YTD_ERA}
                             </h3>
                             <h3 className="text-white bullpen-data  text-4xl my-2">
-                              WHIP : {statsworkload?.stats?.[0]?.YTD_WHIP}
+                              WHIP : {statsworkload?.home_stats?.[0]?.YTD_WHIP}
                             </h3>
                             <h3 className="text-white bullpen-data text-4xl my-2">
                               KS/Game :
-                              {statsworkload?.stats?.[0]?.YTD_K_PerGame}
+                              {statsworkload?.home_stats?.[0]?.YTD_K_PerGame}
                             </h3>
                             <h3 className="text-white bullpen-data text-4xl my-2">
                               Walks/Game :
-                              {statsworkload?.stats?.[0]?.YTD_Walks_PerGame}
+                              {statsworkload?.home_stats?.[0]?.YTD_Walks_PerGame}
                             </h3>
                             <h3 className="text-white bullpen-data text-4xl my-2">
                               HRs/Game :
-                              {statsworkload?.stats?.[0]?.YTD_HRs_PerGame}
+                              {statsworkload?.home_stats?.[0]?.YTD_HRs_PerGame}
                             </h3>
                           </div>
                         </div>
@@ -1367,10 +1375,10 @@ const GamePage = () => {
                             </tr>
                             <tr className="border-b-2 py-4">
                               {
-                                columns1?.length > 0 ?
-                                columns1?.map((item)=>{
+                                homeheading?.length > 0 ?
+                                homeheading?.map((item)=>{
                                   return(
-                                    <th className="text-center px-5">{item}</th>
+                                    <th className="text-center px-5">{item?.replace("_"," ")}</th>
                                   )
                                 })
                                 :""
@@ -1380,16 +1388,16 @@ const GamePage = () => {
                           </thead>
                           <tbody className="table-body">
                             {
-                              segmentData?.length > 0 ?
-                              segmentData?.map((item,i)=>{
+                              homeWorkload?.length > 0 ?
+                              homeWorkload?.map((item,i)=>{
                                 return(
                                   <tr className="border-b-2 py-3">
-                                  <td className="text-center px-5">{item?.[`${columns1?.[0]}`]}</td>
-                                  <td className="text-center px-5">{item?.[`${columns1?.[1]}`]}</td>
-                                  <td className="text-center px-5">{item?.[`${columns1?.[2]}`]}</td>
-                                  <td className="text-center px-5">{item?.[`${columns1?.[3]}`]}</td>
-                                  <td className="text-center px-5">{item?.[`${columns1?.[4]}`]}</td>                                  
-                                  <td className="text-center px-5">{item?.[`${columns1?.[5]}`]}</td>                                  
+                                  <td className="text-center px-5">{item?.[`${homeheading?.[0]}`]}</td>
+                                  <td className="text-center px-5">{item?.[`${homeheading?.[1]}`]}</td>
+                                  <td className="text-center px-5">{item?.[`${homeheading?.[2]}`]}</td>
+                                  <td className="text-center px-5">{item?.[`${homeheading?.[3]}`]}</td>
+                                  <td className="text-center px-5">{item?.[`${homeheading?.[4]}`]}</td>                                  
+                                  <td className="text-center px-5">{item?.[`${homeheading?.[5]}`]}</td>                                  
                                  </tr>
                                 )
                               }):
