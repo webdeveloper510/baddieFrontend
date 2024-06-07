@@ -147,7 +147,7 @@ const GamePage = () => {
   }, [metricType]);
 
   const getWeather = () => {
-    // setLoader(true);
+    setStatsLoader(true)
     getWeatherData()
       .then((res) => {
         // setLoader(false);
@@ -163,6 +163,7 @@ const GamePage = () => {
           .catch((error) => {
             console.log(error);
           });
+         
         postStatsWorkload({
           away_team_id: res?.data?.teams_away_team_id?.[index],
           home_team_id: res?.data?.teams_home_team_id?.[index],
@@ -170,6 +171,7 @@ const GamePage = () => {
         })
           .then((resStat) => {
             console.log("resssss stats", resStat);
+            setStatsLoader(false)
             setStatsworkload(resStat);
             const data = resStat?.away_workload;
             const keys = Object.keys(data);
@@ -199,6 +201,7 @@ const GamePage = () => {
           })
           .catch((error) => {
             console.log(error);
+            setStatsLoader(false)
           });
       })
       .catch((error) => {
@@ -1005,7 +1008,12 @@ const GamePage = () => {
           <h1 className="text-5xl font-bold text-center mb-10 mt-5 underline game-titles">
               Team Info
             </h1>
-            <Tabs>
+             {
+              statsLoader ?  <div className="flex justify-center">
+              <Apploader size={80} />
+            </div>
+              :
+              <Tabs>
               <TabList className="!flex justify-between tab-lists">
                 <Tab
                  
@@ -1022,12 +1030,7 @@ const GamePage = () => {
               </TabList>
 
               <TabPanel>
-                {statsLoader ? (
-                  <div className="flex justify-center">
-                    <Apploader size={80} />
-                  </div>
-                ) : (
-                  <div className="outer-section">
+              <div className="outer-section">
                     <div className="rounded-3xl w-full py-5 mt-10 px-10 bg-[#ca202c] ">
                       <h1 className="text-5xl text-white font-semibold underline game-titles text-center my-3">
                         Bullpen Stats
@@ -1293,15 +1296,9 @@ const GamePage = () => {
                       </div>
                     </div>
                   </div>
-                )}
               </TabPanel>
               <TabPanel>
-                {statsLoader ? (
-                  <div className="flex justify-center">
-                    <Apploader size={80} />
-                  </div>
-                ) : (
-                  <div className="outer-section">
+              <div className="outer-section">
                     <div className="rounded-3xl w-full py-5 mt-10 px-10 bg-[#ca202c] ">
                       <h1 className="text-5xl text-white font-semibold underline game-titles text-center my-3">
                         Bullpen Stats
@@ -1567,9 +1564,9 @@ const GamePage = () => {
                       </div>
                     </div>
                   </div>
-                )}
               </TabPanel>
             </Tabs>
+             }
           </div>
         </div>
       </div>
