@@ -76,7 +76,7 @@ function Home() {
     },
     {
       image: '/bet5.png',
-      heading: '7-10 Weekly Picks',
+      heading: 'Daily Sports Picks',
       content: 'From data scientists with handicapping experience, using our tools & expertise in variance to make sharp decisions.'
     },
     {

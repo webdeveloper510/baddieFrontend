@@ -9,6 +9,8 @@ const Slate = () => {
   const [data, setData] = useState(null);
   const [loader, setLoader] = useState(false);
   const [weather, setWeather] = useState(true);
+  const [tabselect, setTabselect] = useState(0);
+  console.log("tabselect",tabselect)
   console.log("🚀 ~ Slate ~ weather:", weather);
 
   const wind_direction = [
@@ -113,6 +115,21 @@ const Slate = () => {
     navigate("/game-page", { state: body });
   };
 
+  const [tabIndex, setTabIndex] = useState(0);
+
+  const handleNext = () => {
+    setTabIndex((prevIndex) => (prevIndex + 1) % 4); // Assuming there are 4 tabs
+  };
+
+  const handlePrev = () => {
+    if(tabIndex > 0){
+      setTabIndex((prevIndex) => (prevIndex - 1 + 4) % 4) // Assuming there are 4 tabs
+    }else{
+      setTabIndex(0); // Assuming there are 4 tabs
+    }
+     // Assuming there are 4 tabs
+  };
+
   if (loader) {
     return (
       <div className="w-full h-full flex items-center justify-center">
@@ -120,6 +137,7 @@ const Slate = () => {
       </div>
     );
   }
+
 
   return (
     <>
@@ -136,126 +154,170 @@ const Slate = () => {
           </div>
 
           <div className="my-10 px-10 tab-section">
-            <Tabs>
-              {weather?.data?.hr?.length > 0
-                ? weather?.data?.date?.map((item, i) => (
-                    <TabPanel key={i}>
-                      <div
-                        onClick={() => {
-                          handleDamPage(i);
-                        }}
-                        className="w-full cursor-pointer border-4 my-3 px-20 slate-box py-5 rounded-[60px] text-center border-black h-auto"
-                      >
-                        <div className="my-3">
-                          <h1 className="font-extrabold text-4xl upper-text my-2">
-                            {weather?.data?.teams_away_team_name?.[i]}
-                          </h1>
-                        </div>
-                        <div className="my-3">
-                          <h1 className="font-medium text-4xl my-2">{`@`}</h1>
-                        </div>
-                        <div className="my-3">
-                          <h1 className="font-extrabold text-4xl upper-text my-2">
-                            {weather?.data?.teams_home_team_name?.[i]}
-                          </h1>
-                        </div>
-                        <div className="my-3">
-                          <h1 className="font-medium upper-text text-4xl my-2">{`Game ${weather?.data.series_game_number[i]} of ${weather?.data.games_in_series[i]} in Series`}</h1>
-                        </div>
-                        <div className="my-3">
-                          <h1 className="font-medium upper-text text-4xl my-2">{`issa ${weather?.data.day_night[i]} game`}</h1>
-                        </div>
-                        <div className="my-3">
-                          <h1 className="font-medium upper-text text-4xl my-2">{`Park: ${weather?.data.venue_name[i]}`}</h1>
-                        </div>
+            <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
+              {weather?.data?.hr?.length > 0 ? (
+                weather?.data?.date?.map((item, i) => (
+                  <TabPanel key={i}>
+                    <div
+                      onClick={() => {
+                        handleDamPage(i);
+                      }}
+                      className="w-full cursor-pointer border-4 my-3 px-20 slate-box py-5 rounded-[60px] text-center border-black h-auto"
+                    >
+                      <div className="my-3">
+                        <h1 className="font-extrabold text-4xl upper-text my-2">
+                          {weather?.data?.teams_away_team_name?.[i]}
+                        </h1>
+                      </div>
+                      <div className="my-3">
+                        <h1 className="font-medium text-4xl my-2">{`@`}</h1>
+                      </div>
+                      <div className="my-3">
+                        <h1 className="font-extrabold text-4xl upper-text my-2">
+                          {weather?.data?.teams_home_team_name?.[i]}
+                        </h1>
+                      </div>
+                      <div className="my-3">
+                        <h1 className="font-medium upper-text text-4xl my-2">{`Game ${weather?.data.series_game_number[i]} of ${weather?.data.games_in_series[i]} in Series`}</h1>
+                      </div>
+                      <div className="my-3">
+                        <h1 className="font-medium upper-text text-4xl my-2">{`issa ${weather?.data.day_night[i]} game`}</h1>
+                      </div>
+                      <div className="my-3">
+                        <h1 className="font-medium upper-text text-4xl my-2">{`Park: ${weather?.data.venue_name[i]}`}</h1>
+                      </div>
 
-                        <div className="grid md:grid-cols-2 bottom-boxes sm:grid-cols-1 gap-12 md:gap-4 sm:gap-4">
-                          <div className="">
-                            <div>
-                              <div className="rounded-[40px] card-sec h-[200px] main-box bg-[#40ecd9] py-2 my-5">
-                                
-                                <div className="text-left px-10 green-box mb-2">
-                                  <div className="flex">
-                                    <div className="flex justify-center items-center w-[20%]">
-                                      <h1 className="font-medium game-temp text-center xl:text-3xl 2xl:text-5xl lg:3xl md:3xl 2xl:mt-12 xl:mt-12 lg:mt-5 md:mt-10 sm:mt-5 mb-2">
-                                        {weather?.data?.Game_Temp?.[i] ? `${weather?.data?.Game_Temp?.[i]}°` : ""}
-                                      </h1>
-                                      
-                                    </div>
-                                    <div className="w-[60%]">
-                                    <h1 className="font-medium text-center underline xl:text-3xl 2xl:text-5xl lg:3xl md:3xl  my-2">
-                                  Weather
-                                </h1>
-                               
-                                    <h1 className="font-medium text-center xl:text-3xl 2xl:text-5xl lg:3xl md:3xl  mt-8 mb-2">
-                                        {weather?.data?.Game_Temp?.[i] ? `${weather?.data?.Game_Precip?.[i]}% ` : ""}
-                                      </h1>
-                                      {
-                                        weather?.data?.Game_Temp?.[i] ?
-                                        <h1 className="font-medium text-center chance-precip whitespace-nowrap wind-mdh text-2xl md:mt-[-10px]  my-2">
-                                        Chance of <br/> precip
-                                      </h1>
-                                      :""
-                                      }
-                                    </div>
-                                    <div className="text-center w-[20%] mt-6 md:mt-2 direction">
-                                     {
-                                      weather?.data?.Game_Temp?.[i] ? 
-                                      <DirectionImage
-                                      classname={"matchup"}
-                                      windDir={weather?.data?.Game_Wind_Dir_SVG_Rotate?.[i]}
-                                      windDirection={wind_direction}
-                                      name={
-                                        weather?.data?.Game_Wind_Direction?.[
-                                          i
-                                        ]
-                                      }
-                                    /> :""
-                                     }
-                                      <h1 className="font-medium text-end wind-mdh text-2xl  my-2">
-                                        {weather?.data?.Game_Wind_MPH?.[i] ? `${weather?.data?.Game_Wind_MPH?.[i]}MPH` : ""}
-                                      </h1>
-                                    </div>
+                      <div className="grid md:grid-cols-2 bottom-boxes sm:grid-cols-1 gap-12 md:gap-4 sm:gap-4">
+                        <div className="">
+                          <div>
+                            <div className="rounded-[40px] card-sec h-[200px] main-box bg-[#40ecd9] py-2 my-5">
+                              <div className="text-left px-10 green-box mb-2">
+                                <div className="flex">
+                                  <div className="flex justify-center first-section items-center w-[20%]">
+                                    <h1 className="font-medium game-temp text-center xl:text-3xl 2xl:text-5xl lg:3xl md:3xl 2xl:mt-12 xl:mt-12 lg:mt-5 md:mt-10 sm:mt-5 mb-2">
+                                      {weather?.data?.Game_Temp?.[i]
+                                        ? `${weather?.data?.Game_Temp?.[i]}°`
+                                        : ""}
+                                    </h1>
                                   </div>
-                                  {
-                                  weather?.data?.Game_Temp?.[i] ? "" : <h1 className="font-medium no-data-text text-center whitespace-nowrap  text-xl mt-[10px]  my-2">
-                                  No weather data available at this time
-                                </h1>
-                                }
+                                  <div className="w-[60%] medium-sec">
+                                    <h1 className="font-medium text-center underline xl:text-3xl 2xl:text-5xl lg:3xl md:3xl  my-2">
+                                      Weather
+                                    </h1>
+
+                                    <h1 className="font-medium text-center xl:text-3xl 2xl:text-5xl lg:3xl md:3xl  mt-8 mb-2">
+                                      {weather?.data?.Game_Temp?.[i]
+                                        ? `${weather?.data?.Game_Precip?.[i]}% `
+                                        : ""}
+                                    </h1>
+                                    {weather?.data?.Game_Temp?.[i] ? (
+                                      <h1 className="font-medium text-center chance-precip whitespace-nowrap wind-mdh text-2xl md:mt-[-10px]  my-2">
+                                        Chance of <span className="chance-texts">precip</span> 
+                                      </h1>
+                                    ) : (
+                                      ""
+                                    )}
+                                  </div>
+                                  <div className="text-center first-section w-[20%] mt-6 md:mt-2 direction">
+                                    {weather?.data?.Game_Temp?.[i] ? (
+                                      <DirectionImage
+                                        classname={"matchup"}
+                                        windDir={
+                                          weather?.data
+                                            ?.Game_Wind_Dir_SVG_Rotate?.[i]
+                                        }
+                                        windDirection={wind_direction}
+                                        name={
+                                          weather?.data?.Game_Wind_Direction?.[
+                                            i
+                                          ]
+                                        }
+                                      />
+                                    ) : (
+                                      ""
+                                    )}
+                                    <h1 className="font-medium wind-mdh text-2xl  my-2">
+                                      {weather?.data?.Game_Wind_MPH?.[i]
+                                        ? `${weather?.data?.Game_Wind_MPH?.[i]}MPH`
+                                        : ""}
+                                    </h1>
+                                  </div>
                                 </div>
+                                {weather?.data?.Game_Temp?.[i] ? (
+                                  ""
+                                ) : (
+                                  <h1 className="font-medium no-data-text text-center whitespace-nowrap  text-xl mt-[10px]  my-2">
+                                    This game is played in a dome
+                                  </h1>
+                                )}
                               </div>
                             </div>
                           </div>
+                        </div>
+                        <div>
                           <div>
-                            <div>
-                              <div className="rounded-[40px] card-sec h-[200px] main-box  bg-[#ac82e5] py-2 my-5">
-                                <h1 className="font-medium park-heading xl:text-3xl 2xl:text-5xl lg:3xl md:3xl my-2">
-                                  SC Park Factors
+                            <div className="rounded-[40px] card-sec h-[200px] main-box  bg-[#ac82e5] py-2 my-5">
+                              <h1 className="font-medium park-heading xl:text-3xl 2xl:text-5xl lg:3xl md:3xl my-2">
+                                 Park Factors
+                              </h1>
+                              <div className="flex justify-evenly  2xl:h-[120px] lg:h-[100px] md:h-[110px] second-box mb-2 items-center">
+                                <h1 className="font-medium leading-4 xl:text-4xl 2xl:text-5xl lg:3xl md:3xl my-2">
+                                  3yr: <span className="mt-2 block park_value"> {weather?.data?.[`3yr`][i]}</span>
                                 </h1>
-                                <div className="flex justify-evenly  2xl:h-[120px] lg:h-[100px] md:h-[110px] second-box mb-2 items-center">
-                                  <h1 className="font-medium xl:text-4xl 2xl:text-5xl lg:3xl md:3xl my-2">
-                                    3yr: <br/> {weather?.data?.[`3yr`][i]}
-                                  </h1>
-                                  <h1 className="font-medium  xl:text-4xl 2xl:text-5xl lg:3xl md:3xl my-2">
-                                    1yr: <br/> {weather?.data?.[`1yr`][i]}
-                                  </h1>
-                                  <h1 className="font-medium  xl:text-4xl 2xl:text-5xl lg:3xl md:3xl my-2">
-                                    HR: <br/> {weather?.data?.hr[i]}
-                                  </h1>
-                                </div>
+                                <h1 className="font-medium leading-4 xl:text-4xl 2xl:text-5xl lg:3xl md:3xl my-2">
+                                  1yr: <span className="mt-2 block park_value"> {weather?.data?.[`1yr`][i]}</span>
+                                </h1>
+                                <h1 className="font-medium leading-4 xl:text-4xl 2xl:text-5xl lg:3xl md:3xl my-2">
+                                  HR: <span className="mt-2 block park_value">  {weather?.data?.hr[i]}</span>
+                                </h1>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </TabPanel>
-                  ))
-                : <div className="flex justify-center items-center">
-                    <h1 className="font-medium">No Matchups Currently Found.</h1>
-                  </div>
-                  }
+                    </div>
+                  </TabPanel>
+                ))
+              ) : (
+                <div className="flex justify-center items-center">
+                  <h1 className="font-medium">No Matchups Currently Found.</h1>
+                </div>
+              )}
+
+{/* <button onClick={handlePrev}>Prev</button>
+      <button onClick={handleNext}>Next</button> */}
 
               <TabList className="flex flex-wrap mt-3   text-center justify-center">
+                {/* <Tab className="cursor-pointer react-dot-tab" eventKey={tabselect} onClick={()=>setTabselect(tabselect - 1)}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-arrow-left-circle"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"
+                    />
+                  </svg>
+                </Tab>
+                <Tab className="cursor-pointer react-dot-tab" eventKey={tabselect} onClick={()=>setTabselect(tabselect + 1)}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-arrow-right-circle"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"
+                    />
+                  </svg>
+                </Tab> */}
                 {/* Total Products */}
                 {weather?.data?.date?.map((item, i) => (
                   <Tab className="cursor-pointer react-dot-tab" key={i}>

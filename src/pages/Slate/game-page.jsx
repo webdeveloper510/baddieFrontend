@@ -1043,46 +1043,46 @@ const GamePage = () => {
                           </h1>
                           <div className="text-center mt-5">
                             <h3 className="text-white bullpen-data text-4xl my-2">
-                              ERA : {statsworkload?.away_stats?.[0]?.L30_ERA}
+                              ERA: {statsworkload?.away_stats?.[0]?.L30_ERA}
                             </h3>
                             <h3 className="text-white bullpen-data  text-4xl my-2">
-                              WHIP : {statsworkload?.away_stats?.[0]?.L30_WHIP}
+                              WHIP: {statsworkload?.away_stats?.[0]?.L30_WHIP}
                             </h3>
                             <h3 className="text-white bullpen-data text-4xl my-2">
-                              KS/Game :
+                              Ks/Game:
                               {statsworkload?.away_stats?.[0]?.L30_K_PerGame}
                             </h3>
                             <h3 className="text-white bullpen-data text-4xl my-2">
-                              Walks/Game :
+                              Walks/Game:
                               {statsworkload?.away_stats?.[0]?.L30_Walks_PerGame}
                             </h3>
                             <h3 className="text-white bullpen-data text-4xl my-2">
-                              HRs/Game :
+                              HRs/Game:
                               {statsworkload?.away_stats?.[0]?.L30_HRs_PerGame}
                             </h3>
                           </div>
                         </div>
                         <div className="px-5 border-l-8 border-white">
                           <h1 className="text-center bullpen-title mb-5 italic text-white text-5xl">
-                            INF
+                            Last 30 Days
                           </h1>
                           <div className="text-center mt-5">
                             <h3 className="text-white bullpen-data text-4xl my-2">
-                              ERA : {statsworkload?.away_stats?.[0]?.YTD_ERA}
+                              ERA: {statsworkload?.away_stats?.[0]?.YTD_ERA}
                             </h3>
                             <h3 className="text-white bullpen-data  text-4xl my-2">
-                              WHIP : {statsworkload?.away_stats?.[0]?.YTD_WHIP}
+                              WHIP: {statsworkload?.away_stats?.[0]?.YTD_WHIP}
                             </h3>
                             <h3 className="text-white bullpen-data text-4xl my-2">
-                              KS/Game :
+                              Ks/Game:
                               {statsworkload?.away_stats?.[0]?.YTD_K_PerGame}
                             </h3>
                             <h3 className="text-white bullpen-data text-4xl my-2">
-                              Walks/Game :
+                              Walks/Game:
                               {statsworkload?.away_stats?.[0]?.YTD_Walks_PerGame}
                             </h3>
                             <h3 className="text-white bullpen-data text-4xl my-2">
-                              HRs/Game :
+                              HRs/Game:
                               {statsworkload?.away_stats?.[0]?.YTD_HRs_PerGame}
                             </h3>
                           </div>
@@ -1093,14 +1093,14 @@ const GamePage = () => {
                     <div className="rounded-3xl w-full py-5 mt-10 px-10 bg-[#fdcf2b] ">
                       <h1 className="text-5xl text-black font-semibold underline game-titles text-center my-3">
                         Bullpen Workload
-                        <span className="mt-5 block">Last 5 Days</span>
+                        <span className="mt-5 chance-texts">Last 5 Days</span>
                       </h1>
                       <div className="mt-20 mb-5 p-2 lg:w-[98%] md:max-w-[70vw] m-auto table-outer-section overflow-x-auto">
                     
                         <table className="w-full bg-white">
                           <thead className="table-header">
                             <tr>
-                              <th colSpan="6">Pitch count</th>
+                              <th colSpan="6">Pitch Count</th>
                             </tr>
                             <tr className="border-b-2 py-4">
                               {
@@ -1121,12 +1121,12 @@ const GamePage = () => {
                               segmentData?.map((item,i)=>{
                                 return(
                                   <tr className="border-b-2 py-3">
-                                  <td className="text-center px-5">{item?.[`${columns1?.[0]}`]}</td>
-                                  <td className="text-center px-5">{item?.[`${columns1?.[1]}`]}</td>
-                                  <td className="text-center px-5">{item?.[`${columns1?.[2]}`]}</td>
-                                  <td className="text-center px-5">{item?.[`${columns1?.[3]}`]}</td>
-                                  <td className="text-center px-5">{item?.[`${columns1?.[4]}`]}</td> 
-                                  <td className="text-center px-5">{item?.[`${columns1?.[5]}`]}</td> 
+                                  <td className={`text-center px-5`}>{item?.[`${columns1?.[0]}`]}</td>
+                                  <td className={`text-center ${item?.[`${columns1?.[1]}`] == 0 ? "" : "font-semibold"} text-[#6a6969] px-5`}>{item?.[`${columns1?.[1]}`]}</td>
+                                  <td className={`text-center ${item?.[`${columns1?.[2]}`] == 0 ? "" : "font-semibold"} px-5`}>{item?.[`${columns1?.[2]}`]}</td>
+                                  <td className={`text-center ${item?.[`${columns1?.[3]}`] == 0 ? "" : "font-semibold"} text-[#6a6969] px-5`}>{item?.[`${columns1?.[3]}`]}</td>
+                                  <td className={`text-center ${item?.[`${columns1?.[4]}`] == 0 ? "" : "font-semibold"} px-5`}>{item?.[`${columns1?.[4]}`]}</td> 
+                                  <td className={`text-center ${item?.[`${columns1?.[5]}`] == 0 ? "" : "font-semibold"} text-[#6a6969] px-5`}>{item?.[`${columns1?.[5]}`]}</td> 
                                  </tr>
                                 )
                               }):
@@ -1222,7 +1222,7 @@ const GamePage = () => {
                           </h1>
                           <div className="text-center">
                             <h3 className="font-medium text-2xl">
-                              Defensive Run Saved :
+                              Defensive Runs Saved:
                               {team?.away_team_response?.Catcher?.DRS}
                             </h3>
                             <h3 className="font-medium text-2xl">
@@ -1234,7 +1234,7 @@ const GamePage = () => {
                               {team?.away_team_response?.Catcher?.CS}
                             </h3>
                             <h3 className="font-medium text-2xl">
-                              Stolen Bases Success Rate :
+                              Stolen Base Success Rate :
                               {team?.away_team_response?.Catcher?.J}
                             </h3>
                             <h3 className="font-medium text-2xl">
@@ -1257,7 +1257,7 @@ const GamePage = () => {
                               {team?.away_team_response?.Infield?.DP}
                             </h3>
                             <h3 className="font-medium text-2xl">
-                              Ult Zone Rate/150 Innings :
+                              Ult.Zone Rate/150 Games :
                               {team?.away_team_response?.Infield?.UZR_150}
                             </h3>
                             <h3 className="font-medium text-2xl">
@@ -1265,7 +1265,7 @@ const GamePage = () => {
                               {team?.away_team_response?.Infield?.Errors}
                             </h3>
                             <h3 className="font-medium text-2xl mb-10">
-                              Double Playes :
+                              Double Plays :
                               {team?.away_team_response?.Infield?.DRS}
                             </h3>
                           </div>
@@ -1284,7 +1284,7 @@ const GamePage = () => {
                               {team?.away_team_response?.Outfield?.DRS}
                             </h3>
                             <h3 className="font-medium text-2xl">
-                              Ult Zone Rate/150 Innings :
+                              Ult.Zone Rate/150 Games :
                               {team?.away_team_response?.Outfield?.UZR_150}
                             </h3>
                             <h3 className="font-medium text-2xl">
@@ -1311,46 +1311,46 @@ const GamePage = () => {
                           </h1>
                           <div className="text-center mt-5">
                             <h3 className="text-white bullpen-data text-4xl my-2">
-                              ERA : {statsworkload?.home_stats?.[0]?.L30_ERA}
+                              ERA: {statsworkload?.home_stats?.[0]?.L30_ERA}
                             </h3>
                             <h3 className="text-white bullpen-data  text-4xl my-2">
-                              WHIP : {statsworkload?.home_stats?.[0]?.L30_WHIP}
+                              WHIP: {statsworkload?.home_stats?.[0]?.L30_WHIP}
                             </h3>
                             <h3 className="text-white bullpen-data text-4xl my-2">
-                              KS/Game :
+                              Ks/Game:
                               {statsworkload?.home_stats?.[0]?.L30_K_PerGame}
                             </h3>
                             <h3 className="text-white bullpen-data text-4xl my-2">
-                              Walks/Game :
+                              Walks/Game:
                               {statsworkload?.home_stats?.[0]?.L30_Walks_PerGame}
                             </h3>
                             <h3 className="text-white bullpen-data text-4xl my-2">
-                              HRs/Game :
+                              HRs/Game:
                               {statsworkload?.home_stats?.[0]?.L30_HRs_PerGame}
                             </h3>
                           </div>
                         </div>
                         <div className="px-5 border-l-8 border-white">
                           <h1 className="text-center bullpen-title mb-5 italic text-white text-5xl">
-                            INF
+                            Last 30 Days
                           </h1>
                           <div className="text-center mt-5">
                             <h3 className="text-white bullpen-data text-4xl my-2">
-                              ERA : {statsworkload?.home_stats?.[0]?.YTD_ERA}
+                              ERA: {statsworkload?.home_stats?.[0]?.YTD_ERA}
                             </h3>
                             <h3 className="text-white bullpen-data  text-4xl my-2">
-                              WHIP : {statsworkload?.home_stats?.[0]?.YTD_WHIP}
+                              WHIP: {statsworkload?.home_stats?.[0]?.YTD_WHIP}
                             </h3>
                             <h3 className="text-white bullpen-data text-4xl my-2">
-                              KS/Game :
+                              Ks/Game:
                               {statsworkload?.home_stats?.[0]?.YTD_K_PerGame}
                             </h3>
                             <h3 className="text-white bullpen-data text-4xl my-2">
-                              Walks/Game :
+                              Walks/Game:
                               {statsworkload?.home_stats?.[0]?.YTD_Walks_PerGame}
                             </h3>
                             <h3 className="text-white bullpen-data text-4xl my-2">
-                              HRs/Game :
+                              HRs/Game:
                               {statsworkload?.home_stats?.[0]?.YTD_HRs_PerGame}
                             </h3>
                           </div>
@@ -1361,14 +1361,14 @@ const GamePage = () => {
                     <div className="rounded-3xl w-full py-5 mt-10 px-10 bg-[#fdcf2b] ">
                       <h1 className="text-5xl text-black font-semibold underline game-titles text-center my-3">
                         Bullpen Workload
-                        <span className="mt-5 block">Last 5 Days</span>
+                        <span className="mt-5 chance-texts">Last 5 Days</span>
                       </h1>
                       <div className="mt-20 mb-5 p-2 lg:w-[98%] md:max-w-[70vw] m-auto table-outer-section overflow-x-auto">
                     
                         <table className="w-full bg-white">
                           <thead className="table-header">
                             <tr>
-                              <th colSpan="6">Pitch count</th>
+                              <th colSpan="6">Pitch Count</th>
                             </tr>
                             <tr className="border-b-2 py-4">
                               {
@@ -1389,12 +1389,12 @@ const GamePage = () => {
                               homeWorkload?.map((item,i)=>{
                                 return(
                                   <tr className="border-b-2 py-3">
-                                  <td className="text-center px-5">{item?.[`${homeheading?.[0]}`]}</td>
-                                  <td className="text-center px-5">{item?.[`${homeheading?.[1]}`]}</td>
-                                  <td className="text-center px-5">{item?.[`${homeheading?.[2]}`]}</td>
-                                  <td className="text-center px-5">{item?.[`${homeheading?.[3]}`]}</td>
-                                  <td className="text-center px-5">{item?.[`${homeheading?.[4]}`]}</td>                                  
-                                  <td className="text-center px-5">{item?.[`${homeheading?.[5]}`]}</td>                                  
+                                  <td className={`text-center px-5`}>{item?.[`${homeheading?.[0]}`]}</td>
+                                  <td className={`text-center ${item?.[`${homeheading?.[1]}`] == "0" ? "" : "font-semibold"} text-[#6a6969] px-5`}>{item?.[`${homeheading?.[1]}`]}</td>
+                                  <td className={`text-center ${item?.[`${homeheading?.[2]}`] == "0" ? "" : "font-semibold"} px-5`}>{item?.[`${homeheading?.[2]}`]}</td>
+                                  <td className={`text-center ${item?.[`${homeheading?.[3]}`] == "0" ? "" : "font-semibold"} text-[#6a6969] px-5`}>{item?.[`${homeheading?.[3]}`]}</td>
+                                  <td className={`text-center ${item?.[`${homeheading?.[4]}`] == "0" ? "" : "font-semibold"} px-5`}>{item?.[`${homeheading?.[4]}`]}</td>                                  
+                                  <td className={`text-center ${item?.[`${homeheading?.[5]}`] == "0" ? "" : "font-semibold"} text-[#6a6969] px-5`}>{item?.[`${homeheading?.[5]}`]}</td>                                  
                                  </tr>
                                 )
                               }):
@@ -1490,7 +1490,7 @@ const GamePage = () => {
                           </h1>
                           <div className="text-center">
                             <h3 className="font-medium text-2xl">
-                              Defensive Run Saved :
+                              Defensive Runs Saved :
                               {team?.home_team_response?.Catcher?.DRS}
                             </h3>
                             <h3 className="font-medium text-2xl">
@@ -1521,11 +1521,11 @@ const GamePage = () => {
                               {team?.home_team_response?.Infield?.OAA}
                             </h3>
                             <h3 className="font-medium text-2xl">
-                              Defensive Run Saved :
+                              Defensive Runs Saved :
                               {team?.home_team_response?.Infield?.DP}
                             </h3>
                             <h3 className="font-medium text-2xl">
-                              Ult Zone Rate/150 Innings :
+                            Ult.Zone Rate/150 Game :
                               {team?.home_team_response?.Infield?.UZR_150}
                             </h3>
                             <h3 className="font-medium text-2xl">
@@ -1533,7 +1533,7 @@ const GamePage = () => {
                               {team?.home_team_response?.Infield?.Errors}
                             </h3>
                             <h3 className="font-medium text-2xl mb-10">
-                              Double Playes :
+                              Double Plays :
                               {team?.home_team_response?.Infield?.DRS} 
                             </h3>
                           </div>
@@ -1548,11 +1548,11 @@ const GamePage = () => {
                               {team?.home_team_response?.Outfield?.OAA}
                             </h3>
                             <h3 className="font-medium text-2xl">
-                              Defensive Run Saved :
+                              Defensive Runs Saved :
                               {team?.home_team_response?.Outfield?.DRS}
                             </h3>
                             <h3 className="font-medium text-2xl">
-                              Ult Zone Rate/150 Innings :
+                            Ult.Zone Rate/150 Game :
                               {team?.home_team_response?.Outfield?.UZR_150}
                             </h3>
                             <h3 className="font-medium text-2xl">

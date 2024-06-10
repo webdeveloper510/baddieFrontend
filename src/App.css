@@ -207,6 +207,9 @@ canvas.scatter-charts {
 .mobile {
   display: none;
 }
+.game-temp{
+  font-size: 50px;
+}
 
 @media screen and (max-width: 1024px) {
   .bar-chart {
@@ -525,7 +528,15 @@ canvas.scatter-charts {
  .card-sec{
   height: 170px;
  }
-
+ .chance-texts{
+  display: block;
+ }
+ .first-section{
+  width: 25%;
+ }
+.medium-sec{
+  width: 50%;
+}
 
 }
 @media screen and (max-width: 430px) {
@@ -538,6 +549,7 @@ canvas.scatter-charts {
   }
   .bullpen-data{
     font-size: 16px;
+    white-space: nowrap;
   }
   .image-1 {
     width: 100%;
@@ -1978,6 +1990,7 @@ div#dropdownInformation {
   }
   .game-temp {
     margin-top: 30px;
+    font-size: 30px;
   }
   .bottom-boxes {
     gap: 0px;
@@ -2030,5 +2043,8 @@ div#dropdownInformation {
     width: 20rem;
     padding: 10px;
     margin-top: 35%;
+  }
+  .park_value{
+    margin-top: 18px;
   }
 }
