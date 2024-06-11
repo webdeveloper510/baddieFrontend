@@ -720,35 +720,34 @@ const GamePage = () => {
             <div>
               <div className="rounded-[50px]  px-20 bg-[#40ecd9] py-5 my-5 mobile_padding">
                 <div className="text-left px-5 mb-2">
-                <h1 className="font-medium text-center text-5xl underline mb-10">
+                <h1 className="font-medium text-center text-5xl underline">
                           Weather
                         </h1>
                   {weather?.data?.Game_Temp?.[index] ? (
-                    <div className="grid grid-cols-3 weather-text">
-                      <div className="flex justify-center weather-text1 items-center">
+                    <div className="grid grid-cols-3 mt-5 weather-text">
+                      <div className="flex justify-center weather-text1">
                         <h1 className="font-medium text-5xl game-data my-2">
                           {`${weather?.data?.Game_Temp?.[index]}°`}
                         </h1>
                       </div>
                       <div className="text-center weather-text2">
                         
-                        <h1 className="font-medium text-4xl mt-4 my-2">
+                        <h1 className="font-medium text-4xl my-2">
                           {`${weather?.data?.Game_Precip?.[index]}% `}
                         </h1>
                         <h1 className="font-medium text-center leading-none chance-text text-4xl my-2">
-                          Chance of <br/> precip
+                          Chance of <span className="chance-texts"> precip </span>
                         </h1>
                       </div>
-                      <div className="text-center weather-text3">
+                      <div className="text-center flex justify-center weather-text3">
                         <DirectionImage
                           newclass="newclass"
                           windDir={weather?.data?.Game_Wind_Dir_SVG_Rotate?.[index]}
                           windDirection={wind_direction}
                           name={weather?.data?.Game_Wind_Direction?.[index]}
+                          wind_mph={weather?.data?.Game_Wind_MPH?.[index]}
                         />
-                        <h1 className="font-medium text-center text-4xl my-2">
-                          {`${weather?.data?.Game_Wind_MPH?.[index]}MPH`}
-                        </h1>
+                        
                       </div>
                     </div>
                   ) : (
@@ -760,7 +759,7 @@ const GamePage = () => {
                   )}
                 </div>
 
-                <div className="mt-5 mb-5 p-2 lg:w-[98%] md:max-w-[70vw] m-auto table-outer-section overflow-x-auto">
+                <div className="mt-8 mb-5 p-2 lg:w-[98%] md:max-w-[70vw] m-auto table-outer-section overflow-x-auto">
                   <table className="w-full">
                     <thead className="table-header">
                       <tr>

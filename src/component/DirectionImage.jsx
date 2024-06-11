@@ -1,11 +1,15 @@
 import React from "react";
 
-function DirectionImage({ windDirection, name ,newclass, windDir}) {
+function DirectionImage({ wind_mph, name, newclass, windDir }) {
   // const matchObj = windDirection.find((item) => item.name === name);
 
   return (
-    <div className="my-2" >      
-      <svg viewBox="0 0 100 100"  className="direction-image"  style={{width:"50px", margin:"auto"}} >
+    <div className="flex">
+      <svg
+        viewBox="0 0 100 100"
+        className={`${newclass ? "w-[80px]" : "w-[50px]"} direction-image`}
+        style={{ margin: "auto" }}
+      >
         <path
           style={{
             fill: "#0099ed",
@@ -34,7 +38,18 @@ function DirectionImage({ windDirection, name ,newclass, windDir}) {
         />
       </svg>
 
-      <h1 className={`font-medium wind-name my-2 ${newclass ?  "text-4xl" : "wind-mdh"}`}>{name}</h1>
+     <div>
+     <h1
+        className={`font-medium wind-name my-2 ${
+          newclass ? "text-4xl" : "text-2xl wind-mdh"
+        }`}
+      >
+        {name}
+      </h1>
+      <h1 className={`font-medium ${newclass ? "text-4xl" : "text-2xl wind-mdh"} text-center  ml-3 my-2`}>
+        {`${wind_mph}MPH`}
+      </h1>
+     </div>
     </div>
   );
 }

@@ -535,7 +535,7 @@ canvas.scatter-charts {
   width: 25%;
  }
 .medium-sec{
-  width: 50%;
+  width: 40%;
 }
 
 }
@@ -1676,6 +1676,9 @@ div#dropdownInformation {
 .chance-text{
   text-align: center;
 }
+.table-header th{
+  font-size: 1.35rem;
+}
 /********************* responisve start **********************/
 
 @media only screen and (max-width: 1499px) {
@@ -2047,4 +2050,31 @@ div#dropdownInformation {
   .park_value{
     margin-top: 18px;
   }
+  .mobile-dam{
+    display: block;
+  }
+}
+
+
+.carousel.carousel-slider .control-arrow {
+  height: 50px;
+  top: 270px !important;
+  color: #fff;
+  font-size: 26px;
+  bottom: 0;
+  margin-top: 0;
+  padding: 5px;
+  background: black !important;
+}
+.carousel .carousel-status {
+  display: none;
+}
+.game-data{
+  font-size: 4.5rem;
+}
+.carousel .control-dots {
+  bottom: -15px !important;
+}
+.carousel .control-dots li{
+  background: black !important;
 }
