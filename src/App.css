@@ -207,7 +207,7 @@ canvas.scatter-charts {
 .mobile {
   display: none;
 }
-.game-temp{
+.game-temp {
   font-size: 50px;
 }
 
@@ -485,69 +485,68 @@ canvas.scatter-charts {
     font-size: 16px;
     width: 20%;
   }
-  .green-box{
+  .green-box {
     padding-left: 0px;
     padding-right: 0px;
   }
-  .no-data-text{
+  .no-data-text {
     font-size: 16px;
   }
 }
 
-.mobile-team-defense{
+.mobile-team-defense {
   display: none;
 }
 
-@media screen and (max-width : 480px) {
-  .desktop-team-defense{
+@media screen and (max-width: 480px) {
+  .desktop-team-defense {
     display: none;
-  }  
-  .mobile-team-defense{
+  }
+  .mobile-team-defense {
     display: block;
   }
-  .team-defence{
+  .team-defence {
     font-size: 32px;
   }
-  .team-defense-section{
+  .team-defense-section {
     padding: 20px 0px;
   }
-  .outer-section{
+  .outer-section {
     padding: 5px;
   }
-  .team-defense-section{
+  .team-defense-section {
     border-radius: 70px;
   }
   .main-section {
     padding-left: 5px;
     padding-right: 5px;
-}
-.chance-precip{
-  text-align: center;
-  line-height: 1.5;
-}
- .card-sec{
-  height: 170px;
- }
- .chance-texts{
-  display: block;
- }
- .first-section{
-  width: 25%;
- }
-.medium-sec{
-  width: 40%;
-}
-
-}
-@media screen and (max-width: 430px) {
-  .chance-precip{   
+  }
+  .chance-precip {
     text-align: center;
     line-height: 1.5;
   }
-  .bullpen-title{
+  .card-sec {
+    height: 170px;
+  }
+  .chance-texts {
+    display: block;
+  }
+  .first-section {
+    width: 25%;
+  }
+  .medium-sec {
+    width: 40%;
+  }
+}
+@media screen and (max-width: 430px) {
+  .chance-precip {
+    text-align: center;
+    line-height: 1.5;
+  }
+  .bullpen-title {
     font-size: 20px;
   }
-  .bullpen-data{
+  .bullpen-data {
     font-size: 16px;
     white-space: nowrap;
   }
@@ -1669,14 +1668,14 @@ div#dropdownInformation {
   line-height: 29.79px;
   text-transform: uppercase;
 }
-.chance-precip{
+.chance-precip {
   text-align: center;
   line-height: 1.5;
 }
-.chance-text{
+.chance-text {
   text-align: center;
 }
-.table-header th{
+.table-header th {
   font-size: 1.35rem;
 }
 /********************* responisve start **********************/
@@ -1697,11 +1696,13 @@ div#dropdownInformation {
   .wind-name {
     margin: 25px 0px;
   }
-  .chance-precip{
+  .chance-precip {
     margin-top: 15px;
   }
 }
-
+.mobile-dam {
+  display: block;
+}
 @media only screen and (max-width: 1280px) {
   .action_btn button {
     padding: 20px 0px;
@@ -1764,8 +1765,17 @@ div#dropdownInformation {
   .slate-box {
     padding: 10px 20px;
   }
+  .table-header th {
+    font-size: 1rem;
+    line-height: normal;
+  }
+  .main-heading{
+    font-size: 4rem;
+  }
 }
-
+.email-checkbox{
+  width: 20px !important;
+}
 @media only screen and (max-width: 992px) {
   .menubar,
   .mobile-logo-hide {
@@ -1836,6 +1846,16 @@ div#dropdownInformation {
   .header_bg {
     background: rgb(25 26 42 / 62%);
   }
+  .main-section {
+    padding: 10px 10px;
+  }
+  .no-data-text {
+    font-size: 1rem;
+  }
+  .table-header th {
+    font-size: 1rem;
+    line-height: normal;
+  }
 }
 @media screen and (max-width: 768px) {
   .direction-image {
@@ -1846,6 +1866,12 @@ div#dropdownInformation {
   }
   .wind-name {
     margin-top: 12px;
+  }
+  .main-section {
+    padding: 10px 10px;
+  }
+  .no-data-text {
+    font-size: 1rem;
   }
 }
 @media only screen and (max-width: 767px) {
@@ -1901,66 +1927,66 @@ div#dropdownInformation {
   }
   .slate-box {
     padding: 20px 10px;
-}
-.chance-text{
-  text-align: center;
-}
+  }
+  .chance-text {
+    text-align: center;
+  }
 }
 
 @media screen and (max-width: 430px) {
   .flex_section {
     display: flex;
     justify-content: space-evenly;
-}
-  .inner_section{
+  }
+  .inner_section {
     display: flex;
     justify-content: space-around;
   }
-  .metric-data{
+  .metric-data {
     font-size: 18px;
   }
-  .game-inner-text h1{
+  .game-inner-text h1 {
     font-size: 10px;
-    
   }
-  .metric-sections{
+  .metric-sections {
     display: block;
   }
-  .table-outer-section{
+  .table-outer-section {
     width: 300px;
     overflow-x: scroll;
   }
   .mobile_padding {
     padding-left: 1rem;
     padding-right: 1rem;
-   }
-   .tab-lists {
+  }
+  .tab-lists {
     justify-content: space-around;
   }
-  .weather-text{
+  .weather-text {
     display: flex;
   }
-  .weather-text1{
+  .weather-text1 {
     width: 20%;
   }
-  .weather-text2{
+  .weather-text2 {
     width: 60%;
   }
-  .weather-text3{
+  .weather-text3 {
     width: 20%;
   }
-  .game-data{
+  .game-data {
     margin-top: 2rem;
   }
-  .weather-text h1{
+  .weather-text h1 {
     font-size: 26px;
   }
-  .table-header th{
+  .table-header th {
     font-size: 10px;
     line-height: normal;
     padding: 5px;
   }
-  .table-body th, td{
+  .table-body th,
+  td {
     font-size: 10px;
     line-height: normal;
     white-space: nowrap;
@@ -1968,24 +1994,23 @@ div#dropdownInformation {
   .carlos-tab {
     font-size: 14px;
     line-height: normal;
-}
-  .purple-card{
+  }
+  .purple-card {
     padding: 10px 20px;
     border-radius: 20px;
   }
-  .purple-card h1{
+  .purple-card h1 {
     font-size: 10px;
     line-height: normal;
     margin-bottom: 0px;
-    
   }
-  .second-box h1{
+  .second-box h1 {
     font-size: 26px;
   }
-  .main-heading{
+  .main-heading {
     font-size: 24px;
   }
-  .flex_section h1{
+  .flex_section h1 {
     font-size: 16px;
   }
   .wind-mdh {
@@ -1998,15 +2023,15 @@ div#dropdownInformation {
   .bottom-boxes {
     gap: 0px;
   }
-  .main-box{
+  .main-box {
     margin-top: 0px;
   }
   .second-box {
     height: 95px;
-}
-.park-heading{
-  font-size: 24px;
-}
+  }
+  .park-heading {
+    font-size: 24px;
+  }
   .upper-text {
     font-size: 1.2rem;
   }
@@ -2014,14 +2039,14 @@ div#dropdownInformation {
     padding-left: 1rem;
     padding-right: 1rem;
   }
-  
+
   .wind-mdh {
     font-size: 16px;
   }
   .direction {
     margin-top: 1rem;
   }
-  .chance-precip{
+  .chance-precip {
     margin-top: -7px;
   }
 }
@@ -2047,14 +2072,13 @@ div#dropdownInformation {
     padding: 10px;
     margin-top: 35%;
   }
-  .park_value{
+  .park_value {
     margin-top: 18px;
   }
-  .mobile-dam{
+  .mobile-dam {
     display: block;
   }
 }
-
 
 .carousel.carousel-slider .control-arrow {
   height: 50px;
@@ -2069,12 +2093,56 @@ div#dropdownInformation {
 .carousel .carousel-status {
   display: none;
 }
-.game-data{
+.game-data {
   font-size: 4.5rem;
 }
 .carousel .control-dots {
   bottom: -15px !important;
 }
-.carousel .control-dots li{
+.carousel .control-dots li {
   background: black !important;
+}
+
+input.__PrivateStripeElement-input {
+  opacity: 0.5 !important;
+    background: #593941 !important;
+    border: 1px white solid !important;
+    color: #fff !important;
+    font-size: 18px !important;
+    font-weight: 400 !important;;
+    line-height: 27.09px !important;;
+    word-wrap: break-word !important;;
+    font-family: var(--body-font-family) !important;;
+    height: 55px !important;;
+    width: 60% !important;;
+}
+
+input.InputElement.is-complete.Input {
+  color: white !important;
+  font-size: 20px !important;
+  width: 220px !important;
+  height: 19px !important;
+}
+input.InputElement.is-empty.Input.Input--empty {
+  color: white !important;
+  font-size: 20px !important;
+  width: 220px !important;
+  height: 19px !important;
+}
+
+.py-5.StripeElement.StripeElement--empty {
+  padding: 0px !important;
+  border: 1px solid white;
+}
+.ElementsApp .InputElement.is-invalid {
+  color: #eb1c26;
+  font-size: 20px !important;
+  width: 220px !important;
+  height: 19px !important;
+}
+
+.CardField--ltr .CardField-input-wrapper {
+  left: 2em !important;
+  font-size: 23px !important;
+  height: 50px !important;
 }

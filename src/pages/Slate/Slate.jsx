@@ -155,7 +155,7 @@ const Slate = () => {
             <h1 className="font-medium text-3xl my-2">{weather?.date_key}</h1>
           </div>
 
-          <div className="my-10 px-10 tab-section">
+          <div className="my-10 tab-section">
             {/* <Tabs
               selectedIndex={tabIndex}
               onSelect={(index) => setTabIndex(index)}
@@ -351,7 +351,7 @@ const Slate = () => {
                       onClick={() => {
                         handleDamPage(i);
                       }}
-                      className="cursor-pointer border-4 my-3 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-20 slate-box py-5 rounded-[60px] text-center border-black h-auto mx-auto"
+                      className="cursor-pointer border-4 my-3 px-4 sm:px-6 md:px-8 lg:px-0 xl:px-20 slate-box py-5 rounded-[60px] text-center border-black h-auto mx-auto"
                     >
                       <div className="my-3">
                         <h1 className="font-extrabold text-4xl upper-text my-2">

@@ -25,7 +25,7 @@ import Guest from "./utitls/GuestRoute";
 import SecureRoute from "./utitls/SecureRoute";
 import AdminSecureRoute from "./utitls/AdminSecureRoute.jsx";
 import Apploader from "./component/Apploader";
-import { Payment } from "./pages/payment";
+import  {Payment}  from "./pages/payment";
 import { ErrorFour } from "./pages/PageNotFound";
 import Eda from "./pages/eda/eda";
 import { Plan } from "./pages/plan";
@@ -38,6 +38,7 @@ import { ForgotPassword } from "./pages/ForgotPassRequest.js";
 import { ChangePassword } from "./pages/ForgotPassword.jsx";
 import Slate from "./pages/Slate/Slate.jsx";
 import GamePage from "./pages/Slate/game-page.jsx";
+import CheckoutForm from "./pages/paymetPay.jsx";
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 export const userContext = createContext();
@@ -106,7 +107,7 @@ function App() {
   return (
     <userContext.Provider value={{ user, setUser, appLoad }}>
       
-      <div className={`flex flex-col min-h-screen ${location.pathname === '/signin' || location.pathname=== '/signup' || location.pathname=== '/forgot-password' || location.pathname=== '/payment' ? 'bg_image': ''}`}>
+      <div className={`flex flex-col min-h-screen ${location.pathname === '/signin' || location.pathname=== '/signup' || location.pathname=== '/forgot-password' || location.pathname=== '/payment' || location.path === "/payment-pay" ? 'bg_image': ''}`}>
         {user ? (
           <>
             <Header show={show} setShow={setShow} />
@@ -255,6 +256,14 @@ function App() {
                       </SecureRoute>
                     }
                   />
+                   <Route
+                    path="/payment-pay"
+                    element={
+                      <SecureRoute>
+                        <CheckoutForm />
+                      </SecureRoute>
+                    }
+                  />
                   <Route
                     path="/signup"
                     element={
@@ -350,6 +359,14 @@ function App() {
               element={
                 <Guest>
                   <Payment />
+                </Guest>
+              }
+            />
+             <Route
+              path="/payment-pay"
+              element={
+                <Guest>
+                  <CheckoutForm />
                 </Guest>
               }
             />
