@@ -38,7 +38,7 @@ import { ForgotPassword } from "./pages/ForgotPassRequest.js";
 import { ChangePassword } from "./pages/ForgotPassword.jsx";
 import Slate from "./pages/Slate/Slate.jsx";
 import GamePage from "./pages/Slate/game-page.jsx";
-import CheckoutForm from "./pages/paymetPay.jsx";
+import {CheckoutPayment} from "./pages/paymetPay.jsx";
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 export const userContext = createContext();
@@ -260,7 +260,7 @@ function App() {
                     path="/payment-pay"
                     element={
                       <SecureRoute>
-                        <CheckoutForm />
+                        <CheckoutPayment />
                       </SecureRoute>
                     }
                   />
@@ -366,7 +366,7 @@ function App() {
               path="/payment-pay"
               element={
                 <Guest>
-                  <CheckoutForm />
+                  <CheckoutPayment />
                 </Guest>
               }
             />

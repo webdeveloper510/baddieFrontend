@@ -248,9 +248,9 @@ export const getMatchupData = async()=>{
     }
 }
 
-export const getWeatherData = async()=>{
+export const getWeatherData = async(data)=>{
     try {
-        const response = await authApi.get("matchup-weather/");
+        const response = await authApi.post("matchup-weather/", data);
         return response.data
     } catch (error) {
         throw (error)

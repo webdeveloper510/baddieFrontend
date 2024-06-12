@@ -269,9 +269,18 @@ canvas.scatter-charts {
   .ev-text {
     font-size: 18px;
   }
+  .main-heading {
+    font-size: 3.5rem;
+  }
+  .main-box {
+    height: 200px;
+  }
 }
 
 @media screen and (max-width: 768px) {
+  .main-box{
+    height: 180px;
+  }
   .baddie-text {
     text-align: center;
     font-size: 14px;
@@ -381,6 +390,49 @@ canvas.scatter-charts {
   .game-table-body td {
     white-space: nowrap;
     font-size: 16px;
+  }
+  .main-heading {
+    font-size: 3rem;
+  }
+  .no-data {
+    font-size: 26px;
+  }
+  .table-header th {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: normal;
+  }
+  .bullpen-title {
+    font-size: 34px;
+  }
+  .bullpen-data {
+    font-size: 30px;
+  }
+  .work-data {
+    font-size: 14px;
+    white-space: nowrap;
+  }
+  .workload-data td {
+    font-size: 14px;
+  }
+  .table-outer-section {
+    max-width: 100vw;
+  }
+  .team-defense h3 {
+    font-size: 24px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .team-defence {
+    margin-bottom: 30px;
+  }
+  .bullpen-cards {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .weather-cards {
+    padding-left: 0px;
+    padding-right: 0px;
   }
 }
 
@@ -531,14 +583,17 @@ canvas.scatter-charts {
   .chance-texts {
     display: block;
   }
-  .first-section {
+  /* .first-section {
     width: 25%;
   }
   .medium-sec {
     width: 40%;
-  }
+  } */
 }
 @media screen and (max-width: 430px) {
+  .main-section {
+    padding: 10px 0px;
+  }
   .chance-precip {
     text-align: center;
     line-height: 1.5;
@@ -557,7 +612,7 @@ canvas.scatter-charts {
     padding: 10px;
   }
   .slate-box h1 {
-    white-space: nowrap;
+    margin-top: 0px;
   }
   .baddie-text-logo {
     font-size: 20px;
@@ -701,17 +756,20 @@ canvas.scatter-charts {
   }
   .promo-code {
     font-size: 18px;
-    width: 100%;
+    width: 100% !important;
     margin-top: 20px;
   }
   .input-butns {
     display: block;
   }
+  .promo-code {
+    width: 100% !important;
+  }
   .promo-input {
-    width: 100%;
+    width: 100% !important;
   }
   .subscribe-butns {
-    width: 100%;
+    width: 100% !important;
   }
 }
 @media screen and (max-width: 320px) {
@@ -927,6 +985,7 @@ canvas.scatter-charts {
   word-wrap: break-word;
   font-family: var(--headings-font-family);
   font-size: 25px;
+  margin-bottom: 30px;
 }
 .have_acc {
   color: white;
@@ -1080,12 +1139,11 @@ button.inline-flex.h-12.animate-shimmer.items-center.justify-center.subscribe-bu
   margin-top: 30px;
 }
 .custom_input {
-  opacity: 0.5;
-  background: #593941 !important;
+  background: #59394100 !important;
   border: 1px white solid;
   color: #fff !important;
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 27.09px;
   word-wrap: break-word;
   font-family: var(--body-font-family);
@@ -1122,10 +1180,9 @@ button.inline-flex.h-12.animate-shimmer.items-center.justify-center.subscribe-bu
   height: 55px;
 }
 .inner_popop iframe {
-  height: 55px !important;
-  opacity: 0.5;
-  background: #593941 !important;
-  border: 1px white solid;
+  height: 27px !important;
+  opacity: inherit !important;
+  background: transparent !important;
   color: #fff !important;
   font-size: 18px;
   font-weight: 400;
@@ -1691,13 +1748,25 @@ div#dropdownInformation {
     font-size: 40px;
   }
   .main-box {
-    height: 250px;
+    height: 300px;
   }
   .wind-name {
     margin: 25px 0px;
   }
   .chance-precip {
     margin-top: 15px;
+    line-height: normal;
+  }
+  .second-box h1{
+    margin-top: 65px;
+    font-size: 4rem;
+    line-height: 1;
+  }
+  .slate-mobile{
+    width: 100px;
+  }
+  .wind-speed{
+    margin-top: 10px;
   }
 }
 .mobile-dam {
@@ -1756,9 +1825,9 @@ div#dropdownInformation {
   .wind-mdh {
     font-size: 16px;
   }
-  .wind-name {
+  /* .wind-name {
     margin: 5px 0px -12px;
-  }
+  } */
   .direction-image {
     width: 43px;
   }
@@ -1769,11 +1838,8 @@ div#dropdownInformation {
     font-size: 1rem;
     line-height: normal;
   }
-  .main-heading{
-    font-size: 4rem;
-  }
 }
-.email-checkbox{
+.email-checkbox {
   width: 20px !important;
 }
 @media only screen and (max-width: 992px) {
@@ -1952,7 +2018,7 @@ div#dropdownInformation {
     display: block;
   }
   .table-outer-section {
-    width: 300px;
+    width: 350px;
     overflow-x: scroll;
   }
   .mobile_padding {
@@ -1973,12 +2039,14 @@ div#dropdownInformation {
   }
   .weather-text3 {
     width: 20%;
+    padding-top: 22px;
   }
   .game-data {
-    margin-top: 2rem;
+    margin-top: 2rem !important;
+    font-size: 35px !important;
   }
   .weather-text h1 {
-    font-size: 26px;
+    font-size: 22px;
   }
   .table-header th {
     font-size: 10px;
@@ -2017,7 +2085,7 @@ div#dropdownInformation {
     font-size: 18px;
   }
   .game-temp {
-    margin-top: 30px;
+    margin-top: 10px !important;
     font-size: 30px;
   }
   .bottom-boxes {
@@ -2036,21 +2104,56 @@ div#dropdownInformation {
     font-size: 1.2rem;
   }
   .tab-section {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .carousel-tab{
+    padding: 0px;
   }
 
   .wind-mdh {
     font-size: 16px;
   }
   .direction {
-    margin-top: 1rem;
+    margin-top: 5px;
+  }
+  .weather-title {
+    margin-bottom: 0px;
   }
   .chance-precip {
     margin-top: -7px;
   }
+  .border-section {
+    border-left-width: 3px;
+  }
+  .input-butns {
+    display: block;
+  }
+  .promo-input {
+    width: 100% !important;
+  }
+  .promo-code {
+    width: 100% !important;
+  }
+  
 }
 @media only screen and (max-width: 480px) {
+  .input-butns {
+    display: block;
+  }
+  .direction {
+    margin-top: 5px;
+  }
+  .weather-title {
+    margin-bottom: 0px;
+  }
+  .promo-input {
+    width: 100% !important;
+  }
+  .promo-code {
+    width: 100% !important;
+    margin-top: 20px;
+  }
   .amount {
     font-size: 42px;
     line-height: 45.89px;
@@ -2078,8 +2181,49 @@ div#dropdownInformation {
   .mobile-dam {
     display: block;
   }
+  .table-outer-section {
+    width: 340px;
+    overflow-x: scroll;
+  }
+  .border-section {
+    border-left-width: 3px;
+  }
 }
 
+@media screen and (max-width: 375px) {
+  .table-outer-section {
+    width: 300px;
+    overflow-x: scroll;
+  }
+  .border-section {
+    border-left-width: 3px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .table-outer-section {
+    width: 250px;
+    overflow-x: scroll;
+  }
+  .border-section {
+    border-left-width: 3px;
+  }
+}
+
+.back_butn {
+  background: #000 !important;
+  height: 55px;
+  color: white;
+  font-size: 30px;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 27.21px;
+  word-wrap: break-word;
+  font-family: var(--headings-font-family);
+}
+.InputContainer .InputElement {
+  position: absolute;
+  top: 4px !important;
+}
 .carousel.carousel-slider .control-arrow {
   height: 50px;
   top: 270px !important;
@@ -2105,16 +2249,16 @@ div#dropdownInformation {
 
 input.__PrivateStripeElement-input {
   opacity: 0.5 !important;
-    background: #593941 !important;
-    border: 1px white solid !important;
-    color: #fff !important;
-    font-size: 18px !important;
-    font-weight: 400 !important;;
-    line-height: 27.09px !important;;
-    word-wrap: break-word !important;;
-    font-family: var(--body-font-family) !important;;
-    height: 55px !important;;
-    width: 60% !important;;
+  background: #593941 !important;
+  border: 1px white solid !important;
+  color: #fff !important;
+  font-size: 18px !important;
+  font-weight: 400 !important;
+  line-height: 27.09px !important;
+  word-wrap: break-word !important;
+  font-family: var(--body-font-family) !important;
+  height: 55px !important;
+  width: 60% !important;
 }
 
 input.InputElement.is-complete.Input {
@@ -2129,10 +2273,19 @@ input.InputElement.is-empty.Input.Input--empty {
   width: 220px !important;
   height: 19px !important;
 }
-
+.inner_popop iframe input::placeholder {
+  color: #fff !important;
+}
 .py-5.StripeElement.StripeElement--empty {
-  padding: 0px !important;
+  padding: 10px !important;
   border: 1px solid white;
+  border-radius: 5px;
+}
+.py-5.StripeElement.StripeElement--invalid,
+.py-5.StripeElement.StripeElement--focus {
+  padding: 10px !important;
+  border: 1px solid white;
+  border-radius: 5px;
 }
 .ElementsApp .InputElement.is-invalid {
   color: #eb1c26;
@@ -2146,3 +2299,6 @@ input.InputElement.is-empty.Input.Input--empty {
   font-size: 23px !important;
   height: 50px !important;
 }
+/* .weather-title {
+  margin-bottom: -17px;
+} */

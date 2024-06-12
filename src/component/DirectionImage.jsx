@@ -4,10 +4,10 @@ function DirectionImage({ wind_mph, name, newclass, windDir }) {
   // const matchObj = windDirection.find((item) => item.name === name);
 
   return (
-    <div className="flex">
+    <div className="block">
       <svg
         viewBox="0 0 100 100"
-        className={`${newclass ? "w-[80px]" : "w-[50px]"} direction-image`}
+        className={`${newclass ? "w-[80px]" : "w-[60px] slate-mobile"} direction-image`}
         style={{ margin: "auto" }}
       >
         <path
@@ -38,15 +38,15 @@ function DirectionImage({ wind_mph, name, newclass, windDir }) {
         />
       </svg>
 
-     <div>
+     <div className="flex items-center wind-speed">
      <h1
-        className={`font-medium wind-name my-2 ${
+        className={`font-medium ${
           newclass ? "text-4xl" : "text-2xl wind-mdh"
         }`}
       >
         {name}
       </h1>
-      <h1 className={`font-medium ${newclass ? "text-4xl" : "text-2xl wind-mdh"} text-center  ml-3 my-2`}>
+      <h1 className={`font-medium  ${newclass ? "text-4xl" : "text-2xl wind-mdh"} text-center mx-2`}>
         {`${wind_mph}MPH`}
       </h1>
      </div>
