@@ -20,7 +20,7 @@ function AdminSecureRoute({children}) {
         }
     },[appLoad])
     if(!appLoad){
-        <div className='w-full h-full items-center justify-center'>
+        <div className='w-full  h-[100vh] items-center justify-center'>
             <Apploader size={60}/>
         </div>
     }

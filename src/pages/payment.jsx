@@ -1,53 +1,70 @@
-import React, { useState, Fragment, useContext, useEffect } from 'react'
-import { Dialog, RadioGroup, Transition } from '@headlessui/react'
-import { XMarkIcon } from '@heroicons/react/24/outline'
-import { loadStripe } from '@stripe/stripe-js';
-import { CardElement, Elements, useElements, useStripe } from '@stripe/react-stripe-js'
-import { buySubscription, buyUserSubscription, getAvailablePlan, validatePromoCode } from '../api'
-import { useLocation, useNavigate } from 'react-router'
-import { userContext } from '../App'
-import Apploader from '../component/Apploader'
+import React, { useState, Fragment, useContext, useEffect } from "react";
+import { Dialog, RadioGroup, Transition } from "@headlessui/react";
+import { XMarkIcon } from "@heroicons/react/24/outline";
+import { loadStripe } from "@stripe/stripe-js";
+import {
+  CardElement,
+  Elements,
+  useElements,
+  useStripe,
+} from "@stripe/react-stripe-js";
+import {
+  buySubscription,
+  buyUserSubscription,
+  getAvailablePlan,
+  validatePromoCode,
+} from "../api";
+import { useLocation, useNavigate } from "react-router";
+import { userContext } from "../App";
+import Apploader from "../component/Apploader";
 const stripePromise = loadStripe(process.env.REACT_APP_Stripe);
 
 export function Payment(props) {
-    console.log("🚀 ~ Payment ~ props:", props)
-    const { user, setUser } = useContext(userContext);
-    const { state } = useLocation()
-    console.log("🚀 ~ Payment ~ location:", state)
-    useEffect(() => { if (!state && !user) navigate("signup") }, [])
-    const navigate = useNavigate();
-    const [open, setOpen] = useState(false)
-    const [selectedPlan, setSelectedPlan] = useState("month")
-    const [plans, setPlans] =useState(null);
-    const [loader, setLoader] = useState(false)
-    const onLoad = async () => {
-      try {
-        setLoader(true);
-        const {data} = await getAvailablePlan();
-        console.log("🚀 ~ onLoad ~ data:", data)
-        setPlans(data)
-        setLoader(false);
-      } catch (error) {
-        alert("There is some error");
-        setLoader(false);
-      }
-  
-    };
-    useEffect(() => { onLoad() }, []);
+  console.log("🚀 ~ Payment ~ props:", props);
+  const { user, setUser } = useContext(userContext);
+  const { state } = useLocation();
+  console.log("🚀 ~ Payment ~ location:", state);
+  useEffect(() => {
+    if (!state && !user) navigate("signup");
+  }, []);
+  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState("month");
+  const [plans, setPlans] = useState(null);
+  const [loader, setLoader] = useState(true);
+  const onLoad = async () => {
+    try {
+      setLoader(true);
+      const { data } = await getAvailablePlan();
+      console.log("🚀 ~ onLoad ~ data:", data);
+      setPlans(data);
+      setLoader(false);
+    } catch (error) {
+      alert("There is some error");
+      setLoader(false);
+    }
+  };
+  useEffect(() => {
+    onLoad();
+  }, []);
 
-    const handlePlan = (value) => {
-        console.log(value)
-        navigate("/payment-pay", { state: {selectedPlan:value,bodyData:state,plans} });
-        
-    }
-    
-    if (loader) {
-      return <div className="w-full h-full flex items-center justify-center"><Apploader size={80} />
-      </div>
-    }
+  const handlePlan = (value) => {
+    console.log(value);
+    navigate("/payment-pay", {
+      state: { selectedPlan: value, bodyData: state, plans },
+    });
+  };
+
+  if (loader) {
     return (
-        <>
-            {/* <Transition.Root show={open} as={Fragment}>
+        <div className="w-full h-[100vh] flex items-center justify-center">
+        <Apploader size={80} />
+      </div>
+    );
+  }
+  return (
+    <>
+      {/* <Transition.Root show={open} as={Fragment}>
                 <Dialog as="div" className="relative z-10" onClose={setOpen}>
                     <Transition.Child
                         as={Fragment}
@@ -106,88 +123,93 @@ export function Payment(props) {
                     </div>
                 </Dialog>
             </Transition.Root> */}
-            <section className="relative w-full overflow-hidden pb-14">
-
-                <div className="relative  z-10 mx-auto max-w-7xl px-4 inner_back">
-                   {!open && <div className="mx-auto md:max-w-4xl">
-
-                        <div class="flex flex-col space-y-8 pb-10 pt-12 text-center md:pt-24">
-                            <p class="text-3xl font-bold text-gray-900 md:text-5xl md:leading-10 main_heading">
-                                Simple, transparent pricing 
-                            </p>
-                        </div>
-                        <div className="-m-5 flex flex-wrap p-4">
-                            <div className="w-full p-5 md:w-1/2">
-                                <div className="rounded-md border bg-opacity-90 need_bg">
-                                    <div className="min-h-[14rem]">
-                                        <div className="px-9 py-7">
-                                            <h3 className="mb-3 text-xl font-bold leading-snug text-gray-900 per_month">Per Month</h3>
-                                             <h4 className="mb-6 text-lg font-semibold leading-normal text-gray-600 amount">
-                                            <span className="">${plans?.month?.amount}/month</span>
-                                            <p className="starting">Starting from</p>
-                                        </h4> 
-                                        <p className="font-medium leading-relaxed text-gray-500 description">
-                                            {plans?.month?.description}
-                                             </p>
-                                        </div>
-                                    </div>
-                                    <div className="px-9 pb-9 pt-8">
-
-                                        <div className="out_plan">
-                                            <button
-                                                type="button"
-                                                className="inline-flex h-12 animate-shimmer items-center justify-center Select_plan"
-                                                onClick={() => {
-                                                    handlePlan("month")
-                                                    // setSelectedPlan("month")
-                                                    // setOpen(true)
-                                                }}
-                                            >
-                                                Select Plan
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="w-full p-5 md:w-1/2">
-                                <div className="rounded-md border bg-white bg-opacity-90 need_bg">
-                                    <div className="min-h-[14rem]">
-                                        <div className="px-9 py-7">
-                                            <h3 className="mb-3 text-xl font-bold leading-snug text-gray-900 per_month">Per Season</h3>
-											<h4 className="mb-6 text-lg font-semibold leading-normal text-gray-600 amount">
-                                            <span className="">${plans?.season?.amount}/season</span>
-                                            <p className="starting">Starting from</p>
-                                        </h4> 
-                                            <p className="font-medium leading-relaxed text-gray-500 description">
-                                            {plans?.season?.description}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div className="px-9 pb-9 pt-8 backdrop:blur-md">          
-                                        <div className="out_plan">
-                                            <button
-                                                onClick={() => {
-                                                    handlePlan("season")
-                                                    // setOpen(true)
-                                                }}
-                                                type="button"
-                                                className="inline-flex h-12 animate-shimmer items-center justify-center Select_plan"
-                                            >
-                                                Select Plan
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>}
+      <section className="relative w-full overflow-hidden pb-14">
+        <div className="relative  z-10 mx-auto max-w-7xl px-4 inner_back">
+          {!open && (
+            <div className="mx-auto md:max-w-4xl">
+              <div class="flex flex-col space-y-8 pb-10 pt-12 text-center md:pt-24">
+                <p class="text-3xl font-bold text-gray-900 md:text-5xl md:leading-10 main_heading">
+                  Simple, transparent pricing
+                </p>
+              </div>
+              <div className="-m-5 flex flex-wrap p-4">
+                <div className="w-full p-5 md:w-1/2">
+                  <div className="rounded-md border bg-opacity-90 need_bg">
+                    <div className="min-h-[14rem]">
+                      <div className="px-9 py-7">
+                        <h3 className="mb-3 text-xl font-bold leading-snug text-gray-900 per_month">
+                          Per Month
+                        </h3>
+                        <h4 className="mb-6 text-lg font-semibold leading-normal text-gray-600 amount">
+                          <span className="">
+                            ${plans?.month?.amount}/month
+                          </span>
+                          <p className="starting">Starting from</p>
+                        </h4>
+                        <p className="font-medium leading-relaxed text-gray-500 description">
+                          {plans?.month?.description}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="px-9 pb-9 pt-8">
+                      <div className="out_plan">
+                        <button
+                          type="button"
+                          className="inline-flex h-12 animate-shimmer items-center justify-center Select_plan"
+                          onClick={() => {
+                            handlePlan("month");
+                            // setSelectedPlan("month")
+                            // setOpen(true)
+                          }}
+                        >
+                          Select Plan
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-            </section>
-
-        </>
-    )
+                <div className="w-full p-5 md:w-1/2">
+                  <div className="rounded-md border bg-white bg-opacity-90 need_bg">
+                    <div className="min-h-[14rem]">
+                      <div className="px-9 py-7">
+                        <h3 className="mb-3 text-xl font-bold leading-snug text-gray-900 per_month">
+                          Per Season
+                        </h3>
+                        <h4 className="mb-6 text-lg font-semibold leading-normal text-gray-600 amount">
+                          <span className="">
+                            ${plans?.season?.amount}/season
+                          </span>
+                          <p className="starting">Starting from</p>
+                        </h4>
+                        <p className="font-medium leading-relaxed text-gray-500 description">
+                          {plans?.season?.description}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="px-9 pb-9 pt-8 backdrop:blur-md">
+                      <div className="out_plan">
+                        <button
+                          onClick={() => {
+                            handlePlan("season");
+                            // setOpen(true)
+                          }}
+                          type="button"
+                          className="inline-flex h-12 animate-shimmer items-center justify-center Select_plan"
+                        >
+                          Select Plan
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+    </>
+  );
 }
-
 
 // const CheckoutForm = ({ selectedPlan, bodyData, plans }) => {
 //     const { user, setUser } = useContext(userContext);
@@ -208,8 +230,7 @@ export function Payment(props) {
 //         } else if (selectedPlan === "season") {
 //             setSubscriptionPrice(promoData?.type === "discount" ?parseFloat( plans.season.amount) * (1 - promoData.value / 100) :parseFloat( plans.season.amount));
 //         }
-        
-        
+
 //     }, [selectedPlan, promoData]);
 //     const handleSubmit = async (event) => {
 //         event.preventDefault();
@@ -270,7 +291,7 @@ export function Payment(props) {
 //             })
 //             setPromoData(data)
 //             // setPromoCode("")
-            
+
 //         } catch (error) {
 //             setPromoData(null)
 //                 alert("Promo code is not valid");
@@ -329,6 +350,3 @@ export function Payment(props) {
 //         </form>
 //     );
 // };
-
-
-

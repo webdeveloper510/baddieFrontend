@@ -37,9 +37,11 @@ export function CheckoutPayment() {
     navigate("/payment-pay", { state: value });
   };
 
+ 
+
   if (loader) {
     return (
-      <div className="w-full h-full flex items-center justify-center">
+      <div className="w-full h-[100vh] flex items-center justify-center">
         <Apploader size={80} />
       </div>
     );
@@ -194,6 +196,9 @@ const CheckoutForm = ({ selectedPlan, bodyData, plans }) => {
       alert("Promo code is not valid");
     }
   };
+  const backpaymentPage = () =>{
+    navigate("/payment", { state: bodyData});
+  }
 
   return (
     <form className="flex-col justify-between" onSubmit={handleSubmit}>
@@ -265,7 +270,7 @@ const CheckoutForm = ({ selectedPlan, bodyData, plans }) => {
           </button>
         )}
       </div>
-      <div className="flex items-center my-4  ">
+      <div className="flex items-center justify-center my-4  ">
         {loading ? (
           <Apploader size={3} />
         ) : (
@@ -279,14 +284,15 @@ const CheckoutForm = ({ selectedPlan, bodyData, plans }) => {
         )}
       </div>
       <div className="flex items-center my-4  ">
-        <Link to="/payment" className="w-full">
+        {/* <Link to="/payment" className="w-full"> */}
           <button
             className="inline-flex h-12 !bg-black back_butn text-white font-semibold text-xl  items-center justify-center rounded-md border w-full"
             type="button"
+            onClick={()=>{backpaymentPage()}}
           >
             Back
           </button>
-        </Link>
+        {/* </Link> */}
       </div>
     </form>
   );

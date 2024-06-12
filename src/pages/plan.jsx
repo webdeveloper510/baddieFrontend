@@ -52,7 +52,7 @@ export function Plan(props) {
         }
     } 
     if (loader) {
-        return <div className="w-full h-full flex items-center justify-center"><Apploader size={80} />
+        return <div className="w-full h-[100vh] flex items-center justify-center"><Apploader size={80} />
         </div>
       }
     return (
