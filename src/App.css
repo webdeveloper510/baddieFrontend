@@ -551,6 +551,10 @@ canvas.scatter-charts {
 }
 
 @media screen and (max-width: 480px) {
+  .bullpen-stats{
+    padding-left: 0px;
+    padding-right: 0px;
+  }
   .desktop-team-defense {
     display: none;
   }
@@ -591,6 +595,10 @@ canvas.scatter-charts {
   } */
 }
 @media screen and (max-width: 430px) {
+  .bullpen-stats{
+    padding-left: 0px;
+    padding-right: 0px;
+  }
   .main-section {
     padding: 10px 0px;
   }
@@ -1669,9 +1677,9 @@ div#dropdownInformation {
   width: 100%;
   background: #59394100 !important;
   border: 1px solid #ffffff40 !important;
-  padding: 15px 0px;
+  padding: 15px 15px;
   line-height: 0.25rem;
-  font-size: 24px;
+  font-size: 22px;
 }
 .user_out {
   width: 100% !important;
@@ -2000,6 +2008,9 @@ div#dropdownInformation {
 }
 
 @media screen and (max-width: 430px) {
+  .carousel .control-dots{
+    display: none !important;
+  }
   .flex_section {
     display: flex;
     justify-content: space-evenly;
@@ -2138,6 +2149,9 @@ div#dropdownInformation {
   
 }
 @media only screen and (max-width: 480px) {
+  .carousel .control-dots{
+    display: none !important;
+  }
   .input-butns {
     display: block;
   }
@@ -2302,3 +2316,39 @@ input.InputElement.is-empty.Input.Input--empty {
 /* .weather-title {
   margin-bottom: -17px;
 } */
+
+
+/* Add this CSS to your stylesheet */
+.table-container {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.table-container table {
+  width: max-content;
+  min-width: 100%;
+  border-collapse: collapse;
+}
+
+.sticky-col-weather {
+  position: sticky;
+  left: 0;
+  background: #40ecd9; /* Ensure background is same as the table */
+  z-index: 1; /* Ensure it stays on top */
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* Optional: Add a shadow to the right for better visibility */
+}
+.sticky-col {
+  position: sticky;
+  left: 0;
+  background: white; /* Ensure background is same as the table */
+  z-index: 1; /* Ensure it stays on top */
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* Optional: Add a shadow to the right for better visibility */
+}
+
+.sticky-header {
+  position: sticky;
+  left: 0;
+  background: white; /* Ensure background is same as the table */
+  z-index: 2; /* Higher than .sticky-col to stay on top */
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* Optional: Add a shadow to the right for better visibility */
+}

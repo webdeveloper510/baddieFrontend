@@ -103,12 +103,12 @@ export function SignIn() {
                         type="email"
                         name="email"
                         placeholder="Email"
-                        className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                        className="flex h-10 pl-[15px] w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                       />
                       <ErrorMessage
                         name="email"
                         component="div"
-                        className="text-red-500 text-xs"
+                        className="text-red-500 text-sm mt-[5px]"
                       />
                     </div>
                   </div>
@@ -126,12 +126,12 @@ export function SignIn() {
                         type="password"
                         name="password"
                         placeholder="Password"
-                        className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                        className="flex h-10 pl-[15px] w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                       />
                       <ErrorMessage
                         name="password"
                         component="div"
-                        className="text-red-500 text-xs"
+                        className="text-red-500 text-sm mt-[5px]"
                       />
                     </div>
                   </div>

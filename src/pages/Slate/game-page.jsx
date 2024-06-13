@@ -81,8 +81,15 @@ const GamePage = () => {
   ];
 
   const bullpendata = [
-    "Caleb Thielbar" , "Steven Okert" , "Josh Staumount" , "Griffin Jax" , "Diego Castillo", "Jorge Alcala", "Jhoan Duran" ,"Cole Sands"
-  ]
+    "Caleb Thielbar",
+    "Steven Okert",
+    "Josh Staumount",
+    "Griffin Jax",
+    "Diego Castillo",
+    "Jorge Alcala",
+    "Jhoan Duran",
+    "Cole Sands",
+  ];
 
   const bgColor = [
     {
@@ -147,9 +154,9 @@ const GamePage = () => {
   }, [metricType]);
 
   const getWeather = () => {
-    setStatsLoader(true)
+    setStatsLoader(true);
     const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    getWeatherData({timezone : timeZone})
+    getWeatherData({ timezone: timeZone })
       .then((res) => {
         // setLoader(false);
         console.log("res weather data", res);
@@ -164,7 +171,7 @@ const GamePage = () => {
           .catch((error) => {
             console.log(error);
           });
-         
+
         postStatsWorkload({
           away_team_id: res?.data?.teams_away_team_id?.[index],
           home_team_id: res?.data?.teams_home_team_id?.[index],
@@ -172,7 +179,7 @@ const GamePage = () => {
         })
           .then((resStat) => {
             console.log("resssss stats", resStat);
-            setStatsLoader(false)
+            setStatsLoader(false);
             setStatsworkload(resStat);
             const data = resStat?.away_workload;
             const keys = Object.keys(data);
@@ -184,8 +191,8 @@ const GamePage = () => {
               });
               return newObject;
             });
-            
-            setSegmentData(result)
+
+            setSegmentData(result);
 
             const datahome = resStat?.home_workload;
             const keyshome = Object.keys(datahome);
@@ -202,7 +209,7 @@ const GamePage = () => {
           })
           .catch((error) => {
             console.log(error);
-            setStatsLoader(false)
+            setStatsLoader(false);
           });
       })
       .catch((error) => {
@@ -344,17 +351,17 @@ const GamePage = () => {
         setStatsLoader(false);
         setStatsworkload(resStat);
         const data = resStat?.workload;
-            const keys = Object.keys(data);
-            setColumns1(keys);
-            const result = data[keys[0]].map((item, index) => {
-              let newObject = {};
-              keys.forEach((k) => {
-                newObject[k] = data[k][index];
-              });
-              return newObject;
-            });
+        const keys = Object.keys(data);
+        setColumns1(keys);
+        const result = data[keys[0]].map((item, index) => {
+          let newObject = {};
+          keys.forEach((k) => {
+            newObject[k] = data[k][index];
+          });
+          return newObject;
+        });
 
-            setSegmentData(result);
+        setSegmentData(result);
       })
       .catch((error) => {
         console.log(error);
@@ -721,9 +728,9 @@ const GamePage = () => {
             <div>
               <div className="rounded-[50px]  px-20 bg-[#40ecd9] weather-cards py-5 my-5 mobile_padding">
                 <div className="text-left px-5 mb-2">
-                <h1 className="font-medium text-center text-5xl underline game-titles">
-                          Weather
-                        </h1>
+                  <h1 className="font-medium text-center text-5xl underline game-titles">
+                    Weather
+                  </h1>
                   {weather?.data?.Game_Temp?.[index] ? (
                     <div className="grid grid-cols-3 mt-5 weather-text">
                       <div className=" weather-text1">
@@ -731,27 +738,28 @@ const GamePage = () => {
                           {`${weather?.data?.Game_Temp?.[index]}°`}
                         </h1>
                         <h1 className="font-medium text-center leading-none chance-text text-4xl my-2">
-                         Temp
+                          Temp
                         </h1>
                       </div>
                       <div className="text-center weather-text2">
-                        
                         <h1 className="font-medium text-5xl game-data my-2">
                           {`${weather?.data?.Game_Precip?.[index]}% `}
                         </h1>
                         <h1 className="font-medium text-center leading-none chance-text text-4xl my-2">
-                          Chance of <span className="chance-texts"> precip </span>
+                          Chance of{" "}
+                          <span className="chance-texts"> precip </span>
                         </h1>
                       </div>
                       <div className="text-center flex justify-center weather-text3">
                         <DirectionImage
                           newclass="newclass"
-                          windDir={weather?.data?.Game_Wind_Dir_SVG_Rotate?.[index]}
+                          windDir={
+                            weather?.data?.Game_Wind_Dir_SVG_Rotate?.[index]
+                          }
                           windDirection={wind_direction}
                           name={weather?.data?.Game_Wind_Direction?.[index]}
                           wind_mph={weather?.data?.Game_Wind_MPH?.[index]}
                         />
-                        
                       </div>
                     </div>
                   ) : (
@@ -767,7 +775,7 @@ const GamePage = () => {
                   <table className="w-full">
                     <thead className="table-header">
                       <tr>
-                        <th className="text-center px-5"></th>
+                        <th className="text-center px-5 sticky-col-weather"></th>
                         <th className="text-center px-5">Temp (F)</th>
                         <th className="text-center px-5">Chance of Precip</th>
                         <th className="text-center px-5">Humidity</th>
@@ -779,7 +787,7 @@ const GamePage = () => {
                     </thead>
                     <tbody className="table-body">
                       <tr>
-                        <th className="text-left px-5">
+                        <th className="text-left px-5 sticky-col-weather">
                           {weather?.data?.GH_N2_Time?.[index]
                             ? weather?.data?.GH_N2_Time?.[index]
                             : "-"}
@@ -816,7 +824,7 @@ const GamePage = () => {
                         </td>
                       </tr>
                       <tr className="border-b-2">
-                        <th className="text-left  px-5">
+                        <th className="text-left  px-5 sticky-col-weather">
                           {weather?.data?.GH_N1_Time?.[index]
                             ? weather?.data?.GH_N1_Time?.[index]
                             : "-"}
@@ -853,7 +861,7 @@ const GamePage = () => {
                         </td>
                       </tr>
                       <tr>
-                        <th className="text-left px-5">
+                        <th className="text-left px-5 sticky-col-weather">
                           {weather?.data?.GH_1_Time?.[index]
                             ? weather?.data?.GH_1_Time?.[index]
                             : "-"}
@@ -890,7 +898,7 @@ const GamePage = () => {
                         </td>
                       </tr>
                       <tr>
-                        <th className="text-left px-5">
+                        <th className="text-left px-5 sticky-col-weather">
                           {weather?.data?.GH_2_Time?.[index]
                             ? weather?.data?.GH_2_Time?.[index]
                             : "-"}
@@ -927,7 +935,7 @@ const GamePage = () => {
                         </td>
                       </tr>
                       <tr>
-                        <th className="text-left px-5">
+                        <th className="text-left px-5 sticky-col-weather">
                           {weather?.data?.GH_3_Time?.[index]
                             ? weather?.data?.GH_3_Time?.[index]
                             : "-"}
@@ -964,7 +972,7 @@ const GamePage = () => {
                         </td>
                       </tr>
                       <tr>
-                        <th className="text-left px-5">
+                        <th className="text-left px-5 sticky-col-weather">
                           {weather?.data?.GH_4_Time?.[index]
                             ? weather?.data?.GH_4_Time?.[index]
                             : "-"}
@@ -1008,33 +1016,27 @@ const GamePage = () => {
           </div>
 
           <div className="mt-20">
-          <h1 className="text-5xl font-bold text-center mb-10 mt-5 underline game-titles">
+            <h1 className="text-5xl font-bold text-center mb-10 mt-5 underline game-titles">
               Team Info
             </h1>
-             {
-              statsLoader ?  <div className="flex justify-center">
-              <Apploader size={80} />
-            </div>
-              :
+            {statsLoader ? (
+              <div className="flex justify-center">
+                <Apploader size={80} />
+              </div>
+            ) : (
               <Tabs>
-              <TabList className="!flex justify-between tab-lists">
-                <Tab
-                 
-                  className="bg-gray border-2 border-black p-3 text-2xl carlos-tab w-[45%] text-center"
-                >
-                  {weather?.data?.teams_away_team_name?.[index]}
-                </Tab>
-                <Tab
-                  
-                  className="bg-gray border-2 border-black p-3 text-2xl carlos-tab w-[45%] text-center"
-                >
-                  {weather?.data?.teams_home_team_name?.[index]}
-                </Tab>
-              </TabList>
+                <TabList className="!flex justify-between tab-lists">
+                  <Tab className="bg-gray border-2 border-black p-3 text-2xl carlos-tab w-[45%] text-center">
+                    {weather?.data?.teams_away_team_name?.[index]}
+                  </Tab>
+                  <Tab className="bg-gray border-2 border-black p-3 text-2xl carlos-tab w-[45%] text-center">
+                    {weather?.data?.teams_home_team_name?.[index]}
+                  </Tab>
+                </TabList>
 
-              <TabPanel>
-              <div className="outer-section">
-                    <div className="rounded-3xl w-full py-5 mt-10 px-10 bg-[#ca202c] ">
+                <TabPanel>
+                  <div className="outer-section">
+                    <div className="rounded-3xl w-full py-5 mt-10 px-10 bg-[#ca202c] bullpen-stats">
                       <h1 className="text-5xl text-white font-semibold underline game-titles text-center my-3">
                         Bullpen Stats
                       </h1>
@@ -1057,7 +1059,10 @@ const GamePage = () => {
                             </h3>
                             <h3 className="text-white bullpen-data text-4xl my-2">
                               Walks/Game:
-                              {statsworkload?.away_stats?.[0]?.L30_Walks_PerGame}
+                              {
+                                statsworkload?.away_stats?.[0]
+                                  ?.L30_Walks_PerGame
+                              }
                             </h3>
                             <h3 className="text-white bullpen-data text-4xl my-2">
                               HRs/Game:
@@ -1082,7 +1087,10 @@ const GamePage = () => {
                             </h3>
                             <h3 className="text-white bullpen-data text-4xl my-2">
                               Walks/Game:
-                              {statsworkload?.away_stats?.[0]?.YTD_Walks_PerGame}
+                              {
+                                statsworkload?.away_stats?.[0]
+                                  ?.YTD_Walks_PerGame
+                              }
                             </h3>
                             <h3 className="text-white bullpen-data text-4xl my-2">
                               HRs/Game:
@@ -1095,49 +1103,89 @@ const GamePage = () => {
 
                     <div className="rounded-3xl w-full py-5 mt-10 px-10 bullpen-cards bg-[#fdcf2b] ">
                       <h1 className="text-5xl text-black font-semibold underline game-titles text-center my-3">
-                        Bullpen Workload 
+                        Bullpen Workload
                         <span className="mt-5 chance-texts"> Last 5 Days</span>
                       </h1>
                       <div className="mt-20 mb-5 p-2 lg:w-[98%] md:max-w-[70vw] m-auto table-outer-section overflow-x-auto">
-                    
-                        <table className="w-full bg-white">
-                          <thead className="table-header">
-                            <tr>
-                              <th colSpan="6">Pitch Count</th>
-                            </tr>
-                            <tr className="border-b-2 py-4">
-                              {
-                                columns1?.length > 0 ?
-                                columns1?.map((item)=>{
-                                  return(
-                                    <th className="text-center capitalize px-5">{item?.replace("_"," ")}</th>
-                                  )
-                                })
-                                :""
-                              }
-                             
-                            </tr>
-                          </thead>
-                          <tbody className="table-body workload-data">
-                            {
-                              segmentData?.length > 0 ?
-                              segmentData?.map((item,i)=>{
-                                return(
-                                  <tr className="border-b-2 py-3">
-                                  <td className={`text-center work-data px-5`}>{item?.[`${columns1?.[0]}`]}</td>
-                                  <td className={`text-center ${item?.[`${columns1?.[1]}`] == 0 ? "" : "font-semibold"} bg-[#e1dede] px-5`}>{item?.[`${columns1?.[1]}`]}</td>
-                                  <td className={`text-center ${item?.[`${columns1?.[2]}`] == 0 ? "" : "font-semibold"} px-5`}>{item?.[`${columns1?.[2]}`]}</td>
-                                  <td className={`text-center ${item?.[`${columns1?.[3]}`] == 0 ? "" : "font-semibold"} bg-[#e1dede] px-5`}>{item?.[`${columns1?.[3]}`]}</td>
-                                  <td className={`text-center ${item?.[`${columns1?.[4]}`] == 0 ? "" : "font-semibold"} px-5`}>{item?.[`${columns1?.[4]}`]}</td> 
-                                  <td className={`text-center ${item?.[`${columns1?.[5]}`] == 0 ? "" : "font-semibold"} bg-[#e1dede] px-5`}>{item?.[`${columns1?.[5]}`]}</td> 
-                                 </tr>
-                                )
-                              }):
-                              ""
-                            }
-                          
-                          </tbody>
-                        </table>
+                        <div className="table-container">
+                          <table className="w-full bg-white table2">
+                            <thead className="table-header">
+                              <tr>
+                                <th colSpan="6">Pitch Count</th>
+                              </tr>
+                              <tr className="border-b-2 py-4">
+                                {columns1?.length > 0
+                                  ? columns1.map((item, index) => (
+                                      <th
+                                        className={`text-center capitalize px-5 ${
+                                          index === 0 ? "sticky-header" : ""
+                                        }`}
+                                        key={item}
+                                      >
+                                        {item?.replace("_", " ")}
+                                      </th>
+                                    ))
+                                  : ""}
+                              </tr>
+                            </thead>
+                            <tbody className="table-body workload-data">
+                              {segmentData?.length > 0
+                                ? segmentData.map((item, i) => (
+                                    <tr className="border-b-2 py-3" key={i}>
+                                      <td className="text-center work-data px-5 sticky-col">
+                                        {item?.[`${columns1?.[0]}`]}
+                                      </td>
+                                      <td
+                                        className={`text-center ${
+                                          item?.[`${columns1?.[1]}`] == 0
+                                            ? ""
+                                            : "font-semibold"
+                                        } bg-[#e1dede] px-5`}
+                                      >
+                                        {item?.[`${columns1?.[1]}`]}
+                                      </td>
+                                      <td
+                                        className={`text-center ${
+                                          item?.[`${columns1?.[2]}`] == 0
+                                            ? ""
+                                            : "font-semibold"
+                                        } px-5`}
+                                      >
+                                        {item?.[`${columns1?.[2]}`]}
+                                      </td>
+                                      <td
+                                        className={`text-center ${
+                                          item?.[`${columns1?.[3]}`] == 0
+                                            ? ""
+                                            : "font-semibold"
+                                        } bg-[#e1dede] px-5`}
+                                      >
+                                        {item?.[`${columns1?.[3]}`]}
+                                      </td>
+                                      <td
+                                        className={`text-center ${
+                                          item?.[`${columns1?.[4]}`] == 0
+                                            ? ""
+                                            : "font-semibold"
+                                        } px-5`}
+                                      >
+                                        {item?.[`${columns1?.[4]}`]}
+                                      </td>
+                                      <td
+                                        className={`text-center ${
+                                          item?.[`${columns1?.[5]}`] == 0
+                                            ? ""
+                                            : "font-semibold"
+                                        } bg-[#e1dede] px-5`}
+                                      >
+                                        {item?.[`${columns1?.[5]}`]}
+                                      </td>
+                                    </tr>
+                                  ))
+                                : ""}
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
 
@@ -1256,7 +1304,7 @@ const GamePage = () => {
                               {team?.away_team_response?.Infield?.OAA}
                             </h3>
                             <h3 className="font-medium text-2xl">
-                            Defensive Runs Saved :
+                              Defensive Runs Saved :
                               {team?.away_team_response?.Infield?.DP}
                             </h3>
                             <h3 className="font-medium text-2xl">
@@ -1283,7 +1331,7 @@ const GamePage = () => {
                               {team?.away_team_response?.Outfield?.OAA}
                             </h3>
                             <h3 className="font-medium text-2xl">
-                               Defensive Runs Saved :
+                              Defensive Runs Saved :
                               {team?.away_team_response?.Outfield?.DRS}
                             </h3>
                             <h3 className="font-medium text-2xl">
@@ -1299,10 +1347,10 @@ const GamePage = () => {
                       </div>
                     </div>
                   </div>
-              </TabPanel>
-              <TabPanel>
-              <div className="outer-section">
-                    <div className="rounded-3xl w-full py-5 mt-10 px-10 bg-[#ca202c] ">
+                </TabPanel>
+                <TabPanel>
+                  <div className="outer-section">
+                    <div className="rounded-3xl w-full py-5 mt-10 px-10 bg-[#ca202c] bullpen-stats">
                       <h1 className="text-5xl text-white font-semibold underline game-titles text-center my-3">
                         Bullpen Stats
                       </h1>
@@ -1325,7 +1373,10 @@ const GamePage = () => {
                             </h3>
                             <h3 className="text-white bullpen-data text-4xl my-2">
                               Walks/Game:
-                              {statsworkload?.home_stats?.[0]?.L30_Walks_PerGame}
+                              {
+                                statsworkload?.home_stats?.[0]
+                                  ?.L30_Walks_PerGame
+                              }
                             </h3>
                             <h3 className="text-white bullpen-data text-4xl my-2">
                               HRs/Game:
@@ -1333,7 +1384,7 @@ const GamePage = () => {
                             </h3>
                           </div>
                         </div>
-                        <div className="px-5 border-l-8 border-white">
+                        <div className="px-5 border-l-8 border-white border-section">
                           <h1 className="text-center bullpen-title mb-5 italic text-white text-5xl">
                             Last 30 Days
                           </h1>
@@ -1350,7 +1401,10 @@ const GamePage = () => {
                             </h3>
                             <h3 className="text-white bullpen-data text-4xl my-2">
                               Walks/Game:
-                              {statsworkload?.home_stats?.[0]?.YTD_Walks_PerGame}
+                              {
+                                statsworkload?.home_stats?.[0]
+                                  ?.YTD_Walks_PerGame
+                              }
                             </h3>
                             <h3 className="text-white bullpen-data text-4xl my-2">
                               HRs/Game:
@@ -1363,49 +1417,89 @@ const GamePage = () => {
 
                     <div className="rounded-3xl w-full py-5 mt-10 px-10 bullpen-cards bg-[#fdcf2b] ">
                       <h1 className="text-5xl text-black font-semibold underline game-titles text-center my-3">
-                        Bullpen Workload 
+                        Bullpen Workload
                         <span className="mt-5 chance-texts"> Last 5 Days</span>
                       </h1>
                       <div className="mt-20 mb-5 p-2 lg:w-[98%] md:max-w-[70vw] m-auto table-outer-section overflow-x-auto">
-                    
-                        <table className="w-full bg-white">
-                          <thead className="table-header">
-                            <tr>
-                              <th colSpan="6">Pitch Count</th>
-                            </tr>
-                            <tr className="border-b-2 py-4">
-                              {
-                                homeheading?.length > 0 ?
-                                homeheading?.map((item)=>{
-                                  return(
-                                    <th className="text-center capitalize px-5">{item?.replace("_"," ")}</th>
-                                  )
-                                })
-                                :""
-                              }
-                             
-                            </tr>
-                          </thead>
-                          <tbody className="table-body workload-data">
-                            {
-                              homeWorkload?.length > 0 ?
-                              homeWorkload?.map((item,i)=>{
-                                return(
-                                  <tr className="border-b-2 py-3">
-                                  <td className={`text-center work-data px-5`}>{item?.[`${homeheading?.[0]}`]}</td>
-                                  <td className={`text-center ${item?.[`${homeheading?.[1]}`] == "0" ? "" : "font-semibold"} bg-[#e1dede] px-5`}>{item?.[`${homeheading?.[1]}`]}</td>
-                                  <td className={`text-center ${item?.[`${homeheading?.[2]}`] == "0" ? "" : "font-semibold"} px-5`}>{item?.[`${homeheading?.[2]}`]}</td>
-                                  <td className={`text-center ${item?.[`${homeheading?.[3]}`] == "0" ? "" : "font-semibold"} bg-[#e1dede] px-5`}>{item?.[`${homeheading?.[3]}`]}</td>
-                                  <td className={`text-center ${item?.[`${homeheading?.[4]}`] == "0" ? "" : "font-semibold"} px-5`}>{item?.[`${homeheading?.[4]}`]}</td>                                  
-                                  <td className={`text-center ${item?.[`${homeheading?.[5]}`] == "0" ? "" : "font-semibold"} bg-[#e1dede] px-5`}>{item?.[`${homeheading?.[5]}`]}</td>                                  
-                                 </tr>
-                                )
-                              }):
-                              ""
-                            }
-                           
-                          </tbody>
-                        </table>
+                      <div className="table-container">
+                          <table className="w-full bg-white table2">
+                            <thead className="table-header">
+                              <tr>
+                                <th colSpan="6">Pitch Count</th>
+                              </tr>
+                              <tr className="border-b-2 py-4">
+                                {homeheading?.length > 0
+                                  ? homeheading.map((item, index) => (
+                                      <th
+                                        className={`text-center capitalize px-5 ${
+                                          index === 0 ? "sticky-header" : ""
+                                        }`}
+                                        key={item}
+                                      >
+                                        {item?.replace("_", " ")}
+                                      </th>
+                                    ))
+                                  : ""}
+                              </tr>
+                            </thead>
+                            <tbody className="table-body workload-data">
+                              {homeWorkload?.length > 0
+                                ? homeWorkload.map((item, i) => (
+                                    <tr className="border-b-2 py-3" key={i}>
+                                      <td className="text-center work-data px-5 sticky-col">
+                                        {item?.[`${homeheading?.[0]}`]}
+                                      </td>
+                                      <td
+                                        className={`text-center ${
+                                          item?.[`${homeheading?.[1]}`] == 0
+                                            ? ""
+                                            : "font-semibold"
+                                        } bg-[#e1dede] px-5`}
+                                      >
+                                        {item?.[`${homeheading?.[1]}`]}
+                                      </td>
+                                      <td
+                                        className={`text-center ${
+                                          item?.[`${homeheading?.[2]}`] == 0
+                                            ? ""
+                                            : "font-semibold"
+                                        } px-5`}
+                                      >
+                                        {item?.[`${homeheading?.[2]}`]}
+                                      </td>
+                                      <td
+                                        className={`text-center ${
+                                          item?.[`${homeheading?.[3]}`] == 0
+                                            ? ""
+                                            : "font-semibold"
+                                        } bg-[#e1dede] px-5`}
+                                      >
+                                        {item?.[`${homeheading?.[3]}`]}
+                                      </td>
+                                      <td
+                                        className={`text-center ${
+                                          item?.[`${homeheading?.[4]}`] == 0
+                                            ? ""
+                                            : "font-semibold"
+                                        } px-5`}
+                                      >
+                                        {item?.[`${homeheading?.[4]}`]}
+                                      </td>
+                                      <td
+                                        className={`text-center ${
+                                          item?.[`${homeheading?.[5]}`] == 0
+                                            ? ""
+                                            : "font-semibold"
+                                        } bg-[#e1dede] px-5`}
+                                      >
+                                        {item?.[`${homeheading?.[5]}`]}
+                                      </td>
+                                    </tr>
+                                  ))
+                                : ""}
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
 
@@ -1528,7 +1622,7 @@ const GamePage = () => {
                               {team?.home_team_response?.Infield?.DP}
                             </h3>
                             <h3 className="font-medium text-2xl">
-                            Ult.Zone Rate/150 Game :
+                              Ult.Zone Rate/150 Game :
                               {team?.home_team_response?.Infield?.UZR_150}
                             </h3>
                             <h3 className="font-medium text-2xl">
@@ -1537,7 +1631,7 @@ const GamePage = () => {
                             </h3>
                             <h3 className="font-medium text-2xl mb-10">
                               Double Plays :
-                              {team?.home_team_response?.Infield?.DRS} 
+                              {team?.home_team_response?.Infield?.DRS}
                             </h3>
                           </div>
                         </div>
@@ -1555,7 +1649,7 @@ const GamePage = () => {
                               {team?.home_team_response?.Outfield?.DRS}
                             </h3>
                             <h3 className="font-medium text-2xl">
-                            Ult.Zone Rate/150 Game :
+                              Ult.Zone Rate/150 Game :
                               {team?.home_team_response?.Outfield?.UZR_150}
                             </h3>
                             <h3 className="font-medium text-2xl">
@@ -1567,9 +1661,9 @@ const GamePage = () => {
                       </div>
                     </div>
                   </div>
-              </TabPanel>
-            </Tabs>
-             }
+                </TabPanel>
+              </Tabs>
+            )}
           </div>
         </div>
       </div>

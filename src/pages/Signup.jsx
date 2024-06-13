@@ -111,7 +111,7 @@ export function SignUp() {
                         <ErrorMessage
                           name="firstName"
                           component="div"
-                          className="text-red-500 text-xs"
+                          className="text-red-500 text-sm mt-[5px]"
                         />
                       </div>
                     </div>
@@ -133,7 +133,7 @@ export function SignUp() {
                         <ErrorMessage
                           name="lastName"
                           component="div"
-                          className="text-red-500 text-xs"
+                          className="text-red-500 text-sm mt-[5px]"
                         />
                       </div>
                     </div>
@@ -156,7 +156,7 @@ export function SignUp() {
                       <ErrorMessage
                         name="email"
                         component="div"
-                        className="text-red-500 text-xs"
+                        className="text-red-500 text-sm mt-[5px]"
                       />
                     </div>
                   </div>
@@ -201,7 +201,7 @@ export function SignUp() {
                       <ErrorMessage
                         name="password"
                         component="div"
-                        className="text-red-500 text-xs"
+                        className="text-red-500 text-sm mt-[5px]"
                       />
                     </div>
                   </div>
@@ -222,7 +222,7 @@ export function SignUp() {
                       <ErrorMessage
                         name="confirmPassword"
                         component="div"
-                        className="text-red-500 text-xs"
+                        className="text-red-500 text-sm mt-[5px]"
                       />
                     </div>
                     <div className="mt-2">
@@ -242,7 +242,7 @@ export function SignUp() {
                       <ErrorMessage
                         name="email_notification"
                         component="div"
-                        className="text-red-500 text-xs"
+                        className="text-red-500 text-sm mt-[5px]"
                       />
                     </div>
                   </div>
