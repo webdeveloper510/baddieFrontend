@@ -2352,3 +2352,16 @@ input.InputElement.is-empty.Input.Input--empty {
   z-index: 2; /* Higher than .sticky-col to stay on top */
   box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* Optional: Add a shadow to the right for better visibility */
 }
+.tab-lists li{
+  cursor: pointer;
+}
+
+.email_notify{
+  color: white;
+    font-size: 17.88px;
+    font-family: Bebas Neue;
+    font-weight: 400;
+    font-family: var(--headings-font-family);
+    line-height: 18.03px;
+    word-wrap: break-word;
+}

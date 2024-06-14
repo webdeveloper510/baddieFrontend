@@ -11,7 +11,12 @@ const Sidebars = ({ show, setShow }) => {
         <>
             {!show ?
                 <div className='sidebar-mobile'>
-                    <div className='mobile-inner scrollbar-hide mb-5'>
+                    <div onClick={
+                        ()=>{
+                            setShow(true);
+                            console.log("click on sidebar")
+                        }
+                    } className='mobile-inner scrollbar-hide mb-5'>
                         {user && user?.is_admin ?
                             <>
                                 <Link to="/picks-analysis">

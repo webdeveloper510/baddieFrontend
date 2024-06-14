@@ -309,3 +309,13 @@ export const postStatsWorkload = async(data)=>{
         throw (error)
     }
 }
+
+export const emailNotification = async(data)=>{
+    console.log("datadatadatadata", data)
+    try {
+        const response = await authApi.post("email-notification-update/", data);
+        return response.data
+    } catch (error) {
+        throw (error)
+    }
+}
