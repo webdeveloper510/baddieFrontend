@@ -294,7 +294,7 @@ const Header = ({ show, setShow }) => {
                   </li> */}
                   </ul>
                   <div className="pt-2">
-                    <p className="flex px-3 items-center justify-between text-white email_notify">Email Notification {user?.email_notification == true ? (
+                    <p className="flex px-3 items-center justify-between text-white email_notify">PICK NOTIFICATIONS {user?.email_notification == true ? (
                       <svg
                       onClick={()=>emailnotifiUpdate(false)}
                         xmlns="http://www.w3.org/2000/svg"
