@@ -389,6 +389,7 @@ const Slate = () => {
                                 {weather?.data?.Game_Wind_Direction?.[i] !==
                                 "DOMS" ? (
                                   <div className="grid grid-cols-3 mt-[22px]">
+                                   {weather?.data?.Game_Wind_Direction?.[i] && <>
                                     <div className=" first-section">
                                       <h1 className="font-medium text-center xl:text-3xl 2xl:text-5xl lg:text-3xl md:text-3xl mb-2">
                                         {weather?.data?.Game_Wind_Direction?.[i]
@@ -432,7 +433,7 @@ const Slate = () => {
                                         />
                                       )}
                                       
-                                    </div>
+                                    </div></>}
                                   </div>
                                 ) : (
                                   <>
