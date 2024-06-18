@@ -1036,7 +1036,7 @@ const GamePage = () => {
 
                 <TabPanel>
                   <div className="outer-section">
-                    <div className="rounded-3xl w-full py-5 mt-10 px-10 bg-[#ca202c] bullpen-stats">
+                    {/* <div className="rounded-3xl w-full py-5 mt-10 px-10 bg-[#ca202c] bullpen-stats">
                       <h1 className="text-5xl text-white font-semibold underline game-titles text-center my-3">
                         Bullpen Stats
                       </h1>
@@ -1098,6 +1098,120 @@ const GamePage = () => {
                             </h3>
                           </div>
                         </div>
+                      </div>
+                    </div> */}
+                    <div className="bg-red-600 text-white rounded-xl p-4 mt-8">
+                      <h2 className="text-center text-xl font-bold mb-4">
+                        Bullpen Stats
+                      </h2>
+                      <div className="bg-red-700 p-4 rounded-md">
+                        <table className="w-full table-fixed">
+                          <thead>
+                            <tr>
+                              <th className="w-1/5 text-left"> </th>
+                              <th className="w-1/3 text-center">
+                                Last 14 Days
+                              </th>
+                              <th className="w-1/3 text-center">
+                                Last 30 Days
+                              </th>
+                              <th className="w-1/3 text-center">
+                                Year To Date
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td className="font-bold text-left">ERA</td>
+                              <td className="bg-white text-black text-center  border-r-2 border-black">
+                                {statsworkload?.away_stats?.[0]?.L14_ERA}
+                              </td>
+                              <td className="bg-white text-black text-center border-r-2 border-black">
+                                {statsworkload?.away_stats?.[0]?.L30_ERA}
+                              </td>
+                              <td className="bg-white text-black text-center border-r-2 border-black">
+                                {statsworkload?.away_stats?.[0]?.YTD_ERA}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td className="font-bold text-left">WHIP</td>
+                              <td className="bg-white text-black text-center border-r-2 border-black">
+                                {statsworkload?.away_stats?.[0]?.L14_WHIP}
+                              </td>
+                              <td className="bg-white text-black text-center border-r-2 border-black">
+                                {statsworkload?.away_stats?.[0]?.L30_WHIP}
+                              </td>
+                              <td className="bg-white text-black text-center border-r-2 border-black">
+                                {statsworkload?.away_stats?.[0]?.YTD_WHIP}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td className="font-bold text-left">Ks/Game</td>
+                              <td className="bg-white text-black text-center border-r-2 border-black">
+                                {statsworkload?.away_stats?.[0]?.L14_K_PerGame}
+
+                              </td>
+                              <td className="bg-white text-black text-center border-r-2 border-black">
+                                {statsworkload?.away_stats?.[0]?.L30_K_PerGame}
+                             
+                              </td>
+                              <td className="bg-white text-black text-center border-r-2 border-black">
+                                {statsworkload?.away_stats?.[0]?.YTD_K_PerGame}
+                               
+                              </td>
+                            </tr>
+                            <tr>
+                              <td className="font-bold text-left">
+                                Walks/Game
+                              </td>
+                              <td className="bg-white text-black text-center border-r-2 border-black">
+                                {
+                                  statsworkload?.away_stats?.[0]
+                                    ?.L14_Walks_PerGame
+                                }
+                                
+                              </td>
+                              <td className="bg-white text-black text-center border-r-2 border-black">
+                                {
+                                  statsworkload?.away_stats?.[0]
+                                    ?.L30_Walks_PerGame
+                                }
+                                
+                              </td>
+                              <td className="bg-white text-black text-center border-r-2 border-black">
+                                {
+                                  statsworkload?.away_stats?.[0]
+                                    ?.YTD_Walks_PerGame
+                                }
+                                
+                              </td>
+                            </tr>
+                            <tr>
+                              <td className="font-bold text-left">HRs/Game</td>
+                              <td className="bg-white text-black text-center border-r-2 border-black">
+                                {
+                                  statsworkload?.away_stats?.[0]
+                                    ?.L14_HRs_PerGame
+                                }
+                                
+                              </td>
+                              <td className="bg-white text-black text-center border-r-2 border-black">
+                                {
+                                  statsworkload?.away_stats?.[0]
+                                    ?.L30_HRs_PerGame
+                                }
+                                
+                              </td>
+                              <td className="bg-white text-black text-center border-r-2 border-black">
+                                {
+                                  statsworkload?.away_stats?.[0]
+                                    ?.YTD_HRs_PerGame
+                                }
+                                
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </div>
 
@@ -1421,7 +1535,7 @@ const GamePage = () => {
                         <span className="mt-5 chance-texts"> Last 5 Days</span>
                       </h1>
                       <div className="mt-20 mb-5 p-2 lg:w-[98%] md:max-w-[70vw] m-auto table-outer-section overflow-x-auto">
-                      <div className="table-container">
+                        <div className="table-container">
                           <table className="w-full bg-white table2">
                             <thead className="table-header">
                               <tr>
