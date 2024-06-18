@@ -1743,6 +1743,10 @@ div#dropdownInformation {
 .table-header th {
   font-size: 1.35rem;
 }
+.bullpen_bg {
+  background: #d32f2f !important;
+}
+
 /********************* responisve start **********************/
 
 @media only screen and (max-width: 1499px) {
@@ -2202,6 +2206,15 @@ div#dropdownInformation {
   .border-section {
     border-left-width: 3px;
   }
+  .bulllphen_tb th {
+    font-size: 10px;
+    font-style: italic;
+    color: #fff;
+}
+.bullpen_bg {
+    background: #d32f2f !important;
+    padding: 1rem .2rem;	
+}
 }
 
 @media screen and (max-width: 375px) {
