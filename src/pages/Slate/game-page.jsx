@@ -1100,12 +1100,12 @@ const GamePage = () => {
                         </div>
                       </div>
                     </div> */}
-                    <div className="bg-red-600 text-white rounded-xl p-4 mt-8">
+                    <div className="bg-red-600 text-white rounded-xl p-4 mt-8 bullpen_bg">
                       <h2 className="text-center text-xl font-bold mb-4">
                         Bullpen Stats
                       </h2>
-                      <div className="bg-red-700 p-4 rounded-md">
-                        <table className="w-full table-fixed">
+                      <div className="bg-red-700 p-4 rounded-md bullpen_bg">
+                        <table className="w-full table-fixed bulllphen_tb">
                           <thead>
                             <tr>
                               <th className="w-1/5 text-left"> </th>
