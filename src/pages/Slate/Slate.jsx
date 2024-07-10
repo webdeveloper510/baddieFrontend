@@ -73,7 +73,7 @@ const Slate = () => {
 
   const getWeather = (timeZone) => {
     setLoader(true);
-    getWeatherData({timezone : timeZone})
+    getWeatherData({ timezone: timeZone })
       .then((res) => {
         setLoader(false);
         console.log("res weather", res);
@@ -89,7 +89,7 @@ const Slate = () => {
     // getmatchup();
     const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     getWeather(timeZone);
-    console.log("timeZonetimeZone",timeZone);
+    console.log("timeZonetimeZone", timeZone);
   }, []);
 
   const handleDamPage = (i) => {
@@ -336,18 +336,17 @@ const Slate = () => {
 
               </TabList>
             </Tabs> */}
-{weather?.data?.hr?.length > 0 ?
-            <div className="mx-auto px-4 carousel-tab">
-              <Carousel
-                showArrows={true}
-                showThumbs={false}
-                autoPlay
-                interval={autoScrollInterval}
-                infiniteLoop
-                className="w-full"
-              >
-                {
-                  weather?.data?.date?.map((item, i) => (
+            {weather?.data?.hr?.length > 0 ? (
+              <div className="mx-auto px-4 carousel-tab">
+                <Carousel
+                  showArrows={true}
+                  showThumbs={false}
+                  // autoPlay
+                  interval={autoScrollInterval}
+                  infiniteLoop
+                  className="w-full"
+                >
+                  {weather?.data?.date?.map((item, i) => (
                     <div
                       key={i}
                       onClick={() => {
@@ -381,59 +380,71 @@ const Slate = () => {
                       <div className="grid md:grid-cols-2 bottom-boxes sm:grid-cols-1 gap-12 md:gap-4 sm:gap-4">
                         <div className="">
                           <div>
-                            <div className="rounded-[40px] card-sec h-[240px] main-box bg-[#40ecd9] py-2 my-5">
+                            <div className={`rounded-[40px] card-sec ${weather?.data?.Game_Wind_Direction?.[i] ? "h-[240px]":"h-[200px]"} main-box bg-[#40ecd9] py-2 my-5`}>
                               <div className="text-left px-4 md:px-10 green-box mb-2">
-                              <h1 className="font-medium text-center weather-title underline xl:text-3xl 2xl:text-5xl lg:text-3xl md:text-3xl mb-2">
-                                        Weather
-                                      </h1>
+                                <h1 className="font-medium text-center weather-title underline xl:text-3xl 2xl:text-5xl lg:text-3xl md:text-3xl mb-2">
+                                  Weather
+                                </h1>
                                 {weather?.data?.Game_Wind_Direction?.[i] !==
                                 "DOMS" ? (
                                   <div className="grid grid-cols-3 mt-[22px]">
-                                   {weather?.data?.Game_Wind_Direction?.[i] && <>
-                                    <div className=" first-section">
-                                      <h1 className="font-medium text-center xl:text-3xl 2xl:text-5xl lg:text-3xl md:text-3xl mb-2">
-                                        {weather?.data?.Game_Wind_Direction?.[i]
-                                          ? `${weather?.data?.Game_Temp?.[i]}°`
-                                          : ""}
-                                      </h1>
-                                      {weather?.data?.Game_Temp?.[i] && (
-                                        <h1 className="font-medium text-center chance-precip whitespace-nowrap wind-mdh text-2xl md:mt-[-10px] my-2">
-                                          Temp
-                                        </h1>
-                                      )}
-                                    </div>
-                                    <div className="medium-sec">
-                                      
-                                      <h1 className="font-medium text-center xl:text-3xl 2xl:text-5xl lg:text-3xl md:text-3xl mb-2">
-                                        {weather?.data?.Game_Wind_Direction?.[i]
-                                          ? `${weather?.data?.Game_Precip?.[i]}% `
-                                          : ""}
-                                      </h1>
-                                      {weather?.data?.Game_Temp?.[i] && (
-                                        <h1 className="font-medium text-center leading-none chance-precip whitespace-nowrap wind-mdh text-2xl md:mt-[-10px] my-2">
-                                          Chance of  
-                                          <span className="block"> 
-                                             {` precip`}
-                                          </span>
-                                        </h1>
-                                      )}
-                                    </div>
-                                    <div className="text-center flex first-section justify-center direction">
-                                      {weather?.data?.Game_Temp?.[i] && (
-                                        <DirectionImage
-                                          wind_mph={weather?.data?.Game_Wind_MPH?.[i]}
-                                          classname={"matchup"}
-                                          windDir={
-                                            weather?.data?.Game_Wind_Dir_SVG_Rotate?.[i]
-                                          }
-                                          name={
-                                            weather?.data
+                                    {weather?.data?.Game_Wind_Direction?.[
+                                      i
+                                    ] && (
+                                      <>
+                                        <div className=" first-section">
+                                          <h1 className="font-medium text-center xl:text-3xl 2xl:text-5xl lg:text-3xl md:text-3xl mb-2">
+                                            {weather?.data
                                               ?.Game_Wind_Direction?.[i]
-                                          }
-                                        />
-                                      )}
-                                      
-                                    </div></>}
+                                              ? `${weather?.data?.Game_Temp?.[i]}°`
+                                              : ""}
+                                          </h1>
+                                          {weather?.data?.Game_Temp?.[i] && (
+                                            <h1 className="font-medium text-center chance-precip whitespace-nowrap wind-mdh text-2xl md:mt-[-10px] my-2">
+                                              Temp
+                                            </h1>
+                                          )}
+                                        </div>
+                                        <div className="medium-sec">
+                                          <h1 className="font-medium text-center xl:text-3xl 2xl:text-5xl lg:text-3xl md:text-3xl mb-2">
+                                            {weather?.data
+                                              ?.Game_Wind_Direction?.[i]
+                                              ? `${weather?.data?.Game_Precip?.[i]}% `
+                                              : ""}
+                                          </h1>
+                                          {weather?.data?.Game_Temp?.[i] && (
+                                            <h1 className="font-medium text-center leading-none chance-precip whitespace-nowrap wind-mdh text-2xl md:mt-[-10px] my-2">
+                                              Chance of
+                                              <span className="block">
+                                                {` precip`}
+                                              </span>
+                                            </h1>
+                                          )}
+                                        </div>
+                                        <div className="text-center flex first-section justify-center direction">
+                                          {weather?.data?.Game_Temp?.[i] && (
+                                            <DirectionImage
+                                              wind_mph={
+                                                weather?.data?.Game_Wind_MPH?.[
+                                                  i
+                                                ]
+                                              }
+                                              classname={"matchup"}
+                                              windDir={
+                                                weather?.data
+                                                  ?.Game_Wind_Dir_SVG_Rotate?.[
+                                                  i
+                                                ]
+                                              }
+                                              name={
+                                                weather?.data
+                                                  ?.Game_Wind_Direction?.[i]
+                                              }
+                                            />
+                                          )}
+                                        </div>
+                                      </>
+                                    )}
                                   </div>
                                 ) : (
                                   <>
@@ -446,7 +457,7 @@ const Slate = () => {
                                   </>
                                 )}
                                 {!weather?.data?.Game_Wind_Direction?.[i] && (
-                                  <h1 className="font-medium no-data-text text-center text-xl mt-[10px] my-2">
+                                  <h1 className="font-medium no-data-text text-center text-2xl mt-[30px] my-2">
                                     No weather data available at this time
                                   </h1>
                                 )}
@@ -456,7 +467,7 @@ const Slate = () => {
                         </div>
                         <div>
                           <div>
-                            <div className="rounded-[40px] card-sec h-[240px] main-box bg-[#ac82e5] py-2 my-5">
+                            <div className={`rounded-[40px] card-sec ${weather?.data?.Game_Wind_Direction?.[i] ? "h-[240px]":"h-[200px]"} main-box bg-[#ac82e5] py-2 my-5`}>
                               <h1 className="font-medium park-heading xl:text-3xl 2xl:text-5xl lg:text-3xl md:text-3xl my-2">
                                 Park Factors
                               </h1>
@@ -485,17 +496,14 @@ const Slate = () => {
                         </div>
                       </div>
                     </div>
-                  ))
-                  
-                }
-              </Carousel>
-            </div>
-            :
-            <div className="flex justify-center items-center">
-            <h1 className="font-medium">
-              No Matchups Currently Found.
-            </h1>
-          </div>}
+                  ))}
+                </Carousel>
+              </div>
+            ) : (
+              <div className="flex justify-center items-center">
+                <h1 className="font-medium">No Matchups Currently Found.</h1>
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -39,6 +39,7 @@ import { ChangePassword } from "./pages/ForgotPassword.jsx";
 import Slate from "./pages/Slate/Slate.jsx";
 import GamePage from "./pages/Slate/game-page.jsx";
 import {CheckoutPayment} from "./pages/paymetPay.jsx";
+import BarGraph from "./pages/eda/Graph.jsx";
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 export const userContext = createContext();
@@ -206,6 +207,14 @@ function App() {
                     element={
                       <SecureRoute>
                         <Slate />
+                      </SecureRoute>
+                    }
+                  />
+                   <Route
+                    path="/graph"
+                    element={
+                      <SecureRoute>
+                        <BarGraph />
                       </SecureRoute>
                     }
                   />

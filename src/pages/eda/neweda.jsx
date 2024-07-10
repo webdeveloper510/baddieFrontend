@@ -4,9 +4,11 @@ import * as Yup from "yup";
 import { GetPlayerApi, GetTeamApi, getEda, getEvalCal } from "../../api";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import Apploader from "../../component/Apploader";
+import BarGraph from "./Graph";
 
 const Neweda = () => {
   const [edaData, setEdaData] = useState(null);
+  const [graphData, setGraphData] = useState(null);
   const [loader, setLoader] = useState(false);
   const [body, setBody] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -15,6 +17,8 @@ const Neweda = () => {
   function toggleDropdown() {
     setIsOpen(!isOpen);
   }
+
+  console.log("graph data", graphData);
 
   function handleInputChange(event) {
     setSearchTerm(event.target.value.toLowerCase());
@@ -85,6 +89,7 @@ const Neweda = () => {
       console.log("newEvalData =========>", newEvalData);
       // setEvalData(["","","",""]);
       setEdaData(newEvalData.data);
+      setGraphData(newEvalData.data);
       setLoader(false);
     } catch (error) {
       alert("There is some error");
@@ -109,6 +114,7 @@ const Neweda = () => {
       setLoader(false);
     } catch (error) {
       alert("There is some error");
+      console.log(error);
       setLoader(false);
     }
   };
@@ -177,7 +183,7 @@ const Neweda = () => {
                 <div className="text-center col-span-2 player-select">
                   <Field
                     as="select"
-                    className="py-3 bg-lightGray px-9 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
+                    className="py-3 bg-lightGray my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
                     name="type"
                   >
                     <option disabled value="">
@@ -188,7 +194,7 @@ const Neweda = () => {
                   </Field>
                   <Field
                     as="select"
-                    className="py-3 bg-lightGray px-9 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
+                    className="py-3 bg-lightGray my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
                     name="handedness"
                     onChange={(e) => {
                       setFieldValue("handedness", e.target.value);
@@ -209,7 +215,7 @@ const Neweda = () => {
                 <div className="text-center col-span-2 player-select">
                   <Field
                     as="select"
-                    className="py-3 bg-lightGray px-9 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
+                    className="py-3 bg-lightGray  my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
                     name="playerType"
                     onChange={(e) => {
                       let newPlayerType = e.target.value;
@@ -373,6 +379,7 @@ const Neweda = () => {
             </Form>
           )}
         </Formik>
+
         {edaData && (
           <>
             {body.handedness === "no" ? (
@@ -521,12 +528,17 @@ const Neweda = () => {
                     <div className="w-full border-4 my-3 px-2 py-5 rounded-[60px] border-black h-auto">
                       <div className="flex graph-display">
                         <div className="image-1">
-                          <img
+                          <BarGraph
+                            data={JSON.parse(graphData?.hnd_topstats_graph)}
+                            layout={JSON.parse(graphData?.hnd_topstats_graph)}
+                            config={{ responsive: true }}
+                          />
+                          {/* <img
                             className="my-2"
                             src={
                               edaData?.hnd_topstats_graph + `?new=${new Date()}`
                             }
-                          />
+                          /> */}
                         </div>
                         <div className="image-1">
                           {(edaData?.batters_faced_PG_graph ||
@@ -810,10 +822,15 @@ const Neweda = () => {
                   <h1 className="font-bold text-5xl">The Topline Stats</h1>
                   <div className="w-full border-4 my-3 px-2 py-5 rounded-[60px] border-black h-auto">
                     <div className="flex graph-display w-full">
-                      <img
+                      <BarGraph
+                        data={JSON.parse(graphData?.hnd_topstats_graph)}
+                        layout={JSON.parse(graphData?.hnd_topstats_graph)}
+                        config={{ responsive: true }}
+                      />
+                      {/* <img
                         className="my-2 w-full"
                         src={edaData?.hnd_topstats_graph + `?new=${new Date()}`}
-                      />
+                      /> */}
                     </div>
                   </div>
                 </div>
@@ -835,13 +852,18 @@ const Neweda = () => {
                         <div className="flex graph-display">
                           <div className="image-1">
                             {edaData?.hnd_k_rate_graph && (
-                              <img
-                                className="my-2"
-                                src={
-                                  edaData?.hnd_k_rate_graph +
-                                  `?new=${new Date()}`
-                                }
+                              <BarGraph
+                                data={JSON.parse(graphData?.hnd_k_rate_graph)}
+                                layout={JSON.parse(graphData?.hnd_k_rate_graph)}
+                                config={{ responsive: true }}
                               />
+                              // <img
+                              //   className="my-2"
+                              //   src={
+                              //     edaData?.hnd_k_rate_graph +
+                              //     `?new=${new Date()}`
+                              //   }
+                              // />
                             )}
                           </div>
                           <div className="image-1">
@@ -872,36 +894,59 @@ const Neweda = () => {
                           </div>
                           <div className="image-1">
                             {edaData?.hnd_k_bb_graph && (
-                              <img
-                                className="my-2"
-                                src={
-                                  edaData?.hnd_k_bb_graph + `?new=${new Date()}`
-                                }
+                              <BarGraph
+                                data={JSON.parse(graphData?.hnd_k_bb_graph)}
+                                layout={JSON.parse(graphData?.hnd_k_bb_graph)}
+                                config={{ responsive: true }}
                               />
+                              // <img
+                              //   className="my-2"
+                              //   src={
+                              //     edaData?.hnd_k_bb_graph + `?new=${new Date()}`
+                              //   }
+                              // />
                             )}
                           </div>
                         </div>
                         <div className="flex graph-display">
                           <div className="image-1">
                             {edaData?.hnd_strike_rate_graph && (
-                              <img
-                                className="my-2"
-                                src={
-                                  edaData?.hnd_strike_rate_graph +
-                                  `?new=${new Date()}`
-                                }
+                              <BarGraph
+                                data={JSON.parse(
+                                  graphData?.hnd_strike_rate_graph
+                                )}
+                                layout={JSON.parse(
+                                  graphData?.hnd_strike_rate_graph
+                                )}
+                                config={{ responsive: true }}
                               />
+                              // <img
+                              //   className="my-2"
+                              //   src={
+                              //     edaData?.hnd_strike_rate_graph +
+                              //     `?new=${new Date()}`
+                              //   }
+                              // />
                             )}
                           </div>
                           <div className="image-1">
                             {edaData?.hnd_pitch_perPA_graph && (
-                              <img
-                                className="my-2"
-                                src={
-                                  edaData?.hnd_pitch_perPA_graph +
-                                  `?new=${new Date()}`
-                                }
+                              <BarGraph
+                                data={JSON.parse(
+                                  graphData?.hnd_pitch_perPA_graph
+                                )}
+                                layout={JSON.parse(
+                                  graphData?.hnd_pitch_perPA_graph
+                                )}
+                                config={{ responsive: true }}
                               />
+                              // <img
+                              //   className="my-2"
+                              //   src={
+                              //     edaData?.hnd_pitch_perPA_graph +
+                              //     `?new=${new Date()}`
+                              //   }
+                              // />
                             )}
                           </div>
                         </div>
@@ -911,23 +956,33 @@ const Neweda = () => {
                         <div className="flex graph-display">
                           <div className="image-1">
                             {edaData?.hnd_k_rate_graph && (
-                              <img
-                                className="my-2"
-                                src={
-                                  edaData?.hnd_k_rate_graph +
-                                  `?new=${new Date()}`
-                                }
+                              <BarGraph
+                                data={JSON.parse(graphData?.hnd_k_rate_graph)}
+                                layout={JSON.parse(graphData?.hnd_k_rate_graph)}
+                                config={{ responsive: true }}
                               />
+                              // <img
+                              //   className="my-2"
+                              //   src={
+                              //     edaData?.hnd_k_rate_graph +
+                              //     `?new=${new Date()}`
+                              //   }
+                              // />
                             )}
                           </div>
                           <div className="image-1">
                             {edaData?.hnd_k_bb_graph && (
-                              <img
-                                className="my-2"
-                                src={
-                                  edaData?.hnd_k_bb_graph + `?new=${new Date()}`
-                                }
+                              <BarGraph
+                                data={JSON.parse(graphData?.hnd_k_bb_graph)}
+                                layout={JSON.parse(graphData?.hnd_k_bb_graph)}
+                                config={{ responsive: true }}
                               />
+                              // <img
+                              //   className="my-2"
+                              //   src={
+                              //     edaData?.hnd_k_bb_graph + `?new=${new Date()}`
+                              //   }
+                              // />
                             )}
                           </div>
                         </div>
@@ -935,37 +990,64 @@ const Neweda = () => {
                         <div className="flex graph-display">
                           <div className="image-1">
                             {edaData?.hnd_pitch_perPA_graph && (
-                              <img
-                                className="my-2"
-                                src={
-                                  edaData?.hnd_pitch_perPA_graph +
-                                  `?new=${new Date()}`
-                                }
+                              <BarGraph
+                                data={JSON.parse(
+                                  graphData?.hnd_pitch_perPA_graph
+                                )}
+                                layout={JSON.parse(
+                                  graphData?.hnd_pitch_perPA_graph
+                                )}
+                                config={{ responsive: true }}
                               />
+                              // <img
+                              //   className="my-2"
+                              //   src={
+                              //     edaData?.hnd_pitch_perPA_graph +
+                              //     `?new=${new Date()}`
+                              //   }
+                              // />
                             )}
                           </div>
                           <div className="image-1">
                             {edaData?.hnd_strike_rate_graph && (
-                              <img
-                                className="my-2"
-                                src={
-                                  edaData?.hnd_strike_rate_graph +
-                                  `?new=${new Date()}`
-                                }
+                              <BarGraph
+                                data={JSON.parse(
+                                  graphData?.hnd_strike_rate_graph
+                                )}
+                                layout={JSON.parse(
+                                  graphData?.hnd_strike_rate_graph
+                                )}
+                                config={{ responsive: true }}
                               />
+                              // <img
+                              //   className="my-2"
+                              //   src={
+                              //     edaData?.hnd_strike_rate_graph +
+                              //     `?new=${new Date()}`
+                              //   }
+                              // />
                             )}
                           </div>
                         </div>
                         <div className="flex graph-display justify-center w-full m-auto">
                           <div className="w-full">
                             {edaData?.hnd_swstrk_rate_graph && (
-                              <img
-                                className="my-2 w-[100%]"
-                                src={
-                                  edaData?.hnd_swstrk_rate_graph +
-                                  `?new=${new Date()}`
-                                }
+                              <BarGraph
+                                data={JSON.parse(
+                                  graphData?.hnd_swstrk_rate_graph
+                                )}
+                                layout={JSON.parse(
+                                  graphData?.hnd_swstrk_rate_graph
+                                )}
+                                config={{ responsive: true }}
                               />
+                              // <img
+                              //   className="my-2 w-[100%]"
+                              //   src={
+                              //     edaData?.hnd_swstrk_rate_graph +
+                              //     `?new=${new Date()}`
+                              //   }
+                              // />
                             )}
                           </div>
                         </div>
@@ -1004,25 +1086,35 @@ const Neweda = () => {
 
                       {edaData?.hnd_BABIP_graph && (
                         <div className="image-1">
-                          <img
+                          <BarGraph
+                            data={JSON.parse(graphData?.hnd_BABIP_graph)}
+                            layout={JSON.parse(graphData?.hnd_BABIP_graph)}
+                            config={{ responsive: true }}
+                          />
+                          {/* <img
                             className="my-2"
                             src={
                               edaData?.hnd_BABIP_graph + `?new=${new Date()}`
                             }
-                          />
+                          /> */}
                         </div>
                       )}
 
                       {edaData?.hnd_gbfb_ratio_graph && (
                         <div className="image-1">
                           {" "}
-                          <img
+                          <BarGraph
+                            data={JSON.parse(graphData?.hnd_gbfb_ratio_graph)}
+                            layout={JSON.parse(graphData?.hnd_gbfb_ratio_graph)}
+                            config={{ responsive: true }}
+                          />
+                          {/* <img
                             className="my-2"
                             src={
                               edaData?.hnd_gbfb_ratio_graph +
                               `?new=${new Date()}`
                             }
-                          />
+                          /> */}
                         </div>
                       )}
                     </div>
@@ -1032,32 +1124,47 @@ const Neweda = () => {
                       <>
                         <div className="flex graph-display">
                           <div className="image-1">
-                            <img
+                            <BarGraph
+                              data={JSON.parse(graphData?.hnd_iso_graph)}
+                              layout={JSON.parse(graphData?.hnd_iso_graph)}
+                              config={{ responsive: true }}
+                            />
+                            {/* <img
                               className="my-2"
                               src={
                                 edaData?.hnd_iso_graph + `?new=${new Date()}`
                               }
-                            />
+                            /> */}
                           </div>
 
                           <div className="image-1">
-                            <img
+                            <BarGraph
+                              data={JSON.parse(graphData?.hnd_xbh_pct_graph)}
+                              layout={JSON.parse(graphData?.hnd_xbh_pct_graph)}
+                              config={{ responsive: true }}
+                            />
+                            {/* <img
                               className="my-2"
                               src={
                                 edaData?.hnd_xbh_pct_graph +
                                 `?new=${new Date()}`
                               }
-                            />
+                            /> */}
                           </div>
                         </div>
                         <div className="flex graph-display">
                           <div className="image-1">
-                            <img
+                            <BarGraph
+                              data={JSON.parse(graphData?.hnd_hr_pct_graph)}
+                              layout={JSON.parse(graphData?.hnd_hr_pct_graph)}
+                              config={{ responsive: true }}
+                            />
+                            {/* <img
                               className="my-2"
                               src={
                                 edaData?.hnd_hr_pct_graph + `?new=${new Date()}`
                               }
-                            />
+                            /> */}
                           </div>
 
                           <div className="image-1">
@@ -1074,42 +1181,66 @@ const Neweda = () => {
                       <>
                         <div className="flex graph-display">
                           <div className="image-1">
-                            <img
+                            <BarGraph
+                              data={JSON.parse(graphData?.hnd_iso_graph)}
+                              layout={JSON.parse(graphData?.hnd_iso_graph)}
+                              config={{ responsive: true }}
+                            />
+                            {/* <img
                               className="my-2"
                               src={
                                 edaData?.hnd_iso_graph + `?new=${new Date()}`
                               }
-                            />
+                            /> */}
                           </div>
 
                           <div className="image-1">
-                            <img
+                            <BarGraph
+                              data={JSON.parse(
+                                graphData?.hnd_hardhit_pct_graph
+                              )}
+                              layout={JSON.parse(
+                                graphData?.hnd_hardhit_pct_graph
+                              )}
+                              config={{ responsive: true }}
+                            />
+                            {/* <img
                               className="my-2"
                               src={
                                 edaData?.hnd_hardhit_pct_graph +
                                 `?new=${new Date()}`
                               }
-                            />
+                            /> */}
                           </div>
                         </div>
                         <div className="flex graph-display">
                           <div className="image-1">
-                            <img
+                            <BarGraph
+                              data={JSON.parse(graphData?.hnd_xbh_pct_graph)}
+                              layout={JSON.parse(graphData?.hnd_xbh_pct_graph)}
+                              config={{ responsive: true }}
+                            />
+                            {/* <img
                               className="my-2"
                               src={
                                 edaData?.hnd_xbh_pct_graph +
                                 `?new=${new Date()}`
                               }
-                            />
+                            /> */}
                           </div>
 
                           <div className="image-1">
-                            <img
+                            <BarGraph
+                              data={JSON.parse(graphData?.hnd_hr_pct_graph)}
+                              layout={JSON.parse(graphData?.hnd_hr_pct_graph)}
+                              config={{ responsive: true }}
+                            />
+                            {/* <img
                               className="my-2"
                               src={
                                 edaData?.hnd_hr_pct_graph + `?new=${new Date()}`
                               }
-                            />
+                            /> */}
                           </div>
                         </div>
                       </>
