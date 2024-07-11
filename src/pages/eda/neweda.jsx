@@ -183,7 +183,7 @@ const Neweda = () => {
                 <div className="text-center col-span-2 player-select">
                   <Field
                     as="select"
-                    className="py-3 bg-lightGray my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
+                    className="py-3  bg-lightGray my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
                     name="type"
                   >
                     <option disabled value="">

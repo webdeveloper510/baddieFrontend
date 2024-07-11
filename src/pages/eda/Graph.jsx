@@ -2,6 +2,11 @@ import React from "react";
 import Plot from "react-plotly.js";
 
 const BarGraph = ({ data }) => {
+
+  const updatedData = data.data.map(trace => ({
+    ...trace,
+    hoverinfo: 'y' // Show only the y-values on hover
+  }));
   //   const data = [
   //     {
   //       name: 'LHP',
@@ -94,10 +99,9 @@ const BarGraph = ({ data }) => {
 
   return (
     <Plot
-      data={data?.data}
+      data={updatedData}
       layout={data.layout}
       style={{ width: "100%", height: "100%" }}
-
     />
   );
 };
