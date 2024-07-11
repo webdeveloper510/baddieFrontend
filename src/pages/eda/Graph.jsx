@@ -1,7 +1,7 @@
 import React from "react";
 import Plot from "react-plotly.js";
 
-const BarGraph = ({ data, layout }) => {
+const BarGraph = ({ data }) => {
   //   const data = [
   //     {
   //       name: 'LHP',
@@ -95,7 +95,7 @@ const BarGraph = ({ data, layout }) => {
   return (
     <Plot
       data={data?.data}
-      layout={{ ...layout.layout, autosize: true, width: null, height: 400 }}
+      layout={data.layout}
       style={{ width: "100%", height: "100%" }}
 
     />
@@ -107,7 +107,6 @@ export default BarGraph;
 {
   /* <BarGraph
            data={JSON.parse(graphData?.hnd_hr_pct_graph)}
-           layout={JSON.parse(graphData?.hnd_hr_pct_graph)}
            config={{ responsive: true }}
          /> */
 }
