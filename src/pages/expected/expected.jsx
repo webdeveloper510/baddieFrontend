@@ -4,9 +4,11 @@ import * as Yup from "yup";
 import { GetPlayerApi, GetTeamApi, getEvalCal } from "../../api";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import Apploader from "../../component/Apploader";
+import BarGraph from "../eda/Graph";
 
 const Expected = () => {
   const [evalData, setEvalData] = useState(null);
+  const [graphData, setGraphData] = useState(null);
   const [loader, setLoader] = useState(false);
   const [range, setRange] = useState(6);
   const [equality, setEquality] = useState("less than or equal to");
@@ -80,7 +82,7 @@ const Expected = () => {
     pitcher: ["pitcher"],
   });
   const handleSubmit = async (values, action) => {
-    console.log("🚀 ~ handleSubmit ~ values:", values);
+    // console.log("🚀 ~ handleSubmit ~ values:", values);
     try {
       setInitialValues(values);
       setLoader(true);
@@ -101,10 +103,10 @@ const Expected = () => {
         time_frame: values.time_frame,
         home_away : values.home_away
       };
-      console.log("🚀 ~ handleSubmit ~ body:", body);
+      // console.log("🚀 ~ handleSubmit ~ body:", body);
       const newEvCalData = await getEvalCal(body);
 
-      console.log("evCalData =========>", newEvCalData);
+      // console.log("evCalData =========>", newEvCalData);
       // setEvalData(["","","",""]);
       setEvalData(newEvCalData.data);
       setLoader(false);
@@ -363,7 +365,16 @@ const Expected = () => {
             </p> */}
                 {/* {evalData?<Bar options={options} data={data} />: */}
 
-                <img src={evalData[0] + `?new=${new Date()}`} alt="graph-images"></img>
+               {
+                evalData?.fig1 && (
+                  <BarGraph
+                  data={JSON.parse(evalData?.fig1)}
+                  config={{ responsive: true }}
+                />
+                )
+               }
+
+                {/* <img src={evalData[0] + `?new=${new Date()}`} alt="graph-images"></img> */}
               </div>
               {/* <div className="graph-section">
               {evalData?.length > 0 && <img src={evalData[1]+`?new=${new Date()}`}></img>}
@@ -441,9 +452,17 @@ const Expected = () => {
                     expected probability of event occurring
                   </p>
                   <div className="flex justify-center">
-                    {evalData?.length > 0 && (
+                  {
+                evalData?.fig3 && (
+                  <BarGraph
+                  data={JSON.parse(evalData?.fig3)}
+                  config={{ responsive: true }}
+                />
+                )
+               }
+                    {/* {evalData?.length > 0 && (
                       <img src={evalData[1] + `?new=${new Date()}`}></img>
-                    )}
+                    )} */}
                   </div>
                 </div>
               </div>
@@ -453,8 +472,8 @@ const Expected = () => {
                 </p>
                 <div className="flex justify-center items-center w-full counter-mobile">
                   <h1 className="text-5xl font-extrabold mt-5 md:pt-20  sm:pt-0">
-                    {evalData[3] > 0 && "+"}
-                    <CountUp end={evalData[2]} />
+                    {evalData?.Numeric_value > 0 && "+"}
+                    <CountUp end={evalData?.Numeric_value} />
                     <span className="text-lg font-semibold mx-3">
                       or better
                     </span>

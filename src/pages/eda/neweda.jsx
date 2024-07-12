@@ -18,7 +18,7 @@ const Neweda = () => {
     setIsOpen(!isOpen);
   }
 
-  console.log("graph data", graphData);
+  // console.log("graph data", graphData);
 
   function handleInputChange(event) {
     setSearchTerm(event.target.value.toLowerCase());
@@ -51,7 +51,7 @@ const Neweda = () => {
     pitcher: ["pitcher"],
   });
   const handleSubmit = async (values, action) => {
-    console.log("🚀 ~ handleSubmit ~ values:", values);
+    // console.log("🚀 ~ handleSubmit ~ values:", values);
     // Handle form submission
     try {
       setInitialValues(values);
@@ -82,11 +82,11 @@ const Neweda = () => {
         // player_type: values.player_type,
       };
       setBody(body);
-      console.log("🚀 ~ handleSubmit ~ body:", body);
+      // console.log("🚀 ~ handleSubmit ~ body:", body);
       // console.log("🚀 ~ handleSubmit ~ body:", body)
       const newEvalData = await getEda(body);
 
-      console.log("newEvalData =========>", newEvalData);
+      // console.log("newEvalData =========>", newEvalData);
       // setEvalData(["","","",""]);
       setEdaData(newEvalData.data);
       setGraphData(newEvalData.data);
@@ -284,11 +284,11 @@ const Neweda = () => {
                                         <button
                                           type="button"
                                           onClick={() => {
-                                            console.log(
-                                              "value set playername",
-                                              item,
-                                              i
-                                            );
+                                            // console.log(
+                                            //   "value set playername",
+                                            //   item,
+                                            //   i
+                                            // );
                                             setFieldValue("playerName", `${i}`);
                                             toggleDropdown();
                                           }}
@@ -309,12 +309,12 @@ const Neweda = () => {
                                         <button
                                           type="button"
                                           onClick={() => {
-                                            console.log(
-                                              "value set playername",
-                                              item,
-                                              i,
-                                              batter.player_name[parseInt(i)]
-                                            );
+                                            // console.log(
+                                            //   "value set playername",
+                                            //   item,
+                                            //   i,
+                                            //   batter.player_name[parseInt(i)]
+                                            // );
                                             setFieldValue("playerName", i);
                                             toggleDropdown();
                                           }}

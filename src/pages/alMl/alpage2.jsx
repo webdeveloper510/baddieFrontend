@@ -6,33 +6,39 @@ import { getDesiredPlot, getLookupData, getSegmentData } from "../../api";
 import Apploader from "../../component/Apploader";
 import DataTable from "react-data-table-component";
 import { colors } from "../../utitls/constent";
+import BarGraph from "../eda/Graph"
+
 
 const Alpage2 = () => {
-  const { type } = useParams()
-  const [filterValue, setFilterValue] = useState('');
-  const [segmentFilterValue, setSegmentFilterValue] = useState('');
+  const { type } = useParams();
+  const [graphData, setGraphData] = useState(null);
+  const [filterValue, setFilterValue] = useState("");
+  const [segmentFilterValue, setSegmentFilterValue] = useState("");
   const [filteredData, setFilteredData] = useState([]);
-  const [segmentData, setSegmentData] = useState([])
-  const [lookupData, setLookupData] = useState([])
-  const [plotGraphData, setPlotData] = useState(["", ""])
-  const [loader, setLoader] = useState(false)
-  const [names, setNames] = useState([])
-  const [columns1, setColumns1] = useState([])
-  const [columns2, setColumns2] = useState([])
+  const [segmentData, setSegmentData] = useState([]);
+  const [lookupData, setLookupData] = useState([]);
+  const [plotGraphData, setPlotData] = useState(["", ""]);
+  const [loader, setLoader] = useState(false);
+  const [names, setNames] = useState([]);
+  const [columns1, setColumns1] = useState([]);
+  const [columns2, setColumns2] = useState([]);
+
+  // console.log("graphDatagraphData", graphData)
   const onLoad = async () => {
     try {
       setLoader(true);
-      const [{ data }, { data: lData }, { data: plotData }] = await Promise.all([
-        getSegmentData({ "segment_type": type, }),
-        getLookupData({
-          "segment_type": type,
-        }),
-        getDesiredPlot({
-          "player_type": type,
-        })
-
-      ])
-      console.log("🚀 ~ onLoad ~ plotData:", plotData)
+      const [{ data }, { data: lData }, { data: plotData }] = await Promise.all(
+        [
+          getSegmentData({ segment_type: type }),
+          getLookupData({
+            segment_type: type,
+          }),
+          getDesiredPlot({
+            player_type: type,
+          }),
+        ]
+      );
+      // console.log("🚀 ~ onLoad ~ plotData:", data);
 
       const newData = [];
 
@@ -51,37 +57,38 @@ const Alpage2 = () => {
         // Push the constructed object to the newData array
         newData.push(obj);
       }
-      console.log("🚀 ~ onLoad ~ newData:", newData)
+      // console.log("🚀 ~ onLoad ~ newData:", newData);
 
       setSegmentData(newData);
-      const columns1Data = Object.keys(newData[0]).map((key,i) => {
+      const columns1Data = Object.keys(newData[0]).map((key, i) => {
         if (key == "segment") {
           return {
             name: "Segment",
             // selector: (row) => row?.segment,
-            selector: row => {
-              return row[key]
+            selector: (row) => {
+              return row[key];
             },
             sortable: true,
             minWidth: "15px",
             // maxWidth: "none",
-          }
+          };
         }
         return {
-        name: key.replace(/_/g, ' '), // Replace underscores with spaces for better readability
-        selector: row => {
-          if (!isNaN(parseFloat(row[key]))) {
-            return parseFloat(row[key]).toFixed(3)
-          }
-          return row[key]
-        }, // Dynamically select the value based on the current key
-        sortable: true,
-        minWidth: "150px",
-       
-        // maxWidth: "none",
-      }});
-      setColumns1(columns1Data)
-      
+          name: key.replace(/_/g, " "), // Replace underscores with spaces for better readability
+          selector: (row) => {
+            if (!isNaN(parseFloat(row[key]))) {
+              return parseFloat(row[key]).toFixed(3);
+            }
+            return row[key];
+          }, // Dynamically select the value based on the current key
+          sortable: true,
+          minWidth: "150px",
+
+          // maxWidth: "none",
+        };
+      });
+      setColumns1(columns1Data);
+
       const dataArray = [];
       for (let i = 0; i < lData.segment.length; i++) {
         let obj = {};
@@ -97,12 +104,11 @@ const Alpage2 = () => {
         // Push the constructed object to the newData array
         dataArray.push(obj);
       }
-      console.log("🚀 ~ onLoad ~ dataArray:", dataArray)
+      // console.log("🚀 ~ onLoad ~ dataArray:", dataArray);
 
-
-      setLookupData(dataArray)
+      setLookupData(dataArray);
       setFilteredData(dataArray);
-      const columns2Data = Object.keys(dataArray[0]).map((key,i) => {
+      const columns2Data = Object.keys(dataArray[0]).map((key, i) => {
         if (key == "segment") {
           return {
             name: "Segment",
@@ -115,64 +121,96 @@ const Alpage2 = () => {
               // Check if index is within bounds of the array
               if (index >= 0 && index < colors.length) {
                 bg_color = colors[index];
-                
-              } 
-              
-              return <div className={`${bg_color} w-full h-full text-black font-bold text-center p-2`} >{value}</div>
+              }
+
+              return (
+                <div
+                  className={`${bg_color} w-full h-full text-black font-bold text-center p-2`}
+                >
+                  {value}
+                </div>
+              );
             },
-            selector: row => {
-              return row[key]
+            selector: (row) => {
+              return row[key];
             },
             minWidth: "15px",
-            sortable:true,
+            sortable: true,
             // maxWidth: "none",
-          }
+          };
         }
-        return ({
-          name: key.replace(/_/g, ' '), // Replace underscores with spaces for better readability
-          selector: row => {
+        return {
+          name: key.replace(/_/g, " "), // Replace underscores with spaces for better readability
+          selector: (row) => {
             if (!isNaN(parseFloat(row[key]))) {
-              return parseFloat(row[key]).toFixed(3)
+              return parseFloat(row[key]).toFixed(3);
             }
-            return row[key]
+            return row[key];
           }, // Dynamically select the value based on the current key
-          sortable:true,
+          sortable: true,
           minWidth: "150px",
           // maxWidth: "none",
-        })
+        };
       });
-      console.log("🚀 ~ columns2Data ~ columns2Data:", columns2Data)
+      // console.log("🚀 ~ columns2Data ~ columns2Data:", plotData);
 
-      setColumns2(columns2Data)
+      setColumns2(columns2Data);
       setPlotData(plotData);
+      setGraphData(plotData)
+      // setGraphData(plotData)
       setLoader(false);
     } catch (error) {
       alert("There is some error");
       setLoader(false);
     }
-
   };
   const handleFilterChange = (event) => {
     const value = event.target.value;
     setFilterValue(value);
   };
 
+  const desiredPlot = () => {
+    if(type){
+      getDesiredPlot({
+        player_type: type,
+      }).then((res)=>{
+        // console.log("plot response", res)
+        setGraphData(res)
+      }).catch((error)=>{
+        console.log(error)
+      })
+    }   
+  }
+
   const handleSegmentFilterChange = (event) => {
     const value = event.target.value;
     setSegmentFilterValue(value);
   };
   const handleFilter = () => {
-    console.log("filter ==============>>>>>", filterValue, segmentFilterValue);
-    const filtered = lookupData.filter(item => item["Player Name"].toLowerCase().includes(filterValue.toLowerCase()) && item.segment.toString().toLowerCase().includes(segmentFilterValue.toLowerCase()));
+    // console.log("filter ==============>>>>>", filterValue, segmentFilterValue);
+    const filtered = lookupData.filter(
+      (item) =>
+        item["Player Name"].toLowerCase().includes(filterValue.toLowerCase()) &&
+        item.segment
+          .toString()
+          .toLowerCase()
+          .includes(segmentFilterValue.toLowerCase())
+    );
     setFilteredData(filtered);
-  }
-  useEffect(handleFilter, [filterValue, segmentFilterValue])
+  };
+  useEffect(handleFilter, [filterValue, segmentFilterValue]);
 
-  useEffect(() => { onLoad() }, []);
-  
+  useEffect(() => {
+    onLoad();
+    desiredPlot()
+  }, []);
+
   if (loader) {
-    return <div className="w-full h-[100vh] flex items-center justify-center"><Apploader size={80} />
-    </div>
+    return (
+      <div className="w-full h-[100vh] flex items-center justify-center">
+        <Apploader size={80} />
+      </div>
+    );
   }
   return (
     <div className="flex flex-col px-4">
@@ -181,7 +219,9 @@ const Alpage2 = () => {
           {type.charAt(0).toUpperCase() + type.slice(1)} segmentation Model
         </h4>
         <p className="text-white page-desc text-center  mb-4">
-          {type == "pitcher" ? "uncover pitcher groups that share similar characteristics & examine performance" : "take a look at batter clusters to unearth hidden insights & trends"}
+          {type == "pitcher"
+            ? "uncover pitcher groups that share similar characteristics & examine performance"
+            : "take a look at batter clusters to unearth hidden insights & trends"}
         </p>
       </div>
       <div className="bg-white w-full flex flex-col segment-outer px-[33px] py-10  text-xl">
@@ -203,30 +243,41 @@ const Alpage2 = () => {
 
               <div className="max-h-[80vh] overflow-auto">
                 <DataTable
-                className="table1"
+                  className="table1"
                   style={{
-                    overflow: "visible !important"
+                    overflow: "visible !important",
                   }}
                   columns={columns1}
                   data={segmentData}
                   highlightOnHover
-                // pagination
-                // paginationPerPage={25}
-                // paginationComponentOptions={paginationOptions}
-                // paginationRowsPerPageOptions={[10, 20, 50, 100]}
+                  // pagination
+                  // paginationPerPage={25}
+                  // paginationComponentOptions={paginationOptions}
+                  // paginationRowsPerPageOptions={[10, 20, 50, 100]}
                 />
-                
-
               </div>
-              <span className="w-full difference lowercase  test-gray mt-16 text-sm">current YTD stats show {(new Date).getFullYear()-1} season stats;
-current season stats will show once models are updated for {(new Date).getFullYear()} </span>
+              <span className="w-full difference lowercase  test-gray mt-16 text-sm">
+                current YTD stats show {new Date().getFullYear() - 1} season
+                stats; current season stats will show once models are updated
+                for {new Date().getFullYear()}{" "}
+              </span>
               <div className="mt-5 text-center ">
                 <div>
-
-                  {plotGraphData && <div className="flex flex-col md:flex-row justify-center">
-                    <img className="md:w-[47%] sm:w-full"  src={plotGraphData[0] + `?new=${new Date()}`} alt="" />
-                    <img className="md:w-[47%] sm:w-full" src={plotGraphData[1] + `?new=${new Date()}`} alt="" />
-                  </div>}
+                  {graphData?.data && (
+                    <div className="grid md:grid-cols-2 sm:grid-cols-1">
+                  
+                       <BarGraph
+                        data={JSON.parse(graphData?.data?.bar1)}
+                        config={{ responsive: true }}
+                      />
+                      <BarGraph
+                        data={JSON.parse(graphData?.data?.bar2)}
+                        config={{ responsive: true }}
+                      /> 
+                      {/* <img className="md:w-[47%] sm:w-full"  src={plotGraphData[0] + `?new=${new Date()}`} alt="" /> */}
+                      {/* <img className="md:w-[47%] sm:w-full" src={plotGraphData[1] + `?new=${new Date()}`} alt="" /> */}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -249,22 +300,21 @@ current season stats will show once models are updated for {(new Date).getFullYe
               />
             </div>
             <div className="mb-20 max-h-[80vh] overflow-scroll">
-            <DataTable
+              <DataTable
                 className="table"
                 style={{
-                  overflow: "visible !important"
+                  overflow: "visible !important",
                 }}
                 columns={columns2}
                 data={filteredData}
                 highlightOnHover
                 striped={false}
-              // pagination
-              // paginationPerPage={25}
-              // paginationComponentOptions={paginationOptions}
-              // paginationRowsPerPageOptions={[10, 20, 50, 100]}
+                // pagination
+                // paginationPerPage={25}
+                // paginationComponentOptions={paginationOptions}
+                // paginationRowsPerPageOptions={[10, 20, 50, 100]}
               />
-              </div>
-            
+            </div>
           </TabPanel>
         </Tabs>
       </div>
