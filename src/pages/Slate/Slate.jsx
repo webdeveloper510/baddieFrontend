@@ -341,7 +341,7 @@ const Slate = () => {
                 <Carousel
                   showArrows={true}
                   showThumbs={false}
-                  // autoPlay
+                  autoPlay
                   interval={autoScrollInterval}
                   infiniteLoop
                   className="w-full"
