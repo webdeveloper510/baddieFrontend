@@ -380,17 +380,20 @@ const Slate = () => {
                       <div className="grid md:grid-cols-2 bottom-boxes sm:grid-cols-1 gap-12 md:gap-4 sm:gap-4">
                         <div className="">
                           <div>
-                            <div className={`rounded-[40px] card-sec ${weather?.data?.Game_Wind_Direction?.[i] ? "h-[240px]":"h-[200px]"} main-box bg-[#40ecd9] py-2 my-5`}>
+                            <div className={`rounded-[40px] card-sec ${weather?.data?.Game_Wind_Direction?.[i] !==
+                                "DOMS" || weather?.data?.Game_Wind_Direction?.[i] == "None" ? "h-[200px]":"h-[240px]"} main-box bg-[#40ecd9] py-2 my-5`}>
                               <div className="text-left px-4 md:px-10 green-box mb-2">
                                 <h1 className="font-medium text-center weather-title underline xl:text-3xl 2xl:text-5xl lg:text-3xl md:text-3xl mb-2">
                                   Weather
                                 </h1>
                                 {weather?.data?.Game_Wind_Direction?.[i] !==
                                 "DOMS" ? (
-                                  <div className="grid grid-cols-3 mt-[22px]">
-                                    {weather?.data?.Game_Wind_Direction?.[
-                                      i
-                                    ] && (
+                                 <>
+                                 {
+                                  weather?.data?.Game_Wind_Speed?.[i] && 
+                                  (
+                                    <div className="grid grid-cols-3 mt-[22px]">
+                                    {weather?.data?.Game_Wind_Direction?.[i] !== "None" && (
                                       <>
                                         <div className=" first-section">
                                           <h1 className="font-medium text-center xl:text-3xl 2xl:text-5xl lg:text-3xl md:text-3xl mb-2">
@@ -446,6 +449,8 @@ const Slate = () => {
                                       </>
                                     )}
                                   </div>
+                                  )
+                                 }</>
                                 ) : (
                                   <>
                                     {/* <h1 className="font-medium text-center underline xl:text-3xl 2xl:text-5xl lg:text-3xl md:text-3xl my-2">
@@ -456,8 +461,8 @@ const Slate = () => {
                                     </h1>
                                   </>
                                 )}
-                                {!weather?.data?.Game_Wind_Direction?.[i] && (
-                                  <h1 className="font-medium no-data-text text-center text-2xl mt-[30px] my-2">
+                                {weather?.data?.Game_Wind_Direction?.[i] == "None" && (
+                                  <h1 className="font-medium no-data-text text-center text-2xl mt-[40px] my-2">
                                     No weather data available at this time
                                   </h1>
                                 )}
@@ -467,7 +472,8 @@ const Slate = () => {
                         </div>
                         <div>
                           <div>
-                            <div className={`rounded-[40px] card-sec ${weather?.data?.Game_Wind_Direction?.[i] ? "h-[240px]":"h-[200px]"} main-box bg-[#ac82e5] py-2 my-5`}>
+                            <div className={`rounded-[40px] card-sec ${weather?.data?.Game_Wind_Direction?.[i] !==
+                                "DOMS" || weather?.data?.Game_Wind_Direction?.[i] == "None" ? "h-[200px]":"h-[240px]"} main-box bg-[#ac82e5] py-2 my-5`}>
                               <h1 className="font-medium park-heading xl:text-3xl 2xl:text-5xl lg:text-3xl md:text-3xl my-2">
                                 Park Factors
                               </h1>

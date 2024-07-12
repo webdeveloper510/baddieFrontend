@@ -466,6 +466,7 @@ const Neweda = () => {
                                     config={{ responsive: true }}
                                   />
                                   {/* <img
+                                  
                                     className="my-2"
                                     src={
                                       edaData?.hr_9_graph + `?new=${new Date()}`

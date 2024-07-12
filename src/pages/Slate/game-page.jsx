@@ -771,8 +771,10 @@ const GamePage = () => {
                   )}
                 </div>
 
-                <div className="mt-8 mb-5 p-2 lg:w-[98%] md:max-w-[70vw] m-auto table-outer-section overflow-x-auto">
-                  <table className="w-full">
+                
+                  {weather?.data?.GH_N2_Time?.[index] && (
+                    <div className="mt-8 mb-5 p-2 lg:w-[98%] md:max-w-[70vw] m-auto table-outer-section overflow-x-auto">
+                    <table className="w-full">
                     <thead className="table-header">
                       <tr>
                         <th className="text-center px-5 sticky-col-weather"></th>
@@ -1010,7 +1012,10 @@ const GamePage = () => {
                       </tr>
                     </tbody>
                   </table>
-                </div>
+                  </div>
+                  )}
+                  
+                
               </div>
             </div>
           </div>
