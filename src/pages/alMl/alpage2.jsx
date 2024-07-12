@@ -263,7 +263,7 @@ const Alpage2 = () => {
               </span>
               <div className="mt-5 text-center ">
                 <div>
-                  {graphData?.data && (
+                  {graphData?.data?.bar1 && (
                     <div className="grid md:grid-cols-2 sm:grid-cols-1">
                   
                        <BarGraph

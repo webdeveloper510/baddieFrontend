@@ -390,7 +390,7 @@ const Slate = () => {
                                 "DOMS" ? (
                                  <>
                                  {
-                                  weather?.data?.Game_Wind_Speed?.[i] && 
+                                  weather?.data?.Game_Wind_Direction?.[i] !== "None" && 
                                   (
                                     <div className="grid grid-cols-3 mt-[22px]">
                                     {weather?.data?.Game_Wind_Direction?.[i] !== "None" && (
