@@ -40,6 +40,7 @@ import Slate from "./pages/Slate/Slate.jsx";
 import GamePage from "./pages/Slate/game-page.jsx";
 import {CheckoutPayment} from "./pages/paymetPay.jsx";
 import BarGraph from "./pages/eda/Graph.jsx";
+import NewGamePage from "./pages/Slate/new-game-page.jsx";
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 export const userContext = createContext();
@@ -223,6 +224,14 @@ function App() {
                     element={
                       <SecureRoute>
                         <GamePage />
+                      </SecureRoute>
+                    }
+                  />
+                   <Route
+                    path="/new-game-page"
+                    element={
+                      <SecureRoute>
+                        <NewGamePage />
                       </SecureRoute>
                     }
                   />

@@ -319,3 +319,23 @@ export const emailNotification = async(data)=>{
         throw (error)
     }
 }
+
+
+export const damData = async(data)=>{
+    try {
+        const response = await authApi.post("dam-v12-metric/", data);
+        return response.data
+    } catch (error) {
+        throw (error)
+    }
+}
+
+
+export const damGraphData = async(data)=>{
+    try {
+        const response = await authApi.post("dam-v12-graph/", data);
+        return response.data
+    } catch (error) {
+        throw (error)
+    }
+}

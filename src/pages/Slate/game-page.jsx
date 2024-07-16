@@ -790,7 +790,7 @@ const GamePage = () => {
                     <tbody className="table-body">
                       <tr>
                         <th className="text-left px-5 sticky-col-weather">
-                          {weather?.data?.GH_N2_Time?.[index]
+                          {(weather?.data?.GH_N2_Time?.[index] && weather?.data?.GH_N2_Time?.[index] !== "DOMS")
                             ? weather?.data?.GH_N2_Time?.[index]
                             : " "}
                         </th>
@@ -815,7 +815,7 @@ const GamePage = () => {
                             : " "}
                         </td>
                         <td className="text-center px-5">
-                          {weather?.data?.GH_N2_Wind_Dir?.[index]
+                          {(weather?.data?.GH_N2_Wind_Dir?.[index]  && weather?.data?.GH_N2_Wind_Dir?.[index]  !== "DOMS")
                             ? weather?.data?.GH_N2_Wind_Dir?.[index]
                             : " "}
                         </td>
@@ -827,7 +827,7 @@ const GamePage = () => {
                       </tr>
                       <tr className="border-b-2">
                         <th className="text-left  px-5 sticky-col-weather">
-                          {weather?.data?.GH_N1_Time?.[index]
+                          {(weather?.data?.GH_N1_Time?.[index] && weather?.data?.GH_N1_Time?.[index] !== "DOMS")
                             ? weather?.data?.GH_N1_Time?.[index]
                             : " "}
                         </th>
@@ -852,7 +852,7 @@ const GamePage = () => {
                             : " "}
                         </td>
                         <td className="text-center px-5">
-                          {weather?.data?.GH_N1_Wind_Dir?.[index]
+                          {(weather?.data?.GH_N1_Wind_Dir?.[index]   && weather?.data?.GH_N1_Wind_Dir?.[index]  !== "DOMS")
                             ? weather?.data?.GH_N1_Wind_Dir?.[index]
                             : " "}
                         </td>
@@ -864,7 +864,7 @@ const GamePage = () => {
                       </tr>
                       <tr>
                         <th className="text-left px-5 sticky-col-weather">
-                          {weather?.data?.GH_1_Time?.[index]
+                          {(weather?.data?.GH_1_Time?.[index]  && weather?.data?.GH_1_Time?.[index] !== "DOMS")
                             ? weather?.data?.GH_1_Time?.[index]
                             : " "}
                         </th>
@@ -889,7 +889,7 @@ const GamePage = () => {
                             : " "}
                         </td>
                         <td className="text-center px-5">
-                          {weather?.data?.GH_1_Wind_Dir?.[index]
+                          {(weather?.data?.GH_1_Wind_Dir?.[index]   && weather?.data?.GH_1_Wind_Dir?.[index] !== "DOMS")
                             ? weather?.data?.GH_1_Wind_Dir?.[index]
                             : " "}
                         </td>
@@ -901,7 +901,7 @@ const GamePage = () => {
                       </tr>
                       <tr>
                         <th className="text-left px-5 sticky-col-weather">
-                          {weather?.data?.GH_2_Time?.[index]
+                          {(weather?.data?.GH_2_Time?.[index]   && weather?.data?.GH_2_Time?.[index] !== "DOMS")
                             ? weather?.data?.GH_2_Time?.[index]
                             : " "}
                         </th>
@@ -926,7 +926,7 @@ const GamePage = () => {
                             : " "}
                         </td>
                         <td className="text-center px-5">
-                          {weather?.data?.GH_2_Wind_Dir?.[index]
+                          {(weather?.data?.GH_2_Wind_Dir?.[index] && weather?.data?.GH_2_Wind_Dir?.[index] !== "DOMS")
                             ? weather?.data?.GH_2_Wind_Dir?.[index]
                             : " "}
                         </td>
@@ -938,7 +938,7 @@ const GamePage = () => {
                       </tr>
                       <tr>
                         <th className="text-left px-5 sticky-col-weather">
-                          {weather?.data?.GH_3_Time?.[index]
+                          {(weather?.data?.GH_3_Time?.[index] && weather?.data?.GH_3_Time?.[index] !== "DOMS")
                             ? weather?.data?.GH_3_Time?.[index]
                             : " "}
                         </th>
@@ -963,7 +963,7 @@ const GamePage = () => {
                             : " "}
                         </td>
                         <td className="text-center px-5">
-                          {weather?.data?.GH_3_Wind_Dir?.[index]
+                          {(weather?.data?.GH_3_Wind_Dir?.[index]  && weather?.data?.GH_3_Wind_Dir?.[index] !== "DOMS")
                             ? weather?.data?.GH_3_Wind_Dir?.[index]
                             : " "}
                         </td>
@@ -975,7 +975,7 @@ const GamePage = () => {
                       </tr>
                       <tr>
                         <th className="text-left px-5 sticky-col-weather">
-                          {weather?.data?.GH_4_Time?.[index]
+                          {(weather?.data?.GH_4_Time?.[index]  && weather?.data?.GH_4_Time?.[index] !== "DOMS")
                             ? weather?.data?.GH_4_Time?.[index]
                             : " "}
                         </th>
@@ -1000,7 +1000,7 @@ const GamePage = () => {
                             : " "}
                         </td>
                         <td className="text-center px-5">
-                          {weather?.data?.GH_4_Wind_Dir?.[index]
+                          {(weather?.data?.GH_4_Wind_Dir?.[index]   && weather?.data?.GH_4_Wind_Dir?.[index] !== "DOMS")
                             ? weather?.data?.GH_4_Wind_Dir?.[index]
                             : " "}
                         </td>
