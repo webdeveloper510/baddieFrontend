@@ -228,7 +228,7 @@ function App() {
                     }
                   />
                    <Route
-                    path="/new-game-page"
+                    path="/graph-v12"
                     element={
                       <SecureRoute>
                         <NewGamePage />
