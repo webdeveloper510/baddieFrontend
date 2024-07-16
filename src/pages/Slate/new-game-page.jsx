@@ -395,7 +395,10 @@ const NewGamePage = () => {
       value === "away"
         ? weather?.data?.teams_home_team_name?.[index]
         : weather?.data?.teams_away_team_name?.[index];
-    const playerId = value === "away" ? player?.data?.player_id_home : player?.data?.player_id_away
+    const playerId =
+      value === "away"
+        ? player?.data?.player_id_home
+        : player?.data?.player_id_away;
     damGraphData({
       opp_team_stats: opp_team,
       performance_type: performance,
@@ -658,11 +661,14 @@ const NewGamePage = () => {
                           </div>
 
                           <div className="mt-24 p-5">
-                            <div className="flex justify-between items-center metric-sections">
+                            <h1 className="text-5xl font-bold text-center underline game-titles">
+                              EDA Dataviz
+                            </h1>
+                            <div className="flex justify-between items-center pl-10 pr-16 mt-10 metric-sections">
                               <div>
                                 <select
                                   onChange={(e) => handleOppteam(e)}
-                                  className="py-3 bg-[#e6e6e6] !border-0 px-7 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
+                                  className="py-3 bg-[#e6e6e6] !border-0 px-4 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
                                 >
                                   <option value="">opp team stats</option>
                                   <option value="Total">Total</option>
@@ -713,31 +719,31 @@ const NewGamePage = () => {
                                     : ""}
                                 </select>
                               </div>
-                              <div>
+                              <div className="text-left">
                                 <button
                                   onClick={() => handegraphData("away")}
-                                  className="bg-black w-40 text-white px-5 my-4 py-2 rounded"
+                                  className="bg-black w-32 text-white  my-4 py-2 rounded"
                                 >
                                   run
                                 </button>
                               </div>
                             </div>
-                            <>
-                              {graphLoader ? (
-                                <div className="flex justify-center">
-                                  <Apploader size={80} />
-                                </div>
-                              ) : (
-                                <>
-                                  {graphData && (
-                                    <BarGraph
-                                      data={JSON.parse(graphData)}
-                                      config={{ responsive: true }}
-                                    />
-                                  )}
-                                </>
-                              )}
-                            </>
+                          </div>
+                          <div>
+                            {graphLoader ? (
+                              <div className="flex justify-center">
+                                <Apploader size={80} />
+                              </div>
+                            ) : (
+                              <>
+                                {graphData && (
+                                  <BarGraph
+                                    data={JSON.parse(graphData)}
+                                    config={{ responsive: true }}
+                                  />
+                                )}
+                              </>
+                            )}
                           </div>
                         </div>
                       )}
@@ -842,7 +848,10 @@ const NewGamePage = () => {
                         </div>
 
                         <div className="mt-24 p-5">
-                          <div className="flex justify-between items-center metric-sections">
+                        <h1 className="text-5xl font-bold text-center underline game-titles">
+                              EDA Dataviz
+                            </h1>
+                          <div className="flex justify-between mt-10 items-center metric-sections">
                             <div>
                               <select
                                 onChange={(e) => handleOppteam(e)}
@@ -904,23 +913,24 @@ const NewGamePage = () => {
                               </button>
                             </div>
                           </div>
-                          <>
-                              {graphLoader ? (
-                                <div className="flex justify-center">
-                                  <Apploader size={80} />
-                                </div>
-                              ) : (
-                                <>
-                                  {graphData && (
-                                    <BarGraph
-                                      data={JSON.parse(graphData)}
-                                      config={{ responsive: true }}
-                                    />
-                                  )}
-                                </>
-                              )}
-                            </>
+                          
                         </div>
+                        <div>
+                            {graphLoader ? (
+                              <div className="flex justify-center">
+                                <Apploader size={80} />
+                              </div>
+                            ) : (
+                              <>
+                                {graphData && (
+                                  <BarGraph
+                                    data={JSON.parse(graphData)}
+                                    config={{ responsive: true }}
+                                  />
+                                )}
+                              </>
+                            )}
+                          </div>
                       </div>
                     )}
                   </div>
