@@ -660,7 +660,7 @@ const NewGamePage = () => {
                             </div>
                           </div>
 
-                          <div className="mt-24 p-5">
+                          <div className="mt-40 p-5">
                             <h1 className="text-3xl font-bold text-center game-titles">
                              {graphData?.date_ ? `Last Pitched: ${graphData?.date_}` : ""}
                             </h1>
