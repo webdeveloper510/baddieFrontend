@@ -665,10 +665,10 @@ const NewGamePage = () => {
                              {graphData?.date_ ? `Last Pitched: ${graphData?.date_}` : ""}
                             </h1>
                             
-                            <h1 className="text-5xl mt-10 font-bold text-center underline game-titles">
+                            <h1 className="text-5xl my-10 font-bold text-center underline game-titles">
                               EDADZ
                             </h1>
-                            <div className="flex justify-between items-center pl-10 pr-16 mt-10 metric-sections">
+                            <div className="flex justify-between items-center pl-10 pr-16 metric-sections">
                               <div className="px-2">
                                 <select
                                   onChange={(e) => handleOppteam(e)}
