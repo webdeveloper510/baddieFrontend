@@ -660,13 +660,13 @@ const NewGamePage = () => {
                             </div>
                           </div>
 
-                          <div className="mt-40 p-5">
+                          <div className="mt-24 p-5">
                             <h1 className="text-3xl font-bold text-center game-titles">
                              {graphData?.date_ ? `Last Pitched: ${graphData?.date_}` : ""}
                             </h1>
                             
-                            <h1 className="text-5xl font-bold text-center underline game-titles">
-                              EDA Dataviz
+                            <h1 className="text-5xl mt-10 font-bold text-center underline game-titles">
+                              EDADZ
                             </h1>
                             <div className="flex justify-between items-center pl-10 pr-16 mt-10 metric-sections">
                               <div className="px-2">
