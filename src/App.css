@@ -544,6 +544,9 @@ canvas.scatter-charts {
   .no-data-text {
     font-size: 16px;
   }
+  .graph_box{
+    display: block;
+  }
 }
 
 .mobile-team-defense {
@@ -587,6 +590,9 @@ canvas.scatter-charts {
   .chance-texts {
     display: block;
   }
+  .graph_box{
+    display: block;
+  }
   /* .first-section {
     width: 25%;
   }
@@ -595,6 +601,9 @@ canvas.scatter-charts {
   } */
 }
 @media screen and (max-width: 430px) {
+  .graph_box{
+    display: block;
+  }
   .bullpen-stats{
     padding-left: 0px;
     padding-right: 0px;

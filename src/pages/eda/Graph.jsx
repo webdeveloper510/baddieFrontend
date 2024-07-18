@@ -3,7 +3,7 @@ import Plot from "react-plotly.js";
 
 const BarGraph = ({ data }) => {
 
-  const customizedData = data.data.map(dataset => ({
+  const customizedData = data?.data?.map(dataset => ({
     ...dataset,
     hovertemplate: '%{y}<extra></extra>', // Show only y-value
   }));
@@ -100,7 +100,7 @@ const BarGraph = ({ data }) => {
   return (
     <Plot
       data={customizedData}
-      layout={data.layout}
+      layout={data?.layout}
       style={{ width: "100%", height: "100%" }}
     />
   );

@@ -661,11 +661,15 @@ const NewGamePage = () => {
                           </div>
 
                           <div className="mt-24 p-5">
+                            <h1 className="text-3xl font-bold text-center game-titles">
+                             {graphData?.date_ ? `Last Pitched: ${graphData?.date_}` : ""}
+                            </h1>
+                            
                             <h1 className="text-5xl font-bold text-center underline game-titles">
                               EDA Dataviz
                             </h1>
                             <div className="flex justify-between items-center pl-10 pr-16 mt-10 metric-sections">
-                              <div>
+                              <div className="px-2">
                                 <select
                                   onChange={(e) => handleOppteam(e)}
                                   className="py-3 bg-[#e6e6e6] !border-0 px-4 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
@@ -684,7 +688,7 @@ const NewGamePage = () => {
                                 </select>
                               </div>
 
-                              <div>
+                              <div className="px-2">
                                 <select
                                   onChange={(e) => handlePerformance(e)}
                                   className="py-3 bg-[#e6e6e6] !border-0 px-7 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
@@ -699,7 +703,7 @@ const NewGamePage = () => {
                                   </option>
                                 </select>
                               </div>
-                              <div>
+                              <div className="px-2">
                                 <select
                                   onChange={(e) =>
                                     setMetricData(e.target.value)
@@ -735,14 +739,25 @@ const NewGamePage = () => {
                                 <Apploader size={80} />
                               </div>
                             ) : (
-                              <>
+                              <div className={`flex graph_box`}>
                                 {graphData && (
+                                  <>
+                                 {graphData?.graph_data &&
                                   <BarGraph
-                                    data={JSON.parse(graphData)}
+                                    data={JSON.parse(graphData?.graph_data)}
                                     config={{ responsive: true }}
-                                  />
+                                  />}
+                                  {graphData?.graph_data1 && <BarGraph
+                                    data={JSON.parse(graphData?.graph_data1)}
+                                    config={{ responsive: true }}
+                                  />}
+                                  {graphData?.graph_data1 &&<BarGraph
+                                    data={JSON.parse(graphData?.graph_data2)}
+                                    config={{ responsive: true }}
+                                  />}
+                                  </>
                                 )}
-                              </>
+                              </div>
                             )}
                           </div>
                         </div>
@@ -924,7 +939,7 @@ const NewGamePage = () => {
                               <>
                                 {graphData && (
                                   <BarGraph
-                                    data={JSON.parse(graphData)}
+                                    data={JSON.parse(graphData?.graph_data)}
                                     config={{ responsive: true }}
                                   />
                                 )}
