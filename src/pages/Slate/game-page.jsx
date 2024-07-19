@@ -23,7 +23,7 @@ const GamePage = () => {
   const [opp_team, setOppteam] = useState("");
   const [graphLoader, setGraphLoader] = useState(false);
   const [damList, setDamList] = useState("");
-  const [metricData, setMetricData] = useState("");
+  const [metricData, setMetricData] = useState("metric");
   const [performance, setPerformance] = useState("");
   const [data2, setData2] = useState(null);
   const [graphData, setGraphData] = useState(null);
@@ -298,7 +298,7 @@ const GamePage = () => {
   const handeSubmit = (value) => {
     setOppteam(null);
     setPerformance(null);
-    setMetricData(null);
+    setMetricData("metric");
     setGraphData(null);
     setLoader2(true);
     const awayData = {
@@ -342,6 +342,9 @@ const GamePage = () => {
         performance_type: performance,
       })
         .then((res) => {
+          console.log("Value set to empty")
+          setMetricData("metric")
+
           setDamList(res?.data);
         })
         .catch((error) => {
@@ -358,6 +361,10 @@ const GamePage = () => {
         performance_type: e.target.value,
       })
         .then((res) => {
+          console.log("Value set to empty")
+
+          setMetricData("metric")
+
           setDamList(res?.data);
         })
         .catch((error) => {
@@ -394,7 +401,8 @@ const GamePage = () => {
         setGraphLoader(false);
       });
   };
-
+useEffect(()=>{console.log("value change for damList",damList)},[damList])
+useEffect(()=>{console.log("value change for metricData",metricData)},[metricData])
 
   if (loader) {
     return (
@@ -736,7 +744,7 @@ const GamePage = () => {
                                   }
                                   className="py-3 bg-[#e6e6e6] !border-0 px-7 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
                                 >
-                                  <option value="">metric</option>
+                                  <option value={"metric"} selected={metricData=="metric"} >metric</option>
 
                                   {damList?.length > 0
                                     ? damList?.map((item, index) => {
@@ -746,7 +754,7 @@ const GamePage = () => {
                                           </option>
                                         );
                                       })
-                                    : ""}
+                                    : <></>}
                                 </select>
                               </div>
                               <div className="text-left">
@@ -935,7 +943,7 @@ const GamePage = () => {
                                 onChange={(e) => setMetricData(e.target.value)}
                                 className="py-3 bg-[#e6e6e6] !border-0 px-7 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
                               >
-                                <option value="">metric</option>
+                                <option value={"metric"} selected={metricData=="metric"} >metric</option>
 
                                 {damList?.length > 0
                                   ? damList?.map((item, index) => {
