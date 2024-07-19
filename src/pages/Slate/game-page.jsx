@@ -885,6 +885,97 @@ const GamePage = () => {
                             </h2>
                           </div>
                         </div>
+                        <div className="mt-8 p-5">
+                            <h1 className="text-3xl font-bold text-center game-titles">
+                             {graphData?.date_ ? `Last Pitched: ${graphData?.date_}` : ""}
+                            </h1>
+                            
+                            <h1 className="text-5xl my-10 font-bold text-center underline game-titles">
+                              EDADZ
+                            </h1>
+                          <div className="flex justify-between mt-10 items-center metric-sections">
+                            <div>
+                              <select
+                                onChange={(e) => handleOppteam(e)}
+                                className="py-3 bg-[#e6e6e6] !border-0 px-7 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
+                              >
+                                <option value="">opp team stats</option>
+                                <option value="Total">Total</option>
+                                <option value="Pitcher's Hand">
+                                  Pitcher's Hand
+                                </option>
+                                <option value="Total by Pitch Type">
+                                  Total by Pitch Type
+                                </option>
+                                <option value="Pitcher's Hand by Pitch Type">
+                                  Pitcher's Hand by Pitch Type
+                                </option>
+                              </select>
+                            </div>
+
+                            <div>
+                              <select
+                                onChange={(e) => handlePerformance(e)}
+                                className="py-3 bg-[#e6e6e6] !border-0 px-7 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
+                              >
+                                <option value="">performance type</option>
+                                <option value="Topline">Topline</option>
+                                <option value="At the Plate">
+                                  At the Plate
+                                </option>
+                                <option value="In the Field">
+                                  In the Field
+                                </option>
+                              </select>
+                            </div>
+                            <div>
+                              <select
+                                onChange={(e) => setMetricData(e.target.value)}
+                                className="py-3 bg-[#e6e6e6] !border-0 px-7 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
+                              >
+                                <option value="">metric</option>
+
+                                {damList?.length > 0
+                                  ? damList?.map((item, index) => {
+                                      return (
+                                        <option key={index} value={item}>
+                                          {item}
+                                        </option>
+                                      );
+                                    })
+                                  : ""}
+                              </select>
+                            </div>
+                            <div>
+                              <button
+                                onClick={() => handegraphData("home")}
+                                className="bg-black w-40 text-white px-5 my-4 py-2 rounded"
+                              >
+                                run
+                              </button>
+                            </div>
+                          </div>
+                          
+                        </div>
+                        <div className={`flex graph_box`}>
+                                {graphData && (
+                                  <>
+                                 {graphData?.graph_data &&
+                                  <BarGraph
+                                    data={JSON.parse(graphData?.graph_data)}
+                                    config={{ responsive: true }}
+                                  />}
+                                  {graphData?.graph_data1 && <BarGraph
+                                    data={JSON.parse(graphData?.graph_data1)}
+                                    config={{ responsive: true }}
+                                  />}
+                                  {graphData?.graph_data1 &&<BarGraph
+                                    data={JSON.parse(graphData?.graph_data2)}
+                                    config={{ responsive: true }}
+                                  />}
+                                  </>
+                                )}
+                              </div>
                       </div>
                     )}
                   </div>
