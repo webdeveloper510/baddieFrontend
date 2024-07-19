@@ -296,8 +296,11 @@ const GamePage = () => {
   }, []);
 
   const handeSubmit = (value) => {
+    setOppteam(null);
+    setPerformance(null);
+    setMetricData(null);
+    setGraphData(null);
     setLoader2(true);
-    console.log("valueeeeeeeeeeee", value);
     const awayData = {
       stat_type: "pitcher",
       player_id: player?.data?.player_id_away,
@@ -323,7 +326,6 @@ const GamePage = () => {
     postDamnMetric(newData)
       .then((res) => {
         setLoader2(false);
-        console.log("res val", res);
         setDamnMetric(res);
       })
       .catch((error) => {
