@@ -959,7 +959,13 @@ const GamePage = () => {
                           </div>
                           
                         </div>
-                        <div className={`flex graph_box`}>
+                        <div>
+                            {graphLoader ? (
+                              <div className="flex justify-center">
+                                <Apploader size={80} />
+                              </div>
+                            ) : (
+                              <div className={`flex graph_box`}>
                                 {graphData && (
                                   <>
                                  {graphData?.graph_data &&
@@ -978,6 +984,8 @@ const GamePage = () => {
                                   </>
                                 )}
                               </div>
+                            )}
+                          </div>
                       </div>
                     )}
                   </div>
