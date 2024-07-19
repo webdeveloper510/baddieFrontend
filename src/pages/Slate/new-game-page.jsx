@@ -159,12 +159,60 @@ const NewGamePage = () => {
     }
   }, [metricType]);
 
+  const getCurrentDateFormatted = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const day = String(today.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
   const getWeather = () => {
     setStatsLoader(true);
     const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     getWeatherData({ timezone: timeZone, table_name: "dam_v12_page" })
       .then((res) => {
         setWeather(res);
+        const gamePk = res?.data?.game_pk[index]
+        getSingleMatchup({
+          game_pk: gamePk,
+          date_key: getCurrentDateFormatted(),
+          table_name: "dam_v12_page",
+        })
+          .then((singleRes) => {
+            setPlayer(singleRes);
+            
+            const awayData = {
+              stat_type: "pitcher",
+              player_id: singleRes?.data?.player_id_away
+                ? singleRes?.data?.player_id_away
+                : singleRes?.data?.player_id_home,
+              opp_team_id: singleRes?.data?.player_id_away
+                ? singleRes?.data?.opp_team_id_home
+                : singleRes?.data?.opp_team_id_away,
+              home_away: singleRes?.data?.player_id_away ? "away" : "home",
+              metric_type: "Ks",
+              prob_type: equality,
+              metric_val: range,
+            };
+    
+            //  if(res?.data?.player_id_away && res?.data?.opp_team_id_away){
+            setLoader2(true);
+            postDamnMetric(awayData)
+              .then((res) => {
+                setLoader2(false);
+                setDamnMetric(res);
+              })
+              .catch((error) => {
+                console.log(error);
+                setLoader2(false);
+              });
+            // }
+          })
+          .catch((error) => {
+            // setLoader(false);
+            console.log(error);
+          });
         getTeamDefense({
           away_team_name: res?.data?.teams_away_team_name?.[index],
           home_team_name: res?.data?.teams_home_team_name?.[index],
@@ -221,53 +269,55 @@ const NewGamePage = () => {
       });
   };
 
-  const getMatchupData = () => {
-    // setLoader(true);
-    getSingleMatchup({
-      game_pk: 747009,
-      date_key: "2024-07-14",
-      table_name: "dam_v12_page",
-    })
-      .then((res) => {
-        setPlayer(res);
+  // const getMatchupData = () => {
+  //   // setLoader(true);
+  //   getSingleMatchup({
+  //     game_pk: 747009,
+  //     date_key: "2024-07-14",
+  //     table_name: "dam_v12_page",
+  //   })
+  //     .then((res) => {
+  //       setPlayer(res);
 
-        const awayData = {
-          stat_type: "pitcher",
-          player_id: res?.data?.player_id_away
-            ? res?.data?.player_id_away
-            : res?.data?.player_id_home,
-          opp_team_id: res?.data?.player_id_away
-            ? res?.data?.opp_team_id_home
-            : res?.data?.opp_team_id_away,
-          home_away: res?.data?.player_id_away ? "away" : "home",
-          metric_type: "Ks",
-          prob_type: equality,
-          metric_val: range,
-        };
+  //       const awayData = {
+  //         stat_type: "pitcher",
+  //         player_id: res?.data?.player_id_away
+  //           ? res?.data?.player_id_away
+  //           : res?.data?.player_id_home,
+  //         opp_team_id: res?.data?.player_id_away
+  //           ? res?.data?.opp_team_id_home
+  //           : res?.data?.opp_team_id_away,
+  //         home_away: res?.data?.player_id_away ? "away" : "home",
+  //         metric_type: "Ks",
+  //         prob_type: equality,
+  //         metric_val: range,
+  //       };
 
-        //  if(res?.data?.player_id_away && res?.data?.opp_team_id_away){
-        setLoader2(true);
-        postDamnMetric(awayData)
-          .then((res) => {
-            setLoader2(false);
-            setDamnMetric(res);
-          })
-          .catch((error) => {
-            console.log(error);
-            setLoader2(false);
-          });
-        // }
-      })
-      .catch((error) => {
-        // setLoader(false);
-        console.log(error);
-      });
-  };
+  //       //  if(res?.data?.player_id_away && res?.data?.opp_team_id_away){
+  //       setLoader2(true);
+  //       postDamnMetric(awayData)
+  //         .then((res) => {
+  //           setLoader2(false);
+  //           setDamnMetric(res);
+  //         })
+  //         .catch((error) => {
+  //           console.log(error);
+  //           setLoader2(false);
+  //         });
+  //       // }
+  //     })
+  //     .catch((error) => {
+  //       // setLoader(false);
+  //       console.log(error);
+  //     });
+  // };
 
   useEffect(() => {
-    getMatchupData();
+    // getMatchupData();
     getWeather();
   }, []);
+
+
 
   const handeSubmit = (value) => {
     setOppteam(null);
@@ -863,8 +913,12 @@ const NewGamePage = () => {
                         </div>
 
                         <div className="mt-8 p-5">
-                        <h1 className="text-5xl font-bold text-center underline game-titles">
-                              EDA Dataviz
+                            <h1 className="text-3xl font-bold text-center game-titles">
+                             {graphData?.date_ ? `Last Pitched: ${graphData?.date_}` : ""}
+                            </h1>
+                            
+                            <h1 className="text-5xl my-10 font-bold text-center underline game-titles">
+                              EDADZ
                             </h1>
                           <div className="flex justify-between mt-10 items-center metric-sections">
                             <div>
@@ -930,22 +984,25 @@ const NewGamePage = () => {
                           </div>
                           
                         </div>
-                        <div>
-                            {graphLoader ? (
-                              <div className="flex justify-center">
-                                <Apploader size={80} />
-                              </div>
-                            ) : (
-                              <>
+                        <div className={`flex graph_box`}>
                                 {graphData && (
+                                  <>
+                                 {graphData?.graph_data &&
                                   <BarGraph
                                     data={JSON.parse(graphData?.graph_data)}
                                     config={{ responsive: true }}
-                                  />
+                                  />}
+                                  {graphData?.graph_data1 && <BarGraph
+                                    data={JSON.parse(graphData?.graph_data1)}
+                                    config={{ responsive: true }}
+                                  />}
+                                  {graphData?.graph_data1 &&<BarGraph
+                                    data={JSON.parse(graphData?.graph_data2)}
+                                    config={{ responsive: true }}
+                                  />}
+                                  </>
                                 )}
-                              </>
-                            )}
-                          </div>
+                              </div>
                       </div>
                     )}
                   </div>
