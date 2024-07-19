@@ -9,15 +9,24 @@ import {
   getTeamDefense,
   postDamnMetric,
   postStatsWorkload,
+  damData,
+  damGraphData,
 } from "../../api";
 import Apploader from "../../component/Apploader";
 import DirectionImage from "../../component/DirectionImage";
+import BarGraph from "../eda/Graph";
 // import graphImage from "/graph-image.png"
 
 const GamePage = () => {
   const navigate = useNavigate();
   const [data, setData] = useState(null);
+  const [opp_team, setOppteam] = useState("");
+  const [graphLoader, setGraphLoader] = useState(false);
+  const [damList, setDamList] = useState("");
+  const [metricData, setMetricData] = useState("");
+  const [performance, setPerformance] = useState("");
   const [data2, setData2] = useState(null);
+  const [graphData, setGraphData] = useState(null);
   const [team, setTeam] = useState(null);
   console.log("🚀 ~ GamePage ~ team:", team);
   const [player, setPlayer] = useState(null);
@@ -323,6 +332,68 @@ const GamePage = () => {
       });
   };
 
+  const handleOppteam = (e) => {
+    setOppteam(e.target.value);
+    if (e.target.value && performance) {
+      damData({
+        opp_team_stats: e.target.value,
+        performance_type: performance,
+      })
+        .then((res) => {
+          setDamList(res?.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  };
+
+  const handlePerformance = (e) => {
+    setPerformance(e.target.value);
+    if (opp_team && e.target.value) {
+      damData({
+        opp_team_stats: opp_team,
+        performance_type: e.target.value,
+      })
+        .then((res) => {
+          setDamList(res?.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  };
+
+  const handegraphData = (value) => {
+    setGraphLoader(true);
+    const newData =
+      value === "away"
+        ? weather?.data?.teams_home_team_name?.[index]
+        : weather?.data?.teams_away_team_name?.[index];
+    const playerId =
+      value === "away"
+        ? player?.data?.player_id_home
+        : player?.data?.player_id_away;
+    damGraphData({
+      opp_team_stats: opp_team,
+      performance_type: performance,
+      metric: metricData,
+      opposing_team: newData,
+      player_id: playerId,
+    })
+      .then((res) => {
+        console.log("ressssssss", res);
+        setGraphData(res?.data);
+        setGraphLoader(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setGraphData("");
+        setGraphLoader(false);
+      });
+  };
+
+
   if (loader) {
     return (
       <div className="w-full h-[100vh] flex items-center justify-center">
@@ -611,6 +682,107 @@ const GamePage = () => {
                                   : "0"}
                               </h2>
                             </div>
+                          </div>
+
+                          <div className="mt-8 p-5">
+                            <h1 className="text-3xl font-bold text-center game-titles">
+                             {graphData?.date_ ? `Last Pitched: ${graphData?.date_}` : ""}
+                            </h1>
+                            
+                            <h1 className="text-5xl my-10 font-bold text-center underline game-titles">
+                              EDADZ
+                            </h1>
+                            <div className="flex justify-between items-center pl-10 pr-16 metric-sections">
+                              <div className="px-2">
+                                <select
+                                  onChange={(e) => handleOppteam(e)}
+                                  className="py-3 bg-[#e6e6e6] !border-0 px-4 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
+                                >
+                                  <option value="">opp team stats</option>
+                                  <option value="Total">Total</option>
+                                  <option value="Pitcher's Hand">
+                                    Pitcher's Hand
+                                  </option>
+                                  <option value="Total by Pitch Type">
+                                    Total by Pitch Type
+                                  </option>
+                                  <option value="Pitcher's Hand by Pitch Type">
+                                    Pitcher's Hand by Pitch Type
+                                  </option>
+                                </select>
+                              </div>
+
+                              <div className="px-2">
+                                <select
+                                  onChange={(e) => handlePerformance(e)}
+                                  className="py-3 bg-[#e6e6e6] !border-0 px-7 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
+                                >
+                                  <option value="">performance type</option>
+                                  <option value="Topline">Topline</option>
+                                  <option value="At the Plate">
+                                    At the Plate
+                                  </option>
+                                  <option value="In the Field">
+                                    In the Field
+                                  </option>
+                                </select>
+                              </div>
+                              <div className="px-2">
+                                <select
+                                  onChange={(e) =>
+                                    setMetricData(e.target.value)
+                                  }
+                                  className="py-3 bg-[#e6e6e6] !border-0 px-7 my-5 player-list rounded w-full text-center focus:outline-none appearance-none"
+                                >
+                                  <option value="">metric</option>
+
+                                  {damList?.length > 0
+                                    ? damList?.map((item, index) => {
+                                        return (
+                                          <option key={index} value={item}>
+                                            {item}
+                                          </option>
+                                        );
+                                      })
+                                    : ""}
+                                </select>
+                              </div>
+                              <div className="text-left">
+                                <button
+                                  onClick={() => handegraphData("away")}
+                                  className="bg-black w-32 text-white  my-4 py-2 rounded"
+                                >
+                                  run
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                          <div>
+                            {graphLoader ? (
+                              <div className="flex justify-center">
+                                <Apploader size={80} />
+                              </div>
+                            ) : (
+                              <div className={`flex graph_box`}>
+                                {graphData && (
+                                  <>
+                                 {graphData?.graph_data &&
+                                  <BarGraph
+                                    data={JSON.parse(graphData?.graph_data)}
+                                    config={{ responsive: true }}
+                                  />}
+                                  {graphData?.graph_data1 && <BarGraph
+                                    data={JSON.parse(graphData?.graph_data1)}
+                                    config={{ responsive: true }}
+                                  />}
+                                  {graphData?.graph_data1 &&<BarGraph
+                                    data={JSON.parse(graphData?.graph_data2)}
+                                    config={{ responsive: true }}
+                                  />}
+                                  </>
+                                )}
+                              </div>
+                            )}
                           </div>
                         </div>
                       )}
