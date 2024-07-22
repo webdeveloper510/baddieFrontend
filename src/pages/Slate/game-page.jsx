@@ -245,13 +245,13 @@ const GamePage = () => {
   // };
 
   const getMatchupData = () => {
-    // setLoader(true);
+    setLoader(true);
     getSingleMatchup({
       game_pk: state?.[2].game_pk,
       date_key: state?.[2]?.date_key,
     })
       .then((res) => {
-        // setLoader(false);
+        setLoader(false);
         console.log("getSingleMatchup", res);
         setPlayer(res);
 
@@ -785,7 +785,7 @@ useEffect(()=>{console.log("value change for metricData",metricData)},[metricDat
                                     data={JSON.parse(graphData?.graph_data1)}
                                     config={{ responsive: true }}
                                   />}
-                                  {graphData?.graph_data1 &&<BarGraph
+                                  {graphData?.graph_data2 &&<BarGraph
                                     data={JSON.parse(graphData?.graph_data2)}
                                     config={{ responsive: true }}
                                   />}
@@ -985,7 +985,7 @@ useEffect(()=>{console.log("value change for metricData",metricData)},[metricDat
                                     data={JSON.parse(graphData?.graph_data1)}
                                     config={{ responsive: true }}
                                   />}
-                                  {graphData?.graph_data1 &&<BarGraph
+                                  {graphData?.graph_data2 &&<BarGraph
                                     data={JSON.parse(graphData?.graph_data2)}
                                     config={{ responsive: true }}
                                   />}
