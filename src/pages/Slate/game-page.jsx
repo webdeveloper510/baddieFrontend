@@ -28,7 +28,6 @@ const GamePage = () => {
   const [data2, setData2] = useState(null);
   const [graphData, setGraphData] = useState(null);
   const [team, setTeam] = useState(null);
-  console.log("🚀 ~ GamePage ~ team:", team);
   const [player, setPlayer] = useState(null);
   const [weather, setWeather] = useState(true);
   const [loader, setLoader] = useState(false);
@@ -38,7 +37,6 @@ const GamePage = () => {
   const [rangeMax, setRangeMax] = useState(10);
   const [rangeDefault, setRangeDefault] = useState(5);
   const [equality, setEquality] = useState("less than or equal to");
-  console.log("🚀 ~ GamePage ~ data:", data);
   const [damnMetric, setDamnMetric] = useState(null);
   const [statsworkload, setStatsworkload] = useState(null);
   const [columns1, setColumns1] = useState([]);
@@ -49,8 +47,6 @@ const GamePage = () => {
 
   const { state } = useLocation();
   const index = state?.[2]?.index;
-  console.log("🚀 ~ GamePage ~ index:", index);
-  console.log("🚀 ~ GamePage ~ state:", state);
   const wind_direction = [
     {
       name: "SE",
@@ -167,8 +163,6 @@ const GamePage = () => {
     const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     getWeatherData({ timezone: timeZone })
       .then((res) => {
-        // setLoader(false);
-        console.log("res weather data", res);
         setWeather(res);
         getTeamDefense({
           away_team_name: res?.data?.teams_away_team_name?.[index],
@@ -187,7 +181,6 @@ const GamePage = () => {
           date_key: state?.[2]?.date_key,
         })
           .then((resStat) => {
-            console.log("resssss stats", resStat);
             setStatsLoader(false);
             setStatsworkload(resStat);
             const data = resStat?.away_workload;
@@ -252,7 +245,6 @@ const GamePage = () => {
     })
       .then((res) => {
         setLoader(false);
-        console.log("getSingleMatchup", res);
         setPlayer(res);
 
         const awayData = {
@@ -274,7 +266,6 @@ const GamePage = () => {
         postDamnMetric(awayData)
           .then((res) => {
             setLoader2(false);
-            console.log("res val", res);
             setDamnMetric(res);
           })
           .catch((error) => {
@@ -342,7 +333,6 @@ const GamePage = () => {
         performance_type: performance,
       })
         .then((res) => {
-          console.log("Value set to empty")
           setMetricData("metric")
 
           setDamList(res?.data);
@@ -361,8 +351,6 @@ const GamePage = () => {
         performance_type: e.target.value,
       })
         .then((res) => {
-          console.log("Value set to empty")
-
           setMetricData("metric")
 
           setDamList(res?.data);
@@ -391,7 +379,6 @@ const GamePage = () => {
       player_id: playerId,
     })
       .then((res) => {
-        console.log("ressssssss", res);
         setGraphData(res?.data);
         setGraphLoader(false);
       })
@@ -401,8 +388,6 @@ const GamePage = () => {
         setGraphLoader(false);
       });
   };
-useEffect(()=>{console.log("value change for damList",damList)},[damList])
-useEffect(()=>{console.log("value change for metricData",metricData)},[metricData])
 
   if (loader) {
     return (
@@ -424,31 +409,30 @@ useEffect(()=>{console.log("value change for metricData",metricData)},[metricDat
     );
   };
 
-  const handleStatsWorkload = (value) => {
-    setStatsLoader(true);
-    postStatsWorkload({ team_id: value, date_key: state?.[2]?.date_key })
-      .then((resStat) => {
-        console.log("resssss stats", resStat);
-        setStatsLoader(false);
-        setStatsworkload(resStat);
-        const data = resStat?.workload;
-        const keys = Object.keys(data);
-        setColumns1(keys);
-        const result = data[keys[0]].map((item, index) => {
-          let newObject = {};
-          keys.forEach((k) => {
-            newObject[k] = data[k][index];
-          });
-          return newObject;
-        });
+  // const handleStatsWorkload = (value) => {
+  //   setStatsLoader(true);
+  //   postStatsWorkload({ team_id: value, date_key: state?.[2]?.date_key })
+  //     .then((resStat) => {
+  //       setStatsLoader(false);
+  //       setStatsworkload(resStat);
+  //       const data = resStat?.workload;
+  //       const keys = Object.keys(data);
+  //       setColumns1(keys);
+  //       const result = data[keys[0]].map((item, index) => {
+  //         let newObject = {};
+  //         keys.forEach((k) => {
+  //           newObject[k] = data[k][index];
+  //         });
+  //         return newObject;
+  //       });
 
-        setSegmentData(result);
-      })
-      .catch((error) => {
-        console.log(error);
-        setStatsLoader(false);
-      });
-  };
+  //       setSegmentData(result);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //       setStatsLoader(false);
+  //     });
+  // };
 
   return (
     <>
