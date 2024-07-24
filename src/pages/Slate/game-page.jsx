@@ -368,7 +368,7 @@ const GamePage = () => {
         ? weather?.data?.teams_home_team_name?.[index]
         : weather?.data?.teams_away_team_name?.[index];
     const playerId =
-      value === "away"
+      value === "home"
         ? player?.data?.player_id_home
         : player?.data?.player_id_away;
     damGraphData({
