@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap");
 .App {
   text-align: center;
 }
@@ -278,7 +279,7 @@ canvas.scatter-charts {
 }
 
 @media screen and (max-width: 768px) {
-  .main-box{
+  .main-box {
     height: 180px;
   }
   .baddie-text {
@@ -544,7 +545,7 @@ canvas.scatter-charts {
   .no-data-text {
     font-size: 16px;
   }
-  .graph_box{
+  .graph_box {
     display: block;
   }
 }
@@ -554,7 +555,7 @@ canvas.scatter-charts {
 }
 
 @media screen and (max-width: 480px) {
-  .bullpen-stats{
+  .bullpen-stats {
     padding-left: 0px;
     padding-right: 0px;
   }
@@ -590,7 +591,7 @@ canvas.scatter-charts {
   .chance-texts {
     display: block;
   }
-  .graph_box{
+  .graph_box {
     display: block;
   }
   /* .first-section {
@@ -601,10 +602,10 @@ canvas.scatter-charts {
   } */
 }
 @media screen and (max-width: 430px) {
-  .graph_box{
+  .graph_box {
     display: block;
   }
-  .bullpen-stats{
+  .bullpen-stats {
     padding-left: 0px;
     padding-right: 0px;
   }
@@ -1361,9 +1362,12 @@ body {
   border-right: 1px solid rgb(255 255 255 / 10%);
   padding: 20px 0px;
   text-transform: uppercase;
-  font-family: var(--headings-font-family);
+  font-family: "Lato", sans-serif;
+  font-weight: 500;
+  font-style: normal;
   border-radius: 0px;
   font-size: 25px;
+  letter-spacing: 2px;
 }
 
 .css-1t8x7v1 > .ps-menu-button {
@@ -1424,12 +1428,15 @@ body {
 }
 
 .section2 ul li h1 {
-  font-size: 25px;
-  font-weight: 400;
+  font-size: 22px;
   text-decoration: none;
   text-align: center;
   font-family: var(--headings-font-family);
   font-weight: 400;
+  font-family: "Lato", sans-serif !important;
+  font-weight: 600 !important;
+  font-style: normal;
+  text-transform: capitalize !important;
 }
 
 .section2 ul li h2 {
@@ -1501,19 +1508,21 @@ body {
 }
 
 .section4 h2 {
-  font-size: 65px;
-  font-family: var(--headings-font-family);
-  font-weight: 400;
+  font-size: 55px;
+  font-weight: 600;
   color: #fff;
   line-height: 60px;
+  font-family: "Lato", sans-serif;
+  font-style: normal;
 }
 
 .section4 p {
   color: #9f9eae;
   font-size: 22px;
-  font-family: var(--body-font-family);
   font-weight: 400;
   line-height: 33.11px;
+  font-family: "Lato", sans-serif;
+  font-style: normal;
 }
 
 .bet-row {
@@ -1544,6 +1553,10 @@ body {
 .bet-content {
   padding: 50px;
 }
+.bet-content h4 {
+  text-transform: lowercase !important;
+}
+
 .footer {
   width: 100%;
   float: left;
@@ -1778,15 +1791,15 @@ div#dropdownInformation {
     margin-top: 15px;
     line-height: normal;
   }
-  .second-box h1{
+  .second-box h1 {
     margin-top: 65px;
     font-size: 4rem;
     line-height: 1;
   }
-  .slate-mobile{
+  .slate-mobile {
     width: 100px;
   }
-  .wind-speed{
+  .wind-speed {
     margin-top: 10px;
   }
 }
@@ -2021,7 +2034,7 @@ div#dropdownInformation {
 }
 
 @media screen and (max-width: 430px) {
-  .carousel .control-dots{
+  .carousel .control-dots {
     display: none !important;
   }
   .flex_section {
@@ -2131,7 +2144,7 @@ div#dropdownInformation {
     padding-left: 0px;
     padding-right: 0px;
   }
-  .carousel-tab{
+  .carousel-tab {
     padding: 0px;
   }
 
@@ -2159,10 +2172,9 @@ div#dropdownInformation {
   .promo-code {
     width: 100% !important;
   }
-  
 }
 @media only screen and (max-width: 480px) {
-  .carousel .control-dots{
+  .carousel .control-dots {
     display: none !important;
   }
   .input-butns {
@@ -2219,11 +2231,11 @@ div#dropdownInformation {
     font-size: 10px;
     font-style: italic;
     color: #fff;
-}
-.bullpen_bg {
+  }
+  .bullpen_bg {
     background: #d32f2f !important;
-    padding: 1rem .2rem;	
-}
+    padding: 1rem 0.2rem;
+  }
 }
 
 @media screen and (max-width: 375px) {
@@ -2339,7 +2351,6 @@ input.InputElement.is-empty.Input.Input--empty {
   margin-bottom: -17px;
 } */
 
-
 /* Add this CSS to your stylesheet */
 .table-container {
   overflow-x: auto;
@@ -2357,14 +2368,14 @@ input.InputElement.is-empty.Input.Input--empty {
   left: 0;
   background: #40ecd9; /* Ensure background is same as the table */
   z-index: 1; /* Ensure it stays on top */
-  box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* Optional: Add a shadow to the right for better visibility */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow to the right for better visibility */
 }
 .sticky-col {
   position: sticky;
   left: 0;
   background: white; /* Ensure background is same as the table */
   z-index: 1; /* Ensure it stays on top */
-  box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* Optional: Add a shadow to the right for better visibility */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow to the right for better visibility */
 }
 
 .sticky-header {
@@ -2372,20 +2383,74 @@ input.InputElement.is-empty.Input.Input--empty {
   left: 0;
   background: white; /* Ensure background is same as the table */
   z-index: 2; /* Higher than .sticky-col to stay on top */
-  box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* Optional: Add a shadow to the right for better visibility */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow to the right for better visibility */
 }
-.tab-lists li{
+.tab-lists li {
   cursor: pointer;
 }
 
-.email_notify{
+.email_notify {
   color: white;
-    font-size: 17.88px;
-    font-family: Bebas Neue;
-    font-weight: 400;
-    font-family: var(--headings-font-family);
-    line-height: 18.03px;
-    word-wrap: break-word;
+  font-size: 17.88px;
+  font-family: Bebas Neue;
+  font-weight: 400;
+  font-family: var(--headings-font-family);
+  line-height: 18.03px;
+  word-wrap: break-word;
 }
-
-
+.tryna_link {
+  font-family: "Lato", sans-serif !important;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  letter-spacing: 2px;
+  padding-top: 10px;
+}
+.tryna_link_one {
+  font-family: "Lato", sans-serif !important;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 22px;
+  letter-spacing: 2px;
+  padding-top: 10px;
+}
+.tryna_link_two {
+  font-family: "Lato", sans-serif !important;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 22px;
+  letter-spacing: 2px;
+  padding-top: 10px;
+}
+.tryna_link_btn {
+  font-family: "Lato", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 18px;
+  letter-spacing: 1px;
+  padding-top: 10px;
+}
+.tryna_link_btn_big {
+  font-family: "Lato", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 32px;
+  letter-spacing: 1px;
+  padding-top: 10px;
+}
+.Ballers_btn {
+  font-family: "Lato", sans-serif !important;
+  font-weight: 600 !important;
+  font-style: normal;
+  letter-spacing: 1px;
+  padding-top: 10px;
+  text-transform: capitalize !important;
+}
+.new_heading_btn {
+  width: fit-content;
+  padding: 13px;
+  padding: 15px 15px;
+}
+.flex.action_btn button {
+  font-family: "Lato", sans-serif !important;
+}

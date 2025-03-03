@@ -22,8 +22,8 @@ const Header = ({ show, setShow }) => {
   const emailnotifiUpdate = (value) => {
     emailNotification({ email_notification: value })
       .then((res) => {
-        setUser(res?.data)
-        console.log("email_notification",res);
+        setUser(res?.data);
+        console.log("email_notification", res);
         setDropdownOpen((prev) => !prev);
       })
       .catch((error) => {
@@ -142,7 +142,7 @@ const Header = ({ show, setShow }) => {
                             : "bg-greyLight text-white"
                         } `}
                       >
-                        Picks & analysis
+                        Picks & Analysis
                       </MenuItem>
                     </Link>
                     <Link to={user?.status == "active" ? "/dam" : "/payment"}>
@@ -171,7 +171,7 @@ const Header = ({ show, setShow }) => {
                             : "bg-greyLight text-white"
                         } `}
                       >
-                        Player/team EDA
+                        Player & Team EDA
                       </MenuItem>
                     </Link>
                     <Link
@@ -188,7 +188,7 @@ const Header = ({ show, setShow }) => {
                             : "bg-greyLight text-white"
                         } `}
                       >
-                        EV calculator
+                        EV Calculator
                       </MenuItem>
                     </Link>
 
@@ -294,33 +294,36 @@ const Header = ({ show, setShow }) => {
                   </li> */}
                   </ul>
                   <div className="pt-2">
-                    <p className="flex px-3 items-center justify-between text-white email_notify">PICK NOTIFICATIONS {user?.email_notification == true ? (
-                      <svg
-                      onClick={()=>emailnotifiUpdate(false)}
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="40"
-                        height="30"
-                        fill="currentColor"
-                        className="bi bi-toggle2-on text-[green]"
-                        viewBox="0 0 16 16"
-                      >
-                        <path d="M7 5H3a3 3 0 0 0 0 6h4a5 5 0 0 1-.584-1H3a2 2 0 1 1 0-4h3.416q.235-.537.584-1" />
-                        <path d="M16 8A5 5 0 1 1 6 8a5 5 0 0 1 10 0" />
-                      </svg>
-                    ) : (
-                      <svg
-                        onClick={()=>emailnotifiUpdate(true)}
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="40"
-                        height="30"
-                        fill="currentColor"
-                        class="bi bi-toggle2-off text-[red]"
-                        viewBox="0 0 16 16"
-                      >
-                        <path d="M9 11c.628-.836 1-1.874 1-3a4.98 4.98 0 0 0-1-3h4a3 3 0 1 1 0 6z" />
-                        <path d="M5 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8m0 1A5 5 0 1 0 5 3a5 5 0 0 0 0 10" />
-                      </svg>
-                    )}</p>
+                    <p className="flex px-3 items-center justify-between text-white email_notify">
+                      PICK NOTIFICATIONS{" "}
+                      {user?.email_notification == true ? (
+                        <svg
+                          onClick={() => emailnotifiUpdate(false)}
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="40"
+                          height="30"
+                          fill="currentColor"
+                          className="bi bi-toggle2-on text-[green]"
+                          viewBox="0 0 16 16"
+                        >
+                          <path d="M7 5H3a3 3 0 0 0 0 6h4a5 5 0 0 1-.584-1H3a2 2 0 1 1 0-4h3.416q.235-.537.584-1" />
+                          <path d="M16 8A5 5 0 1 1 6 8a5 5 0 0 1 10 0" />
+                        </svg>
+                      ) : (
+                        <svg
+                          onClick={() => emailnotifiUpdate(true)}
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="40"
+                          height="30"
+                          fill="currentColor"
+                          class="bi bi-toggle2-off text-[red]"
+                          viewBox="0 0 16 16"
+                        >
+                          <path d="M9 11c.628-.836 1-1.874 1-3a4.98 4.98 0 0 0-1-3h4a3 3 0 1 1 0 6z" />
+                          <path d="M5 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8m0 1A5 5 0 1 0 5 3a5 5 0 0 0 0 10" />
+                        </svg>
+                      )}
+                    </p>
                   </div>
                   <div className="py-2 out_rest">
                     <button
