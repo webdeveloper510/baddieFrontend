@@ -13,6 +13,7 @@ function Home() {
   const [picks, setPicks] = useState([]);
   console.log("🚀 ~ Home ~ picks:", picks);
   const [loading, setLoading] = useState(false);
+
   const appLoad = async () => {
     setLoading(true);
     fetch("https://baddie.pro/graph-data1/")
@@ -45,13 +46,12 @@ function Home() {
   };
 
   useEffect(() => {
-    appLoad();
-    getpickssummary();
+    // appLoad();
+    // getpickssummary();
   }, []);
 
   const keypoints = [
     {
-    
       image: "/bet1.png",
       heading: "Get That Alpha, Dog.",
       content:
@@ -88,30 +88,57 @@ function Home() {
     },
   ];
 
+  // const bets = [
+  //   {
+  //     heading: "Total Bets",
+  //     content: picks?.total_bets,
+  //   },
+  //   {
+  //     heading: "Win Percentage",
+  //     content: `${picks?.win_percentage} %`,
+  //   },
+  //   {
+  //     heading: "Units",
+  //     content: `${picks?.units >= 0 ? "+" + picks?.units : picks?.units}`,
+  //   },
+  //   {
+  //     heading: "Win - Loss - Push",
+  //     content: `${picks?.wins} - ${picks?.losses} - ${picks?.pushes}`,
+  //   },
+  //   {
+  //     heading: "Average Odds",
+  //     content: picks?.average_odds,
+  //   },
+  //   {
+  //     heading: "ROI",
+  //     content: `${picks?.ROI} %`,
+  //   },
+  // ];
+
   const bets = [
     {
       heading: "Total Bets",
-      content: picks?.total_bets,
+      content: 608,
     },
     {
       heading: "Win Percentage",
-      content: `${picks?.win_percentage} %`,
+      content: "55.6%",
     },
     {
       heading: "Units",
-      content: `${picks?.units >= 0 ? "+" + picks?.units : picks?.units}`,
+      content: `+27.92`,
     },
     {
       heading: "Win - Loss - Push",
-      content: `${picks?.wins} - ${picks?.losses} - ${picks?.pushes}`,
+      content: `372-231-5`,
     },
     {
       heading: "Average Odds",
-      content: picks?.average_odds,
+      content: -105,
     },
     {
       heading: "ROI",
-      content: `${picks?.ROI} %`,
+      content: `4.49%`,
     },
   ];
 
@@ -129,7 +156,9 @@ function Home() {
               <h4 className="tryna_link">Tryna Link Up?</h4>
 
               <p className="tryna_link_two">
-              "BADDIE's suite of tools & expert picks makes betting like a data scientist easy. Get a taste of BADDIE's innovative take on sports betting"
+                "BADDIE's suite of tools & expert picks makes betting like a
+                data scientist easy. Get a taste of BADDIE's innovative take on
+                sports betting"
               </p>
             </div>
             {/* <p class="promo_code absolute">Use promo code <span>dIM3SDFK</span> for <span>25%</span> off the life of 
@@ -160,7 +189,8 @@ function Home() {
                       <h1 className="text-3xl font-bold underline">
                         {item.heading}
                       </h1>
-                      <h2 className="text-2xl font-bold">{item.content}</h2>
+                      <h2 className="text-2xl font-bold">{item.content} </h2>
+                      {/* <h2 className="text-2xl font-bold"> 608</h2> */}
                     </div>
                   </li>
                 ))}
@@ -172,8 +202,7 @@ function Home() {
                     href="https://storage.googleapis.com/baddie_fe_content/BADDIE%20MLB%202024%20Pick%20Summary.xlsx"
                     className="tryna_link_btn"
                   >
-                   Lifetime Sports Betting Detail
-
+                    Lifetime Sports Betting Detail
                   </a>
                 </button>
               </div>
@@ -265,8 +294,7 @@ function Home() {
                   {index === 4 && (
                     <button className="text-black  bg-lightgray text-lg  w-100 login-sign bet-mlb-btn tryna_link_btn">
                       <a href="https://storage.googleapis.com/baddie_fe_content/BADDIE%20MLB%202024%20Pick%20Summary.xlsx">
-                      Lifetime Sports Betting Detail
-
+                        Lifetime Sports Betting Detail
                       </a>
                     </button>
                   )}
